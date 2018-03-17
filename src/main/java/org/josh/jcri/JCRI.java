@@ -17,8 +17,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 /**JCRI main class.
- TODO: provide onMessage, onError, and onClose handler
- TODO: provide method/event callback function
+ TODO: provide onError, and onClose handler
  TODO: provide executor for executing event callback
  TODO: provide handy methods by combining a set of debug protocol methods
  @author Joshua */

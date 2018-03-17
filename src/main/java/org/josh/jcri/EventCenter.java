@@ -2,13 +2,13 @@ package org.josh.jcri;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
@@ -60,9 +60,8 @@ class EventCenter {
     /**Push a method into response waiting queue.
      If given method's Id is already existed in internal waiting queue, the given method will NOT
      be put into queue. */
-    final boolean enqueueMethod(MethodBase method) {
-        //return _methodWaitingTable.putIfAbsent(method.getId(), method) == null;
-        return false;
+    final boolean enqueueMethod(long commandId, MethodBase method) {
+        return _methodWaitingTable.putIfAbsent(commandId, method) == null;
     }
 
     /**Pop out method from waiting queue.
@@ -82,6 +81,17 @@ class EventCenter {
         return reader.readValue(data);
     }
 
+    /**Deserialize json node instance to object with a given object reader instance.
+     @throws IOException if given json node is invalid. */
+    static <T> T deserializeJson(JsonNode node, Class<T> meta) throws IOException {
+        return _om.treeToValue(node, meta);
+    }
+    /**Deserialize json node instance to object with a given object reader instance.
+     @throws IOException if given json node is invalid. */
+    static <T> T deserializeJson(JsonNode node, Class<T> meta, ObjectReader reader) throws IOException {
+        return reader.treeToValue(node, meta);
+    }
+
     /**Serialize object to json string.
      @throws JsonProcessingException if fail to serialize given object. */
     static <T> String serializeJson(T object) throws JsonProcessingException {
@@ -96,6 +106,47 @@ class EventCenter {
 
     /**On receiving message from browser callback method.*/
     void onMessage(String msg) {
-        /// TODO: not implemented
+        try {
+            final JsonNode node = _om.readTree(msg);
+            //! Check if is response of method
+            if (node.has("id")) {
+                final MethodBase method = _methodWaitingTable.get(node.get("id").asLong());
+                if (method != null) {
+                    if (node.has("result"))
+                        method.setResponse(true, node.get("result"));
+                    else
+                        method.setResponse(false, node.get("error"));
+                    method.getLatch().countDown();
+                }
+            }
+            else if (node.has("method")){
+                /// TODO: not implemented
+            }
+            else {
+                //! Browser response unexpected message?!
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**Partial result for success method.*/
+    private class PartialSuccessMethod {
+//        private final long id;
+//        private final String result;
+    }
+
+    /**Partial result for failed method.*/
+    private class PartialFailMethod {
+//        private final long id;
+//        private final String error;
+    }
+
+    /**Partial result for event.*/
+    private class PartialEvent {
+        ;
     }
 }
+
