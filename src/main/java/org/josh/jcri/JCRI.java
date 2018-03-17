@@ -2,8 +2,6 @@ package org.josh.jcri;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -15,7 +13,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -24,30 +21,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
  TODO: provide method/event callback function
  TODO: provide executor for executing event callback
  TODO: provide handy methods by combining a set of debug protocol methods
- @author Joshua
- @since 1.0 */
+ @author Joshua */
 @ParametersAreNonnullByDefault
 public class JCRI implements Closeable {
-    /**System property name of default IO thread count.*/
-    private static final String DefaultIOThreadPropertyName = "org.josh.jcri.defaultIOThread";
-    /**Default IO thread count value.*/
-    private static final int DefaultIOThread = 1;
     /**System property name of connection timeout in second.*/
     private static final String DefaultConnectionTimeoutPropertyName = "org.josh.jcri.connectionTimeout";
     /**Default connection timeout second.*/
     private static final int DefaultConnectionTimeout = 30;
 
-    /**Standalone json object mapper.*/
-    private static final ObjectMapper _om = new ObjectMapper();
-    /**Standalone json to object parser.*/
-    private static final ObjectReader _omReader = _om.reader();
-    /**Standalone object to json writer.*/
-    private static final ObjectWriter _omWriter = _om.writer();
-
     /**Web socket instance.*/
     private final WebSocket _ws;
-    /**Executor for waiting browser's response of sent commends.*/
-    private final ExecutorService _ioExecutor;
+    /**Event handler center.*/
+    private final EventCenter _evt;
+    /**_ioExecutor needs to shutdown when {@link #close()} or {@link #closeAsync()} is called. */
     private boolean _shutdownExecutorWhenClose = false;
 
 
@@ -95,32 +81,20 @@ public class JCRI implements Closeable {
     /**Create new connection to browser with specified URL and connection timeout.
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
      @param timeout web socket connection timeout in second. Use 0 or negative to indicate never
-         timeout.
+        timeout.
      @param ioExecutor executor for providing IO waiting threads. This executor will be shutdown
         when {@link #close()} or {@link #closeAsync()} is called. To change this behavior, call
-         {@link #shutdownExecutorWhenClose(boolean)}. */
+        {@link #shutdownExecutorWhenClose(boolean)}. */
     public JCRI(URI webSocketDebuggerUrl, int timeout, @Nullable ExecutorService ioExecutor) {
-        _ws = new WebSocket(webSocketDebuggerUrl, timeout, null, null, null);
-        if (ioExecutor == null) {
-            int ioThread = DefaultIOThread;
-            try {
-                final int count = Integer.parseInt(System.getProperty(DefaultIOThreadPropertyName));
-                if (count > 0) ioThread = count;
-            }
-            catch (IllegalArgumentException e) {  // also include NumberFormatException
-                // Do nothing, just use default value
-            }
-            _ioExecutor = Executors.newFixedThreadPool(ioThread);
-        }
-        else
-            _ioExecutor = ioExecutor;
+        _evt = new EventCenter(ioExecutor);
+        _ws = new WebSocket(webSocketDebuggerUrl, timeout, _evt::onMessage, this::onError, this::onClose);
     }
 
     /**Create new connection to browser with specified URL and default connection timeout.
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
      @param ioExecutor executor for providing IO waiting threads. This executor will be shutdown
         when {@link #close()} or {@link #closeAsync()} is called. To change this behavior, call
-         {@link #shutdownExecutorWhenClose(boolean)}. */
+        {@link #shutdownExecutorWhenClose(boolean)}. */
     public JCRI(URI webSocketDebuggerUrl, @Nullable ExecutorService ioExecutor) {
         this(webSocketDebuggerUrl, DefaultConnectionTimeout, ioExecutor);
         try {
@@ -152,7 +126,7 @@ public class JCRI implements Closeable {
                 Thread.currentThread().interrupt();
                 return false;
             }
-        }, _ioExecutor);
+        }, _evt.getExecutor());
     }
 
     /**Close connection.
@@ -160,7 +134,7 @@ public class JCRI implements Closeable {
      running.
      @apiNote this is a blocking operation. */
     @Override public void close() {
-        if (_shutdownExecutorWhenClose)     _ioExecutor.shutdownNow();
+        if (_shutdownExecutorWhenClose)     _evt.getExecutor().shutdownNow();
         try { _ws.closeBlocking(); }
         catch (InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -173,13 +147,8 @@ public class JCRI implements Closeable {
      @see #isClosing()
      @see #isClosed() */
     public void closeAsync() {
-        if (_shutdownExecutorWhenClose)     _ioExecutor.shutdownNow();
+        if (_shutdownExecutorWhenClose)     _evt.getExecutor().shutdownNow();
         _ws.close();
-    }
-
-    /**On receiving message from browser callback method.*/
-    private void onMessage(String msg) {
-        /// TODO: not implemented
     }
 
     /**On web socket error callback method.*/
