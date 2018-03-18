@@ -130,23 +130,5 @@ class EventCenter {
             e.printStackTrace();
         }
     }
-
-
-    /**Partial result for success method.*/
-    private class PartialSuccessMethod {
-//        private final long id;
-//        private final String result;
-    }
-
-    /**Partial result for failed method.*/
-    private class PartialFailMethod {
-//        private final long id;
-//        private final String error;
-    }
-
-    /**Partial result for event.*/
-    private class PartialEvent {
-        ;
-    }
 }
 
