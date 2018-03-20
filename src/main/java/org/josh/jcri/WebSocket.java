@@ -13,7 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
  @author Joshua
  @since 1.0 */
 @ParametersAreNonnullByDefault
-class WebSocket extends WebSocketClient {
+public class WebSocket extends WebSocketClient {
     /**Message received handler.*/
     private Consumer<String> _messageHandler;
     /**Web socket error handler.*/

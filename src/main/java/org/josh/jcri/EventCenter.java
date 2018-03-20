@@ -18,7 +18,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 /**Central command and event manager.
  @author Joshua */
 @ParametersAreNonnullByDefault
-class EventCenter {
+public class EventCenter {
     /**System property name of default IO thread count.*/
     private static final String DefaultIOThreadPropertyName = "org.josh.jcri.defaultIOThread";
     /**Default IO thread count value.*/
@@ -29,9 +29,9 @@ class EventCenter {
     /**Next command Id.*/
     private final AtomicLong _nextMethodId = new AtomicLong(0);
     /**Stores all protocol methods that are waiting browser response.*/
-    private final Map<Long, MethodBase> _methodWaitingTable = new ConcurrentHashMap<>();
+    private final Map<Long, CommandBase> _methodWaitingTable = new ConcurrentHashMap<>();
     /**Executor for waiting browser's response of sent commends.*/
-    private final ExecutorService _ioExecutor;
+    private final ExecutorService _taskExecutor;
 
     /**Create new event center instance.
      @param ioExecutor executor to create new {@link java.util.concurrent.CompletableFuture} instance.*/
@@ -45,29 +45,29 @@ class EventCenter {
             catch (IllegalArgumentException e) {  // also include NumberFormatException
                 // Do nothing, just use default value
             }
-            _ioExecutor = Executors.newFixedThreadPool(ioThread);
+            _taskExecutor = Executors.newFixedThreadPool(ioThread);
         }
         else
-            _ioExecutor = ioExecutor;
+            _taskExecutor = ioExecutor;
     }
 
     /**Get next unique method Id. */
     final long getNextMethodId() { return _nextMethodId.getAndIncrement(); }
 
     /**Get executor instance for submit new task.*/
-    final ExecutorService getExecutor() { return _ioExecutor; }
+    final ExecutorService getExecutor() { return _taskExecutor; }
 
     /**Push a method into response waiting queue.
      If given method's Id is already existed in internal waiting queue, the given method will NOT
      be put into queue. */
-    final boolean enqueueMethod(long commandId, MethodBase method) {
+    final boolean enqueueMethod(long commandId, CommandBase method) {
         return _methodWaitingTable.putIfAbsent(commandId, method) == null;
     }
 
     /**Pop out method from waiting queue.
      @param id method's id
      @return method instance in waiting queue with specified id. null if id not found. */
-    final MethodBase popMethod(long id) { return _methodWaitingTable.remove(id); }
+    final CommandBase popMethod(long id) { return _methodWaitingTable.remove(id); }
 
     /**Deserialize json string to object.
      @throws IOException if given json string is invalid. */
@@ -110,7 +110,7 @@ class EventCenter {
             final JsonNode node = _om.readTree(msg);
             //! Check if is response of method
             if (node.has("id")) {
-                final MethodBase method = _methodWaitingTable.get(node.get("id").asLong());
+                final CommandBase method = _methodWaitingTable.get(node.get("id").asLong());
                 if (method != null) {
                     if (node.has("result"))
                         method.setResponse(true, node.get("result"));

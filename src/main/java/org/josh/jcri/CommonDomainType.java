@@ -6,7 +6,7 @@ package org.josh.jcri;
  <ol><li>{@link #check()}: for checking if user given parameters are all valid.</li>
  <li>{@link #toJson(StringBuilder)}: convert the parameter object into json string.</li></ol>
  @author Joshua */
-interface CommonDomainType {
+public interface CommonDomainType {
     /**Check if parameter fields of method are all valid.
      @throws IllegalArgumentException if any of parameter is not valid. */
     void check() throws IllegalArgumentException;

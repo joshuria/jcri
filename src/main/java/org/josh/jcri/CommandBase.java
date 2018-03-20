@@ -4,16 +4,17 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
 import java.util.function.Function;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 /**Common operations and fields for all protocol methods and their parameter classes.
  This base class handles method calling by sending request and waiting response from browser through
- web socket in {@link #call(Class, Function)}, and we use {@link java.util.concurrent.CompletableFuture}
+ web socket in {@link #call(String, Class, Function)}, and we use {@link java.util.concurrent.CompletableFuture}
  to hold user specified method as a future task.
  @author Joshua */
 @ParametersAreNonnullByDefault
-abstract class MethodBase implements CommonDomainType {
+public abstract class CommandBase implements CommonDomainType {
     /**Response string replied by browser.
      This field stores <pre>result</pre> field json formatted string if method executed success, or
      error message contains in <pre>error</pre> field in browser replied data. */
@@ -25,21 +26,25 @@ abstract class MethodBase implements CommonDomainType {
     /**Latch for waiting browser's reply.*/
     private final CountDownLatch _latch = new CountDownLatch(1);
 
-    private final EventCenter _evt;
-    private final WebSocket _ws;
+    private EventCenter _evt;
+    private WebSocket _ws;
 
-    public MethodBase(EventCenter eventCenter, WebSocket webSocket) {
-        _evt = eventCenter; _ws = webSocket;
+    /**Set event center and web socket instance.
+     This method can only be called in domain methods. */
+    public void setEventCenterAndSocket(EventCenter ec, WebSocket ws) {
+        _evt = ec;  _ws = ws;
     }
 
     /**Check and convert parameter object into json string and send to browser.
+     @param commandName name of this command to be called.
      @param resultMetaClass meta class of method's result type.
      @param failResultFactory factory method that will create a failed result instance with given an
         error message.
+     @param exec executor instance to spawn task.
      @return future instance that waits browser's reply.
      @throws IllegalArgumentException if any of parameter is not valid. */
     protected <T extends ResultBase> CompletableFuture<T> call(
-        Class<T> resultMetaClass, Function<String, T> failResultFactory
+        String commandName, Class<T> resultMetaClass, Function<String, T> failResultFactory, Executor exec
     ) throws IllegalArgumentException {
         return CompletableFuture.supplyAsync(() -> {
             //! Check if all parameters are ok
@@ -49,7 +54,9 @@ abstract class MethodBase implements CommonDomainType {
             //! Generate raw json command string
             /// TODO: use TLS to reuse string builder instance
             StringBuilder strBuilder = new StringBuilder();
-            strBuilder.append("{\"id\":").append(id).append(",\"params\":");
+            strBuilder.append("{\"id\":").append(id)
+                .append(",\"method\":").append('"').append(commandName).append('"')
+                .append(",\"params\":");
             toJson(strBuilder).append('}');
             //! Send command
             if (!_evt.enqueueMethod(id, this))
@@ -80,7 +87,22 @@ abstract class MethodBase implements CommonDomainType {
                 result.setId(id);
                 return result;
             }
-        });
+        }, exec);
+    }
+
+    /**Check and convert parameter object into json string and send to browser.
+     This method uses executor instances in event center.
+     @param commandName name of this command to be called.
+     @param resultMetaClass meta class of method's result type.
+     @param failResultFactory factory method that will create a failed result instance with given an
+     error message.
+     @return future instance that waits browser's reply.
+     @throws IllegalArgumentException if any of parameter is not valid.
+     @see #call(String, Class, Function, Executor) */
+    protected <T extends ResultBase> CompletableFuture<T> call(
+        String commandName, Class<T> resultMetaClass, Function<String, T> failResultFactory
+    ) throws IllegalArgumentException {
+        return call(commandName, resultMetaClass, failResultFactory, _evt.getExecutor());
     }
 
     /**Let event center set browser's response.*/

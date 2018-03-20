@@ -2,6 +2,8 @@ package org.josh.jcri;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.josh.jcri.domain.Browser;
+import org.josh.jcri.domain.Page;
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -33,7 +35,10 @@ public class JCRI implements Closeable {
     /**Event handler center.*/
     private final EventCenter _evt;
     /**_ioExecutor needs to shutdown when {@link #close()} or {@link #closeAsync()} is called. */
-    private boolean _shutdownExecutorWhenClose = false;
+    private boolean _shutdownExecutorWhenClose = true;
+
+    public final Page Page;
+    public final Browser Browser;
 
 
     /**Get all available tabs' information in target browser which had debug interface bound on given
@@ -87,6 +92,8 @@ public class JCRI implements Closeable {
     public JCRI(URI webSocketDebuggerUrl, int timeout, @Nullable ExecutorService ioExecutor) {
         _evt = new EventCenter(ioExecutor);
         _ws = new WebSocket(webSocketDebuggerUrl, timeout, _evt::onMessage, this::onError, this::onClose);
+        this.Page = new Page(_evt, _ws);
+        this.Browser = new Browser(_evt, _ws);
     }
 
     /**Create new connection to browser with specified URL and default connection timeout.
