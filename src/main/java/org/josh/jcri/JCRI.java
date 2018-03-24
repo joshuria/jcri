@@ -108,7 +108,7 @@ public class JCRI implements Closeable {
             if (timeout != DefaultConnectionTimeout)
                 _ws.setConnectionLostTimeout(timeout);
         }
-        catch (IllegalArgumentException e) {    // also include NumberFormatException
+        catch (NumberFormatException e) {
             // Do nothing, just use default value
         }
     }

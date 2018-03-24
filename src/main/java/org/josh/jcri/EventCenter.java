@@ -45,7 +45,7 @@ public class EventCenter {
                 final int count = Integer.parseInt(System.getProperty(DefaultIOThreadPropertyName));
                 if (count > 0) ioThread = count;
             }
-            catch (IllegalArgumentException e) {  // also include NumberFormatException
+            catch (NullPointerException | NumberFormatException e) {
                 // Do nothing, just use default value
             }
             _taskExecutor = Executors.newFixedThreadPool(ioThread);
@@ -118,7 +118,7 @@ public class EventCenter {
     void onMessage(String msg) {
         try {
             final JsonNode node = _om.readTree(msg);
-            System.out.println("Recv: " + msg);
+            //System.out.println("Recv: " + msg);
             //! Check if is response of method
             if (node.has("id")) {
                 final CommandBase method = _methodWaitingTable.remove(node.get("id").asLong());
