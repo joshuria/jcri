@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -30,6 +31,8 @@ public class EventCenter {
     private final AtomicLong _nextMethodId = new AtomicLong(0);
     /**Stores all protocol methods that are waiting browser response.*/
     private final Map<Long, CommandBase> _methodWaitingTable = new ConcurrentHashMap<>();
+    /**Stores all bound event handlers.*/
+    private final Map<String, Consumer<JsonNode>> _eventHandlerTable = new ConcurrentHashMap<>();
     /**Executor for waiting browser's response of sent commends.*/
     private final ExecutorService _taskExecutor;
 
@@ -69,6 +72,12 @@ public class EventCenter {
      @return method instance in waiting queue with specified id. null if id not found. */
     final CommandBase popMethod(long id) { return _methodWaitingTable.remove(id); }
 
+    /**Register domain's event callback handler.
+     @see DomainBase#registerEventCallback(String, Consumer) */
+    final void registerEventCallback(String eventName, Consumer<JsonNode> callbackWrap) {
+        _eventHandlerTable.put(eventName, callbackWrap);
+    }
+
     /**Deserialize json string to object.
      @throws IOException if given json string is invalid. */
     static <T> T deserializeJson(String data) throws IOException {
@@ -83,7 +92,7 @@ public class EventCenter {
 
     /**Deserialize json node instance to object with a given object reader instance.
      @throws IOException if given json node is invalid. */
-    static <T> T deserializeJson(JsonNode node, Class<T> meta) throws IOException {
+    public static <T> T deserializeJson(JsonNode node, Class<T> meta) throws IOException {
         return _om.treeToValue(node, meta);
     }
     /**Deserialize json node instance to object with a given object reader instance.
@@ -105,12 +114,14 @@ public class EventCenter {
     }
 
     /**On receiving message from browser callback method.*/
+    @SuppressWarnings("unchecked")
     void onMessage(String msg) {
         try {
             final JsonNode node = _om.readTree(msg);
+            System.out.println("Recv: " + msg);
             //! Check if is response of method
             if (node.has("id")) {
-                final CommandBase method = _methodWaitingTable.get(node.get("id").asLong());
+                final CommandBase method = _methodWaitingTable.remove(node.get("id").asLong());
                 if (method != null) {
                     if (node.has("result"))
                         method.setResponse(true, node.get("result"));
@@ -119,8 +130,9 @@ public class EventCenter {
                     method.getLatch().countDown();
                 }
             }
-            else if (node.has("method")){
-                /// TODO: not implemented
+            else if (node.has("method")) {
+                final Consumer<JsonNode> callback = _eventHandlerTable.get(node.get("method").asText());
+                if (callback != null)   callback.accept(node.get("params"));
             }
             else {
                 //! Browser response unexpected message?!
@@ -130,5 +142,4 @@ public class EventCenter {
             e.printStackTrace();
         }
     }
-}
-
+} // ! class EventCenter
