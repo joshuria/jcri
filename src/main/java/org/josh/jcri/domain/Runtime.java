@@ -48,7 +48,7 @@ other objects in their object group.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -70,7 +70,7 @@ other objects in their object group.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -93,7 +93,7 @@ other objects in their object group.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -105,15 +105,18 @@ other objects in their object group.
             Function("function"),
             Undefined("undefined"),
             String("string"),
-            Double("number"),
+            Number("number"),
             Boolean("boolean"),
             Symbol("symbol"),
             Bigint("bigint");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
@@ -149,9 +152,12 @@ other objects in their object group.
             Typedarray("typedarray");
 
             private final String _value;
-            private static final Map<String, Subtype> _Lookup = Collections.unmodifiableMap(new HashMap<String, Subtype>() {{
-                for (Subtype v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Subtype> _Lookup;
+            static {
+                Map<String, Subtype> m = new HashMap<>();
+                for(Subtype v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Subtype of(String value) {
@@ -351,15 +357,18 @@ property.
             Function("function"),
             Undefined("undefined"),
             String("string"),
-            Double("number"),
+            Number("number"),
             Boolean("boolean"),
             Symbol("symbol"),
             Bigint("bigint");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
@@ -392,9 +401,12 @@ property.
             Error("error");
 
             private final String _value;
-            private static final Map<String, Subtype> _Lookup = Collections.unmodifiableMap(new HashMap<String, Subtype>() {{
-                for (Subtype v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Subtype> _Lookup;
+            static {
+                Map<String, Subtype> m = new HashMap<>();
+                for(Subtype v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Subtype of(String value) {
@@ -503,16 +515,19 @@ property.
             Function("function"),
             Undefined("undefined"),
             String("string"),
-            Double("number"),
+            Number("number"),
             Boolean("boolean"),
             Symbol("symbol"),
             Accessor("accessor"),
             Bigint("bigint");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
@@ -551,9 +566,12 @@ property.
             Error("error");
 
             private final String _value;
-            private static final Map<String, Subtype> _Lookup = Collections.unmodifiableMap(new HashMap<String, Subtype>() {{
-                for (Subtype v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Subtype> _Lookup;
+            static {
+                Map<String, Subtype> m = new HashMap<>();
+                for(Subtype v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Subtype of(String value) {
@@ -1242,7 +1260,7 @@ initiated the async call.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -2656,9 +2674,12 @@ Will cancel the termination when the outer-most script execution ends.
             TimeEnd("timeEnd");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {

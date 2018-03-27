@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -83,9 +83,12 @@ import javax.annotation.Nullable;
             WheelEventHandler("WheelEventHandler");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {

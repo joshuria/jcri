@@ -146,9 +146,12 @@ front-end.*/
         Input_list_button("input-list-button");
 
         private final String _value;
-        private static final Map<String, PseudoType> _Lookup = Collections.unmodifiableMap(new HashMap<String, PseudoType>() {{
-            for (PseudoType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, PseudoType> _Lookup;
+        static {
+            Map<String, PseudoType> m = new HashMap<>();
+            for(PseudoType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static PseudoType of(String value) {
@@ -171,9 +174,12 @@ front-end.*/
         Closed("closed");
 
         private final String _value;
-        private static final Map<String, ShadowRootType> _Lookup = Collections.unmodifiableMap(new HashMap<String, ShadowRootType>() {{
-            for (ShadowRootType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, ShadowRootType> _Lookup;
+        static {
+            Map<String, ShadowRootType> m = new HashMap<>();
+            for(ShadowRootType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ShadowRootType of(String value) {

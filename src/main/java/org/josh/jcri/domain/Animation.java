@@ -52,9 +52,12 @@ import javax.annotation.Nullable;
             WebAnimation("WebAnimation");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {

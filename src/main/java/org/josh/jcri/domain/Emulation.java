@@ -39,9 +39,12 @@ import javax.annotation.Nullable;
             LandscapeSecondary("landscapeSecondary");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
@@ -103,9 +106,12 @@ resource fetches.
         PauseIfNetworkFetchesPending("pauseIfNetworkFetchesPending");
 
         private final String _value;
-        private static final Map<String, VirtualTimePolicy> _Lookup = Collections.unmodifiableMap(new HashMap<String, VirtualTimePolicy>() {{
-            for (VirtualTimePolicy v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, VirtualTimePolicy> _Lookup;
+        static {
+            Map<String, VirtualTimePolicy> m = new HashMap<>();
+            for(VirtualTimePolicy v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static VirtualTimePolicy of(String value) {
@@ -603,9 +609,12 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
             Desktop("desktop");
 
             private final String _value;
-            private static final Map<String, Configuration> _Lookup = Collections.unmodifiableMap(new HashMap<String, Configuration>() {{
-                for (Configuration v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Configuration> _Lookup;
+            static {
+                Map<String, Configuration> m = new HashMap<>();
+                for(Configuration v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Configuration of(String value) {

@@ -51,7 +51,7 @@ subsequently load the required stylesheet contents using the `getStyleSheet[Text
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -65,9 +65,12 @@ inspector" rules), "regular" for regular stylesheets.*/
         Regular("regular");
 
         private final String _value;
-        private static final Map<String, StyleSheetOrigin> _Lookup = Collections.unmodifiableMap(new HashMap<String, StyleSheetOrigin>() {{
-            for (StyleSheetOrigin v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, StyleSheetOrigin> _Lookup;
+        static {
+            Map<String, StyleSheetOrigin> m = new HashMap<>();
+            for(StyleSheetOrigin v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static StyleSheetOrigin of(String value) {
@@ -920,9 +923,12 @@ stylesheet's STYLE tag.*/
             InlineSheet("inlineSheet");
 
             private final String _value;
-            private static final Map<String, Source> _Lookup = Collections.unmodifiableMap(new HashMap<String, Source>() {{
-                for (Source v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Source> _Lookup;
+            static {
+                Map<String, Source> m = new HashMap<>();
+                for(Source v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Source of(String value) {

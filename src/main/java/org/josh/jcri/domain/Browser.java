@@ -58,9 +58,12 @@ import javax.annotation.Nullable;
         Fullscreen("fullscreen");
 
         private final String _value;
-        private static final Map<String, WindowState> _Lookup = Collections.unmodifiableMap(new HashMap<String, WindowState>() {{
-            for (WindowState v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, WindowState> _Lookup;
+        static {
+            Map<String, WindowState> m = new HashMap<>();
+            for(WindowState v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static WindowState of(String value) {

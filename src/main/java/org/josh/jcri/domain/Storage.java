@@ -42,9 +42,12 @@ import javax.annotation.Nullable;
         Other("other");
 
         private final String _value;
-        private static final Map<String, StorageType> _Lookup = Collections.unmodifiableMap(new HashMap<String, StorageType>() {{
-            for (StorageType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, StorageType> _Lookup;
+        static {
+            Map<String, StorageType> m = new HashMap<>();
+            for(StorageType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static StorageType of(String value) {

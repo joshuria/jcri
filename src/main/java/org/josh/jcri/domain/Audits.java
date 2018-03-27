@@ -41,9 +41,12 @@ applies to images.*/
             Png("png");
 
             private final String _value;
-            private static final Map<String, Encoding> _Lookup = Collections.unmodifiableMap(new HashMap<String, Encoding>() {{
-                for (Encoding v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Encoding> _Lookup;
+            static {
+                Map<String, Encoding> m = new HashMap<>();
+                for(Encoding v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Encoding of(String value) {

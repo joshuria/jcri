@@ -61,9 +61,12 @@ import javax.annotation.Nullable;
             EchoToConsole("echoToConsole");
 
             private final String _value;
-            private static final Map<String, RecordMode> _Lookup = Collections.unmodifiableMap(new HashMap<String, RecordMode>() {{
-                for (RecordMode v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, RecordMode> _Lookup;
+            static {
+                Map<String, RecordMode> m = new HashMap<>();
+                for(RecordMode v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static RecordMode of(String value) {
@@ -197,9 +200,12 @@ import javax.annotation.Nullable;
         Gzip("gzip");
 
         private final String _value;
-        private static final Map<String, StreamCompression> _Lookup = Collections.unmodifiableMap(new HashMap<String, StreamCompression>() {{
-            for (StreamCompression v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, StreamCompression> _Lookup;
+        static {
+            Map<String, StreamCompression> m = new HashMap<>();
+            for(StreamCompression v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static StreamCompression of(String value) {
@@ -447,9 +453,12 @@ stream (defaults to `ReportEvents`).
             ReturnAsStream("ReturnAsStream");
 
             private final String _value;
-            private static final Map<String, TransferMode> _Lookup = Collections.unmodifiableMap(new HashMap<String, TransferMode>() {{
-                for (TransferMode v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, TransferMode> _Lookup;
+            static {
+                Map<String, TransferMode> m = new HashMap<>();
+                for(TransferMode v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static TransferMode of(String value) {

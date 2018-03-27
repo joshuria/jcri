@@ -38,9 +38,12 @@ import javax.annotation.Nullable;
             Png("png");
 
             private final String _value;
-            private static final Map<String, Format> _Lookup = Collections.unmodifiableMap(new HashMap<String, Format>() {{
-                for (Format v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Format> _Lookup;
+            static {
+                Map<String, Format> m = new HashMap<>();
+                for(Format v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Format of(String value) {

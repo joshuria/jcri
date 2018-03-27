@@ -47,9 +47,12 @@ import javax.annotation.Nullable;
             Other("other");
 
             private final String _value;
-            private static final Map<String, Source> _Lookup = Collections.unmodifiableMap(new HashMap<String, Source>() {{
-                for (Source v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Source> _Lookup;
+            static {
+                Map<String, Source> m = new HashMap<>();
+                for(Source v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Source of(String value) {
@@ -73,9 +76,12 @@ import javax.annotation.Nullable;
             Error("error");
 
             private final String _value;
-            private static final Map<String, Level> _Lookup = Collections.unmodifiableMap(new HashMap<String, Level>() {{
-                for (Level v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Level> _Lookup;
+            static {
+                Map<String, Level> m = new HashMap<>();
+                for(Level v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Level of(String value) {
@@ -223,9 +229,12 @@ import javax.annotation.Nullable;
             RecurringHandler("recurringHandler");
 
             private final String _value;
-            private static final Map<String, Name> _Lookup = Collections.unmodifiableMap(new HashMap<String, Name>() {{
-                for (Name v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Name> _Lookup;
+            static {
+                Map<String, Name> m = new HashMap<>();
+                for(Name v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Name of(String value) {

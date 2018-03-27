@@ -48,7 +48,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -70,7 +70,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -92,7 +92,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -112,9 +112,12 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         AddressUnreachable("AddressUnreachable");
 
         private final String _value;
-        private static final Map<String, ErrorReason> _Lookup = Collections.unmodifiableMap(new HashMap<String, ErrorReason>() {{
-            for (ErrorReason v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, ErrorReason> _Lookup;
+        static {
+            Map<String, ErrorReason> m = new HashMap<>();
+            for(ErrorReason v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ErrorReason of(String value) {
@@ -209,9 +212,12 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         Other("other");
 
         private final String _value;
-        private static final Map<String, ConnectionType> _Lookup = Collections.unmodifiableMap(new HashMap<String, ConnectionType>() {{
-            for (ConnectionType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, ConnectionType> _Lookup;
+        static {
+            Map<String, ConnectionType> m = new HashMap<>();
+            for(ConnectionType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ConnectionType of(String value) {
@@ -234,9 +240,12 @@ https://tools.ietf.org/html/draft-west-first-party-cookies*/
         Lax("Lax");
 
         private final String _value;
-        private static final Map<String, CookieSameSite> _Lookup = Collections.unmodifiableMap(new HashMap<String, CookieSameSite>() {{
-            for (CookieSameSite v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, CookieSameSite> _Lookup;
+        static {
+            Map<String, CookieSameSite> m = new HashMap<>();
+            for(CookieSameSite v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static CookieSameSite of(String value) {
@@ -445,9 +454,12 @@ milliseconds relatively to this requestTime.*/
         VeryHigh("VeryHigh");
 
         private final String _value;
-        private static final Map<String, ResourcePriority> _Lookup = Collections.unmodifiableMap(new HashMap<String, ResourcePriority>() {{
-            for (ResourcePriority v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, ResourcePriority> _Lookup;
+        static {
+            Map<String, ResourcePriority> m = new HashMap<>();
+            for(ResourcePriority v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ResourcePriority of(String value) {
@@ -494,9 +506,12 @@ milliseconds relatively to this requestTime.*/
             Strict_origin_when_cross_origin("strict-origin-when-cross-origin");
 
             private final String _value;
-            private static final Map<String, ReferrerPolicy> _Lookup = Collections.unmodifiableMap(new HashMap<String, ReferrerPolicy>() {{
-                for (ReferrerPolicy v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, ReferrerPolicy> _Lookup;
+            static {
+                Map<String, ReferrerPolicy> m = new HashMap<>();
+                for(ReferrerPolicy v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static ReferrerPolicy of(String value) {
@@ -856,9 +871,12 @@ milliseconds relatively to this requestTime.*/
         Other("other");
 
         private final String _value;
-        private static final Map<String, BlockedReason> _Lookup = Collections.unmodifiableMap(new HashMap<String, BlockedReason>() {{
-            for (BlockedReason v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, BlockedReason> _Lookup;
+        static {
+            Map<String, BlockedReason> m = new HashMap<>();
+            for(BlockedReason v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static BlockedReason of(String value) {
@@ -1309,9 +1327,12 @@ milliseconds relatively to this requestTime.*/
             Other("other");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
@@ -1622,9 +1643,12 @@ default domain and path values of the created cookie.
             Proxy("Proxy");
 
             private final String _value;
-            private static final Map<String, Source> _Lookup = Collections.unmodifiableMap(new HashMap<String, Source>() {{
-                for (Source v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Source> _Lookup;
+            static {
+                Map<String, Source> m = new HashMap<>();
+                for(Source v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Source of(String value) {
@@ -1706,9 +1730,12 @@ authentication or display a popup dialog box.*/
             ProvideCredentials("ProvideCredentials");
 
             private final String _value;
-            private static final Map<String, Response> _Lookup = Collections.unmodifiableMap(new HashMap<String, Response>() {{
-                for (Response v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Response> _Lookup;
+            static {
+                Map<String, Response> m = new HashMap<>();
+                for(Response v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Response of(String value) {
@@ -1779,9 +1806,12 @@ sent. Response will intercept after the response is received.
         HeadersReceived("HeadersReceived");
 
         private final String _value;
-        private static final Map<String, InterceptionStage> _Lookup = Collections.unmodifiableMap(new HashMap<String, InterceptionStage>() {{
-            for (InterceptionStage v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, InterceptionStage> _Lookup;
+        static {
+            Map<String, InterceptionStage> m = new HashMap<>();
+            for(InterceptionStage v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static InterceptionStage of(String value) {

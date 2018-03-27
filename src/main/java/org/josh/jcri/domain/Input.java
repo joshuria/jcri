@@ -124,9 +124,12 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
         Mouse("mouse");
 
         private final String _value;
-        private static final Map<String, GestureSourceType> _Lookup = Collections.unmodifiableMap(new HashMap<String, GestureSourceType>() {{
-            for (GestureSourceType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, GestureSourceType> _Lookup;
+        static {
+            Map<String, GestureSourceType> m = new HashMap<>();
+            for(GestureSourceType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static GestureSourceType of(String value) {
@@ -175,9 +178,12 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
             Char("char");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
@@ -389,9 +395,12 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
             MouseWheel("mouseWheel");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
@@ -428,9 +437,12 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
             Right("right");
 
             private final String _value;
-            private static final Map<String, Button> _Lookup = Collections.unmodifiableMap(new HashMap<String, Button>() {{
-                for (Button v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Button> _Lookup;
+            static {
+                Map<String, Button> m = new HashMap<>();
+                for(Button v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Button of(String value) {
@@ -575,9 +587,12 @@ TouchStart and TouchMove must contains at least one.*/
             TouchCancel("touchCancel");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
@@ -693,9 +708,12 @@ one by one.*/
             MouseWheel("mouseWheel");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup = Collections.unmodifiableMap(new HashMap<String, Type>() {{
-                for (Type v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Type> _Lookup;
+            static {
+                Map<String, Type> m = new HashMap<>();
+                for(Type v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
@@ -723,9 +741,12 @@ one by one.*/
             Right("right");
 
             private final String _value;
-            private static final Map<String, Button> _Lookup = Collections.unmodifiableMap(new HashMap<String, Button>() {{
-                for (Button v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Button> _Lookup;
+            static {
+                Map<String, Button> m = new HashMap<>();
+                for(Button v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Button of(String value) {

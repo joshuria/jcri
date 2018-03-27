@@ -56,9 +56,12 @@ https://www.w3.org/TR/mixed-content/#categories*/
         None("none");
 
         private final String _value;
-        private static final Map<String, MixedContentType> _Lookup = Collections.unmodifiableMap(new HashMap<String, MixedContentType>() {{
-            for (MixedContentType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, MixedContentType> _Lookup;
+        static {
+            Map<String, MixedContentType> m = new HashMap<>();
+            for(MixedContentType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static MixedContentType of(String value) {
@@ -83,9 +86,12 @@ https://www.w3.org/TR/mixed-content/#categories*/
         Info("info");
 
         private final String _value;
-        private static final Map<String, SecurityState> _Lookup = Collections.unmodifiableMap(new HashMap<String, SecurityState>() {{
-            for (SecurityState v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, SecurityState> _Lookup;
+        static {
+            Map<String, SecurityState> m = new HashMap<>();
+            for(SecurityState v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static SecurityState of(String value) {
@@ -282,9 +288,12 @@ request and cancel will cancel the request.*/
         Cancel("cancel");
 
         private final String _value;
-        private static final Map<String, CertificateErrorAction> _Lookup = Collections.unmodifiableMap(new HashMap<String, CertificateErrorAction>() {{
-            for (CertificateErrorAction v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, CertificateErrorAction> _Lookup;
+        static {
+            Map<String, CertificateErrorAction> m = new HashMap<>();
+            for(CertificateErrorAction v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static CertificateErrorAction of(String value) {

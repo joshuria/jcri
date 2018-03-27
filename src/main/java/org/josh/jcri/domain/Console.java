@@ -45,9 +45,12 @@ import javax.annotation.Nullable;
             Worker("worker");
 
             private final String _value;
-            private static final Map<String, Source> _Lookup = Collections.unmodifiableMap(new HashMap<String, Source>() {{
-                for (Source v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Source> _Lookup;
+            static {
+                Map<String, Source> m = new HashMap<>();
+                for(Source v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Source of(String value) {
@@ -72,9 +75,12 @@ import javax.annotation.Nullable;
             Info("info");
 
             private final String _value;
-            private static final Map<String, Level> _Lookup = Collections.unmodifiableMap(new HashMap<String, Level>() {{
-                for (Level v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Level> _Lookup;
+            static {
+                Map<String, Level> m = new HashMap<>();
+                for(Level v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Level of(String value) {

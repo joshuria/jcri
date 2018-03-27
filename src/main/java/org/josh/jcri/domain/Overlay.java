@@ -186,9 +186,12 @@ import javax.annotation.Nullable;
         None("none");
 
         private final String _value;
-        private static final Map<String, InspectMode> _Lookup = Collections.unmodifiableMap(new HashMap<String, InspectMode>() {{
-            for (InspectMode v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, InspectMode> _Lookup;
+        static {
+            Map<String, InspectMode> m = new HashMap<>();
+            for(InspectMode v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static InspectMode of(String value) {

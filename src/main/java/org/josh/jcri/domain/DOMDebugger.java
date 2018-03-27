@@ -36,9 +36,12 @@ execution will stop on these operations as if there was a regular breakpoint set
         Node_removed("node-removed");
 
         private final String _value;
-        private static final Map<String, DOMBreakpointType> _Lookup = Collections.unmodifiableMap(new HashMap<String, DOMBreakpointType>() {{
-            for (DOMBreakpointType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, DOMBreakpointType> _Lookup;
+        static {
+            Map<String, DOMBreakpointType> m = new HashMap<>();
+            for(DOMBreakpointType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static DOMBreakpointType of(String value) {

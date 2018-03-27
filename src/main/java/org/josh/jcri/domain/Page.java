@@ -46,9 +46,12 @@ import javax.annotation.Nullable;
         Other("Other");
 
         private final String _value;
-        private static final Map<String, ResourceType> _Lookup = Collections.unmodifiableMap(new HashMap<String, ResourceType>() {{
-            for (ResourceType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, ResourceType> _Lookup;
+        static {
+            Map<String, ResourceType> m = new HashMap<>();
+            for(ResourceType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ResourceType of(String value) {
@@ -82,7 +85,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -399,7 +402,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -419,9 +422,12 @@ import javax.annotation.Nullable;
         Other("other");
 
         private final String _value;
-        private static final Map<String, TransitionType> _Lookup = Collections.unmodifiableMap(new HashMap<String, TransitionType>() {{
-            for (TransitionType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, TransitionType> _Lookup;
+        static {
+            Map<String, TransitionType> m = new HashMap<>();
+            for(TransitionType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static TransitionType of(String value) {
@@ -604,9 +610,12 @@ import javax.annotation.Nullable;
         Beforeunload("beforeunload");
 
         private final String _value;
-        private static final Map<String, DialogType> _Lookup = Collections.unmodifiableMap(new HashMap<String, DialogType>() {{
-            for (DialogType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, DialogType> _Lookup;
+        static {
+            Map<String, DialogType> m = new HashMap<>();
+            for(DialogType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static DialogType of(String value) {
@@ -1085,9 +1094,12 @@ import javax.annotation.Nullable;
             Png("png");
 
             private final String _value;
-            private static final Map<String, Format> _Lookup = Collections.unmodifiableMap(new HashMap<String, Format>() {{
-                for (Format v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Format> _Lookup;
+            static {
+                Map<String, Format> m = new HashMap<>();
+                for(Format v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Format of(String value) {
@@ -3262,9 +3274,12 @@ available (otherwise deny).*/
             Default("default");
 
             private final String _value;
-            private static final Map<String, Behavior> _Lookup = Collections.unmodifiableMap(new HashMap<String, Behavior>() {{
-                for (Behavior v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Behavior> _Lookup;
+            static {
+                Map<String, Behavior> m = new HashMap<>();
+                for(Behavior v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Behavior of(String value) {
@@ -3494,9 +3509,12 @@ unavailable.
             Desktop("desktop");
 
             private final String _value;
-            private static final Map<String, Configuration> _Lookup = Collections.unmodifiableMap(new HashMap<String, Configuration>() {{
-                for (Configuration v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Configuration> _Lookup;
+            static {
+                Map<String, Configuration> m = new HashMap<>();
+                for(Configuration v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Configuration of(String value) {
@@ -3583,9 +3601,12 @@ unavailable.
             Png("png");
 
             private final String _value;
-            private static final Map<String, Format> _Lookup = Collections.unmodifiableMap(new HashMap<String, Format>() {{
-                for (Format v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Format> _Lookup;
+            static {
+                Map<String, Format> m = new HashMap<>();
+                for(Format v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Format of(String value) {
@@ -4059,9 +4080,12 @@ guaranteed to start.*/
             Reload("reload");
 
             private final String _value;
-            private static final Map<String, Reason> _Lookup = Collections.unmodifiableMap(new HashMap<String, Reason>() {{
-                for (Reason v: values())    put(v.toString(), v);
-            }});
+            private static final Map<String, Reason> _Lookup;
+            static {
+                Map<String, Reason> m = new HashMap<>();
+                for(Reason v: values()) m.put(v.toString(), v);
+                _Lookup = Collections.unmodifiableMap(m);
+            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Reason of(String value) {

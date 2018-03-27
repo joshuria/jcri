@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append(_value);
+            return strBuilder.append('"').append(_value).append('"');
         }
     }
 
@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
         Integer("integer"),
         Node("node"),
         NodeList("nodeList"),
-        Double("number"),
+        Number("number"),
         String("string"),
         ComputedString("computedString"),
         Token("token"),
@@ -71,9 +71,12 @@ import javax.annotation.Nullable;
         ValueUndefined("valueUndefined");
 
         private final String _value;
-        private static final Map<String, AXValueType> _Lookup = Collections.unmodifiableMap(new HashMap<String, AXValueType>() {{
-            for (AXValueType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, AXValueType> _Lookup;
+        static {
+            Map<String, AXValueType> m = new HashMap<>();
+            for(AXValueType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static AXValueType of(String value) {
@@ -99,9 +102,12 @@ import javax.annotation.Nullable;
         RelatedElement("relatedElement");
 
         private final String _value;
-        private static final Map<String, AXValueSourceType> _Lookup = Collections.unmodifiableMap(new HashMap<String, AXValueSourceType>() {{
-            for (AXValueSourceType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, AXValueSourceType> _Lookup;
+        static {
+            Map<String, AXValueSourceType> m = new HashMap<>();
+            for(AXValueSourceType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static AXValueSourceType of(String value) {
@@ -129,9 +135,12 @@ import javax.annotation.Nullable;
         Other("other");
 
         private final String _value;
-        private static final Map<String, AXValueNativeSourceType> _Lookup = Collections.unmodifiableMap(new HashMap<String, AXValueNativeSourceType>() {{
-            for (AXValueNativeSourceType v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, AXValueNativeSourceType> _Lookup;
+        static {
+            Map<String, AXValueNativeSourceType> m = new HashMap<>();
+            for(AXValueNativeSourceType v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static AXValueNativeSourceType of(String value) {
@@ -458,9 +467,12 @@ elements other than parent/child/sibling.*/
         Owns("owns");
 
         private final String _value;
-        private static final Map<String, AXPropertyName> _Lookup = Collections.unmodifiableMap(new HashMap<String, AXPropertyName>() {{
-            for (AXPropertyName v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, AXPropertyName> _Lookup;
+        static {
+            Map<String, AXPropertyName> m = new HashMap<>();
+            for(AXPropertyName v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static AXPropertyName of(String value) {

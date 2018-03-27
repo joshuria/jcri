@@ -33,9 +33,12 @@ import javax.annotation.Nullable;
         Critical("critical");
 
         private final String _value;
-        private static final Map<String, PressureLevel> _Lookup = Collections.unmodifiableMap(new HashMap<String, PressureLevel>() {{
-            for (PressureLevel v: values())    put(v.toString(), v);
-        }});
+        private static final Map<String, PressureLevel> _Lookup;
+        static {
+            Map<String, PressureLevel> m = new HashMap<>();
+            for(PressureLevel v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static PressureLevel of(String value) {
