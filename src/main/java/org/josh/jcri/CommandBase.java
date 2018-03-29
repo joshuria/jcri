@@ -102,7 +102,7 @@ public abstract class CommandBase implements CommonDomainType {
     protected <T extends ResultBase> CompletableFuture<T> call(
         String commandName, Class<T> resultMetaClass, BiFunction<Integer, String, T> failResultFactory
     ) throws IllegalArgumentException {
-        return call(commandName, resultMetaClass, failResultFactory, _evt.getExecutor());
+        return call(commandName, resultMetaClass, failResultFactory, _evt.getCommandExecutor());
     }
 
     /**Let event center set browser's response.*/

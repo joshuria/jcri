@@ -20,10 +20,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
  @author Joshua */
 @ParametersAreNonnullByDefault
 public class EventCenter {
-    /**System property name of default IO thread count.*/
-    private static final String DefaultIOThreadPropertyName = "org.josh.jcri.defaultIOThread";
-    /**Default IO thread count value.*/
-    private static final int DefaultIOThread = 1;
+    /**System property name of default command waiting executor thread count.*/
+    private static final String DefaultCommandWaitingThreadPropertyName = "org.josh.jcri.defaultCommandWaitingThread";
+    /**Default command waiting thread count value.*/
+    private static final int DefaultCommandWaitingThread = 1;
+    /**System property name of default method callback execution thread count.*/
+    private static final String DefaultMethodExecutionThreadPropertyName = "org.josh.jcri.defaultCommandWaitingThread";
+    /**Default method callback execution thread count value.*/
+    private static final int DefaultMethodExecutionThread = 1;
     /**Standalone json object mapper.*/
     private static final ObjectMapper _om = new ObjectMapper();
 
@@ -33,32 +37,51 @@ public class EventCenter {
     private final Map<Long, CommandBase> _methodWaitingTable = new ConcurrentHashMap<>();
     /**Stores all bound event handlers.*/
     private final Map<String, Consumer<JsonNode>> _eventHandlerTable = new ConcurrentHashMap<>();
-    /**Executor for waiting browser's response of sent commends.*/
-    private final ExecutorService _taskExecutor;
+    /**Executor for submitting new domain method callback functions.*/
+    private final ExecutorService _methodExecutionExecutor;
+    /**Executor for waiting domain command response.*/
+    private final ExecutorService _commandWaitingExecutor;
 
     /**Create new event center instance.
-     @param ioExecutor executor to create new {@link java.util.concurrent.CompletableFuture} instance.*/
-    EventCenter(@Nullable ExecutorService ioExecutor) {
-        if (ioExecutor == null) {
-            int ioThread = DefaultIOThread;
+     @param commandExecutor executor creates new {@link java.util.concurrent.CompletableFuture} for
+         calling domain methods and waiting their response.
+     @param methodExecutor executor executes registered callback functions of domain methods. */
+    EventCenter(@Nullable ExecutorService commandExecutor, @Nullable ExecutorService methodExecutor) {
+        if (commandExecutor == null) {
+            int commandThread = DefaultCommandWaitingThread;
             try {
-                final int count = Integer.parseInt(System.getProperty(DefaultIOThreadPropertyName));
-                if (count > 0) ioThread = count;
+                final int count = Integer.parseInt(System.getProperty(DefaultCommandWaitingThreadPropertyName));
+                if (count > 0) commandThread = count;
             }
             catch (NullPointerException | NumberFormatException e) {
                 // Do nothing, just use default value
             }
-            _taskExecutor = Executors.newFixedThreadPool(ioThread);
+            _commandWaitingExecutor = Executors.newFixedThreadPool(commandThread);
         }
         else
-            _taskExecutor = ioExecutor;
+            _commandWaitingExecutor = commandExecutor;
+        if (methodExecutor == null) {
+            int methodThread = DefaultMethodExecutionThread;
+            try {
+                final int count = Integer.parseInt(System.getProperty(DefaultMethodExecutionThreadPropertyName));
+                if (count > 0)  methodThread = count;
+            }
+            catch (NullPointerException | NumberFormatException e) {
+                // Do nothing, just use default value
+            }
+            _methodExecutionExecutor = Executors.newFixedThreadPool(methodThread);
+        }
+        else
+            _methodExecutionExecutor = methodExecutor;
     }
 
     /**Get next unique method Id. */
     final long getNextMethodId() { return _nextMethodId.getAndIncrement(); }
 
-    /**Get executor instance for submit new task.*/
-    final ExecutorService getExecutor() { return _taskExecutor; }
+    /**Get domain command waiting executor instance.*/
+    final ExecutorService getCommandExecutor() { return _commandWaitingExecutor; }
+    /**Get domain method callback function execution executor instance.*/
+    final ExecutorService getMethodExecutor() { return _methodExecutionExecutor; }
 
     /**Push a method into response waiting queue.
      If given method's Id is already existed in internal waiting queue, the given method will NOT
@@ -132,7 +155,7 @@ public class EventCenter {
             }
             else if (node.has("method")) {
                 final Consumer<JsonNode> callback = _eventHandlerTable.get(node.get("method").asText());
-                if (callback != null)    _taskExecutor.submit(() -> {
+                if (callback != null)    _methodExecutionExecutor.submit(() -> {
                     try { callback.accept(node.get("params")); }
                     catch (Exception e) { e.printStackTrace(); }
                 });

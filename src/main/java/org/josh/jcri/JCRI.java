@@ -160,11 +160,13 @@ public class JCRI implements Closeable {
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
      @param timeout web socket connection timeout in second. Use 0 or negative to indicate never
         timeout.
-     @param ioExecutor executor for providing IO waiting threads. This executor will be shutdown
-        when {@link #close()} or {@link #closeAsync()} is called. To change this behavior, call
-        {@link #shutdownExecutorWhenClose(boolean)}. */
-    public JCRI(URI webSocketDebuggerUrl, int timeout, @Nullable ExecutorService ioExecutor) {
-        _evt = new EventCenter(ioExecutor);
+     @param commandExecutor executor creates new {@link java.util.concurrent.CompletableFuture} for
+        calling domain methods and waiting their response.
+     @param methodExecutor executor executes registered callback functions of domain methods. */
+    public JCRI(URI webSocketDebuggerUrl, int timeout,
+        @Nullable ExecutorService commandExecutor, @Nullable ExecutorService methodExecutor
+    ) {
+        _evt = new EventCenter(commandExecutor, methodExecutor);
         _ws = new WebSocket(webSocketDebuggerUrl, timeout, _evt::onMessage, this::onError, this::onClose);
         this.Accessibility = new Accessibility(_evt, _ws);
         this.Animation = new Animation(_evt, _ws);
@@ -209,15 +211,28 @@ public class JCRI implements Closeable {
 
     /**Create new connection to browser with specified URL and default connection timeout.
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
-     @param ioExecutor executor for providing IO waiting threads. This executor will be shutdown
-        when {@link #close()} or {@link #closeAsync()} is called. To change this behavior, call
-        {@link #shutdownExecutorWhenClose(boolean)}. */
-    public JCRI(URI webSocketDebuggerUrl, @Nullable ExecutorService ioExecutor) {
-        this(webSocketDebuggerUrl, DefaultConnectionTimeout, ioExecutor);
+     @param commandExecutor executor creates new {@link java.util.concurrent.CompletableFuture} for
+     calling domain methods and waiting their response.
+     @param methodExecutor executor executes registered callback functions of domain methods. */
+    public JCRI(URI webSocketDebuggerUrl,
+        @Nullable ExecutorService commandExecutor, @Nullable ExecutorService methodExecutor
+    ) {
+        this(webSocketDebuggerUrl, DefaultConnectionTimeout, commandExecutor, methodExecutor);
         try {
             final int timeout = Integer.parseInt(System.getProperty(DefaultConnectionTimeoutPropertyName));
-            if (timeout != DefaultConnectionTimeout)
-                _ws.setConnectionLostTimeout(timeout);
+            if (timeout != DefaultConnectionTimeout)    _ws.setConnectionLostTimeout(timeout);
+        }
+        catch (NumberFormatException e) {
+            // Do nothing, just use default value
+        }
+    }
+    /**Create new connection to browser with specified URL and default connection timeout.
+     @param webSocketDebuggerUrl destination web socket debug url that is provided by browser. */
+    public JCRI(URI webSocketDebuggerUrl) {
+        this(webSocketDebuggerUrl, DefaultConnectionTimeout, null, null);
+        try {
+            final int timeout = Integer.parseInt(System.getProperty(DefaultConnectionTimeoutPropertyName));
+            if (timeout != DefaultConnectionTimeout)    _ws.setConnectionLostTimeout(timeout);
         }
         catch (NumberFormatException e) {
             // Do nothing, just use default value
@@ -243,7 +258,7 @@ public class JCRI implements Closeable {
                 Thread.currentThread().interrupt();
                 return false;
             }
-        }, _evt.getExecutor());
+        }, _evt.getCommandExecutor());
     }
 
     /**Close connection.
@@ -251,7 +266,10 @@ public class JCRI implements Closeable {
      running.
      @apiNote this is a blocking operation. */
     @Override public void close() {
-        if (_shutdownExecutorWhenClose)     _evt.getExecutor().shutdownNow();
+        if (_shutdownExecutorWhenClose) {
+            _evt.getCommandExecutor().shutdownNow();
+            _evt.getMethodExecutor().shutdownNow();
+        }
         try { _ws.closeBlocking(); }
         catch (InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -264,7 +282,10 @@ public class JCRI implements Closeable {
      @see #isClosing()
      @see #isClosed() */
     public void closeAsync() {
-        if (_shutdownExecutorWhenClose)     _evt.getExecutor().shutdownNow();
+        if (_shutdownExecutorWhenClose) {
+            _evt.getCommandExecutor().shutdownNow();
+            _evt.getMethodExecutor().shutdownNow();
+        }
         _ws.close();
     }
 
