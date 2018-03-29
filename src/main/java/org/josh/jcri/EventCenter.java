@@ -132,7 +132,10 @@ public class EventCenter {
             }
             else if (node.has("method")) {
                 final Consumer<JsonNode> callback = _eventHandlerTable.get(node.get("method").asText());
-                if (callback != null)   callback.accept(node.get("params"));
+                if (callback != null)    _taskExecutor.submit(() -> {
+                    try { callback.accept(node.get("params")); }
+                    catch (Exception e) { e.printStackTrace(); }
+                });
             }
             else {
                 //! Browser response unexpected message?!
