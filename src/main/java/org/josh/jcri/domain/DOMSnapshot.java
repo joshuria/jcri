@@ -620,10 +620,12 @@ flattened.*/
             this.includePaintOrder = includePaintOrder;
         }
         public CompletableFuture<GetSnapshotResult> call() {
-            return super.call("DOMSnapshot.getSnapshot", GetSnapshotResult.class, msg->new GetSnapshotResult(ResultBase.ofError(msg)));
+            return super.call("DOMSnapshot.getSnapshot", GetSnapshotResult.class,
+                (code, msg)->new GetSnapshotResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetSnapshotResult> call(Executor exec) {
-            return super.call("DOMSnapshot.getSnapshot", GetSnapshotResult.class, msg->new GetSnapshotResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOMSnapshot.getSnapshot", GetSnapshotResult.class,
+                (code, msg)->new GetSnapshotResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getSnapshot.*/

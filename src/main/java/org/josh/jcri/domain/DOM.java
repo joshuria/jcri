@@ -844,10 +844,12 @@ fire DOM events for nodes known to the client.*/
             this.nodeId = nodeId;
         }
         public CompletableFuture<CollectClassNamesFromSubtreeResult> call() {
-            return super.call("DOM.collectClassNamesFromSubtree", CollectClassNamesFromSubtreeResult.class, msg->new CollectClassNamesFromSubtreeResult(ResultBase.ofError(msg)));
+            return super.call("DOM.collectClassNamesFromSubtree", CollectClassNamesFromSubtreeResult.class,
+                (code, msg)->new CollectClassNamesFromSubtreeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CollectClassNamesFromSubtreeResult> call(Executor exec) {
-            return super.call("DOM.collectClassNamesFromSubtree", CollectClassNamesFromSubtreeResult.class, msg->new CollectClassNamesFromSubtreeResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.collectClassNamesFromSubtree", CollectClassNamesFromSubtreeResult.class,
+                (code, msg)->new CollectClassNamesFromSubtreeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of collectClassNamesFromSubtree.
@@ -938,10 +940,12 @@ given anchor.
             this.insertBeforeNodeId = insertBeforeNodeId;
         }
         public CompletableFuture<CopyToResult> call() {
-            return super.call("DOM.copyTo", CopyToResult.class, msg->new CopyToResult(ResultBase.ofError(msg)));
+            return super.call("DOM.copyTo", CopyToResult.class,
+                (code, msg)->new CopyToResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CopyToResult> call(Executor exec) {
-            return super.call("DOM.copyTo", CopyToResult.class, msg->new CopyToResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.copyTo", CopyToResult.class,
+                (code, msg)->new CopyToResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of copyTo.
@@ -1047,10 +1051,12 @@ entire subtree or provide an integer larger than 0.
             this.pierce = pierce;
         }
         public CompletableFuture<DescribeNodeResult> call() {
-            return super.call("DOM.describeNode", DescribeNodeResult.class, msg->new DescribeNodeResult(ResultBase.ofError(msg)));
+            return super.call("DOM.describeNode", DescribeNodeResult.class,
+                (code, msg)->new DescribeNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DescribeNodeResult> call(Executor exec) {
-            return super.call("DOM.describeNode", DescribeNodeResult.class, msg->new DescribeNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.describeNode", DescribeNodeResult.class,
+                (code, msg)->new DescribeNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of describeNode.*/
@@ -1098,10 +1104,12 @@ entire subtree or provide an integer larger than 0.
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("DOM.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("DOM.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("DOM.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -1156,10 +1164,12 @@ be called for that search.
             this.searchId = searchId;
         }
         public CompletableFuture<DiscardSearchResultsResult> call() {
-            return super.call("DOM.discardSearchResults", DiscardSearchResultsResult.class, msg->new DiscardSearchResultsResult(ResultBase.ofError(msg)));
+            return super.call("DOM.discardSearchResults", DiscardSearchResultsResult.class,
+                (code, msg)->new DiscardSearchResultsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DiscardSearchResultsResult> call(Executor exec) {
-            return super.call("DOM.discardSearchResults", DiscardSearchResultsResult.class, msg->new DiscardSearchResultsResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.discardSearchResults", DiscardSearchResultsResult.class,
+                (code, msg)->new DiscardSearchResultsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of discardSearchResults.
@@ -1198,10 +1208,12 @@ be called for that search.
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("DOM.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("DOM.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("DOM.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -1273,10 +1285,12 @@ be called for that search.
             this.objectId = objectId;
         }
         public CompletableFuture<FocusResult> call() {
-            return super.call("DOM.focus", FocusResult.class, msg->new FocusResult(ResultBase.ofError(msg)));
+            return super.call("DOM.focus", FocusResult.class,
+                (code, msg)->new FocusResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<FocusResult> call(Executor exec) {
-            return super.call("DOM.focus", FocusResult.class, msg->new FocusResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.focus", FocusResult.class,
+                (code, msg)->new FocusResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of focus.*/
@@ -1328,10 +1342,12 @@ be called for that search.
             this.nodeId = nodeId;
         }
         public CompletableFuture<GetAttributesResult> call() {
-            return super.call("DOM.getAttributes", GetAttributesResult.class, msg->new GetAttributesResult(ResultBase.ofError(msg)));
+            return super.call("DOM.getAttributes", GetAttributesResult.class,
+                (code, msg)->new GetAttributesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetAttributesResult> call(Executor exec) {
-            return super.call("DOM.getAttributes", GetAttributesResult.class, msg->new GetAttributesResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.getAttributes", GetAttributesResult.class,
+                (code, msg)->new GetAttributesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getAttributes.*/
@@ -1417,10 +1433,12 @@ be called for that search.
             this.objectId = objectId;
         }
         public CompletableFuture<GetBoxModelResult> call() {
-            return super.call("DOM.getBoxModel", GetBoxModelResult.class, msg->new GetBoxModelResult(ResultBase.ofError(msg)));
+            return super.call("DOM.getBoxModel", GetBoxModelResult.class,
+                (code, msg)->new GetBoxModelResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetBoxModelResult> call(Executor exec) {
-            return super.call("DOM.getBoxModel", GetBoxModelResult.class, msg->new GetBoxModelResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.getBoxModel", GetBoxModelResult.class,
+                (code, msg)->new GetBoxModelResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getBoxModel.*/
@@ -1494,10 +1512,12 @@ entire subtree or provide an integer larger than 0.
             this.pierce = pierce;
         }
         public CompletableFuture<GetDocumentResult> call() {
-            return super.call("DOM.getDocument", GetDocumentResult.class, msg->new GetDocumentResult(ResultBase.ofError(msg)));
+            return super.call("DOM.getDocument", GetDocumentResult.class,
+                (code, msg)->new GetDocumentResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetDocumentResult> call(Executor exec) {
-            return super.call("DOM.getDocument", GetDocumentResult.class, msg->new GetDocumentResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.getDocument", GetDocumentResult.class,
+                (code, msg)->new GetDocumentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getDocument.*/
@@ -1571,10 +1591,12 @@ entire subtree or provide an integer larger than 0.
             this.pierce = pierce;
         }
         public CompletableFuture<GetFlattenedDocumentResult> call() {
-            return super.call("DOM.getFlattenedDocument", GetFlattenedDocumentResult.class, msg->new GetFlattenedDocumentResult(ResultBase.ofError(msg)));
+            return super.call("DOM.getFlattenedDocument", GetFlattenedDocumentResult.class,
+                (code, msg)->new GetFlattenedDocumentResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetFlattenedDocumentResult> call(Executor exec) {
-            return super.call("DOM.getFlattenedDocument", GetFlattenedDocumentResult.class, msg->new GetFlattenedDocumentResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.getFlattenedDocument", GetFlattenedDocumentResult.class,
+                (code, msg)->new GetFlattenedDocumentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getFlattenedDocument.*/
@@ -1662,10 +1684,12 @@ entire subtree or provide an integer larger than 0.
             this.includeUserAgentShadowDOM = includeUserAgentShadowDOM;
         }
         public CompletableFuture<GetNodeForLocationResult> call() {
-            return super.call("DOM.getNodeForLocation", GetNodeForLocationResult.class, msg->new GetNodeForLocationResult(ResultBase.ofError(msg)));
+            return super.call("DOM.getNodeForLocation", GetNodeForLocationResult.class,
+                (code, msg)->new GetNodeForLocationResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetNodeForLocationResult> call(Executor exec) {
-            return super.call("DOM.getNodeForLocation", GetNodeForLocationResult.class, msg->new GetNodeForLocationResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.getNodeForLocation", GetNodeForLocationResult.class,
+                (code, msg)->new GetNodeForLocationResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getNodeForLocation.
@@ -1748,10 +1772,12 @@ entire subtree or provide an integer larger than 0.
             this.objectId = objectId;
         }
         public CompletableFuture<GetOuterHTMLResult> call() {
-            return super.call("DOM.getOuterHTML", GetOuterHTMLResult.class, msg->new GetOuterHTMLResult(ResultBase.ofError(msg)));
+            return super.call("DOM.getOuterHTML", GetOuterHTMLResult.class,
+                (code, msg)->new GetOuterHTMLResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetOuterHTMLResult> call(Executor exec) {
-            return super.call("DOM.getOuterHTML", GetOuterHTMLResult.class, msg->new GetOuterHTMLResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.getOuterHTML", GetOuterHTMLResult.class,
+                (code, msg)->new GetOuterHTMLResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getOuterHTML.*/
@@ -1815,10 +1841,12 @@ entire subtree or provide an integer larger than 0.
             this.nodeId = nodeId;
         }
         public CompletableFuture<GetRelayoutBoundaryResult> call() {
-            return super.call("DOM.getRelayoutBoundary", GetRelayoutBoundaryResult.class, msg->new GetRelayoutBoundaryResult(ResultBase.ofError(msg)));
+            return super.call("DOM.getRelayoutBoundary", GetRelayoutBoundaryResult.class,
+                (code, msg)->new GetRelayoutBoundaryResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetRelayoutBoundaryResult> call(Executor exec) {
-            return super.call("DOM.getRelayoutBoundary", GetRelayoutBoundaryResult.class, msg->new GetRelayoutBoundaryResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.getRelayoutBoundary", GetRelayoutBoundaryResult.class,
+                (code, msg)->new GetRelayoutBoundaryResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getRelayoutBoundary.
@@ -1904,10 +1932,12 @@ identifier.
             this.toIndex = toIndex;
         }
         public CompletableFuture<GetSearchResultsResult> call() {
-            return super.call("DOM.getSearchResults", GetSearchResultsResult.class, msg->new GetSearchResultsResult(ResultBase.ofError(msg)));
+            return super.call("DOM.getSearchResults", GetSearchResultsResult.class,
+                (code, msg)->new GetSearchResultsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetSearchResultsResult> call(Executor exec) {
-            return super.call("DOM.getSearchResults", GetSearchResultsResult.class, msg->new GetSearchResultsResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.getSearchResults", GetSearchResultsResult.class,
+                (code, msg)->new GetSearchResultsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getSearchResults.
@@ -1960,10 +1990,12 @@ identifier.
         }
         public HideHighlightParameter() {}
         public CompletableFuture<HideHighlightResult> call() {
-            return super.call("DOM.hideHighlight", HideHighlightResult.class, msg->new HideHighlightResult(ResultBase.ofError(msg)));
+            return super.call("DOM.hideHighlight", HideHighlightResult.class,
+                (code, msg)->new HideHighlightResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<HideHighlightResult> call(Executor exec) {
-            return super.call("DOM.hideHighlight", HideHighlightResult.class, msg->new HideHighlightResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.hideHighlight", HideHighlightResult.class,
+                (code, msg)->new HideHighlightResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of hideHighlight.*/
@@ -2001,10 +2033,12 @@ identifier.
         }
         public HighlightNodeParameter() {}
         public CompletableFuture<HighlightNodeResult> call() {
-            return super.call("DOM.highlightNode", HighlightNodeResult.class, msg->new HighlightNodeResult(ResultBase.ofError(msg)));
+            return super.call("DOM.highlightNode", HighlightNodeResult.class,
+                (code, msg)->new HighlightNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<HighlightNodeResult> call(Executor exec) {
-            return super.call("DOM.highlightNode", HighlightNodeResult.class, msg->new HighlightNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.highlightNode", HighlightNodeResult.class,
+                (code, msg)->new HighlightNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of highlightNode.*/
@@ -2042,10 +2076,12 @@ identifier.
         }
         public HighlightRectParameter() {}
         public CompletableFuture<HighlightRectResult> call() {
-            return super.call("DOM.highlightRect", HighlightRectResult.class, msg->new HighlightRectResult(ResultBase.ofError(msg)));
+            return super.call("DOM.highlightRect", HighlightRectResult.class,
+                (code, msg)->new HighlightRectResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<HighlightRectResult> call(Executor exec) {
-            return super.call("DOM.highlightRect", HighlightRectResult.class, msg->new HighlightRectResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.highlightRect", HighlightRectResult.class,
+                (code, msg)->new HighlightRectResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of highlightRect.*/
@@ -2085,10 +2121,12 @@ identifier.
         }
         public MarkUndoableStateParameter() {}
         public CompletableFuture<MarkUndoableStateResult> call() {
-            return super.call("DOM.markUndoableState", MarkUndoableStateResult.class, msg->new MarkUndoableStateResult(ResultBase.ofError(msg)));
+            return super.call("DOM.markUndoableState", MarkUndoableStateResult.class,
+                (code, msg)->new MarkUndoableStateResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<MarkUndoableStateResult> call(Executor exec) {
-            return super.call("DOM.markUndoableState", MarkUndoableStateResult.class, msg->new MarkUndoableStateResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.markUndoableState", MarkUndoableStateResult.class,
+                (code, msg)->new MarkUndoableStateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of markUndoableState.
@@ -2162,10 +2200,12 @@ identifier.
             this.insertBeforeNodeId = insertBeforeNodeId;
         }
         public CompletableFuture<MoveToResult> call() {
-            return super.call("DOM.moveTo", MoveToResult.class, msg->new MoveToResult(ResultBase.ofError(msg)));
+            return super.call("DOM.moveTo", MoveToResult.class,
+                (code, msg)->new MoveToResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<MoveToResult> call(Executor exec) {
-            return super.call("DOM.moveTo", MoveToResult.class, msg->new MoveToResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.moveTo", MoveToResult.class,
+                (code, msg)->new MoveToResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of moveTo.*/
@@ -2240,10 +2280,12 @@ identifier.
             this.includeUserAgentShadowDOM = includeUserAgentShadowDOM;
         }
         public CompletableFuture<PerformSearchResult> call() {
-            return super.call("DOM.performSearch", PerformSearchResult.class, msg->new PerformSearchResult(ResultBase.ofError(msg)));
+            return super.call("DOM.performSearch", PerformSearchResult.class,
+                (code, msg)->new PerformSearchResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<PerformSearchResult> call(Executor exec) {
-            return super.call("DOM.performSearch", PerformSearchResult.class, msg->new PerformSearchResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.performSearch", PerformSearchResult.class,
+                (code, msg)->new PerformSearchResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of performSearch.
@@ -2316,10 +2358,12 @@ identifier.
             this.path = path;
         }
         public CompletableFuture<PushNodeByPathToFrontendResult> call() {
-            return super.call("DOM.pushNodeByPathToFrontend", PushNodeByPathToFrontendResult.class, msg->new PushNodeByPathToFrontendResult(ResultBase.ofError(msg)));
+            return super.call("DOM.pushNodeByPathToFrontend", PushNodeByPathToFrontendResult.class,
+                (code, msg)->new PushNodeByPathToFrontendResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<PushNodeByPathToFrontendResult> call(Executor exec) {
-            return super.call("DOM.pushNodeByPathToFrontend", PushNodeByPathToFrontendResult.class, msg->new PushNodeByPathToFrontendResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.pushNodeByPathToFrontend", PushNodeByPathToFrontendResult.class,
+                (code, msg)->new PushNodeByPathToFrontendResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of pushNodeByPathToFrontend.
@@ -2388,10 +2432,12 @@ identifier.
             this.backendNodeIds = backendNodeIds;
         }
         public CompletableFuture<PushNodesByBackendIdsToFrontendResult> call() {
-            return super.call("DOM.pushNodesByBackendIdsToFrontend", PushNodesByBackendIdsToFrontendResult.class, msg->new PushNodesByBackendIdsToFrontendResult(ResultBase.ofError(msg)));
+            return super.call("DOM.pushNodesByBackendIdsToFrontend", PushNodesByBackendIdsToFrontendResult.class,
+                (code, msg)->new PushNodesByBackendIdsToFrontendResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<PushNodesByBackendIdsToFrontendResult> call(Executor exec) {
-            return super.call("DOM.pushNodesByBackendIdsToFrontend", PushNodesByBackendIdsToFrontendResult.class, msg->new PushNodesByBackendIdsToFrontendResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.pushNodesByBackendIdsToFrontend", PushNodesByBackendIdsToFrontendResult.class,
+                (code, msg)->new PushNodesByBackendIdsToFrontendResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of pushNodesByBackendIdsToFrontend.
@@ -2469,10 +2515,12 @@ backendNodeIds.*/
             this.selector = selector;
         }
         public CompletableFuture<QuerySelectorResult> call() {
-            return super.call("DOM.querySelector", QuerySelectorResult.class, msg->new QuerySelectorResult(ResultBase.ofError(msg)));
+            return super.call("DOM.querySelector", QuerySelectorResult.class,
+                (code, msg)->new QuerySelectorResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<QuerySelectorResult> call(Executor exec) {
-            return super.call("DOM.querySelector", QuerySelectorResult.class, msg->new QuerySelectorResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.querySelector", QuerySelectorResult.class,
+                (code, msg)->new QuerySelectorResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of querySelector.*/
@@ -2544,10 +2592,12 @@ backendNodeIds.*/
             this.selector = selector;
         }
         public CompletableFuture<QuerySelectorAllResult> call() {
-            return super.call("DOM.querySelectorAll", QuerySelectorAllResult.class, msg->new QuerySelectorAllResult(ResultBase.ofError(msg)));
+            return super.call("DOM.querySelectorAll", QuerySelectorAllResult.class,
+                (code, msg)->new QuerySelectorAllResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<QuerySelectorAllResult> call(Executor exec) {
-            return super.call("DOM.querySelectorAll", QuerySelectorAllResult.class, msg->new QuerySelectorAllResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.querySelectorAll", QuerySelectorAllResult.class,
+                (code, msg)->new QuerySelectorAllResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of querySelectorAll.*/
@@ -2601,10 +2651,12 @@ backendNodeIds.*/
         }
         public RedoParameter() {}
         public CompletableFuture<RedoResult> call() {
-            return super.call("DOM.redo", RedoResult.class, msg->new RedoResult(ResultBase.ofError(msg)));
+            return super.call("DOM.redo", RedoResult.class,
+                (code, msg)->new RedoResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RedoResult> call(Executor exec) {
-            return super.call("DOM.redo", RedoResult.class, msg->new RedoResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.redo", RedoResult.class,
+                (code, msg)->new RedoResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of redo.
@@ -2667,10 +2719,12 @@ backendNodeIds.*/
             this.name = name;
         }
         public CompletableFuture<RemoveAttributeResult> call() {
-            return super.call("DOM.removeAttribute", RemoveAttributeResult.class, msg->new RemoveAttributeResult(ResultBase.ofError(msg)));
+            return super.call("DOM.removeAttribute", RemoveAttributeResult.class,
+                (code, msg)->new RemoveAttributeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RemoveAttributeResult> call(Executor exec) {
-            return super.call("DOM.removeAttribute", RemoveAttributeResult.class, msg->new RemoveAttributeResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.removeAttribute", RemoveAttributeResult.class,
+                (code, msg)->new RemoveAttributeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of removeAttribute.*/
@@ -2722,10 +2776,12 @@ backendNodeIds.*/
             this.nodeId = nodeId;
         }
         public CompletableFuture<RemoveNodeResult> call() {
-            return super.call("DOM.removeNode", RemoveNodeResult.class, msg->new RemoveNodeResult(ResultBase.ofError(msg)));
+            return super.call("DOM.removeNode", RemoveNodeResult.class,
+                (code, msg)->new RemoveNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RemoveNodeResult> call(Executor exec) {
-            return super.call("DOM.removeNode", RemoveNodeResult.class, msg->new RemoveNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.removeNode", RemoveNodeResult.class,
+                (code, msg)->new RemoveNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of removeNode.*/
@@ -2801,10 +2857,12 @@ entire subtree or provide an integer larger than 0.
             this.pierce = pierce;
         }
         public CompletableFuture<RequestChildNodesResult> call() {
-            return super.call("DOM.requestChildNodes", RequestChildNodesResult.class, msg->new RequestChildNodesResult(ResultBase.ofError(msg)));
+            return super.call("DOM.requestChildNodes", RequestChildNodesResult.class,
+                (code, msg)->new RequestChildNodesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RequestChildNodesResult> call(Executor exec) {
-            return super.call("DOM.requestChildNodes", RequestChildNodesResult.class, msg->new RequestChildNodesResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.requestChildNodes", RequestChildNodesResult.class,
+                (code, msg)->new RequestChildNodesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of requestChildNodes.*/
@@ -2858,10 +2916,12 @@ nodes that form the path from the node to the root are also sent to the client a
             this.objectId = objectId;
         }
         public CompletableFuture<RequestNodeResult> call() {
-            return super.call("DOM.requestNode", RequestNodeResult.class, msg->new RequestNodeResult(ResultBase.ofError(msg)));
+            return super.call("DOM.requestNode", RequestNodeResult.class,
+                (code, msg)->new RequestNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RequestNodeResult> call(Executor exec) {
-            return super.call("DOM.requestNode", RequestNodeResult.class, msg->new RequestNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.requestNode", RequestNodeResult.class,
+                (code, msg)->new RequestNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of requestNode.*/
@@ -2943,10 +3003,12 @@ nodes that form the path from the node to the root are also sent to the client a
             this.objectGroup = objectGroup;
         }
         public CompletableFuture<ResolveNodeResult> call() {
-            return super.call("DOM.resolveNode", ResolveNodeResult.class, msg->new ResolveNodeResult(ResultBase.ofError(msg)));
+            return super.call("DOM.resolveNode", ResolveNodeResult.class,
+                (code, msg)->new ResolveNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ResolveNodeResult> call(Executor exec) {
-            return super.call("DOM.resolveNode", ResolveNodeResult.class, msg->new ResolveNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.resolveNode", ResolveNodeResult.class,
+                (code, msg)->new ResolveNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of resolveNode.*/
@@ -3028,10 +3090,12 @@ nodes that form the path from the node to the root are also sent to the client a
             this.value = value;
         }
         public CompletableFuture<SetAttributeValueResult> call() {
-            return super.call("DOM.setAttributeValue", SetAttributeValueResult.class, msg->new SetAttributeValueResult(ResultBase.ofError(msg)));
+            return super.call("DOM.setAttributeValue", SetAttributeValueResult.class,
+                (code, msg)->new SetAttributeValueResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetAttributeValueResult> call(Executor exec) {
-            return super.call("DOM.setAttributeValue", SetAttributeValueResult.class, msg->new SetAttributeValueResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.setAttributeValue", SetAttributeValueResult.class,
+                (code, msg)->new SetAttributeValueResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setAttributeValue.*/
@@ -3105,10 +3169,12 @@ successfully.
             this.name = name;
         }
         public CompletableFuture<SetAttributesAsTextResult> call() {
-            return super.call("DOM.setAttributesAsText", SetAttributesAsTextResult.class, msg->new SetAttributesAsTextResult(ResultBase.ofError(msg)));
+            return super.call("DOM.setAttributesAsText", SetAttributesAsTextResult.class,
+                (code, msg)->new SetAttributesAsTextResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetAttributesAsTextResult> call(Executor exec) {
-            return super.call("DOM.setAttributesAsText", SetAttributesAsTextResult.class, msg->new SetAttributesAsTextResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.setAttributesAsText", SetAttributesAsTextResult.class,
+                (code, msg)->new SetAttributesAsTextResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setAttributesAsText.*/
@@ -3194,10 +3260,12 @@ successfully.
             this.objectId = objectId;
         }
         public CompletableFuture<SetFileInputFilesResult> call() {
-            return super.call("DOM.setFileInputFiles", SetFileInputFilesResult.class, msg->new SetFileInputFilesResult(ResultBase.ofError(msg)));
+            return super.call("DOM.setFileInputFiles", SetFileInputFilesResult.class,
+                (code, msg)->new SetFileInputFilesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetFileInputFilesResult> call(Executor exec) {
-            return super.call("DOM.setFileInputFiles", SetFileInputFilesResult.class, msg->new SetFileInputFilesResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.setFileInputFiles", SetFileInputFilesResult.class,
+                (code, msg)->new SetFileInputFilesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setFileInputFiles.*/
@@ -3252,10 +3320,12 @@ $x functions).
             this.nodeId = nodeId;
         }
         public CompletableFuture<SetInspectedNodeResult> call() {
-            return super.call("DOM.setInspectedNode", SetInspectedNodeResult.class, msg->new SetInspectedNodeResult(ResultBase.ofError(msg)));
+            return super.call("DOM.setInspectedNode", SetInspectedNodeResult.class,
+                (code, msg)->new SetInspectedNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetInspectedNodeResult> call(Executor exec) {
-            return super.call("DOM.setInspectedNode", SetInspectedNodeResult.class, msg->new SetInspectedNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.setInspectedNode", SetInspectedNodeResult.class,
+                (code, msg)->new SetInspectedNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setInspectedNode.
@@ -3318,10 +3388,12 @@ $x functions).
             this.name = name;
         }
         public CompletableFuture<SetNodeNameResult> call() {
-            return super.call("DOM.setNodeName", SetNodeNameResult.class, msg->new SetNodeNameResult(ResultBase.ofError(msg)));
+            return super.call("DOM.setNodeName", SetNodeNameResult.class,
+                (code, msg)->new SetNodeNameResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetNodeNameResult> call(Executor exec) {
-            return super.call("DOM.setNodeName", SetNodeNameResult.class, msg->new SetNodeNameResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.setNodeName", SetNodeNameResult.class,
+                (code, msg)->new SetNodeNameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setNodeName.*/
@@ -3393,10 +3465,12 @@ $x functions).
             this.value = value;
         }
         public CompletableFuture<SetNodeValueResult> call() {
-            return super.call("DOM.setNodeValue", SetNodeValueResult.class, msg->new SetNodeValueResult(ResultBase.ofError(msg)));
+            return super.call("DOM.setNodeValue", SetNodeValueResult.class,
+                (code, msg)->new SetNodeValueResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetNodeValueResult> call(Executor exec) {
-            return super.call("DOM.setNodeValue", SetNodeValueResult.class, msg->new SetNodeValueResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.setNodeValue", SetNodeValueResult.class,
+                (code, msg)->new SetNodeValueResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setNodeValue.*/
@@ -3458,10 +3532,12 @@ $x functions).
             this.outerHTML = outerHTML;
         }
         public CompletableFuture<SetOuterHTMLResult> call() {
-            return super.call("DOM.setOuterHTML", SetOuterHTMLResult.class, msg->new SetOuterHTMLResult(ResultBase.ofError(msg)));
+            return super.call("DOM.setOuterHTML", SetOuterHTMLResult.class,
+                (code, msg)->new SetOuterHTMLResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetOuterHTMLResult> call(Executor exec) {
-            return super.call("DOM.setOuterHTML", SetOuterHTMLResult.class, msg->new SetOuterHTMLResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.setOuterHTML", SetOuterHTMLResult.class,
+                (code, msg)->new SetOuterHTMLResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setOuterHTML.*/
@@ -3501,10 +3577,12 @@ $x functions).
         }
         public UndoParameter() {}
         public CompletableFuture<UndoResult> call() {
-            return super.call("DOM.undo", UndoResult.class, msg->new UndoResult(ResultBase.ofError(msg)));
+            return super.call("DOM.undo", UndoResult.class,
+                (code, msg)->new UndoResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<UndoResult> call(Executor exec) {
-            return super.call("DOM.undo", UndoResult.class, msg->new UndoResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.undo", UndoResult.class,
+                (code, msg)->new UndoResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of undo.
@@ -3559,10 +3637,12 @@ $x functions).
             this.frameId = frameId;
         }
         public CompletableFuture<GetFrameOwnerResult> call() {
-            return super.call("DOM.getFrameOwner", GetFrameOwnerResult.class, msg->new GetFrameOwnerResult(ResultBase.ofError(msg)));
+            return super.call("DOM.getFrameOwner", GetFrameOwnerResult.class,
+                (code, msg)->new GetFrameOwnerResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetFrameOwnerResult> call(Executor exec) {
-            return super.call("DOM.getFrameOwner", GetFrameOwnerResult.class, msg->new GetFrameOwnerResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOM.getFrameOwner", GetFrameOwnerResult.class,
+                (code, msg)->new GetFrameOwnerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getFrameOwner.

@@ -1896,10 +1896,12 @@ backslash. Omitting is equivalent to "*".
         }
         public CanClearBrowserCacheParameter() {}
         public CompletableFuture<CanClearBrowserCacheResult> call() {
-            return super.call("Network.canClearBrowserCache", CanClearBrowserCacheResult.class, msg->new CanClearBrowserCacheResult(ResultBase.ofError(msg)));
+            return super.call("Network.canClearBrowserCache", CanClearBrowserCacheResult.class,
+                (code, msg)->new CanClearBrowserCacheResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CanClearBrowserCacheResult> call(Executor exec) {
-            return super.call("Network.canClearBrowserCache", CanClearBrowserCacheResult.class, msg->new CanClearBrowserCacheResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.canClearBrowserCache", CanClearBrowserCacheResult.class,
+                (code, msg)->new CanClearBrowserCacheResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of canClearBrowserCache.
@@ -1950,10 +1952,12 @@ backslash. Omitting is equivalent to "*".
         }
         public CanClearBrowserCookiesParameter() {}
         public CompletableFuture<CanClearBrowserCookiesResult> call() {
-            return super.call("Network.canClearBrowserCookies", CanClearBrowserCookiesResult.class, msg->new CanClearBrowserCookiesResult(ResultBase.ofError(msg)));
+            return super.call("Network.canClearBrowserCookies", CanClearBrowserCookiesResult.class,
+                (code, msg)->new CanClearBrowserCookiesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CanClearBrowserCookiesResult> call(Executor exec) {
-            return super.call("Network.canClearBrowserCookies", CanClearBrowserCookiesResult.class, msg->new CanClearBrowserCookiesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.canClearBrowserCookies", CanClearBrowserCookiesResult.class,
+                (code, msg)->new CanClearBrowserCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of canClearBrowserCookies.
@@ -2004,10 +2008,12 @@ backslash. Omitting is equivalent to "*".
         }
         public CanEmulateNetworkConditionsParameter() {}
         public CompletableFuture<CanEmulateNetworkConditionsResult> call() {
-            return super.call("Network.canEmulateNetworkConditions", CanEmulateNetworkConditionsResult.class, msg->new CanEmulateNetworkConditionsResult(ResultBase.ofError(msg)));
+            return super.call("Network.canEmulateNetworkConditions", CanEmulateNetworkConditionsResult.class,
+                (code, msg)->new CanEmulateNetworkConditionsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CanEmulateNetworkConditionsResult> call(Executor exec) {
-            return super.call("Network.canEmulateNetworkConditions", CanEmulateNetworkConditionsResult.class, msg->new CanEmulateNetworkConditionsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.canEmulateNetworkConditions", CanEmulateNetworkConditionsResult.class,
+                (code, msg)->new CanEmulateNetworkConditionsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of canEmulateNetworkConditions.
@@ -2056,10 +2062,12 @@ backslash. Omitting is equivalent to "*".
         }
         public ClearBrowserCacheParameter() {}
         public CompletableFuture<ClearBrowserCacheResult> call() {
-            return super.call("Network.clearBrowserCache", ClearBrowserCacheResult.class, msg->new ClearBrowserCacheResult(ResultBase.ofError(msg)));
+            return super.call("Network.clearBrowserCache", ClearBrowserCacheResult.class,
+                (code, msg)->new ClearBrowserCacheResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearBrowserCacheResult> call(Executor exec) {
-            return super.call("Network.clearBrowserCache", ClearBrowserCacheResult.class, msg->new ClearBrowserCacheResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.clearBrowserCache", ClearBrowserCacheResult.class,
+                (code, msg)->new ClearBrowserCacheResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearBrowserCache.*/
@@ -2097,10 +2105,12 @@ backslash. Omitting is equivalent to "*".
         }
         public ClearBrowserCookiesParameter() {}
         public CompletableFuture<ClearBrowserCookiesResult> call() {
-            return super.call("Network.clearBrowserCookies", ClearBrowserCookiesResult.class, msg->new ClearBrowserCookiesResult(ResultBase.ofError(msg)));
+            return super.call("Network.clearBrowserCookies", ClearBrowserCookiesResult.class,
+                (code, msg)->new ClearBrowserCookiesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearBrowserCookiesResult> call(Executor exec) {
-            return super.call("Network.clearBrowserCookies", ClearBrowserCookiesResult.class, msg->new ClearBrowserCookiesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.clearBrowserCookies", ClearBrowserCookiesResult.class,
+                (code, msg)->new ClearBrowserCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearBrowserCookies.*/
@@ -2233,10 +2243,12 @@ authChallenge.
             this.authChallengeResponse = authChallengeResponse;
         }
         public CompletableFuture<ContinueInterceptedRequestResult> call() {
-            return super.call("Network.continueInterceptedRequest", ContinueInterceptedRequestResult.class, msg->new ContinueInterceptedRequestResult(ResultBase.ofError(msg)));
+            return super.call("Network.continueInterceptedRequest", ContinueInterceptedRequestResult.class,
+                (code, msg)->new ContinueInterceptedRequestResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ContinueInterceptedRequestResult> call(Executor exec) {
-            return super.call("Network.continueInterceptedRequest", ContinueInterceptedRequestResult.class, msg->new ContinueInterceptedRequestResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.continueInterceptedRequest", ContinueInterceptedRequestResult.class,
+                (code, msg)->new ContinueInterceptedRequestResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of continueInterceptedRequest.
@@ -2320,10 +2332,12 @@ provided URL.
             this.path = path;
         }
         public CompletableFuture<DeleteCookiesResult> call() {
-            return super.call("Network.deleteCookies", DeleteCookiesResult.class, msg->new DeleteCookiesResult(ResultBase.ofError(msg)));
+            return super.call("Network.deleteCookies", DeleteCookiesResult.class,
+                (code, msg)->new DeleteCookiesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DeleteCookiesResult> call(Executor exec) {
-            return super.call("Network.deleteCookies", DeleteCookiesResult.class, msg->new DeleteCookiesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.deleteCookies", DeleteCookiesResult.class,
+                (code, msg)->new DeleteCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of deleteCookies.*/
@@ -2361,10 +2375,12 @@ provided URL.
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Network.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Network.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Network.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -2456,10 +2472,12 @@ provided URL.
             this.connectionType = connectionType;
         }
         public CompletableFuture<EmulateNetworkConditionsResult> call() {
-            return super.call("Network.emulateNetworkConditions", EmulateNetworkConditionsResult.class, msg->new EmulateNetworkConditionsResult(ResultBase.ofError(msg)));
+            return super.call("Network.emulateNetworkConditions", EmulateNetworkConditionsResult.class,
+                (code, msg)->new EmulateNetworkConditionsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EmulateNetworkConditionsResult> call(Executor exec) {
-            return super.call("Network.emulateNetworkConditions", EmulateNetworkConditionsResult.class, msg->new EmulateNetworkConditionsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.emulateNetworkConditions", EmulateNetworkConditionsResult.class,
+                (code, msg)->new EmulateNetworkConditionsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of emulateNetworkConditions.*/
@@ -2533,10 +2551,12 @@ provided URL.
             this.maxPostDataSize = maxPostDataSize;
         }
         public CompletableFuture<EnableResult> call() {
-            return super.call("Network.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Network.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Network.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -2575,10 +2595,12 @@ information in the `cookies` field.*/
         }
         public GetAllCookiesParameter() {}
         public CompletableFuture<GetAllCookiesResult> call() {
-            return super.call("Network.getAllCookies", GetAllCookiesResult.class, msg->new GetAllCookiesResult(ResultBase.ofError(msg)));
+            return super.call("Network.getAllCookies", GetAllCookiesResult.class,
+                (code, msg)->new GetAllCookiesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetAllCookiesResult> call(Executor exec) {
-            return super.call("Network.getAllCookies", GetAllCookiesResult.class, msg->new GetAllCookiesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.getAllCookies", GetAllCookiesResult.class,
+                (code, msg)->new GetAllCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getAllCookies.*/
@@ -2646,10 +2668,12 @@ information in the `cookies` field.*/
             this.origin = origin;
         }
         public CompletableFuture<GetCertificateResult> call() {
-            return super.call("Network.getCertificate", GetCertificateResult.class, msg->new GetCertificateResult(ResultBase.ofError(msg)));
+            return super.call("Network.getCertificate", GetCertificateResult.class,
+                (code, msg)->new GetCertificateResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetCertificateResult> call(Executor exec) {
-            return super.call("Network.getCertificate", GetCertificateResult.class, msg->new GetCertificateResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.getCertificate", GetCertificateResult.class,
+                (code, msg)->new GetCertificateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getCertificate.
@@ -2723,10 +2747,12 @@ detailed cookie information in the `cookies` field.*/
             this.urls = urls;
         }
         public CompletableFuture<GetCookiesResult> call() {
-            return super.call("Network.getCookies", GetCookiesResult.class, msg->new GetCookiesResult(ResultBase.ofError(msg)));
+            return super.call("Network.getCookies", GetCookiesResult.class,
+                (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetCookiesResult> call(Executor exec) {
-            return super.call("Network.getCookies", GetCookiesResult.class, msg->new GetCookiesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.getCookies", GetCookiesResult.class,
+                (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getCookies.*/
@@ -2792,10 +2818,12 @@ detailed cookie information in the `cookies` field.*/
             this.requestId = requestId;
         }
         public CompletableFuture<GetResponseBodyResult> call() {
-            return super.call("Network.getResponseBody", GetResponseBodyResult.class, msg->new GetResponseBodyResult(ResultBase.ofError(msg)));
+            return super.call("Network.getResponseBody", GetResponseBodyResult.class,
+                (code, msg)->new GetResponseBodyResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetResponseBodyResult> call(Executor exec) {
-            return super.call("Network.getResponseBody", GetResponseBodyResult.class, msg->new GetResponseBodyResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.getResponseBody", GetResponseBodyResult.class,
+                (code, msg)->new GetResponseBodyResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getResponseBody.*/
@@ -2865,10 +2893,12 @@ detailed cookie information in the `cookies` field.*/
             this.requestId = requestId;
         }
         public CompletableFuture<GetRequestPostDataResult> call() {
-            return super.call("Network.getRequestPostData", GetRequestPostDataResult.class, msg->new GetRequestPostDataResult(ResultBase.ofError(msg)));
+            return super.call("Network.getRequestPostData", GetRequestPostDataResult.class,
+                (code, msg)->new GetRequestPostDataResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetRequestPostDataResult> call(Executor exec) {
-            return super.call("Network.getRequestPostData", GetRequestPostDataResult.class, msg->new GetRequestPostDataResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.getRequestPostData", GetRequestPostDataResult.class,
+                (code, msg)->new GetRequestPostDataResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getRequestPostData.*/
@@ -2932,10 +2962,12 @@ detailed cookie information in the `cookies` field.*/
             this.interceptionId = interceptionId;
         }
         public CompletableFuture<GetResponseBodyForInterceptionResult> call() {
-            return super.call("Network.getResponseBodyForInterception", GetResponseBodyForInterceptionResult.class, msg->new GetResponseBodyForInterceptionResult(ResultBase.ofError(msg)));
+            return super.call("Network.getResponseBodyForInterception", GetResponseBodyForInterceptionResult.class,
+                (code, msg)->new GetResponseBodyForInterceptionResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetResponseBodyForInterceptionResult> call(Executor exec) {
-            return super.call("Network.getResponseBodyForInterception", GetResponseBodyForInterceptionResult.class, msg->new GetResponseBodyForInterceptionResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.getResponseBodyForInterception", GetResponseBodyForInterceptionResult.class,
+                (code, msg)->new GetResponseBodyForInterceptionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getResponseBodyForInterception.
@@ -3010,10 +3042,12 @@ attribute, user, password.
             this.requestId = requestId;
         }
         public CompletableFuture<ReplayXHRResult> call() {
-            return super.call("Network.replayXHR", ReplayXHRResult.class, msg->new ReplayXHRResult(ResultBase.ofError(msg)));
+            return super.call("Network.replayXHR", ReplayXHRResult.class,
+                (code, msg)->new ReplayXHRResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ReplayXHRResult> call(Executor exec) {
-            return super.call("Network.replayXHR", ReplayXHRResult.class, msg->new ReplayXHRResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.replayXHR", ReplayXHRResult.class,
+                (code, msg)->new ReplayXHRResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of replayXHR.
@@ -3098,10 +3132,12 @@ attribute, user, password.
             this.isRegex = isRegex;
         }
         public CompletableFuture<SearchInResponseBodyResult> call() {
-            return super.call("Network.searchInResponseBody", SearchInResponseBodyResult.class, msg->new SearchInResponseBodyResult(ResultBase.ofError(msg)));
+            return super.call("Network.searchInResponseBody", SearchInResponseBodyResult.class,
+                (code, msg)->new SearchInResponseBodyResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SearchInResponseBodyResult> call(Executor exec) {
-            return super.call("Network.searchInResponseBody", SearchInResponseBodyResult.class, msg->new SearchInResponseBodyResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.searchInResponseBody", SearchInResponseBodyResult.class,
+                (code, msg)->new SearchInResponseBodyResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of searchInResponseBody.
@@ -3174,10 +3210,12 @@ attribute, user, password.
             this.urls = urls;
         }
         public CompletableFuture<SetBlockedURLsResult> call() {
-            return super.call("Network.setBlockedURLs", SetBlockedURLsResult.class, msg->new SetBlockedURLsResult(ResultBase.ofError(msg)));
+            return super.call("Network.setBlockedURLs", SetBlockedURLsResult.class,
+                (code, msg)->new SetBlockedURLsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetBlockedURLsResult> call(Executor exec) {
-            return super.call("Network.setBlockedURLs", SetBlockedURLsResult.class, msg->new SetBlockedURLsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.setBlockedURLs", SetBlockedURLsResult.class,
+                (code, msg)->new SetBlockedURLsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setBlockedURLs.
@@ -3232,10 +3270,12 @@ attribute, user, password.
             this.bypass = bypass;
         }
         public CompletableFuture<SetBypassServiceWorkerResult> call() {
-            return super.call("Network.setBypassServiceWorker", SetBypassServiceWorkerResult.class, msg->new SetBypassServiceWorkerResult(ResultBase.ofError(msg)));
+            return super.call("Network.setBypassServiceWorker", SetBypassServiceWorkerResult.class,
+                (code, msg)->new SetBypassServiceWorkerResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetBypassServiceWorkerResult> call(Executor exec) {
-            return super.call("Network.setBypassServiceWorker", SetBypassServiceWorkerResult.class, msg->new SetBypassServiceWorkerResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.setBypassServiceWorker", SetBypassServiceWorkerResult.class,
+                (code, msg)->new SetBypassServiceWorkerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setBypassServiceWorker.
@@ -3288,10 +3328,12 @@ attribute, user, password.
             this.cacheDisabled = cacheDisabled;
         }
         public CompletableFuture<SetCacheDisabledResult> call() {
-            return super.call("Network.setCacheDisabled", SetCacheDisabledResult.class, msg->new SetCacheDisabledResult(ResultBase.ofError(msg)));
+            return super.call("Network.setCacheDisabled", SetCacheDisabledResult.class,
+                (code, msg)->new SetCacheDisabledResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetCacheDisabledResult> call(Executor exec) {
-            return super.call("Network.setCacheDisabled", SetCacheDisabledResult.class, msg->new SetCacheDisabledResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.setCacheDisabled", SetCacheDisabledResult.class,
+                (code, msg)->new SetCacheDisabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setCacheDisabled.*/
@@ -3424,10 +3466,12 @@ default domain and path values of the created cookie.
             this.expires = expires;
         }
         public CompletableFuture<SetCookieResult> call() {
-            return super.call("Network.setCookie", SetCookieResult.class, msg->new SetCookieResult(ResultBase.ofError(msg)));
+            return super.call("Network.setCookie", SetCookieResult.class,
+                (code, msg)->new SetCookieResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetCookieResult> call(Executor exec) {
-            return super.call("Network.setCookie", SetCookieResult.class, msg->new SetCookieResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.setCookie", SetCookieResult.class,
+                (code, msg)->new SetCookieResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setCookie.*/
@@ -3493,10 +3537,12 @@ default domain and path values of the created cookie.
             this.cookies = cookies;
         }
         public CompletableFuture<SetCookiesResult> call() {
-            return super.call("Network.setCookies", SetCookiesResult.class, msg->new SetCookiesResult(ResultBase.ofError(msg)));
+            return super.call("Network.setCookies", SetCookiesResult.class,
+                (code, msg)->new SetCookiesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetCookiesResult> call(Executor exec) {
-            return super.call("Network.setCookies", SetCookiesResult.class, msg->new SetCookiesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.setCookies", SetCookiesResult.class,
+                (code, msg)->new SetCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setCookies.*/
@@ -3560,10 +3606,12 @@ default domain and path values of the created cookie.
             this.maxResourceSize = maxResourceSize;
         }
         public CompletableFuture<SetDataSizeLimitsForTestResult> call() {
-            return super.call("Network.setDataSizeLimitsForTest", SetDataSizeLimitsForTestResult.class, msg->new SetDataSizeLimitsForTestResult(ResultBase.ofError(msg)));
+            return super.call("Network.setDataSizeLimitsForTest", SetDataSizeLimitsForTestResult.class,
+                (code, msg)->new SetDataSizeLimitsForTestResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDataSizeLimitsForTestResult> call(Executor exec) {
-            return super.call("Network.setDataSizeLimitsForTest", SetDataSizeLimitsForTestResult.class, msg->new SetDataSizeLimitsForTestResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.setDataSizeLimitsForTest", SetDataSizeLimitsForTestResult.class,
+                (code, msg)->new SetDataSizeLimitsForTestResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDataSizeLimitsForTest.
@@ -3616,10 +3664,12 @@ default domain and path values of the created cookie.
             this.headers = headers;
         }
         public CompletableFuture<SetExtraHTTPHeadersResult> call() {
-            return super.call("Network.setExtraHTTPHeaders", SetExtraHTTPHeadersResult.class, msg->new SetExtraHTTPHeadersResult(ResultBase.ofError(msg)));
+            return super.call("Network.setExtraHTTPHeaders", SetExtraHTTPHeadersResult.class,
+                (code, msg)->new SetExtraHTTPHeadersResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetExtraHTTPHeadersResult> call(Executor exec) {
-            return super.call("Network.setExtraHTTPHeaders", SetExtraHTTPHeadersResult.class, msg->new SetExtraHTTPHeadersResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.setExtraHTTPHeaders", SetExtraHTTPHeadersResult.class,
+                (code, msg)->new SetExtraHTTPHeadersResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setExtraHTTPHeaders.*/
@@ -3678,10 +3728,12 @@ continueInterceptedRequest call.*/
             this.patterns = patterns;
         }
         public CompletableFuture<SetRequestInterceptionResult> call() {
-            return super.call("Network.setRequestInterception", SetRequestInterceptionResult.class, msg->new SetRequestInterceptionResult(ResultBase.ofError(msg)));
+            return super.call("Network.setRequestInterception", SetRequestInterceptionResult.class,
+                (code, msg)->new SetRequestInterceptionResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetRequestInterceptionResult> call(Executor exec) {
-            return super.call("Network.setRequestInterception", SetRequestInterceptionResult.class, msg->new SetRequestInterceptionResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.setRequestInterception", SetRequestInterceptionResult.class,
+                (code, msg)->new SetRequestInterceptionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setRequestInterception.
@@ -3734,10 +3786,12 @@ continueInterceptedRequest call.*/
             this.userAgent = userAgent;
         }
         public CompletableFuture<SetUserAgentOverrideResult> call() {
-            return super.call("Network.setUserAgentOverride", SetUserAgentOverrideResult.class, msg->new SetUserAgentOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Network.setUserAgentOverride", SetUserAgentOverrideResult.class,
+                (code, msg)->new SetUserAgentOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetUserAgentOverrideResult> call(Executor exec) {
-            return super.call("Network.setUserAgentOverride", SetUserAgentOverrideResult.class, msg->new SetUserAgentOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Network.setUserAgentOverride", SetUserAgentOverrideResult.class,
+                (code, msg)->new SetUserAgentOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setUserAgentOverride.*/

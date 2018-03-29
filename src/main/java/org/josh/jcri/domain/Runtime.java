@@ -1355,10 +1355,12 @@ allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.pau
             this.generatePreview = generatePreview;
         }
         public CompletableFuture<AwaitPromiseResult> call() {
-            return super.call("Runtime.awaitPromise", AwaitPromiseResult.class, msg->new AwaitPromiseResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.awaitPromise", AwaitPromiseResult.class,
+                (code, msg)->new AwaitPromiseResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<AwaitPromiseResult> call(Executor exec) {
-            return super.call("Runtime.awaitPromise", AwaitPromiseResult.class, msg->new AwaitPromiseResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.awaitPromise", AwaitPromiseResult.class,
+                (code, msg)->new AwaitPromiseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of awaitPromise.*/
@@ -1533,10 +1535,12 @@ specified and objectId is, objectGroup will be inherited from object.
             this.objectGroup = objectGroup;
         }
         public CompletableFuture<CallFunctionOnResult> call() {
-            return super.call("Runtime.callFunctionOn", CallFunctionOnResult.class, msg->new CallFunctionOnResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.callFunctionOn", CallFunctionOnResult.class,
+                (code, msg)->new CallFunctionOnResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CallFunctionOnResult> call(Executor exec) {
-            return super.call("Runtime.callFunctionOn", CallFunctionOnResult.class, msg->new CallFunctionOnResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.callFunctionOn", CallFunctionOnResult.class,
+                (code, msg)->new CallFunctionOnResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of callFunctionOn.*/
@@ -1638,10 +1642,12 @@ evaluation will be performed in the context of the inspected page.
             this.executionContextId = executionContextId;
         }
         public CompletableFuture<CompileScriptResult> call() {
-            return super.call("Runtime.compileScript", CompileScriptResult.class, msg->new CompileScriptResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.compileScript", CompileScriptResult.class,
+                (code, msg)->new CompileScriptResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CompileScriptResult> call(Executor exec) {
-            return super.call("Runtime.compileScript", CompileScriptResult.class, msg->new CompileScriptResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.compileScript", CompileScriptResult.class,
+                (code, msg)->new CompileScriptResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of compileScript.*/
@@ -1699,10 +1705,12 @@ evaluation will be performed in the context of the inspected page.
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Runtime.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Runtime.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -1740,10 +1748,12 @@ evaluation will be performed in the context of the inspected page.
         }
         public DiscardConsoleEntriesParameter() {}
         public CompletableFuture<DiscardConsoleEntriesResult> call() {
-            return super.call("Runtime.discardConsoleEntries", DiscardConsoleEntriesResult.class, msg->new DiscardConsoleEntriesResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.discardConsoleEntries", DiscardConsoleEntriesResult.class,
+                (code, msg)->new DiscardConsoleEntriesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DiscardConsoleEntriesResult> call(Executor exec) {
-            return super.call("Runtime.discardConsoleEntries", DiscardConsoleEntriesResult.class, msg->new DiscardConsoleEntriesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.discardConsoleEntries", DiscardConsoleEntriesResult.class,
+                (code, msg)->new DiscardConsoleEntriesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of discardConsoleEntries.*/
@@ -1783,10 +1793,12 @@ context.*/
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Runtime.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Runtime.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -1933,10 +1945,12 @@ resolved.
             this.throwOnSideEffect = throwOnSideEffect;
         }
         public CompletableFuture<EvaluateResult> call() {
-            return super.call("Runtime.evaluate", EvaluateResult.class, msg->new EvaluateResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.evaluate", EvaluateResult.class,
+                (code, msg)->new EvaluateResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EvaluateResult> call(Executor exec) {
-            return super.call("Runtime.evaluate", EvaluateResult.class, msg->new EvaluateResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.evaluate", EvaluateResult.class,
+                (code, msg)->new EvaluateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of evaluate.*/
@@ -2042,10 +2056,12 @@ returned either.
             this.generatePreview = generatePreview;
         }
         public CompletableFuture<GetPropertiesResult> call() {
-            return super.call("Runtime.getProperties", GetPropertiesResult.class, msg->new GetPropertiesResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.getProperties", GetPropertiesResult.class,
+                (code, msg)->new GetPropertiesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetPropertiesResult> call(Executor exec) {
-            return super.call("Runtime.getProperties", GetPropertiesResult.class, msg->new GetPropertiesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.getProperties", GetPropertiesResult.class,
+                (code, msg)->new GetPropertiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getProperties.*/
@@ -2135,10 +2151,12 @@ returned either.
             this.executionContextId = executionContextId;
         }
         public CompletableFuture<GlobalLexicalScopeNamesResult> call() {
-            return super.call("Runtime.globalLexicalScopeNames", GlobalLexicalScopeNamesResult.class, msg->new GlobalLexicalScopeNamesResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.globalLexicalScopeNames", GlobalLexicalScopeNamesResult.class,
+                (code, msg)->new GlobalLexicalScopeNamesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GlobalLexicalScopeNamesResult> call(Executor exec) {
-            return super.call("Runtime.globalLexicalScopeNames", GlobalLexicalScopeNamesResult.class, msg->new GlobalLexicalScopeNamesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.globalLexicalScopeNames", GlobalLexicalScopeNamesResult.class,
+                (code, msg)->new GlobalLexicalScopeNamesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of globalLexicalScopeNames.*/
@@ -2214,10 +2232,12 @@ returned either.
             this.objectGroup = objectGroup;
         }
         public CompletableFuture<QueryObjectsResult> call() {
-            return super.call("Runtime.queryObjects", QueryObjectsResult.class, msg->new QueryObjectsResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.queryObjects", QueryObjectsResult.class,
+                (code, msg)->new QueryObjectsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<QueryObjectsResult> call(Executor exec) {
-            return super.call("Runtime.queryObjects", QueryObjectsResult.class, msg->new QueryObjectsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.queryObjects", QueryObjectsResult.class,
+                (code, msg)->new QueryObjectsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of queryObjects.*/
@@ -2279,10 +2299,12 @@ returned either.
             this.objectId = objectId;
         }
         public CompletableFuture<ReleaseObjectResult> call() {
-            return super.call("Runtime.releaseObject", ReleaseObjectResult.class, msg->new ReleaseObjectResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.releaseObject", ReleaseObjectResult.class,
+                (code, msg)->new ReleaseObjectResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ReleaseObjectResult> call(Executor exec) {
-            return super.call("Runtime.releaseObject", ReleaseObjectResult.class, msg->new ReleaseObjectResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.releaseObject", ReleaseObjectResult.class,
+                (code, msg)->new ReleaseObjectResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of releaseObject.*/
@@ -2334,10 +2356,12 @@ returned either.
             this.objectGroup = objectGroup;
         }
         public CompletableFuture<ReleaseObjectGroupResult> call() {
-            return super.call("Runtime.releaseObjectGroup", ReleaseObjectGroupResult.class, msg->new ReleaseObjectGroupResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.releaseObjectGroup", ReleaseObjectGroupResult.class,
+                (code, msg)->new ReleaseObjectGroupResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ReleaseObjectGroupResult> call(Executor exec) {
-            return super.call("Runtime.releaseObjectGroup", ReleaseObjectGroupResult.class, msg->new ReleaseObjectGroupResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.releaseObjectGroup", ReleaseObjectGroupResult.class,
+                (code, msg)->new ReleaseObjectGroupResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of releaseObjectGroup.*/
@@ -2375,10 +2399,12 @@ returned either.
         }
         public RunIfWaitingForDebuggerParameter() {}
         public CompletableFuture<RunIfWaitingForDebuggerResult> call() {
-            return super.call("Runtime.runIfWaitingForDebugger", RunIfWaitingForDebuggerResult.class, msg->new RunIfWaitingForDebuggerResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.runIfWaitingForDebugger", RunIfWaitingForDebuggerResult.class,
+                (code, msg)->new RunIfWaitingForDebuggerResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RunIfWaitingForDebuggerResult> call(Executor exec) {
-            return super.call("Runtime.runIfWaitingForDebugger", RunIfWaitingForDebuggerResult.class, msg->new RunIfWaitingForDebuggerResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.runIfWaitingForDebugger", RunIfWaitingForDebuggerResult.class,
+                (code, msg)->new RunIfWaitingForDebuggerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of runIfWaitingForDebugger.*/
@@ -2503,10 +2529,12 @@ resolved.
             this.awaitPromise = awaitPromise;
         }
         public CompletableFuture<RunScriptResult> call() {
-            return super.call("Runtime.runScript", RunScriptResult.class, msg->new RunScriptResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.runScript", RunScriptResult.class,
+                (code, msg)->new RunScriptResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RunScriptResult> call(Executor exec) {
-            return super.call("Runtime.runScript", RunScriptResult.class, msg->new RunScriptResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.runScript", RunScriptResult.class,
+                (code, msg)->new RunScriptResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of runScript.*/
@@ -2579,10 +2607,12 @@ resolved.
             this.enabled = enabled;
         }
         public CompletableFuture<SetCustomObjectFormatterEnabledResult> call() {
-            return super.call("Runtime.setCustomObjectFormatterEnabled", SetCustomObjectFormatterEnabledResult.class, msg->new SetCustomObjectFormatterEnabledResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.setCustomObjectFormatterEnabled", SetCustomObjectFormatterEnabledResult.class,
+                (code, msg)->new SetCustomObjectFormatterEnabledResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetCustomObjectFormatterEnabledResult> call(Executor exec) {
-            return super.call("Runtime.setCustomObjectFormatterEnabled", SetCustomObjectFormatterEnabledResult.class, msg->new SetCustomObjectFormatterEnabledResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.setCustomObjectFormatterEnabled", SetCustomObjectFormatterEnabledResult.class,
+                (code, msg)->new SetCustomObjectFormatterEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setCustomObjectFormatterEnabled.
@@ -2624,10 +2654,12 @@ Will cancel the termination when the outer-most script execution ends.
         }
         public TerminateExecutionParameter() {}
         public CompletableFuture<TerminateExecutionResult> call() {
-            return super.call("Runtime.terminateExecution", TerminateExecutionResult.class, msg->new TerminateExecutionResult(ResultBase.ofError(msg)));
+            return super.call("Runtime.terminateExecution", TerminateExecutionResult.class,
+                (code, msg)->new TerminateExecutionResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<TerminateExecutionResult> call(Executor exec) {
-            return super.call("Runtime.terminateExecution", TerminateExecutionResult.class, msg->new TerminateExecutionResult(ResultBase.ofError(msg)), exec);
+            return super.call("Runtime.terminateExecution", TerminateExecutionResult.class,
+                (code, msg)->new TerminateExecutionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of terminateExecution.

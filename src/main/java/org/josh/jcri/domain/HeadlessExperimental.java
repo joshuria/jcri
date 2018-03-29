@@ -173,10 +173,12 @@ during renderer initialization. In such a case, no screenshot data will be retur
             this.screenshot = screenshot;
         }
         public CompletableFuture<BeginFrameResult> call() {
-            return super.call("HeadlessExperimental.beginFrame", BeginFrameResult.class, msg->new BeginFrameResult(ResultBase.ofError(msg)));
+            return super.call("HeadlessExperimental.beginFrame", BeginFrameResult.class,
+                (code, msg)->new BeginFrameResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<BeginFrameResult> call(Executor exec) {
-            return super.call("HeadlessExperimental.beginFrame", BeginFrameResult.class, msg->new BeginFrameResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeadlessExperimental.beginFrame", BeginFrameResult.class,
+                (code, msg)->new BeginFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of beginFrame.*/
@@ -249,10 +251,12 @@ Only supported in headless mode.  Once set there's no way of leaving determinist
             this.initialDate = initialDate;
         }
         public CompletableFuture<EnterDeterministicModeResult> call() {
-            return super.call("HeadlessExperimental.enterDeterministicMode", EnterDeterministicModeResult.class, msg->new EnterDeterministicModeResult(ResultBase.ofError(msg)));
+            return super.call("HeadlessExperimental.enterDeterministicMode", EnterDeterministicModeResult.class,
+                (code, msg)->new EnterDeterministicModeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnterDeterministicModeResult> call(Executor exec) {
-            return super.call("HeadlessExperimental.enterDeterministicMode", EnterDeterministicModeResult.class, msg->new EnterDeterministicModeResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeadlessExperimental.enterDeterministicMode", EnterDeterministicModeResult.class,
+                (code, msg)->new EnterDeterministicModeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enterDeterministicMode.*/
@@ -290,10 +294,12 @@ Only supported in headless mode.  Once set there's no way of leaving determinist
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("HeadlessExperimental.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("HeadlessExperimental.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("HeadlessExperimental.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeadlessExperimental.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -331,10 +337,12 @@ Only supported in headless mode.  Once set there's no way of leaving determinist
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("HeadlessExperimental.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("HeadlessExperimental.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("HeadlessExperimental.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeadlessExperimental.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/

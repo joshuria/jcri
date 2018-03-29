@@ -185,10 +185,12 @@ import javax.annotation.Nullable;
         }
         public ClearMessagesParameter() {}
         public CompletableFuture<ClearMessagesResult> call() {
-            return super.call("Console.clearMessages", ClearMessagesResult.class, msg->new ClearMessagesResult(ResultBase.ofError(msg)));
+            return super.call("Console.clearMessages", ClearMessagesResult.class,
+                (code, msg)->new ClearMessagesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearMessagesResult> call(Executor exec) {
-            return super.call("Console.clearMessages", ClearMessagesResult.class, msg->new ClearMessagesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Console.clearMessages", ClearMessagesResult.class,
+                (code, msg)->new ClearMessagesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearMessages.*/
@@ -226,10 +228,12 @@ import javax.annotation.Nullable;
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Console.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Console.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Console.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Console.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -268,10 +272,12 @@ import javax.annotation.Nullable;
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Console.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Console.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Console.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Console.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/

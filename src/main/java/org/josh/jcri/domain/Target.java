@@ -242,10 +242,12 @@ import javax.annotation.Nullable;
             this.targetId = targetId;
         }
         public CompletableFuture<ActivateTargetResult> call() {
-            return super.call("Target.activateTarget", ActivateTargetResult.class, msg->new ActivateTargetResult(ResultBase.ofError(msg)));
+            return super.call("Target.activateTarget", ActivateTargetResult.class,
+                (code, msg)->new ActivateTargetResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ActivateTargetResult> call(Executor exec) {
-            return super.call("Target.activateTarget", ActivateTargetResult.class, msg->new ActivateTargetResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.activateTarget", ActivateTargetResult.class,
+                (code, msg)->new ActivateTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of activateTarget.*/
@@ -297,10 +299,12 @@ import javax.annotation.Nullable;
             this.targetId = targetId;
         }
         public CompletableFuture<AttachToTargetResult> call() {
-            return super.call("Target.attachToTarget", AttachToTargetResult.class, msg->new AttachToTargetResult(ResultBase.ofError(msg)));
+            return super.call("Target.attachToTarget", AttachToTargetResult.class,
+                (code, msg)->new AttachToTargetResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<AttachToTargetResult> call(Executor exec) {
-            return super.call("Target.attachToTarget", AttachToTargetResult.class, msg->new AttachToTargetResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.attachToTarget", AttachToTargetResult.class,
+                (code, msg)->new AttachToTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of attachToTarget.*/
@@ -362,10 +366,12 @@ import javax.annotation.Nullable;
             this.targetId = targetId;
         }
         public CompletableFuture<CloseTargetResult> call() {
-            return super.call("Target.closeTarget", CloseTargetResult.class, msg->new CloseTargetResult(ResultBase.ofError(msg)));
+            return super.call("Target.closeTarget", CloseTargetResult.class,
+                (code, msg)->new CloseTargetResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CloseTargetResult> call(Executor exec) {
-            return super.call("Target.closeTarget", CloseTargetResult.class, msg->new CloseTargetResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.closeTarget", CloseTargetResult.class,
+                (code, msg)->new CloseTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of closeTarget.*/
@@ -416,10 +422,12 @@ one.
         }
         public CreateBrowserContextParameter() {}
         public CompletableFuture<CreateBrowserContextResult> call() {
-            return super.call("Target.createBrowserContext", CreateBrowserContextResult.class, msg->new CreateBrowserContextResult(ResultBase.ofError(msg)));
+            return super.call("Target.createBrowserContext", CreateBrowserContextResult.class,
+                (code, msg)->new CreateBrowserContextResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CreateBrowserContextResult> call(Executor exec) {
-            return super.call("Target.createBrowserContext", CreateBrowserContextResult.class, msg->new CreateBrowserContextResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.createBrowserContext", CreateBrowserContextResult.class,
+                (code, msg)->new CreateBrowserContextResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of createBrowserContext.
@@ -524,10 +532,12 @@ not supported on MacOS yet, false by default).
             this.enableBeginFrameControl = enableBeginFrameControl;
         }
         public CompletableFuture<CreateTargetResult> call() {
-            return super.call("Target.createTarget", CreateTargetResult.class, msg->new CreateTargetResult(ResultBase.ofError(msg)));
+            return super.call("Target.createTarget", CreateTargetResult.class,
+                (code, msg)->new CreateTargetResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CreateTargetResult> call(Executor exec) {
-            return super.call("Target.createTarget", CreateTargetResult.class, msg->new CreateTargetResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.createTarget", CreateTargetResult.class,
+                (code, msg)->new CreateTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of createTarget.*/
@@ -600,10 +610,12 @@ not supported on MacOS yet, false by default).
             this.targetId = targetId;
         }
         public CompletableFuture<DetachFromTargetResult> call() {
-            return super.call("Target.detachFromTarget", DetachFromTargetResult.class, msg->new DetachFromTargetResult(ResultBase.ofError(msg)));
+            return super.call("Target.detachFromTarget", DetachFromTargetResult.class,
+                (code, msg)->new DetachFromTargetResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DetachFromTargetResult> call(Executor exec) {
-            return super.call("Target.detachFromTarget", DetachFromTargetResult.class, msg->new DetachFromTargetResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.detachFromTarget", DetachFromTargetResult.class,
+                (code, msg)->new DetachFromTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of detachFromTarget.*/
@@ -657,10 +669,12 @@ not supported on MacOS yet, false by default).
             this.browserContextId = browserContextId;
         }
         public CompletableFuture<DisposeBrowserContextResult> call() {
-            return super.call("Target.disposeBrowserContext", DisposeBrowserContextResult.class, msg->new DisposeBrowserContextResult(ResultBase.ofError(msg)));
+            return super.call("Target.disposeBrowserContext", DisposeBrowserContextResult.class,
+                (code, msg)->new DisposeBrowserContextResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisposeBrowserContextResult> call(Executor exec) {
-            return super.call("Target.disposeBrowserContext", DisposeBrowserContextResult.class, msg->new DisposeBrowserContextResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.disposeBrowserContext", DisposeBrowserContextResult.class,
+                (code, msg)->new DisposeBrowserContextResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disposeBrowserContext.
@@ -725,10 +739,12 @@ not supported on MacOS yet, false by default).
             this.targetId = targetId;
         }
         public CompletableFuture<GetTargetInfoResult> call() {
-            return super.call("Target.getTargetInfo", GetTargetInfoResult.class, msg->new GetTargetInfoResult(ResultBase.ofError(msg)));
+            return super.call("Target.getTargetInfo", GetTargetInfoResult.class,
+                (code, msg)->new GetTargetInfoResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetTargetInfoResult> call(Executor exec) {
-            return super.call("Target.getTargetInfo", GetTargetInfoResult.class, msg->new GetTargetInfoResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.getTargetInfo", GetTargetInfoResult.class,
+                (code, msg)->new GetTargetInfoResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getTargetInfo.
@@ -777,10 +793,12 @@ not supported on MacOS yet, false by default).
         }
         public GetTargetsParameter() {}
         public CompletableFuture<GetTargetsResult> call() {
-            return super.call("Target.getTargets", GetTargetsResult.class, msg->new GetTargetsResult(ResultBase.ofError(msg)));
+            return super.call("Target.getTargets", GetTargetsResult.class,
+                (code, msg)->new GetTargetsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetTargetsResult> call(Executor exec) {
-            return super.call("Target.getTargets", GetTargetsResult.class, msg->new GetTargetsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.getTargets", GetTargetsResult.class,
+                (code, msg)->new GetTargetsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getTargets.*/
@@ -867,10 +885,12 @@ not supported on MacOS yet, false by default).
             this.targetId = targetId;
         }
         public CompletableFuture<SendMessageToTargetResult> call() {
-            return super.call("Target.sendMessageToTarget", SendMessageToTargetResult.class, msg->new SendMessageToTargetResult(ResultBase.ofError(msg)));
+            return super.call("Target.sendMessageToTarget", SendMessageToTargetResult.class,
+                (code, msg)->new SendMessageToTargetResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SendMessageToTargetResult> call(Executor exec) {
-            return super.call("Target.sendMessageToTarget", SendMessageToTargetResult.class, msg->new SendMessageToTargetResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.sendMessageToTarget", SendMessageToTargetResult.class,
+                (code, msg)->new SendMessageToTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of sendMessageToTarget.*/
@@ -937,10 +957,12 @@ to run paused targets.*/
             this.waitForDebuggerOnStart = waitForDebuggerOnStart;
         }
         public CompletableFuture<SetAutoAttachResult> call() {
-            return super.call("Target.setAutoAttach", SetAutoAttachResult.class, msg->new SetAutoAttachResult(ResultBase.ofError(msg)));
+            return super.call("Target.setAutoAttach", SetAutoAttachResult.class,
+                (code, msg)->new SetAutoAttachResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetAutoAttachResult> call(Executor exec) {
-            return super.call("Target.setAutoAttach", SetAutoAttachResult.class, msg->new SetAutoAttachResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.setAutoAttach", SetAutoAttachResult.class,
+                (code, msg)->new SetAutoAttachResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setAutoAttach.
@@ -994,10 +1016,12 @@ to run paused targets.*/
             this.discover = discover;
         }
         public CompletableFuture<SetDiscoverTargetsResult> call() {
-            return super.call("Target.setDiscoverTargets", SetDiscoverTargetsResult.class, msg->new SetDiscoverTargetsResult(ResultBase.ofError(msg)));
+            return super.call("Target.setDiscoverTargets", SetDiscoverTargetsResult.class,
+                (code, msg)->new SetDiscoverTargetsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDiscoverTargetsResult> call(Executor exec) {
-            return super.call("Target.setDiscoverTargets", SetDiscoverTargetsResult.class, msg->new SetDiscoverTargetsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.setDiscoverTargets", SetDiscoverTargetsResult.class,
+                (code, msg)->new SetDiscoverTargetsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDiscoverTargets.*/
@@ -1056,10 +1080,12 @@ to run paused targets.*/
             this.locations = locations;
         }
         public CompletableFuture<SetRemoteLocationsResult> call() {
-            return super.call("Target.setRemoteLocations", SetRemoteLocationsResult.class, msg->new SetRemoteLocationsResult(ResultBase.ofError(msg)));
+            return super.call("Target.setRemoteLocations", SetRemoteLocationsResult.class,
+                (code, msg)->new SetRemoteLocationsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetRemoteLocationsResult> call(Executor exec) {
-            return super.call("Target.setRemoteLocations", SetRemoteLocationsResult.class, msg->new SetRemoteLocationsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Target.setRemoteLocations", SetRemoteLocationsResult.class,
+                (code, msg)->new SetRemoteLocationsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setRemoteLocations.

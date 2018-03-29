@@ -556,10 +556,12 @@ variables as its properties.*/
             this.targetCallFrames = targetCallFrames;
         }
         public CompletableFuture<ContinueToLocationResult> call() {
-            return super.call("Debugger.continueToLocation", ContinueToLocationResult.class, msg->new ContinueToLocationResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.continueToLocation", ContinueToLocationResult.class,
+                (code, msg)->new ContinueToLocationResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ContinueToLocationResult> call(Executor exec) {
-            return super.call("Debugger.continueToLocation", ContinueToLocationResult.class, msg->new ContinueToLocationResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.continueToLocation", ContinueToLocationResult.class,
+                (code, msg)->new ContinueToLocationResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of continueToLocation.*/
@@ -597,10 +599,12 @@ variables as its properties.*/
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Debugger.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Debugger.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -639,10 +643,12 @@ enabled until the result for this command is received.*/
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Debugger.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Debugger.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -779,10 +785,12 @@ execution. Overrides `setPauseOnException` state.
             this.throwOnSideEffect = throwOnSideEffect;
         }
         public CompletableFuture<EvaluateOnCallFrameResult> call() {
-            return super.call("Debugger.evaluateOnCallFrame", EvaluateOnCallFrameResult.class, msg->new EvaluateOnCallFrameResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.evaluateOnCallFrame", EvaluateOnCallFrameResult.class,
+                (code, msg)->new EvaluateOnCallFrameResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EvaluateOnCallFrameResult> call(Executor exec) {
-            return super.call("Debugger.evaluateOnCallFrame", EvaluateOnCallFrameResult.class, msg->new EvaluateOnCallFrameResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.evaluateOnCallFrame", EvaluateOnCallFrameResult.class,
+                (code, msg)->new EvaluateOnCallFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of evaluateOnCallFrame.*/
@@ -875,10 +883,12 @@ of scripts is used as end of range.
             this.restrictToFunction = restrictToFunction;
         }
         public CompletableFuture<GetPossibleBreakpointsResult> call() {
-            return super.call("Debugger.getPossibleBreakpoints", GetPossibleBreakpointsResult.class, msg->new GetPossibleBreakpointsResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.getPossibleBreakpoints", GetPossibleBreakpointsResult.class,
+                (code, msg)->new GetPossibleBreakpointsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetPossibleBreakpointsResult> call(Executor exec) {
-            return super.call("Debugger.getPossibleBreakpoints", GetPossibleBreakpointsResult.class, msg->new GetPossibleBreakpointsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.getPossibleBreakpoints", GetPossibleBreakpointsResult.class,
+                (code, msg)->new GetPossibleBreakpointsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getPossibleBreakpoints.*/
@@ -944,10 +954,12 @@ of scripts is used as end of range.
             this.scriptId = scriptId;
         }
         public CompletableFuture<GetScriptSourceResult> call() {
-            return super.call("Debugger.getScriptSource", GetScriptSourceResult.class, msg->new GetScriptSourceResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.getScriptSource", GetScriptSourceResult.class,
+                (code, msg)->new GetScriptSourceResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetScriptSourceResult> call(Executor exec) {
-            return super.call("Debugger.getScriptSource", GetScriptSourceResult.class, msg->new GetScriptSourceResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.getScriptSource", GetScriptSourceResult.class,
+                (code, msg)->new GetScriptSourceResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getScriptSource.*/
@@ -1011,10 +1023,12 @@ of scripts is used as end of range.
             this.stackTraceId = stackTraceId;
         }
         public CompletableFuture<GetStackTraceResult> call() {
-            return super.call("Debugger.getStackTrace", GetStackTraceResult.class, msg->new GetStackTraceResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.getStackTrace", GetStackTraceResult.class,
+                (code, msg)->new GetStackTraceResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetStackTraceResult> call(Executor exec) {
-            return super.call("Debugger.getStackTrace", GetStackTraceResult.class, msg->new GetStackTraceResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.getStackTrace", GetStackTraceResult.class,
+                (code, msg)->new GetStackTraceResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getStackTrace.
@@ -1063,10 +1077,12 @@ of scripts is used as end of range.
         }
         public PauseParameter() {}
         public CompletableFuture<PauseResult> call() {
-            return super.call("Debugger.pause", PauseResult.class, msg->new PauseResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.pause", PauseResult.class,
+                (code, msg)->new PauseResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<PauseResult> call(Executor exec) {
-            return super.call("Debugger.pause", PauseResult.class, msg->new PauseResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.pause", PauseResult.class,
+                (code, msg)->new PauseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of pause.*/
@@ -1120,10 +1136,12 @@ of scripts is used as end of range.
             this.parentStackTraceId = parentStackTraceId;
         }
         public CompletableFuture<PauseOnAsyncCallResult> call() {
-            return super.call("Debugger.pauseOnAsyncCall", PauseOnAsyncCallResult.class, msg->new PauseOnAsyncCallResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.pauseOnAsyncCall", PauseOnAsyncCallResult.class,
+                (code, msg)->new PauseOnAsyncCallResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<PauseOnAsyncCallResult> call(Executor exec) {
-            return super.call("Debugger.pauseOnAsyncCall", PauseOnAsyncCallResult.class, msg->new PauseOnAsyncCallResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.pauseOnAsyncCall", PauseOnAsyncCallResult.class,
+                (code, msg)->new PauseOnAsyncCallResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of pauseOnAsyncCall.
@@ -1176,10 +1194,12 @@ of scripts is used as end of range.
             this.breakpointId = breakpointId;
         }
         public CompletableFuture<RemoveBreakpointResult> call() {
-            return super.call("Debugger.removeBreakpoint", RemoveBreakpointResult.class, msg->new RemoveBreakpointResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.removeBreakpoint", RemoveBreakpointResult.class,
+                (code, msg)->new RemoveBreakpointResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RemoveBreakpointResult> call(Executor exec) {
-            return super.call("Debugger.removeBreakpoint", RemoveBreakpointResult.class, msg->new RemoveBreakpointResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.removeBreakpoint", RemoveBreakpointResult.class,
+                (code, msg)->new RemoveBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of removeBreakpoint.*/
@@ -1231,10 +1251,12 @@ of scripts is used as end of range.
             this.callFrameId = callFrameId;
         }
         public CompletableFuture<RestartFrameResult> call() {
-            return super.call("Debugger.restartFrame", RestartFrameResult.class, msg->new RestartFrameResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.restartFrame", RestartFrameResult.class,
+                (code, msg)->new RestartFrameResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RestartFrameResult> call(Executor exec) {
-            return super.call("Debugger.restartFrame", RestartFrameResult.class, msg->new RestartFrameResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.restartFrame", RestartFrameResult.class,
+                (code, msg)->new RestartFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of restartFrame.*/
@@ -1305,10 +1327,12 @@ of scripts is used as end of range.
         }
         public ResumeParameter() {}
         public CompletableFuture<ResumeResult> call() {
-            return super.call("Debugger.resume", ResumeResult.class, msg->new ResumeResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.resume", ResumeResult.class,
+                (code, msg)->new ResumeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ResumeResult> call(Executor exec) {
-            return super.call("Debugger.resume", ResumeResult.class, msg->new ResumeResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.resume", ResumeResult.class,
+                (code, msg)->new ResumeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of resume.*/
@@ -1351,10 +1375,12 @@ task were scheduled or another scheduleStepIntoAsync was called.
         }
         public ScheduleStepIntoAsyncParameter() {}
         public CompletableFuture<ScheduleStepIntoAsyncResult> call() {
-            return super.call("Debugger.scheduleStepIntoAsync", ScheduleStepIntoAsyncResult.class, msg->new ScheduleStepIntoAsyncResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.scheduleStepIntoAsync", ScheduleStepIntoAsyncResult.class,
+                (code, msg)->new ScheduleStepIntoAsyncResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ScheduleStepIntoAsyncResult> call(Executor exec) {
-            return super.call("Debugger.scheduleStepIntoAsync", ScheduleStepIntoAsyncResult.class, msg->new ScheduleStepIntoAsyncResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.scheduleStepIntoAsync", ScheduleStepIntoAsyncResult.class,
+                (code, msg)->new ScheduleStepIntoAsyncResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of scheduleStepIntoAsync.
@@ -1437,10 +1463,12 @@ task were scheduled or another scheduleStepIntoAsync was called.
             this.isRegex = isRegex;
         }
         public CompletableFuture<SearchInContentResult> call() {
-            return super.call("Debugger.searchInContent", SearchInContentResult.class, msg->new SearchInContentResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.searchInContent", SearchInContentResult.class,
+                (code, msg)->new SearchInContentResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SearchInContentResult> call(Executor exec) {
-            return super.call("Debugger.searchInContent", SearchInContentResult.class, msg->new SearchInContentResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.searchInContent", SearchInContentResult.class,
+                (code, msg)->new SearchInContentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of searchInContent.*/
@@ -1507,10 +1535,12 @@ call stacks (default).*/
             this.maxDepth = maxDepth;
         }
         public CompletableFuture<SetAsyncCallStackDepthResult> call() {
-            return super.call("Debugger.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class, msg->new SetAsyncCallStackDepthResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class,
+                (code, msg)->new SetAsyncCallStackDepthResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetAsyncCallStackDepthResult> call(Executor exec) {
-            return super.call("Debugger.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class, msg->new SetAsyncCallStackDepthResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class,
+                (code, msg)->new SetAsyncCallStackDepthResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setAsyncCallStackDepth.*/
@@ -1570,10 +1600,12 @@ performing 'step in' several times, finally resorting to 'step out' if unsuccess
             this.patterns = patterns;
         }
         public CompletableFuture<SetBlackboxPatternsResult> call() {
-            return super.call("Debugger.setBlackboxPatterns", SetBlackboxPatternsResult.class, msg->new SetBlackboxPatternsResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setBlackboxPatterns", SetBlackboxPatternsResult.class,
+                (code, msg)->new SetBlackboxPatternsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetBlackboxPatternsResult> call(Executor exec) {
-            return super.call("Debugger.setBlackboxPatterns", SetBlackboxPatternsResult.class, msg->new SetBlackboxPatternsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setBlackboxPatterns", SetBlackboxPatternsResult.class,
+                (code, msg)->new SetBlackboxPatternsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setBlackboxPatterns.
@@ -1645,10 +1677,12 @@ blackboxed. Array should be sorted.
             this.positions = positions;
         }
         public CompletableFuture<SetBlackboxedRangesResult> call() {
-            return super.call("Debugger.setBlackboxedRanges", SetBlackboxedRangesResult.class, msg->new SetBlackboxedRangesResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setBlackboxedRanges", SetBlackboxedRangesResult.class,
+                (code, msg)->new SetBlackboxedRangesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetBlackboxedRangesResult> call(Executor exec) {
-            return super.call("Debugger.setBlackboxedRanges", SetBlackboxedRangesResult.class, msg->new SetBlackboxedRangesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setBlackboxedRanges", SetBlackboxedRangesResult.class,
+                (code, msg)->new SetBlackboxedRangesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setBlackboxedRanges.
@@ -1712,10 +1746,12 @@ breakpoint if this expression evaluates to true.
             this.condition = condition;
         }
         public CompletableFuture<SetBreakpointResult> call() {
-            return super.call("Debugger.setBreakpoint", SetBreakpointResult.class, msg->new SetBreakpointResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setBreakpoint", SetBreakpointResult.class,
+                (code, msg)->new SetBreakpointResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetBreakpointResult> call(Executor exec) {
-            return super.call("Debugger.setBreakpoint", SetBreakpointResult.class, msg->new SetBreakpointResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setBreakpoint", SetBreakpointResult.class,
+                (code, msg)->new SetBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setBreakpoint.*/
@@ -1840,10 +1876,12 @@ breakpoint if this expression evaluates to true.
             this.condition = condition;
         }
         public CompletableFuture<SetBreakpointByUrlResult> call() {
-            return super.call("Debugger.setBreakpointByUrl", SetBreakpointByUrlResult.class, msg->new SetBreakpointByUrlResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setBreakpointByUrl", SetBreakpointByUrlResult.class,
+                (code, msg)->new SetBreakpointByUrlResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetBreakpointByUrlResult> call(Executor exec) {
-            return super.call("Debugger.setBreakpointByUrl", SetBreakpointByUrlResult.class, msg->new SetBreakpointByUrlResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setBreakpointByUrl", SetBreakpointByUrlResult.class,
+                (code, msg)->new SetBreakpointByUrlResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setBreakpointByUrl.*/
@@ -1917,10 +1955,12 @@ breakpoint if this expression evaluates to true.
             this.active = active;
         }
         public CompletableFuture<SetBreakpointsActiveResult> call() {
-            return super.call("Debugger.setBreakpointsActive", SetBreakpointsActiveResult.class, msg->new SetBreakpointsActiveResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setBreakpointsActive", SetBreakpointsActiveResult.class,
+                (code, msg)->new SetBreakpointsActiveResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetBreakpointsActiveResult> call(Executor exec) {
-            return super.call("Debugger.setBreakpointsActive", SetBreakpointsActiveResult.class, msg->new SetBreakpointsActiveResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setBreakpointsActive", SetBreakpointsActiveResult.class,
+                (code, msg)->new SetBreakpointsActiveResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setBreakpointsActive.*/
@@ -1999,10 +2039,12 @@ no exceptions. Initial pause on exceptions state is `none`.*/
             this.state = state;
         }
         public CompletableFuture<SetPauseOnExceptionsResult> call() {
-            return super.call("Debugger.setPauseOnExceptions", SetPauseOnExceptionsResult.class, msg->new SetPauseOnExceptionsResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setPauseOnExceptions", SetPauseOnExceptionsResult.class,
+                (code, msg)->new SetPauseOnExceptionsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetPauseOnExceptionsResult> call(Executor exec) {
-            return super.call("Debugger.setPauseOnExceptions", SetPauseOnExceptionsResult.class, msg->new SetPauseOnExceptionsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setPauseOnExceptions", SetPauseOnExceptionsResult.class,
+                (code, msg)->new SetPauseOnExceptionsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setPauseOnExceptions.*/
@@ -2056,10 +2098,12 @@ no exceptions. Initial pause on exceptions state is `none`.*/
             this.newValue = newValue;
         }
         public CompletableFuture<SetReturnValueResult> call() {
-            return super.call("Debugger.setReturnValue", SetReturnValueResult.class, msg->new SetReturnValueResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setReturnValue", SetReturnValueResult.class,
+                (code, msg)->new SetReturnValueResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetReturnValueResult> call(Executor exec) {
-            return super.call("Debugger.setReturnValue", SetReturnValueResult.class, msg->new SetReturnValueResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setReturnValue", SetReturnValueResult.class,
+                (code, msg)->new SetReturnValueResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setReturnValue.
@@ -2133,10 +2177,12 @@ description without actually modifying the code.
             this.dryRun = dryRun;
         }
         public CompletableFuture<SetScriptSourceResult> call() {
-            return super.call("Debugger.setScriptSource", SetScriptSourceResult.class, msg->new SetScriptSourceResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setScriptSource", SetScriptSourceResult.class,
+                (code, msg)->new SetScriptSourceResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetScriptSourceResult> call(Executor exec) {
-            return super.call("Debugger.setScriptSource", SetScriptSourceResult.class, msg->new SetScriptSourceResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setScriptSource", SetScriptSourceResult.class,
+                (code, msg)->new SetScriptSourceResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setScriptSource.*/
@@ -2242,10 +2288,12 @@ description without actually modifying the code.
             this.skip = skip;
         }
         public CompletableFuture<SetSkipAllPausesResult> call() {
-            return super.call("Debugger.setSkipAllPauses", SetSkipAllPausesResult.class, msg->new SetSkipAllPausesResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setSkipAllPauses", SetSkipAllPausesResult.class,
+                (code, msg)->new SetSkipAllPausesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetSkipAllPausesResult> call(Executor exec) {
-            return super.call("Debugger.setSkipAllPauses", SetSkipAllPausesResult.class, msg->new SetSkipAllPausesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setSkipAllPauses", SetSkipAllPausesResult.class,
+                (code, msg)->new SetSkipAllPausesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setSkipAllPauses.*/
@@ -2329,10 +2377,12 @@ scope types are allowed. Other scopes could be manipulated manually.*/
             this.callFrameId = callFrameId;
         }
         public CompletableFuture<SetVariableValueResult> call() {
-            return super.call("Debugger.setVariableValue", SetVariableValueResult.class, msg->new SetVariableValueResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.setVariableValue", SetVariableValueResult.class,
+                (code, msg)->new SetVariableValueResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetVariableValueResult> call(Executor exec) {
-            return super.call("Debugger.setVariableValue", SetVariableValueResult.class, msg->new SetVariableValueResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.setVariableValue", SetVariableValueResult.class,
+                (code, msg)->new SetVariableValueResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setVariableValue.*/
@@ -2386,10 +2436,12 @@ before next pause.
             this.breakOnAsyncCall = breakOnAsyncCall;
         }
         public CompletableFuture<StepIntoResult> call() {
-            return super.call("Debugger.stepInto", StepIntoResult.class, msg->new StepIntoResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.stepInto", StepIntoResult.class,
+                (code, msg)->new StepIntoResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StepIntoResult> call(Executor exec) {
-            return super.call("Debugger.stepInto", StepIntoResult.class, msg->new StepIntoResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.stepInto", StepIntoResult.class,
+                (code, msg)->new StepIntoResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stepInto.*/
@@ -2427,10 +2479,12 @@ before next pause.
         }
         public StepOutParameter() {}
         public CompletableFuture<StepOutResult> call() {
-            return super.call("Debugger.stepOut", StepOutResult.class, msg->new StepOutResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.stepOut", StepOutResult.class,
+                (code, msg)->new StepOutResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StepOutResult> call(Executor exec) {
-            return super.call("Debugger.stepOut", StepOutResult.class, msg->new StepOutResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.stepOut", StepOutResult.class,
+                (code, msg)->new StepOutResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stepOut.*/
@@ -2468,10 +2522,12 @@ before next pause.
         }
         public StepOverParameter() {}
         public CompletableFuture<StepOverResult> call() {
-            return super.call("Debugger.stepOver", StepOverResult.class, msg->new StepOverResult(ResultBase.ofError(msg)));
+            return super.call("Debugger.stepOver", StepOverResult.class,
+                (code, msg)->new StepOverResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StepOverResult> call(Executor exec) {
-            return super.call("Debugger.stepOver", StepOverResult.class, msg->new StepOverResult(ResultBase.ofError(msg)), exec);
+            return super.call("Debugger.stepOver", StepOverResult.class,
+                (code, msg)->new StepOverResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stepOver.*/

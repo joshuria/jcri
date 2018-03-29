@@ -237,10 +237,12 @@ import javax.annotation.Nullable;
         }
         public EndParameter() {}
         public CompletableFuture<EndResult> call() {
-            return super.call("Tracing.end", EndResult.class, msg->new EndResult(ResultBase.ofError(msg)));
+            return super.call("Tracing.end", EndResult.class,
+                (code, msg)->new EndResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EndResult> call(Executor exec) {
-            return super.call("Tracing.end", EndResult.class, msg->new EndResult(ResultBase.ofError(msg)), exec);
+            return super.call("Tracing.end", EndResult.class,
+                (code, msg)->new EndResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of end.*/
@@ -278,10 +280,12 @@ import javax.annotation.Nullable;
         }
         public GetCategoriesParameter() {}
         public CompletableFuture<GetCategoriesResult> call() {
-            return super.call("Tracing.getCategories", GetCategoriesResult.class, msg->new GetCategoriesResult(ResultBase.ofError(msg)));
+            return super.call("Tracing.getCategories", GetCategoriesResult.class,
+                (code, msg)->new GetCategoriesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetCategoriesResult> call(Executor exec) {
-            return super.call("Tracing.getCategories", GetCategoriesResult.class, msg->new GetCategoriesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Tracing.getCategories", GetCategoriesResult.class,
+                (code, msg)->new GetCategoriesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getCategories.*/
@@ -347,10 +351,12 @@ import javax.annotation.Nullable;
             this.syncId = syncId;
         }
         public CompletableFuture<RecordClockSyncMarkerResult> call() {
-            return super.call("Tracing.recordClockSyncMarker", RecordClockSyncMarkerResult.class, msg->new RecordClockSyncMarkerResult(ResultBase.ofError(msg)));
+            return super.call("Tracing.recordClockSyncMarker", RecordClockSyncMarkerResult.class,
+                (code, msg)->new RecordClockSyncMarkerResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RecordClockSyncMarkerResult> call(Executor exec) {
-            return super.call("Tracing.recordClockSyncMarker", RecordClockSyncMarkerResult.class, msg->new RecordClockSyncMarkerResult(ResultBase.ofError(msg)), exec);
+            return super.call("Tracing.recordClockSyncMarker", RecordClockSyncMarkerResult.class,
+                (code, msg)->new RecordClockSyncMarkerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of recordClockSyncMarker.*/
@@ -388,10 +394,12 @@ import javax.annotation.Nullable;
         }
         public RequestMemoryDumpParameter() {}
         public CompletableFuture<RequestMemoryDumpResult> call() {
-            return super.call("Tracing.requestMemoryDump", RequestMemoryDumpResult.class, msg->new RequestMemoryDumpResult(ResultBase.ofError(msg)));
+            return super.call("Tracing.requestMemoryDump", RequestMemoryDumpResult.class,
+                (code, msg)->new RequestMemoryDumpResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RequestMemoryDumpResult> call(Executor exec) {
-            return super.call("Tracing.requestMemoryDump", RequestMemoryDumpResult.class, msg->new RequestMemoryDumpResult(ResultBase.ofError(msg)), exec);
+            return super.call("Tracing.requestMemoryDump", RequestMemoryDumpResult.class,
+                (code, msg)->new RequestMemoryDumpResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of requestMemoryDump.*/
@@ -540,10 +548,12 @@ transfer mode (defaults to `none`)
             this.traceConfig = traceConfig;
         }
         public CompletableFuture<StartResult> call() {
-            return super.call("Tracing.start", StartResult.class, msg->new StartResult(ResultBase.ofError(msg)));
+            return super.call("Tracing.start", StartResult.class,
+                (code, msg)->new StartResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartResult> call(Executor exec) {
-            return super.call("Tracing.start", StartResult.class, msg->new StartResult(ResultBase.ofError(msg)), exec);
+            return super.call("Tracing.start", StartResult.class,
+                (code, msg)->new StartResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of start.*/

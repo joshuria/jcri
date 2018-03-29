@@ -301,10 +301,12 @@ import javax.annotation.Nullable;
         }
         public ClearParameter() {}
         public CompletableFuture<ClearResult> call() {
-            return super.call("Log.clear", ClearResult.class, msg->new ClearResult(ResultBase.ofError(msg)));
+            return super.call("Log.clear", ClearResult.class,
+                (code, msg)->new ClearResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearResult> call(Executor exec) {
-            return super.call("Log.clear", ClearResult.class, msg->new ClearResult(ResultBase.ofError(msg)), exec);
+            return super.call("Log.clear", ClearResult.class,
+                (code, msg)->new ClearResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clear.*/
@@ -342,10 +344,12 @@ import javax.annotation.Nullable;
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Log.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Log.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Log.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Log.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -384,10 +388,12 @@ import javax.annotation.Nullable;
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Log.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Log.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Log.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Log.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -443,10 +449,12 @@ import javax.annotation.Nullable;
             this.config = config;
         }
         public CompletableFuture<StartViolationsReportResult> call() {
-            return super.call("Log.startViolationsReport", StartViolationsReportResult.class, msg->new StartViolationsReportResult(ResultBase.ofError(msg)));
+            return super.call("Log.startViolationsReport", StartViolationsReportResult.class,
+                (code, msg)->new StartViolationsReportResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartViolationsReportResult> call(Executor exec) {
-            return super.call("Log.startViolationsReport", StartViolationsReportResult.class, msg->new StartViolationsReportResult(ResultBase.ofError(msg)), exec);
+            return super.call("Log.startViolationsReport", StartViolationsReportResult.class,
+                (code, msg)->new StartViolationsReportResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of startViolationsReport.*/
@@ -484,10 +492,12 @@ import javax.annotation.Nullable;
         }
         public StopViolationsReportParameter() {}
         public CompletableFuture<StopViolationsReportResult> call() {
-            return super.call("Log.stopViolationsReport", StopViolationsReportResult.class, msg->new StopViolationsReportResult(ResultBase.ofError(msg)));
+            return super.call("Log.stopViolationsReport", StopViolationsReportResult.class,
+                (code, msg)->new StopViolationsReportResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopViolationsReportResult> call(Executor exec) {
-            return super.call("Log.stopViolationsReport", StopViolationsReportResult.class, msg->new StopViolationsReportResult(ResultBase.ofError(msg)), exec);
+            return super.call("Log.stopViolationsReport", StopViolationsReportResult.class,
+                (code, msg)->new StopViolationsReportResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopViolationsReport.*/

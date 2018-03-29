@@ -381,10 +381,12 @@ For cached script it is the last time the cache entry was validated.
             this.data = data;
         }
         public CompletableFuture<DeliverPushMessageResult> call() {
-            return super.call("ServiceWorker.deliverPushMessage", DeliverPushMessageResult.class, msg->new DeliverPushMessageResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.deliverPushMessage", DeliverPushMessageResult.class,
+                (code, msg)->new DeliverPushMessageResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DeliverPushMessageResult> call(Executor exec) {
-            return super.call("ServiceWorker.deliverPushMessage", DeliverPushMessageResult.class, msg->new DeliverPushMessageResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.deliverPushMessage", DeliverPushMessageResult.class,
+                (code, msg)->new DeliverPushMessageResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of deliverPushMessage.*/
@@ -422,10 +424,12 @@ For cached script it is the last time the cache entry was validated.
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("ServiceWorker.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("ServiceWorker.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -507,10 +511,12 @@ For cached script it is the last time the cache entry was validated.
             this.lastChance = lastChance;
         }
         public CompletableFuture<DispatchSyncEventResult> call() {
-            return super.call("ServiceWorker.dispatchSyncEvent", DispatchSyncEventResult.class, msg->new DispatchSyncEventResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.dispatchSyncEvent", DispatchSyncEventResult.class,
+                (code, msg)->new DispatchSyncEventResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DispatchSyncEventResult> call(Executor exec) {
-            return super.call("ServiceWorker.dispatchSyncEvent", DispatchSyncEventResult.class, msg->new DispatchSyncEventResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.dispatchSyncEvent", DispatchSyncEventResult.class,
+                (code, msg)->new DispatchSyncEventResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of dispatchSyncEvent.*/
@@ -548,10 +554,12 @@ For cached script it is the last time the cache entry was validated.
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("ServiceWorker.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("ServiceWorker.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -603,10 +611,12 @@ For cached script it is the last time the cache entry was validated.
             this.versionId = versionId;
         }
         public CompletableFuture<InspectWorkerResult> call() {
-            return super.call("ServiceWorker.inspectWorker", InspectWorkerResult.class, msg->new InspectWorkerResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.inspectWorker", InspectWorkerResult.class,
+                (code, msg)->new InspectWorkerResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<InspectWorkerResult> call(Executor exec) {
-            return super.call("ServiceWorker.inspectWorker", InspectWorkerResult.class, msg->new InspectWorkerResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.inspectWorker", InspectWorkerResult.class,
+                (code, msg)->new InspectWorkerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of inspectWorker.*/
@@ -658,10 +668,12 @@ For cached script it is the last time the cache entry was validated.
             this.forceUpdateOnPageLoad = forceUpdateOnPageLoad;
         }
         public CompletableFuture<SetForceUpdateOnPageLoadResult> call() {
-            return super.call("ServiceWorker.setForceUpdateOnPageLoad", SetForceUpdateOnPageLoadResult.class, msg->new SetForceUpdateOnPageLoadResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.setForceUpdateOnPageLoad", SetForceUpdateOnPageLoadResult.class,
+                (code, msg)->new SetForceUpdateOnPageLoadResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetForceUpdateOnPageLoadResult> call(Executor exec) {
-            return super.call("ServiceWorker.setForceUpdateOnPageLoad", SetForceUpdateOnPageLoadResult.class, msg->new SetForceUpdateOnPageLoadResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.setForceUpdateOnPageLoad", SetForceUpdateOnPageLoadResult.class,
+                (code, msg)->new SetForceUpdateOnPageLoadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setForceUpdateOnPageLoad.*/
@@ -713,10 +725,12 @@ For cached script it is the last time the cache entry was validated.
             this.scopeURL = scopeURL;
         }
         public CompletableFuture<SkipWaitingResult> call() {
-            return super.call("ServiceWorker.skipWaiting", SkipWaitingResult.class, msg->new SkipWaitingResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.skipWaiting", SkipWaitingResult.class,
+                (code, msg)->new SkipWaitingResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SkipWaitingResult> call(Executor exec) {
-            return super.call("ServiceWorker.skipWaiting", SkipWaitingResult.class, msg->new SkipWaitingResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.skipWaiting", SkipWaitingResult.class,
+                (code, msg)->new SkipWaitingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of skipWaiting.*/
@@ -768,10 +782,12 @@ For cached script it is the last time the cache entry was validated.
             this.scopeURL = scopeURL;
         }
         public CompletableFuture<StartWorkerResult> call() {
-            return super.call("ServiceWorker.startWorker", StartWorkerResult.class, msg->new StartWorkerResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.startWorker", StartWorkerResult.class,
+                (code, msg)->new StartWorkerResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartWorkerResult> call(Executor exec) {
-            return super.call("ServiceWorker.startWorker", StartWorkerResult.class, msg->new StartWorkerResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.startWorker", StartWorkerResult.class,
+                (code, msg)->new StartWorkerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of startWorker.*/
@@ -809,10 +825,12 @@ For cached script it is the last time the cache entry was validated.
         }
         public StopAllWorkersParameter() {}
         public CompletableFuture<StopAllWorkersResult> call() {
-            return super.call("ServiceWorker.stopAllWorkers", StopAllWorkersResult.class, msg->new StopAllWorkersResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.stopAllWorkers", StopAllWorkersResult.class,
+                (code, msg)->new StopAllWorkersResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopAllWorkersResult> call(Executor exec) {
-            return super.call("ServiceWorker.stopAllWorkers", StopAllWorkersResult.class, msg->new StopAllWorkersResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.stopAllWorkers", StopAllWorkersResult.class,
+                (code, msg)->new StopAllWorkersResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopAllWorkers.*/
@@ -864,10 +882,12 @@ For cached script it is the last time the cache entry was validated.
             this.versionId = versionId;
         }
         public CompletableFuture<StopWorkerResult> call() {
-            return super.call("ServiceWorker.stopWorker", StopWorkerResult.class, msg->new StopWorkerResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.stopWorker", StopWorkerResult.class,
+                (code, msg)->new StopWorkerResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopWorkerResult> call(Executor exec) {
-            return super.call("ServiceWorker.stopWorker", StopWorkerResult.class, msg->new StopWorkerResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.stopWorker", StopWorkerResult.class,
+                (code, msg)->new StopWorkerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopWorker.*/
@@ -919,10 +939,12 @@ For cached script it is the last time the cache entry was validated.
             this.scopeURL = scopeURL;
         }
         public CompletableFuture<UnregisterResult> call() {
-            return super.call("ServiceWorker.unregister", UnregisterResult.class, msg->new UnregisterResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.unregister", UnregisterResult.class,
+                (code, msg)->new UnregisterResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<UnregisterResult> call(Executor exec) {
-            return super.call("ServiceWorker.unregister", UnregisterResult.class, msg->new UnregisterResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.unregister", UnregisterResult.class,
+                (code, msg)->new UnregisterResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of unregister.*/
@@ -974,10 +996,12 @@ For cached script it is the last time the cache entry was validated.
             this.scopeURL = scopeURL;
         }
         public CompletableFuture<UpdateRegistrationResult> call() {
-            return super.call("ServiceWorker.updateRegistration", UpdateRegistrationResult.class, msg->new UpdateRegistrationResult(ResultBase.ofError(msg)));
+            return super.call("ServiceWorker.updateRegistration", UpdateRegistrationResult.class,
+                (code, msg)->new UpdateRegistrationResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<UpdateRegistrationResult> call(Executor exec) {
-            return super.call("ServiceWorker.updateRegistration", UpdateRegistrationResult.class, msg->new UpdateRegistrationResult(ResultBase.ofError(msg)), exec);
+            return super.call("ServiceWorker.updateRegistration", UpdateRegistrationResult.class,
+                (code, msg)->new UpdateRegistrationResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of updateRegistration.*/

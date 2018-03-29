@@ -169,10 +169,12 @@ import javax.annotation.Nullable;
         }
         public GetInfoParameter() {}
         public CompletableFuture<GetInfoResult> call() {
-            return super.call("SystemInfo.getInfo", GetInfoResult.class, msg->new GetInfoResult(ResultBase.ofError(msg)));
+            return super.call("SystemInfo.getInfo", GetInfoResult.class,
+                (code, msg)->new GetInfoResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetInfoResult> call(Executor exec) {
-            return super.call("SystemInfo.getInfo", GetInfoResult.class, msg->new GetInfoResult(ResultBase.ofError(msg)), exec);
+            return super.call("SystemInfo.getInfo", GetInfoResult.class,
+                (code, msg)->new GetInfoResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getInfo.*/

@@ -82,10 +82,12 @@ import javax.annotation.Nullable;
         }
         public GetDomainsParameter() {}
         public CompletableFuture<GetDomainsResult> call() {
-            return super.call("Schema.getDomains", GetDomainsResult.class, msg->new GetDomainsResult(ResultBase.ofError(msg)));
+            return super.call("Schema.getDomains", GetDomainsResult.class,
+                (code, msg)->new GetDomainsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetDomainsResult> call(Executor exec) {
-            return super.call("Schema.getDomains", GetDomainsResult.class, msg->new GetDomainsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Schema.getDomains", GetDomainsResult.class,
+                (code, msg)->new GetDomainsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getDomains.*/

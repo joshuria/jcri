@@ -1487,10 +1487,12 @@ position specified by `location`.*/
             this.location = location;
         }
         public CompletableFuture<AddRuleResult> call() {
-            return super.call("CSS.addRule", AddRuleResult.class, msg->new AddRuleResult(ResultBase.ofError(msg)));
+            return super.call("CSS.addRule", AddRuleResult.class,
+                (code, msg)->new AddRuleResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<AddRuleResult> call(Executor exec) {
-            return super.call("CSS.addRule", AddRuleResult.class, msg->new AddRuleResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.addRule", AddRuleResult.class,
+                (code, msg)->new AddRuleResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of addRule.*/
@@ -1552,10 +1554,12 @@ position specified by `location`.*/
             this.styleSheetId = styleSheetId;
         }
         public CompletableFuture<CollectClassNamesResult> call() {
-            return super.call("CSS.collectClassNames", CollectClassNamesResult.class, msg->new CollectClassNamesResult(ResultBase.ofError(msg)));
+            return super.call("CSS.collectClassNames", CollectClassNamesResult.class,
+                (code, msg)->new CollectClassNamesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CollectClassNamesResult> call(Executor exec) {
-            return super.call("CSS.collectClassNames", CollectClassNamesResult.class, msg->new CollectClassNamesResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.collectClassNames", CollectClassNamesResult.class,
+                (code, msg)->new CollectClassNamesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of collectClassNames.*/
@@ -1621,10 +1625,12 @@ position specified by `location`.*/
             this.frameId = frameId;
         }
         public CompletableFuture<CreateStyleSheetResult> call() {
-            return super.call("CSS.createStyleSheet", CreateStyleSheetResult.class, msg->new CreateStyleSheetResult(ResultBase.ofError(msg)));
+            return super.call("CSS.createStyleSheet", CreateStyleSheetResult.class,
+                (code, msg)->new CreateStyleSheetResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CreateStyleSheetResult> call(Executor exec) {
-            return super.call("CSS.createStyleSheet", CreateStyleSheetResult.class, msg->new CreateStyleSheetResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.createStyleSheet", CreateStyleSheetResult.class,
+                (code, msg)->new CreateStyleSheetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of createStyleSheet.*/
@@ -1672,10 +1678,12 @@ position specified by `location`.*/
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("CSS.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("CSS.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("CSS.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -1714,10 +1722,12 @@ enabled until the result of this command is received.*/
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("CSS.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("CSS.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("CSS.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -1784,10 +1794,12 @@ the browser.*/
             this.forcedPseudoClasses = forcedPseudoClasses;
         }
         public CompletableFuture<ForcePseudoStateResult> call() {
-            return super.call("CSS.forcePseudoState", ForcePseudoStateResult.class, msg->new ForcePseudoStateResult(ResultBase.ofError(msg)));
+            return super.call("CSS.forcePseudoState", ForcePseudoStateResult.class,
+                (code, msg)->new ForcePseudoStateResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ForcePseudoStateResult> call(Executor exec) {
-            return super.call("CSS.forcePseudoState", ForcePseudoStateResult.class, msg->new ForcePseudoStateResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.forcePseudoState", ForcePseudoStateResult.class,
+                (code, msg)->new ForcePseudoStateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of forcePseudoState.*/
@@ -1839,10 +1851,12 @@ the browser.*/
             this.nodeId = nodeId;
         }
         public CompletableFuture<GetBackgroundColorsResult> call() {
-            return super.call("CSS.getBackgroundColors", GetBackgroundColorsResult.class, msg->new GetBackgroundColorsResult(ResultBase.ofError(msg)));
+            return super.call("CSS.getBackgroundColors", GetBackgroundColorsResult.class,
+                (code, msg)->new GetBackgroundColorsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetBackgroundColorsResult> call(Executor exec) {
-            return super.call("CSS.getBackgroundColors", GetBackgroundColorsResult.class, msg->new GetBackgroundColorsResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.getBackgroundColors", GetBackgroundColorsResult.class,
+                (code, msg)->new GetBackgroundColorsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getBackgroundColors.*/
@@ -1943,10 +1957,12 @@ be ignored (as if the image had failed to load).
             this.nodeId = nodeId;
         }
         public CompletableFuture<GetComputedStyleForNodeResult> call() {
-            return super.call("CSS.getComputedStyleForNode", GetComputedStyleForNodeResult.class, msg->new GetComputedStyleForNodeResult(ResultBase.ofError(msg)));
+            return super.call("CSS.getComputedStyleForNode", GetComputedStyleForNodeResult.class,
+                (code, msg)->new GetComputedStyleForNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetComputedStyleForNodeResult> call(Executor exec) {
-            return super.call("CSS.getComputedStyleForNode", GetComputedStyleForNodeResult.class, msg->new GetComputedStyleForNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.getComputedStyleForNode", GetComputedStyleForNodeResult.class,
+                (code, msg)->new GetComputedStyleForNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getComputedStyleForNode.*/
@@ -2013,10 +2029,12 @@ attributes) for a DOM node identified by `nodeId`.*/
             this.nodeId = nodeId;
         }
         public CompletableFuture<GetInlineStylesForNodeResult> call() {
-            return super.call("CSS.getInlineStylesForNode", GetInlineStylesForNodeResult.class, msg->new GetInlineStylesForNodeResult(ResultBase.ofError(msg)));
+            return super.call("CSS.getInlineStylesForNode", GetInlineStylesForNodeResult.class,
+                (code, msg)->new GetInlineStylesForNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetInlineStylesForNodeResult> call(Executor exec) {
-            return super.call("CSS.getInlineStylesForNode", GetInlineStylesForNodeResult.class, msg->new GetInlineStylesForNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.getInlineStylesForNode", GetInlineStylesForNodeResult.class,
+                (code, msg)->new GetInlineStylesForNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getInlineStylesForNode.*/
@@ -2088,10 +2106,12 @@ attributes) for a DOM node identified by `nodeId`.*/
             this.nodeId = nodeId;
         }
         public CompletableFuture<GetMatchedStylesForNodeResult> call() {
-            return super.call("CSS.getMatchedStylesForNode", GetMatchedStylesForNodeResult.class, msg->new GetMatchedStylesForNodeResult(ResultBase.ofError(msg)));
+            return super.call("CSS.getMatchedStylesForNode", GetMatchedStylesForNodeResult.class,
+                (code, msg)->new GetMatchedStylesForNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetMatchedStylesForNodeResult> call(Executor exec) {
-            return super.call("CSS.getMatchedStylesForNode", GetMatchedStylesForNodeResult.class, msg->new GetMatchedStylesForNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.getMatchedStylesForNode", GetMatchedStylesForNodeResult.class,
+                (code, msg)->new GetMatchedStylesForNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getMatchedStylesForNode.*/
@@ -2209,10 +2229,12 @@ attributes) for a DOM node identified by `nodeId`.*/
         }
         public GetMediaQueriesParameter() {}
         public CompletableFuture<GetMediaQueriesResult> call() {
-            return super.call("CSS.getMediaQueries", GetMediaQueriesResult.class, msg->new GetMediaQueriesResult(ResultBase.ofError(msg)));
+            return super.call("CSS.getMediaQueries", GetMediaQueriesResult.class,
+                (code, msg)->new GetMediaQueriesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetMediaQueriesResult> call(Executor exec) {
-            return super.call("CSS.getMediaQueries", GetMediaQueriesResult.class, msg->new GetMediaQueriesResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.getMediaQueries", GetMediaQueriesResult.class,
+                (code, msg)->new GetMediaQueriesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getMediaQueries.*/
@@ -2279,10 +2301,12 @@ node.*/
             this.nodeId = nodeId;
         }
         public CompletableFuture<GetPlatformFontsForNodeResult> call() {
-            return super.call("CSS.getPlatformFontsForNode", GetPlatformFontsForNodeResult.class, msg->new GetPlatformFontsForNodeResult(ResultBase.ofError(msg)));
+            return super.call("CSS.getPlatformFontsForNode", GetPlatformFontsForNodeResult.class,
+                (code, msg)->new GetPlatformFontsForNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetPlatformFontsForNodeResult> call(Executor exec) {
-            return super.call("CSS.getPlatformFontsForNode", GetPlatformFontsForNodeResult.class, msg->new GetPlatformFontsForNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.getPlatformFontsForNode", GetPlatformFontsForNodeResult.class,
+                (code, msg)->new GetPlatformFontsForNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getPlatformFontsForNode.*/
@@ -2348,10 +2372,12 @@ node.*/
             this.styleSheetId = styleSheetId;
         }
         public CompletableFuture<GetStyleSheetTextResult> call() {
-            return super.call("CSS.getStyleSheetText", GetStyleSheetTextResult.class, msg->new GetStyleSheetTextResult(ResultBase.ofError(msg)));
+            return super.call("CSS.getStyleSheetText", GetStyleSheetTextResult.class,
+                (code, msg)->new GetStyleSheetTextResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetStyleSheetTextResult> call(Executor exec) {
-            return super.call("CSS.getStyleSheetText", GetStyleSheetTextResult.class, msg->new GetStyleSheetTextResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.getStyleSheetText", GetStyleSheetTextResult.class,
+                (code, msg)->new GetStyleSheetTextResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getStyleSheetText.*/
@@ -2434,10 +2460,12 @@ property*/
             this.value = value;
         }
         public CompletableFuture<SetEffectivePropertyValueForNodeResult> call() {
-            return super.call("CSS.setEffectivePropertyValueForNode", SetEffectivePropertyValueForNodeResult.class, msg->new SetEffectivePropertyValueForNodeResult(ResultBase.ofError(msg)));
+            return super.call("CSS.setEffectivePropertyValueForNode", SetEffectivePropertyValueForNodeResult.class,
+                (code, msg)->new SetEffectivePropertyValueForNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetEffectivePropertyValueForNodeResult> call(Executor exec) {
-            return super.call("CSS.setEffectivePropertyValueForNode", SetEffectivePropertyValueForNodeResult.class, msg->new SetEffectivePropertyValueForNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.setEffectivePropertyValueForNode", SetEffectivePropertyValueForNodeResult.class,
+                (code, msg)->new SetEffectivePropertyValueForNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setEffectivePropertyValueForNode.*/
@@ -2509,10 +2537,12 @@ property*/
             this.keyText = keyText;
         }
         public CompletableFuture<SetKeyframeKeyResult> call() {
-            return super.call("CSS.setKeyframeKey", SetKeyframeKeyResult.class, msg->new SetKeyframeKeyResult(ResultBase.ofError(msg)));
+            return super.call("CSS.setKeyframeKey", SetKeyframeKeyResult.class,
+                (code, msg)->new SetKeyframeKeyResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetKeyframeKeyResult> call(Executor exec) {
-            return super.call("CSS.setKeyframeKey", SetKeyframeKeyResult.class, msg->new SetKeyframeKeyResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.setKeyframeKey", SetKeyframeKeyResult.class,
+                (code, msg)->new SetKeyframeKeyResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setKeyframeKey.*/
@@ -2594,10 +2624,12 @@ property*/
             this.text = text;
         }
         public CompletableFuture<SetMediaTextResult> call() {
-            return super.call("CSS.setMediaText", SetMediaTextResult.class, msg->new SetMediaTextResult(ResultBase.ofError(msg)));
+            return super.call("CSS.setMediaText", SetMediaTextResult.class,
+                (code, msg)->new SetMediaTextResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetMediaTextResult> call(Executor exec) {
-            return super.call("CSS.setMediaText", SetMediaTextResult.class, msg->new SetMediaTextResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.setMediaText", SetMediaTextResult.class,
+                (code, msg)->new SetMediaTextResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setMediaText.*/
@@ -2679,10 +2711,12 @@ property*/
             this.selector = selector;
         }
         public CompletableFuture<SetRuleSelectorResult> call() {
-            return super.call("CSS.setRuleSelector", SetRuleSelectorResult.class, msg->new SetRuleSelectorResult(ResultBase.ofError(msg)));
+            return super.call("CSS.setRuleSelector", SetRuleSelectorResult.class,
+                (code, msg)->new SetRuleSelectorResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetRuleSelectorResult> call(Executor exec) {
-            return super.call("CSS.setRuleSelector", SetRuleSelectorResult.class, msg->new SetRuleSelectorResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.setRuleSelector", SetRuleSelectorResult.class,
+                (code, msg)->new SetRuleSelectorResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setRuleSelector.*/
@@ -2754,10 +2788,12 @@ property*/
             this.text = text;
         }
         public CompletableFuture<SetStyleSheetTextResult> call() {
-            return super.call("CSS.setStyleSheetText", SetStyleSheetTextResult.class, msg->new SetStyleSheetTextResult(ResultBase.ofError(msg)));
+            return super.call("CSS.setStyleSheetText", SetStyleSheetTextResult.class,
+                (code, msg)->new SetStyleSheetTextResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetStyleSheetTextResult> call(Executor exec) {
-            return super.call("CSS.setStyleSheetText", SetStyleSheetTextResult.class, msg->new SetStyleSheetTextResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.setStyleSheetText", SetStyleSheetTextResult.class,
+                (code, msg)->new SetStyleSheetTextResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setStyleSheetText.*/
@@ -2824,10 +2860,12 @@ property*/
             this.edits = edits;
         }
         public CompletableFuture<SetStyleTextsResult> call() {
-            return super.call("CSS.setStyleTexts", SetStyleTextsResult.class, msg->new SetStyleTextsResult(ResultBase.ofError(msg)));
+            return super.call("CSS.setStyleTexts", SetStyleTextsResult.class,
+                (code, msg)->new SetStyleTextsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetStyleTextsResult> call(Executor exec) {
-            return super.call("CSS.setStyleTexts", SetStyleTextsResult.class, msg->new SetStyleTextsResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.setStyleTexts", SetStyleTextsResult.class,
+                (code, msg)->new SetStyleTextsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setStyleTexts.*/
@@ -2879,10 +2917,12 @@ property*/
         }
         public StartRuleUsageTrackingParameter() {}
         public CompletableFuture<StartRuleUsageTrackingResult> call() {
-            return super.call("CSS.startRuleUsageTracking", StartRuleUsageTrackingResult.class, msg->new StartRuleUsageTrackingResult(ResultBase.ofError(msg)));
+            return super.call("CSS.startRuleUsageTracking", StartRuleUsageTrackingResult.class,
+                (code, msg)->new StartRuleUsageTrackingResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartRuleUsageTrackingResult> call(Executor exec) {
-            return super.call("CSS.startRuleUsageTracking", StartRuleUsageTrackingResult.class, msg->new StartRuleUsageTrackingResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.startRuleUsageTracking", StartRuleUsageTrackingResult.class,
+                (code, msg)->new StartRuleUsageTrackingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of startRuleUsageTracking.*/
@@ -2921,10 +2961,12 @@ property*/
         }
         public StopRuleUsageTrackingParameter() {}
         public CompletableFuture<StopRuleUsageTrackingResult> call() {
-            return super.call("CSS.stopRuleUsageTracking", StopRuleUsageTrackingResult.class, msg->new StopRuleUsageTrackingResult(ResultBase.ofError(msg)));
+            return super.call("CSS.stopRuleUsageTracking", StopRuleUsageTrackingResult.class,
+                (code, msg)->new StopRuleUsageTrackingResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopRuleUsageTrackingResult> call(Executor exec) {
-            return super.call("CSS.stopRuleUsageTracking", StopRuleUsageTrackingResult.class, msg->new StopRuleUsageTrackingResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.stopRuleUsageTracking", StopRuleUsageTrackingResult.class,
+                (code, msg)->new StopRuleUsageTrackingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopRuleUsageTracking.*/
@@ -2977,10 +3019,12 @@ instrumentation)*/
         }
         public TakeCoverageDeltaParameter() {}
         public CompletableFuture<TakeCoverageDeltaResult> call() {
-            return super.call("CSS.takeCoverageDelta", TakeCoverageDeltaResult.class, msg->new TakeCoverageDeltaResult(ResultBase.ofError(msg)));
+            return super.call("CSS.takeCoverageDelta", TakeCoverageDeltaResult.class,
+                (code, msg)->new TakeCoverageDeltaResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<TakeCoverageDeltaResult> call(Executor exec) {
-            return super.call("CSS.takeCoverageDelta", TakeCoverageDeltaResult.class, msg->new TakeCoverageDeltaResult(ResultBase.ofError(msg)), exec);
+            return super.call("CSS.takeCoverageDelta", TakeCoverageDeltaResult.class,
+                (code, msg)->new TakeCoverageDeltaResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of takeCoverageDelta.*/

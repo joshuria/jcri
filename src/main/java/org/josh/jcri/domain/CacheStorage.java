@@ -293,10 +293,12 @@ import javax.annotation.Nullable;
             this.cacheId = cacheId;
         }
         public CompletableFuture<DeleteCacheResult> call() {
-            return super.call("CacheStorage.deleteCache", DeleteCacheResult.class, msg->new DeleteCacheResult(ResultBase.ofError(msg)));
+            return super.call("CacheStorage.deleteCache", DeleteCacheResult.class,
+                (code, msg)->new DeleteCacheResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DeleteCacheResult> call(Executor exec) {
-            return super.call("CacheStorage.deleteCache", DeleteCacheResult.class, msg->new DeleteCacheResult(ResultBase.ofError(msg)), exec);
+            return super.call("CacheStorage.deleteCache", DeleteCacheResult.class,
+                (code, msg)->new DeleteCacheResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of deleteCache.*/
@@ -358,10 +360,12 @@ import javax.annotation.Nullable;
             this.request = request;
         }
         public CompletableFuture<DeleteEntryResult> call() {
-            return super.call("CacheStorage.deleteEntry", DeleteEntryResult.class, msg->new DeleteEntryResult(ResultBase.ofError(msg)));
+            return super.call("CacheStorage.deleteEntry", DeleteEntryResult.class,
+                (code, msg)->new DeleteEntryResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DeleteEntryResult> call(Executor exec) {
-            return super.call("CacheStorage.deleteEntry", DeleteEntryResult.class, msg->new DeleteEntryResult(ResultBase.ofError(msg)), exec);
+            return super.call("CacheStorage.deleteEntry", DeleteEntryResult.class,
+                (code, msg)->new DeleteEntryResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of deleteEntry.*/
@@ -413,10 +417,12 @@ import javax.annotation.Nullable;
             this.securityOrigin = securityOrigin;
         }
         public CompletableFuture<RequestCacheNamesResult> call() {
-            return super.call("CacheStorage.requestCacheNames", RequestCacheNamesResult.class, msg->new RequestCacheNamesResult(ResultBase.ofError(msg)));
+            return super.call("CacheStorage.requestCacheNames", RequestCacheNamesResult.class,
+                (code, msg)->new RequestCacheNamesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RequestCacheNamesResult> call(Executor exec) {
-            return super.call("CacheStorage.requestCacheNames", RequestCacheNamesResult.class, msg->new RequestCacheNamesResult(ResultBase.ofError(msg)), exec);
+            return super.call("CacheStorage.requestCacheNames", RequestCacheNamesResult.class,
+                (code, msg)->new RequestCacheNamesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of requestCacheNames.*/
@@ -492,10 +498,12 @@ import javax.annotation.Nullable;
             this.requestURL = requestURL;
         }
         public CompletableFuture<RequestCachedResponseResult> call() {
-            return super.call("CacheStorage.requestCachedResponse", RequestCachedResponseResult.class, msg->new RequestCachedResponseResult(ResultBase.ofError(msg)));
+            return super.call("CacheStorage.requestCachedResponse", RequestCachedResponseResult.class,
+                (code, msg)->new RequestCachedResponseResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RequestCachedResponseResult> call(Executor exec) {
-            return super.call("CacheStorage.requestCachedResponse", RequestCachedResponseResult.class, msg->new RequestCachedResponseResult(ResultBase.ofError(msg)), exec);
+            return super.call("CacheStorage.requestCachedResponse", RequestCachedResponseResult.class,
+                (code, msg)->new RequestCachedResponseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of requestCachedResponse.*/
@@ -577,10 +585,12 @@ import javax.annotation.Nullable;
             this.pageSize = pageSize;
         }
         public CompletableFuture<RequestEntriesResult> call() {
-            return super.call("CacheStorage.requestEntries", RequestEntriesResult.class, msg->new RequestEntriesResult(ResultBase.ofError(msg)));
+            return super.call("CacheStorage.requestEntries", RequestEntriesResult.class,
+                (code, msg)->new RequestEntriesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RequestEntriesResult> call(Executor exec) {
-            return super.call("CacheStorage.requestEntries", RequestEntriesResult.class, msg->new RequestEntriesResult(ResultBase.ofError(msg)), exec);
+            return super.call("CacheStorage.requestEntries", RequestEntriesResult.class,
+                (code, msg)->new RequestEntriesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of requestEntries.*/

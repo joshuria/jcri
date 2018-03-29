@@ -142,10 +142,12 @@ import javax.annotation.Nullable;
             this.storageTypes = storageTypes;
         }
         public CompletableFuture<ClearDataForOriginResult> call() {
-            return super.call("Storage.clearDataForOrigin", ClearDataForOriginResult.class, msg->new ClearDataForOriginResult(ResultBase.ofError(msg)));
+            return super.call("Storage.clearDataForOrigin", ClearDataForOriginResult.class,
+                (code, msg)->new ClearDataForOriginResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearDataForOriginResult> call(Executor exec) {
-            return super.call("Storage.clearDataForOrigin", ClearDataForOriginResult.class, msg->new ClearDataForOriginResult(ResultBase.ofError(msg)), exec);
+            return super.call("Storage.clearDataForOrigin", ClearDataForOriginResult.class,
+                (code, msg)->new ClearDataForOriginResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearDataForOrigin.*/
@@ -197,10 +199,12 @@ import javax.annotation.Nullable;
             this.origin = origin;
         }
         public CompletableFuture<GetUsageAndQuotaResult> call() {
-            return super.call("Storage.getUsageAndQuota", GetUsageAndQuotaResult.class, msg->new GetUsageAndQuotaResult(ResultBase.ofError(msg)));
+            return super.call("Storage.getUsageAndQuota", GetUsageAndQuotaResult.class,
+                (code, msg)->new GetUsageAndQuotaResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetUsageAndQuotaResult> call(Executor exec) {
-            return super.call("Storage.getUsageAndQuota", GetUsageAndQuotaResult.class, msg->new GetUsageAndQuotaResult(ResultBase.ofError(msg)), exec);
+            return super.call("Storage.getUsageAndQuota", GetUsageAndQuotaResult.class,
+                (code, msg)->new GetUsageAndQuotaResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getUsageAndQuota.*/
@@ -282,10 +286,12 @@ import javax.annotation.Nullable;
             this.origin = origin;
         }
         public CompletableFuture<TrackCacheStorageForOriginResult> call() {
-            return super.call("Storage.trackCacheStorageForOrigin", TrackCacheStorageForOriginResult.class, msg->new TrackCacheStorageForOriginResult(ResultBase.ofError(msg)));
+            return super.call("Storage.trackCacheStorageForOrigin", TrackCacheStorageForOriginResult.class,
+                (code, msg)->new TrackCacheStorageForOriginResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<TrackCacheStorageForOriginResult> call(Executor exec) {
-            return super.call("Storage.trackCacheStorageForOrigin", TrackCacheStorageForOriginResult.class, msg->new TrackCacheStorageForOriginResult(ResultBase.ofError(msg)), exec);
+            return super.call("Storage.trackCacheStorageForOrigin", TrackCacheStorageForOriginResult.class,
+                (code, msg)->new TrackCacheStorageForOriginResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of trackCacheStorageForOrigin.*/
@@ -337,10 +343,12 @@ import javax.annotation.Nullable;
             this.origin = origin;
         }
         public CompletableFuture<TrackIndexedDBForOriginResult> call() {
-            return super.call("Storage.trackIndexedDBForOrigin", TrackIndexedDBForOriginResult.class, msg->new TrackIndexedDBForOriginResult(ResultBase.ofError(msg)));
+            return super.call("Storage.trackIndexedDBForOrigin", TrackIndexedDBForOriginResult.class,
+                (code, msg)->new TrackIndexedDBForOriginResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<TrackIndexedDBForOriginResult> call(Executor exec) {
-            return super.call("Storage.trackIndexedDBForOrigin", TrackIndexedDBForOriginResult.class, msg->new TrackIndexedDBForOriginResult(ResultBase.ofError(msg)), exec);
+            return super.call("Storage.trackIndexedDBForOrigin", TrackIndexedDBForOriginResult.class,
+                (code, msg)->new TrackIndexedDBForOriginResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of trackIndexedDBForOrigin.*/
@@ -392,10 +400,12 @@ import javax.annotation.Nullable;
             this.origin = origin;
         }
         public CompletableFuture<UntrackCacheStorageForOriginResult> call() {
-            return super.call("Storage.untrackCacheStorageForOrigin", UntrackCacheStorageForOriginResult.class, msg->new UntrackCacheStorageForOriginResult(ResultBase.ofError(msg)));
+            return super.call("Storage.untrackCacheStorageForOrigin", UntrackCacheStorageForOriginResult.class,
+                (code, msg)->new UntrackCacheStorageForOriginResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<UntrackCacheStorageForOriginResult> call(Executor exec) {
-            return super.call("Storage.untrackCacheStorageForOrigin", UntrackCacheStorageForOriginResult.class, msg->new UntrackCacheStorageForOriginResult(ResultBase.ofError(msg)), exec);
+            return super.call("Storage.untrackCacheStorageForOrigin", UntrackCacheStorageForOriginResult.class,
+                (code, msg)->new UntrackCacheStorageForOriginResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of untrackCacheStorageForOrigin.*/
@@ -447,10 +457,12 @@ import javax.annotation.Nullable;
             this.origin = origin;
         }
         public CompletableFuture<UntrackIndexedDBForOriginResult> call() {
-            return super.call("Storage.untrackIndexedDBForOrigin", UntrackIndexedDBForOriginResult.class, msg->new UntrackIndexedDBForOriginResult(ResultBase.ofError(msg)));
+            return super.call("Storage.untrackIndexedDBForOrigin", UntrackIndexedDBForOriginResult.class,
+                (code, msg)->new UntrackIndexedDBForOriginResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<UntrackIndexedDBForOriginResult> call(Executor exec) {
-            return super.call("Storage.untrackIndexedDBForOrigin", UntrackIndexedDBForOriginResult.class, msg->new UntrackIndexedDBForOriginResult(ResultBase.ofError(msg)), exec);
+            return super.call("Storage.untrackIndexedDBForOrigin", UntrackIndexedDBForOriginResult.class,
+                (code, msg)->new UntrackIndexedDBForOriginResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of untrackIndexedDBForOrigin.*/

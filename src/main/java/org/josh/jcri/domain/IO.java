@@ -79,10 +79,12 @@ import javax.annotation.Nullable;
             this.handle = handle;
         }
         public CompletableFuture<CloseResult> call() {
-            return super.call("IO.close", CloseResult.class, msg->new CloseResult(ResultBase.ofError(msg)));
+            return super.call("IO.close", CloseResult.class,
+                (code, msg)->new CloseResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CloseResult> call(Executor exec) {
-            return super.call("IO.close", CloseResult.class, msg->new CloseResult(ResultBase.ofError(msg)), exec);
+            return super.call("IO.close", CloseResult.class,
+                (code, msg)->new CloseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of close.*/
@@ -155,10 +157,12 @@ following the last read).
             this.size = size;
         }
         public CompletableFuture<ReadResult> call() {
-            return super.call("IO.read", ReadResult.class, msg->new ReadResult(ResultBase.ofError(msg)));
+            return super.call("IO.read", ReadResult.class,
+                (code, msg)->new ReadResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ReadResult> call(Executor exec) {
-            return super.call("IO.read", ReadResult.class, msg->new ReadResult(ResultBase.ofError(msg)), exec);
+            return super.call("IO.read", ReadResult.class,
+                (code, msg)->new ReadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of read.*/
@@ -237,10 +241,12 @@ following the last read).
             this.objectId = objectId;
         }
         public CompletableFuture<ResolveBlobResult> call() {
-            return super.call("IO.resolveBlob", ResolveBlobResult.class, msg->new ResolveBlobResult(ResultBase.ofError(msg)));
+            return super.call("IO.resolveBlob", ResolveBlobResult.class,
+                (code, msg)->new ResolveBlobResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ResolveBlobResult> call(Executor exec) {
-            return super.call("IO.resolveBlob", ResolveBlobResult.class, msg->new ResolveBlobResult(ResultBase.ofError(msg)), exec);
+            return super.call("IO.resolveBlob", ResolveBlobResult.class,
+                (code, msg)->new ResolveBlobResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of resolveBlob.*/

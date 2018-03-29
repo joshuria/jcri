@@ -115,10 +115,12 @@ applies to images.*/
             this.sizeOnly = sizeOnly;
         }
         public CompletableFuture<GetEncodedResponseResult> call() {
-            return super.call("Audits.getEncodedResponse", GetEncodedResponseResult.class, msg->new GetEncodedResponseResult(ResultBase.ofError(msg)));
+            return super.call("Audits.getEncodedResponse", GetEncodedResponseResult.class,
+                (code, msg)->new GetEncodedResponseResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetEncodedResponseResult> call(Executor exec) {
-            return super.call("Audits.getEncodedResponse", GetEncodedResponseResult.class, msg->new GetEncodedResponseResult(ResultBase.ofError(msg)), exec);
+            return super.call("Audits.getEncodedResponse", GetEncodedResponseResult.class,
+                (code, msg)->new GetEncodedResponseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getEncodedResponse.*/

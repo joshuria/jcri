@@ -43,10 +43,12 @@ import javax.annotation.Nullable;
         }
         public ClearDeviceOrientationOverrideParameter() {}
         public CompletableFuture<ClearDeviceOrientationOverrideResult> call() {
-            return super.call("DeviceOrientation.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class, msg->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(msg)));
+            return super.call("DeviceOrientation.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
+                (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearDeviceOrientationOverrideResult> call(Executor exec) {
-            return super.call("DeviceOrientation.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class, msg->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("DeviceOrientation.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
+                (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearDeviceOrientationOverride.*/
@@ -118,10 +120,12 @@ import javax.annotation.Nullable;
             this.gamma = gamma;
         }
         public CompletableFuture<SetDeviceOrientationOverrideResult> call() {
-            return super.call("DeviceOrientation.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class, msg->new SetDeviceOrientationOverrideResult(ResultBase.ofError(msg)));
+            return super.call("DeviceOrientation.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
+                (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDeviceOrientationOverrideResult> call(Executor exec) {
-            return super.call("DeviceOrientation.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class, msg->new SetDeviceOrientationOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("DeviceOrientation.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
+                (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDeviceOrientationOverride.*/

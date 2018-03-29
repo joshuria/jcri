@@ -359,10 +359,12 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
             this.location = location;
         }
         public CompletableFuture<DispatchKeyEventResult> call() {
-            return super.call("Input.dispatchKeyEvent", DispatchKeyEventResult.class, msg->new DispatchKeyEventResult(ResultBase.ofError(msg)));
+            return super.call("Input.dispatchKeyEvent", DispatchKeyEventResult.class,
+                (code, msg)->new DispatchKeyEventResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DispatchKeyEventResult> call(Executor exec) {
-            return super.call("Input.dispatchKeyEvent", DispatchKeyEventResult.class, msg->new DispatchKeyEventResult(ResultBase.ofError(msg)), exec);
+            return super.call("Input.dispatchKeyEvent", DispatchKeyEventResult.class,
+                (code, msg)->new DispatchKeyEventResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of dispatchKeyEvent.*/
@@ -550,10 +552,12 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
             this.deltaY = deltaY;
         }
         public CompletableFuture<DispatchMouseEventResult> call() {
-            return super.call("Input.dispatchMouseEvent", DispatchMouseEventResult.class, msg->new DispatchMouseEventResult(ResultBase.ofError(msg)));
+            return super.call("Input.dispatchMouseEvent", DispatchMouseEventResult.class,
+                (code, msg)->new DispatchMouseEventResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DispatchMouseEventResult> call(Executor exec) {
-            return super.call("Input.dispatchMouseEvent", DispatchMouseEventResult.class, msg->new DispatchMouseEventResult(ResultBase.ofError(msg)), exec);
+            return super.call("Input.dispatchMouseEvent", DispatchMouseEventResult.class,
+                (code, msg)->new DispatchMouseEventResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of dispatchMouseEvent.*/
@@ -670,10 +674,12 @@ one by one.*/
             this.timestamp = timestamp;
         }
         public CompletableFuture<DispatchTouchEventResult> call() {
-            return super.call("Input.dispatchTouchEvent", DispatchTouchEventResult.class, msg->new DispatchTouchEventResult(ResultBase.ofError(msg)));
+            return super.call("Input.dispatchTouchEvent", DispatchTouchEventResult.class,
+                (code, msg)->new DispatchTouchEventResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DispatchTouchEventResult> call(Executor exec) {
-            return super.call("Input.dispatchTouchEvent", DispatchTouchEventResult.class, msg->new DispatchTouchEventResult(ResultBase.ofError(msg)), exec);
+            return super.call("Input.dispatchTouchEvent", DispatchTouchEventResult.class,
+                (code, msg)->new DispatchTouchEventResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of dispatchTouchEvent.*/
@@ -862,10 +868,12 @@ one by one.*/
             this.clickCount = clickCount;
         }
         public CompletableFuture<EmulateTouchFromMouseEventResult> call() {
-            return super.call("Input.emulateTouchFromMouseEvent", EmulateTouchFromMouseEventResult.class, msg->new EmulateTouchFromMouseEventResult(ResultBase.ofError(msg)));
+            return super.call("Input.emulateTouchFromMouseEvent", EmulateTouchFromMouseEventResult.class,
+                (code, msg)->new EmulateTouchFromMouseEventResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EmulateTouchFromMouseEventResult> call(Executor exec) {
-            return super.call("Input.emulateTouchFromMouseEvent", EmulateTouchFromMouseEventResult.class, msg->new EmulateTouchFromMouseEventResult(ResultBase.ofError(msg)), exec);
+            return super.call("Input.emulateTouchFromMouseEvent", EmulateTouchFromMouseEventResult.class,
+                (code, msg)->new EmulateTouchFromMouseEventResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of emulateTouchFromMouseEvent.
@@ -918,10 +926,12 @@ one by one.*/
             this.ignore = ignore;
         }
         public CompletableFuture<SetIgnoreInputEventsResult> call() {
-            return super.call("Input.setIgnoreInputEvents", SetIgnoreInputEventsResult.class, msg->new SetIgnoreInputEventsResult(ResultBase.ofError(msg)));
+            return super.call("Input.setIgnoreInputEvents", SetIgnoreInputEventsResult.class,
+                (code, msg)->new SetIgnoreInputEventsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetIgnoreInputEventsResult> call(Executor exec) {
-            return super.call("Input.setIgnoreInputEvents", SetIgnoreInputEventsResult.class, msg->new SetIgnoreInputEventsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Input.setIgnoreInputEvents", SetIgnoreInputEventsResult.class,
+                (code, msg)->new SetIgnoreInputEventsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setIgnoreInputEvents.*/
@@ -1016,10 +1026,12 @@ for the preferred input type).
             this.gestureSourceType = gestureSourceType;
         }
         public CompletableFuture<SynthesizePinchGestureResult> call() {
-            return super.call("Input.synthesizePinchGesture", SynthesizePinchGestureResult.class, msg->new SynthesizePinchGestureResult(ResultBase.ofError(msg)));
+            return super.call("Input.synthesizePinchGesture", SynthesizePinchGestureResult.class,
+                (code, msg)->new SynthesizePinchGestureResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SynthesizePinchGestureResult> call(Executor exec) {
-            return super.call("Input.synthesizePinchGesture", SynthesizePinchGestureResult.class, msg->new SynthesizePinchGestureResult(ResultBase.ofError(msg)), exec);
+            return super.call("Input.synthesizePinchGesture", SynthesizePinchGestureResult.class,
+                (code, msg)->new SynthesizePinchGestureResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of synthesizePinchGesture.
@@ -1187,10 +1199,12 @@ for the preferred input type).
             this.interactionMarkerName = interactionMarkerName;
         }
         public CompletableFuture<SynthesizeScrollGestureResult> call() {
-            return super.call("Input.synthesizeScrollGesture", SynthesizeScrollGestureResult.class, msg->new SynthesizeScrollGestureResult(ResultBase.ofError(msg)));
+            return super.call("Input.synthesizeScrollGesture", SynthesizeScrollGestureResult.class,
+                (code, msg)->new SynthesizeScrollGestureResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SynthesizeScrollGestureResult> call(Executor exec) {
-            return super.call("Input.synthesizeScrollGesture", SynthesizeScrollGestureResult.class, msg->new SynthesizeScrollGestureResult(ResultBase.ofError(msg)), exec);
+            return super.call("Input.synthesizeScrollGesture", SynthesizeScrollGestureResult.class,
+                (code, msg)->new SynthesizeScrollGestureResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of synthesizeScrollGesture.
@@ -1286,10 +1300,12 @@ for the preferred input type).
             this.gestureSourceType = gestureSourceType;
         }
         public CompletableFuture<SynthesizeTapGestureResult> call() {
-            return super.call("Input.synthesizeTapGesture", SynthesizeTapGestureResult.class, msg->new SynthesizeTapGestureResult(ResultBase.ofError(msg)));
+            return super.call("Input.synthesizeTapGesture", SynthesizeTapGestureResult.class,
+                (code, msg)->new SynthesizeTapGestureResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SynthesizeTapGestureResult> call(Executor exec) {
-            return super.call("Input.synthesizeTapGesture", SynthesizeTapGestureResult.class, msg->new SynthesizeTapGestureResult(ResultBase.ofError(msg)), exec);
+            return super.call("Input.synthesizeTapGesture", SynthesizeTapGestureResult.class,
+                (code, msg)->new SynthesizeTapGestureResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of synthesizeTapGesture.

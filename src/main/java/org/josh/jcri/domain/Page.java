@@ -941,10 +941,12 @@ import javax.annotation.Nullable;
             this.scriptSource = scriptSource;
         }
         public CompletableFuture<AddScriptToEvaluateOnLoadResult> call() {
-            return super.call("Page.addScriptToEvaluateOnLoad", AddScriptToEvaluateOnLoadResult.class, msg->new AddScriptToEvaluateOnLoadResult(ResultBase.ofError(msg)));
+            return super.call("Page.addScriptToEvaluateOnLoad", AddScriptToEvaluateOnLoadResult.class,
+                (code, msg)->new AddScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<AddScriptToEvaluateOnLoadResult> call(Executor exec) {
-            return super.call("Page.addScriptToEvaluateOnLoad", AddScriptToEvaluateOnLoadResult.class, msg->new AddScriptToEvaluateOnLoadResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.addScriptToEvaluateOnLoad", AddScriptToEvaluateOnLoadResult.class,
+                (code, msg)->new AddScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of addScriptToEvaluateOnLoad.
@@ -1008,10 +1010,12 @@ import javax.annotation.Nullable;
             this.source = source;
         }
         public CompletableFuture<AddScriptToEvaluateOnNewDocumentResult> call() {
-            return super.call("Page.addScriptToEvaluateOnNewDocument", AddScriptToEvaluateOnNewDocumentResult.class, msg->new AddScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(msg)));
+            return super.call("Page.addScriptToEvaluateOnNewDocument", AddScriptToEvaluateOnNewDocumentResult.class,
+                (code, msg)->new AddScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<AddScriptToEvaluateOnNewDocumentResult> call(Executor exec) {
-            return super.call("Page.addScriptToEvaluateOnNewDocument", AddScriptToEvaluateOnNewDocumentResult.class, msg->new AddScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.addScriptToEvaluateOnNewDocument", AddScriptToEvaluateOnNewDocumentResult.class,
+                (code, msg)->new AddScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of addScriptToEvaluateOnNewDocument.*/
@@ -1059,10 +1063,12 @@ import javax.annotation.Nullable;
         }
         public BringToFrontParameter() {}
         public CompletableFuture<BringToFrontResult> call() {
-            return super.call("Page.bringToFront", BringToFrontResult.class, msg->new BringToFrontResult(ResultBase.ofError(msg)));
+            return super.call("Page.bringToFront", BringToFrontResult.class,
+                (code, msg)->new BringToFrontResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<BringToFrontResult> call(Executor exec) {
-            return super.call("Page.bringToFront", BringToFrontResult.class, msg->new BringToFrontResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.bringToFront", BringToFrontResult.class,
+                (code, msg)->new BringToFrontResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of bringToFront.*/
@@ -1170,10 +1176,12 @@ import javax.annotation.Nullable;
             this.fromSurface = fromSurface;
         }
         public CompletableFuture<CaptureScreenshotResult> call() {
-            return super.call("Page.captureScreenshot", CaptureScreenshotResult.class, msg->new CaptureScreenshotResult(ResultBase.ofError(msg)));
+            return super.call("Page.captureScreenshot", CaptureScreenshotResult.class,
+                (code, msg)->new CaptureScreenshotResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CaptureScreenshotResult> call(Executor exec) {
-            return super.call("Page.captureScreenshot", CaptureScreenshotResult.class, msg->new CaptureScreenshotResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.captureScreenshot", CaptureScreenshotResult.class,
+                (code, msg)->new CaptureScreenshotResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of captureScreenshot.*/
@@ -1225,10 +1233,12 @@ import javax.annotation.Nullable;
         }
         public ClearDeviceMetricsOverrideParameter() {}
         public CompletableFuture<ClearDeviceMetricsOverrideResult> call() {
-            return super.call("Page.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class, msg->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Page.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
+                (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearDeviceMetricsOverrideResult> call(Executor exec) {
-            return super.call("Page.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class, msg->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
+                (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearDeviceMetricsOverride.
@@ -1272,10 +1282,12 @@ import javax.annotation.Nullable;
         }
         public ClearDeviceOrientationOverrideParameter() {}
         public CompletableFuture<ClearDeviceOrientationOverrideResult> call() {
-            return super.call("Page.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class, msg->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Page.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
+                (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearDeviceOrientationOverrideResult> call(Executor exec) {
-            return super.call("Page.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class, msg->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
+                (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearDeviceOrientationOverride.
@@ -1317,10 +1329,12 @@ import javax.annotation.Nullable;
         }
         public ClearGeolocationOverrideParameter() {}
         public CompletableFuture<ClearGeolocationOverrideResult> call() {
-            return super.call("Page.clearGeolocationOverride", ClearGeolocationOverrideResult.class, msg->new ClearGeolocationOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Page.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
+                (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearGeolocationOverrideResult> call(Executor exec) {
-            return super.call("Page.clearGeolocationOverride", ClearGeolocationOverrideResult.class, msg->new ClearGeolocationOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
+                (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearGeolocationOverride.
@@ -1394,10 +1408,12 @@ option, use with caution.
             this.grantUniveralAccess = grantUniveralAccess;
         }
         public CompletableFuture<CreateIsolatedWorldResult> call() {
-            return super.call("Page.createIsolatedWorld", CreateIsolatedWorldResult.class, msg->new CreateIsolatedWorldResult(ResultBase.ofError(msg)));
+            return super.call("Page.createIsolatedWorld", CreateIsolatedWorldResult.class,
+                (code, msg)->new CreateIsolatedWorldResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CreateIsolatedWorldResult> call(Executor exec) {
-            return super.call("Page.createIsolatedWorld", CreateIsolatedWorldResult.class, msg->new CreateIsolatedWorldResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.createIsolatedWorld", CreateIsolatedWorldResult.class,
+                (code, msg)->new CreateIsolatedWorldResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of createIsolatedWorld.*/
@@ -1473,10 +1489,12 @@ option, use with caution.
             this.url = url;
         }
         public CompletableFuture<DeleteCookieResult> call() {
-            return super.call("Page.deleteCookie", DeleteCookieResult.class, msg->new DeleteCookieResult(ResultBase.ofError(msg)));
+            return super.call("Page.deleteCookie", DeleteCookieResult.class,
+                (code, msg)->new DeleteCookieResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DeleteCookieResult> call(Executor exec) {
-            return super.call("Page.deleteCookie", DeleteCookieResult.class, msg->new DeleteCookieResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.deleteCookie", DeleteCookieResult.class,
+                (code, msg)->new DeleteCookieResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of deleteCookie.
@@ -1516,10 +1534,12 @@ option, use with caution.
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Page.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Page.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Page.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -1557,10 +1577,12 @@ option, use with caution.
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Page.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Page.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Page.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -1598,10 +1620,12 @@ option, use with caution.
         }
         public GetAppManifestParameter() {}
         public CompletableFuture<GetAppManifestResult> call() {
-            return super.call("Page.getAppManifest", GetAppManifestResult.class, msg->new GetAppManifestResult(ResultBase.ofError(msg)));
+            return super.call("Page.getAppManifest", GetAppManifestResult.class,
+                (code, msg)->new GetAppManifestResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetAppManifestResult> call(Executor exec) {
-            return super.call("Page.getAppManifest", GetAppManifestResult.class, msg->new GetAppManifestResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.getAppManifest", GetAppManifestResult.class,
+                (code, msg)->new GetAppManifestResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getAppManifest.*/
@@ -1675,10 +1699,12 @@ information in the `cookies` field.
         }
         public GetCookiesParameter() {}
         public CompletableFuture<GetCookiesResult> call() {
-            return super.call("Page.getCookies", GetCookiesResult.class, msg->new GetCookiesResult(ResultBase.ofError(msg)));
+            return super.call("Page.getCookies", GetCookiesResult.class,
+                (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetCookiesResult> call(Executor exec) {
-            return super.call("Page.getCookies", GetCookiesResult.class, msg->new GetCookiesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.getCookies", GetCookiesResult.class,
+                (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getCookies.
@@ -1732,10 +1758,12 @@ information in the `cookies` field.
         }
         public GetFrameTreeParameter() {}
         public CompletableFuture<GetFrameTreeResult> call() {
-            return super.call("Page.getFrameTree", GetFrameTreeResult.class, msg->new GetFrameTreeResult(ResultBase.ofError(msg)));
+            return super.call("Page.getFrameTree", GetFrameTreeResult.class,
+                (code, msg)->new GetFrameTreeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetFrameTreeResult> call(Executor exec) {
-            return super.call("Page.getFrameTree", GetFrameTreeResult.class, msg->new GetFrameTreeResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.getFrameTree", GetFrameTreeResult.class,
+                (code, msg)->new GetFrameTreeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getFrameTree.*/
@@ -1783,10 +1811,12 @@ information in the `cookies` field.
         }
         public GetLayoutMetricsParameter() {}
         public CompletableFuture<GetLayoutMetricsResult> call() {
-            return super.call("Page.getLayoutMetrics", GetLayoutMetricsResult.class, msg->new GetLayoutMetricsResult(ResultBase.ofError(msg)));
+            return super.call("Page.getLayoutMetrics", GetLayoutMetricsResult.class,
+                (code, msg)->new GetLayoutMetricsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetLayoutMetricsResult> call(Executor exec) {
-            return super.call("Page.getLayoutMetrics", GetLayoutMetricsResult.class, msg->new GetLayoutMetricsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.getLayoutMetrics", GetLayoutMetricsResult.class,
+                (code, msg)->new GetLayoutMetricsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getLayoutMetrics.*/
@@ -1850,10 +1880,12 @@ information in the `cookies` field.
         }
         public GetNavigationHistoryParameter() {}
         public CompletableFuture<GetNavigationHistoryResult> call() {
-            return super.call("Page.getNavigationHistory", GetNavigationHistoryResult.class, msg->new GetNavigationHistoryResult(ResultBase.ofError(msg)));
+            return super.call("Page.getNavigationHistory", GetNavigationHistoryResult.class,
+                (code, msg)->new GetNavigationHistoryResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetNavigationHistoryResult> call(Executor exec) {
-            return super.call("Page.getNavigationHistory", GetNavigationHistoryResult.class, msg->new GetNavigationHistoryResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.getNavigationHistory", GetNavigationHistoryResult.class,
+                (code, msg)->new GetNavigationHistoryResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getNavigationHistory.*/
@@ -1939,10 +1971,12 @@ information in the `cookies` field.
             this.url = url;
         }
         public CompletableFuture<GetResourceContentResult> call() {
-            return super.call("Page.getResourceContent", GetResourceContentResult.class, msg->new GetResourceContentResult(ResultBase.ofError(msg)));
+            return super.call("Page.getResourceContent", GetResourceContentResult.class,
+                (code, msg)->new GetResourceContentResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetResourceContentResult> call(Executor exec) {
-            return super.call("Page.getResourceContent", GetResourceContentResult.class, msg->new GetResourceContentResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.getResourceContent", GetResourceContentResult.class,
+                (code, msg)->new GetResourceContentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getResourceContent.
@@ -2001,10 +2035,12 @@ information in the `cookies` field.
         }
         public GetResourceTreeParameter() {}
         public CompletableFuture<GetResourceTreeResult> call() {
-            return super.call("Page.getResourceTree", GetResourceTreeResult.class, msg->new GetResourceTreeResult(ResultBase.ofError(msg)));
+            return super.call("Page.getResourceTree", GetResourceTreeResult.class,
+                (code, msg)->new GetResourceTreeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetResourceTreeResult> call(Executor exec) {
-            return super.call("Page.getResourceTree", GetResourceTreeResult.class, msg->new GetResourceTreeResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.getResourceTree", GetResourceTreeResult.class,
+                (code, msg)->new GetResourceTreeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getResourceTree.
@@ -2078,10 +2114,12 @@ dialog.
             this.promptText = promptText;
         }
         public CompletableFuture<HandleJavaScriptDialogResult> call() {
-            return super.call("Page.handleJavaScriptDialog", HandleJavaScriptDialogResult.class, msg->new HandleJavaScriptDialogResult(ResultBase.ofError(msg)));
+            return super.call("Page.handleJavaScriptDialog", HandleJavaScriptDialogResult.class,
+                (code, msg)->new HandleJavaScriptDialogResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<HandleJavaScriptDialogResult> call(Executor exec) {
-            return super.call("Page.handleJavaScriptDialog", HandleJavaScriptDialogResult.class, msg->new HandleJavaScriptDialogResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.handleJavaScriptDialog", HandleJavaScriptDialogResult.class,
+                (code, msg)->new HandleJavaScriptDialogResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of handleJavaScriptDialog.*/
@@ -2163,10 +2201,12 @@ dialog.
             this.frameId = frameId;
         }
         public CompletableFuture<NavigateResult> call() {
-            return super.call("Page.navigate", NavigateResult.class, msg->new NavigateResult(ResultBase.ofError(msg)));
+            return super.call("Page.navigate", NavigateResult.class,
+                (code, msg)->new NavigateResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<NavigateResult> call(Executor exec) {
-            return super.call("Page.navigate", NavigateResult.class, msg->new NavigateResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.navigate", NavigateResult.class,
+                (code, msg)->new NavigateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of navigate.*/
@@ -2246,10 +2286,12 @@ dialog.
             this.entryId = entryId;
         }
         public CompletableFuture<NavigateToHistoryEntryResult> call() {
-            return super.call("Page.navigateToHistoryEntry", NavigateToHistoryEntryResult.class, msg->new NavigateToHistoryEntryResult(ResultBase.ofError(msg)));
+            return super.call("Page.navigateToHistoryEntry", NavigateToHistoryEntryResult.class,
+                (code, msg)->new NavigateToHistoryEntryResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<NavigateToHistoryEntryResult> call(Executor exec) {
-            return super.call("Page.navigateToHistoryEntry", NavigateToHistoryEntryResult.class, msg->new NavigateToHistoryEntryResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.navigateToHistoryEntry", NavigateToHistoryEntryResult.class,
+                (code, msg)->new NavigateToHistoryEntryResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of navigateToHistoryEntry.*/
@@ -2452,10 +2494,12 @@ in which case the content will be scaled to fit the paper size.
             this.preferCSSPageSize = preferCSSPageSize;
         }
         public CompletableFuture<PrintToPDFResult> call() {
-            return super.call("Page.printToPDF", PrintToPDFResult.class, msg->new PrintToPDFResult(ResultBase.ofError(msg)));
+            return super.call("Page.printToPDF", PrintToPDFResult.class,
+                (code, msg)->new PrintToPDFResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<PrintToPDFResult> call(Executor exec) {
-            return super.call("Page.printToPDF", PrintToPDFResult.class, msg->new PrintToPDFResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.printToPDF", PrintToPDFResult.class,
+                (code, msg)->new PrintToPDFResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of printToPDF.*/
@@ -2528,10 +2572,12 @@ Argument will be ignored if reloading dataURL origin.
             this.scriptToEvaluateOnLoad = scriptToEvaluateOnLoad;
         }
         public CompletableFuture<ReloadResult> call() {
-            return super.call("Page.reload", ReloadResult.class, msg->new ReloadResult(ResultBase.ofError(msg)));
+            return super.call("Page.reload", ReloadResult.class,
+                (code, msg)->new ReloadResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ReloadResult> call(Executor exec) {
-            return super.call("Page.reload", ReloadResult.class, msg->new ReloadResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.reload", ReloadResult.class,
+                (code, msg)->new ReloadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of reload.*/
@@ -2587,10 +2633,12 @@ Argument will be ignored if reloading dataURL origin.
             this.identifier = identifier;
         }
         public CompletableFuture<RemoveScriptToEvaluateOnLoadResult> call() {
-            return super.call("Page.removeScriptToEvaluateOnLoad", RemoveScriptToEvaluateOnLoadResult.class, msg->new RemoveScriptToEvaluateOnLoadResult(ResultBase.ofError(msg)));
+            return super.call("Page.removeScriptToEvaluateOnLoad", RemoveScriptToEvaluateOnLoadResult.class,
+                (code, msg)->new RemoveScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RemoveScriptToEvaluateOnLoadResult> call(Executor exec) {
-            return super.call("Page.removeScriptToEvaluateOnLoad", RemoveScriptToEvaluateOnLoadResult.class, msg->new RemoveScriptToEvaluateOnLoadResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.removeScriptToEvaluateOnLoad", RemoveScriptToEvaluateOnLoadResult.class,
+                (code, msg)->new RemoveScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of removeScriptToEvaluateOnLoad.
@@ -2644,10 +2692,12 @@ Argument will be ignored if reloading dataURL origin.
             this.identifier = identifier;
         }
         public CompletableFuture<RemoveScriptToEvaluateOnNewDocumentResult> call() {
-            return super.call("Page.removeScriptToEvaluateOnNewDocument", RemoveScriptToEvaluateOnNewDocumentResult.class, msg->new RemoveScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(msg)));
+            return super.call("Page.removeScriptToEvaluateOnNewDocument", RemoveScriptToEvaluateOnNewDocumentResult.class,
+                (code, msg)->new RemoveScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RemoveScriptToEvaluateOnNewDocumentResult> call(Executor exec) {
-            return super.call("Page.removeScriptToEvaluateOnNewDocument", RemoveScriptToEvaluateOnNewDocumentResult.class, msg->new RemoveScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.removeScriptToEvaluateOnNewDocument", RemoveScriptToEvaluateOnNewDocumentResult.class,
+                (code, msg)->new RemoveScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of removeScriptToEvaluateOnNewDocument.*/
@@ -2687,10 +2737,12 @@ Argument will be ignored if reloading dataURL origin.
         }
         public RequestAppBannerParameter() {}
         public CompletableFuture<RequestAppBannerResult> call() {
-            return super.call("Page.requestAppBanner", RequestAppBannerResult.class, msg->new RequestAppBannerResult(ResultBase.ofError(msg)));
+            return super.call("Page.requestAppBanner", RequestAppBannerResult.class,
+                (code, msg)->new RequestAppBannerResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RequestAppBannerResult> call(Executor exec) {
-            return super.call("Page.requestAppBanner", RequestAppBannerResult.class, msg->new RequestAppBannerResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.requestAppBanner", RequestAppBannerResult.class,
+                (code, msg)->new RequestAppBannerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of requestAppBanner.
@@ -2745,10 +2797,12 @@ Argument will be ignored if reloading dataURL origin.
             this.sessionId = sessionId;
         }
         public CompletableFuture<ScreencastFrameAckResult> call() {
-            return super.call("Page.screencastFrameAck", ScreencastFrameAckResult.class, msg->new ScreencastFrameAckResult(ResultBase.ofError(msg)));
+            return super.call("Page.screencastFrameAck", ScreencastFrameAckResult.class,
+                (code, msg)->new ScreencastFrameAckResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ScreencastFrameAckResult> call(Executor exec) {
-            return super.call("Page.screencastFrameAck", ScreencastFrameAckResult.class, msg->new ScreencastFrameAckResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.screencastFrameAck", ScreencastFrameAckResult.class,
+                (code, msg)->new ScreencastFrameAckResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of screencastFrameAck.
@@ -2843,10 +2897,12 @@ Argument will be ignored if reloading dataURL origin.
             this.isRegex = isRegex;
         }
         public CompletableFuture<SearchInResourceResult> call() {
-            return super.call("Page.searchInResource", SearchInResourceResult.class, msg->new SearchInResourceResult(ResultBase.ofError(msg)));
+            return super.call("Page.searchInResource", SearchInResourceResult.class,
+                (code, msg)->new SearchInResourceResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SearchInResourceResult> call(Executor exec) {
-            return super.call("Page.searchInResource", SearchInResourceResult.class, msg->new SearchInResourceResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.searchInResource", SearchInResourceResult.class,
+                (code, msg)->new SearchInResourceResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of searchInResource.
@@ -2915,10 +2971,12 @@ Argument will be ignored if reloading dataURL origin.
             this.enabled = enabled;
         }
         public CompletableFuture<SetAdBlockingEnabledResult> call() {
-            return super.call("Page.setAdBlockingEnabled", SetAdBlockingEnabledResult.class, msg->new SetAdBlockingEnabledResult(ResultBase.ofError(msg)));
+            return super.call("Page.setAdBlockingEnabled", SetAdBlockingEnabledResult.class,
+                (code, msg)->new SetAdBlockingEnabledResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetAdBlockingEnabledResult> call(Executor exec) {
-            return super.call("Page.setAdBlockingEnabled", SetAdBlockingEnabledResult.class, msg->new SetAdBlockingEnabledResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.setAdBlockingEnabled", SetAdBlockingEnabledResult.class,
+                (code, msg)->new SetAdBlockingEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setAdBlockingEnabled.
@@ -3088,10 +3146,12 @@ autosizing and more.*/
             this.viewport = viewport;
         }
         public CompletableFuture<SetDeviceMetricsOverrideResult> call() {
-            return super.call("Page.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class, msg->new SetDeviceMetricsOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Page.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
+                (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDeviceMetricsOverrideResult> call(Executor exec) {
-            return super.call("Page.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class, msg->new SetDeviceMetricsOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
+                (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDeviceMetricsOverride.
@@ -3169,10 +3229,12 @@ autosizing and more.*/
             this.gamma = gamma;
         }
         public CompletableFuture<SetDeviceOrientationOverrideResult> call() {
-            return super.call("Page.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class, msg->new SetDeviceOrientationOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Page.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
+                (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDeviceOrientationOverrideResult> call(Executor exec) {
-            return super.call("Page.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class, msg->new SetDeviceOrientationOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
+                (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDeviceOrientationOverride.
@@ -3236,10 +3298,12 @@ autosizing and more.*/
             this.html = html;
         }
         public CompletableFuture<SetDocumentContentResult> call() {
-            return super.call("Page.setDocumentContent", SetDocumentContentResult.class, msg->new SetDocumentContentResult(ResultBase.ofError(msg)));
+            return super.call("Page.setDocumentContent", SetDocumentContentResult.class,
+                (code, msg)->new SetDocumentContentResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDocumentContentResult> call(Executor exec) {
-            return super.call("Page.setDocumentContent", SetDocumentContentResult.class, msg->new SetDocumentContentResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.setDocumentContent", SetDocumentContentResult.class,
+                (code, msg)->new SetDocumentContentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDocumentContent.*/
@@ -3330,10 +3394,12 @@ available (otherwise deny).*/
             this.downloadPath = downloadPath;
         }
         public CompletableFuture<SetDownloadBehaviorResult> call() {
-            return super.call("Page.setDownloadBehavior", SetDownloadBehaviorResult.class, msg->new SetDownloadBehaviorResult(ResultBase.ofError(msg)));
+            return super.call("Page.setDownloadBehavior", SetDownloadBehaviorResult.class,
+                (code, msg)->new SetDownloadBehaviorResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDownloadBehaviorResult> call(Executor exec) {
-            return super.call("Page.setDownloadBehavior", SetDownloadBehaviorResult.class, msg->new SetDownloadBehaviorResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.setDownloadBehavior", SetDownloadBehaviorResult.class,
+                (code, msg)->new SetDownloadBehaviorResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDownloadBehavior.
@@ -3409,10 +3475,12 @@ unavailable.
             this.accuracy = accuracy;
         }
         public CompletableFuture<SetGeolocationOverrideResult> call() {
-            return super.call("Page.setGeolocationOverride", SetGeolocationOverrideResult.class, msg->new SetGeolocationOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Page.setGeolocationOverride", SetGeolocationOverrideResult.class,
+                (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetGeolocationOverrideResult> call(Executor exec) {
-            return super.call("Page.setGeolocationOverride", SetGeolocationOverrideResult.class, msg->new SetGeolocationOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.setGeolocationOverride", SetGeolocationOverrideResult.class,
+                (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setGeolocationOverride.
@@ -3467,10 +3535,12 @@ unavailable.
             this.enabled = enabled;
         }
         public CompletableFuture<SetLifecycleEventsEnabledResult> call() {
-            return super.call("Page.setLifecycleEventsEnabled", SetLifecycleEventsEnabledResult.class, msg->new SetLifecycleEventsEnabledResult(ResultBase.ofError(msg)));
+            return super.call("Page.setLifecycleEventsEnabled", SetLifecycleEventsEnabledResult.class,
+                (code, msg)->new SetLifecycleEventsEnabledResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetLifecycleEventsEnabledResult> call(Executor exec) {
-            return super.call("Page.setLifecycleEventsEnabled", SetLifecycleEventsEnabledResult.class, msg->new SetLifecycleEventsEnabledResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.setLifecycleEventsEnabled", SetLifecycleEventsEnabledResult.class,
+                (code, msg)->new SetLifecycleEventsEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setLifecycleEventsEnabled.
@@ -3562,10 +3632,12 @@ unavailable.
             this.configuration = configuration;
         }
         public CompletableFuture<SetTouchEmulationEnabledResult> call() {
-            return super.call("Page.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class, msg->new SetTouchEmulationEnabledResult(ResultBase.ofError(msg)));
+            return super.call("Page.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
+                (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetTouchEmulationEnabledResult> call(Executor exec) {
-            return super.call("Page.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class, msg->new SetTouchEmulationEnabledResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
+                (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setTouchEmulationEnabled.
@@ -3686,10 +3758,12 @@ unavailable.
             this.everyNthFrame = everyNthFrame;
         }
         public CompletableFuture<StartScreencastResult> call() {
-            return super.call("Page.startScreencast", StartScreencastResult.class, msg->new StartScreencastResult(ResultBase.ofError(msg)));
+            return super.call("Page.startScreencast", StartScreencastResult.class,
+                (code, msg)->new StartScreencastResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartScreencastResult> call(Executor exec) {
-            return super.call("Page.startScreencast", StartScreencastResult.class, msg->new StartScreencastResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.startScreencast", StartScreencastResult.class,
+                (code, msg)->new StartScreencastResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of startScreencast.
@@ -3728,10 +3802,12 @@ unavailable.
         }
         public StopLoadingParameter() {}
         public CompletableFuture<StopLoadingResult> call() {
-            return super.call("Page.stopLoading", StopLoadingResult.class, msg->new StopLoadingResult(ResultBase.ofError(msg)));
+            return super.call("Page.stopLoading", StopLoadingResult.class,
+                (code, msg)->new StopLoadingResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopLoadingResult> call(Executor exec) {
-            return super.call("Page.stopLoading", StopLoadingResult.class, msg->new StopLoadingResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.stopLoading", StopLoadingResult.class,
+                (code, msg)->new StopLoadingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopLoading.*/
@@ -3771,10 +3847,12 @@ unavailable.
         }
         public CrashParameter() {}
         public CompletableFuture<CrashResult> call() {
-            return super.call("Page.crash", CrashResult.class, msg->new CrashResult(ResultBase.ofError(msg)));
+            return super.call("Page.crash", CrashResult.class,
+                (code, msg)->new CrashResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CrashResult> call(Executor exec) {
-            return super.call("Page.crash", CrashResult.class, msg->new CrashResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.crash", CrashResult.class,
+                (code, msg)->new CrashResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of crash.
@@ -3815,10 +3893,12 @@ unavailable.
         }
         public StopScreencastParameter() {}
         public CompletableFuture<StopScreencastResult> call() {
-            return super.call("Page.stopScreencast", StopScreencastResult.class, msg->new StopScreencastResult(ResultBase.ofError(msg)));
+            return super.call("Page.stopScreencast", StopScreencastResult.class,
+                (code, msg)->new StopScreencastResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopScreencastResult> call(Executor exec) {
-            return super.call("Page.stopScreencast", StopScreencastResult.class, msg->new StopScreencastResult(ResultBase.ofError(msg)), exec);
+            return super.call("Page.stopScreencast", StopScreencastResult.class,
+                (code, msg)->new StopScreencastResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopScreencast.

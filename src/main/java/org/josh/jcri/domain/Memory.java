@@ -156,10 +156,12 @@ import javax.annotation.Nullable;
         }
         public GetDOMCountersParameter() {}
         public CompletableFuture<GetDOMCountersResult> call() {
-            return super.call("Memory.getDOMCounters", GetDOMCountersResult.class, msg->new GetDOMCountersResult(ResultBase.ofError(msg)));
+            return super.call("Memory.getDOMCounters", GetDOMCountersResult.class,
+                (code, msg)->new GetDOMCountersResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetDOMCountersResult> call(Executor exec) {
-            return super.call("Memory.getDOMCounters", GetDOMCountersResult.class, msg->new GetDOMCountersResult(ResultBase.ofError(msg)), exec);
+            return super.call("Memory.getDOMCounters", GetDOMCountersResult.class,
+                (code, msg)->new GetDOMCountersResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getDOMCounters.*/
@@ -223,10 +225,12 @@ import javax.annotation.Nullable;
         }
         public PrepareForLeakDetectionParameter() {}
         public CompletableFuture<PrepareForLeakDetectionResult> call() {
-            return super.call("Memory.prepareForLeakDetection", PrepareForLeakDetectionResult.class, msg->new PrepareForLeakDetectionResult(ResultBase.ofError(msg)));
+            return super.call("Memory.prepareForLeakDetection", PrepareForLeakDetectionResult.class,
+                (code, msg)->new PrepareForLeakDetectionResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<PrepareForLeakDetectionResult> call(Executor exec) {
-            return super.call("Memory.prepareForLeakDetection", PrepareForLeakDetectionResult.class, msg->new PrepareForLeakDetectionResult(ResultBase.ofError(msg)), exec);
+            return super.call("Memory.prepareForLeakDetection", PrepareForLeakDetectionResult.class,
+                (code, msg)->new PrepareForLeakDetectionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of prepareForLeakDetection.*/
@@ -278,10 +282,12 @@ import javax.annotation.Nullable;
             this.suppressed = suppressed;
         }
         public CompletableFuture<SetPressureNotificationsSuppressedResult> call() {
-            return super.call("Memory.setPressureNotificationsSuppressed", SetPressureNotificationsSuppressedResult.class, msg->new SetPressureNotificationsSuppressedResult(ResultBase.ofError(msg)));
+            return super.call("Memory.setPressureNotificationsSuppressed", SetPressureNotificationsSuppressedResult.class,
+                (code, msg)->new SetPressureNotificationsSuppressedResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetPressureNotificationsSuppressedResult> call(Executor exec) {
-            return super.call("Memory.setPressureNotificationsSuppressed", SetPressureNotificationsSuppressedResult.class, msg->new SetPressureNotificationsSuppressedResult(ResultBase.ofError(msg)), exec);
+            return super.call("Memory.setPressureNotificationsSuppressed", SetPressureNotificationsSuppressedResult.class,
+                (code, msg)->new SetPressureNotificationsSuppressedResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setPressureNotificationsSuppressed.*/
@@ -333,10 +339,12 @@ import javax.annotation.Nullable;
             this.level = level;
         }
         public CompletableFuture<SimulatePressureNotificationResult> call() {
-            return super.call("Memory.simulatePressureNotification", SimulatePressureNotificationResult.class, msg->new SimulatePressureNotificationResult(ResultBase.ofError(msg)));
+            return super.call("Memory.simulatePressureNotification", SimulatePressureNotificationResult.class,
+                (code, msg)->new SimulatePressureNotificationResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SimulatePressureNotificationResult> call(Executor exec) {
-            return super.call("Memory.simulatePressureNotification", SimulatePressureNotificationResult.class, msg->new SimulatePressureNotificationResult(ResultBase.ofError(msg)), exec);
+            return super.call("Memory.simulatePressureNotification", SimulatePressureNotificationResult.class,
+                (code, msg)->new SimulatePressureNotificationResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of simulatePressureNotification.*/
@@ -398,10 +406,12 @@ import javax.annotation.Nullable;
             this.suppressRandomness = suppressRandomness;
         }
         public CompletableFuture<StartSamplingResult> call() {
-            return super.call("Memory.startSampling", StartSamplingResult.class, msg->new StartSamplingResult(ResultBase.ofError(msg)));
+            return super.call("Memory.startSampling", StartSamplingResult.class,
+                (code, msg)->new StartSamplingResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartSamplingResult> call(Executor exec) {
-            return super.call("Memory.startSampling", StartSamplingResult.class, msg->new StartSamplingResult(ResultBase.ofError(msg)), exec);
+            return super.call("Memory.startSampling", StartSamplingResult.class,
+                (code, msg)->new StartSamplingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of startSampling.*/
@@ -439,10 +449,12 @@ import javax.annotation.Nullable;
         }
         public StopSamplingParameter() {}
         public CompletableFuture<StopSamplingResult> call() {
-            return super.call("Memory.stopSampling", StopSamplingResult.class, msg->new StopSamplingResult(ResultBase.ofError(msg)));
+            return super.call("Memory.stopSampling", StopSamplingResult.class,
+                (code, msg)->new StopSamplingResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopSamplingResult> call(Executor exec) {
-            return super.call("Memory.stopSampling", StopSamplingResult.class, msg->new StopSamplingResult(ResultBase.ofError(msg)), exec);
+            return super.call("Memory.stopSampling", StopSamplingResult.class,
+                (code, msg)->new StopSamplingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopSampling.*/
@@ -481,10 +493,12 @@ collected since renderer process startup.*/
         }
         public GetAllTimeSamplingProfileParameter() {}
         public CompletableFuture<GetAllTimeSamplingProfileResult> call() {
-            return super.call("Memory.getAllTimeSamplingProfile", GetAllTimeSamplingProfileResult.class, msg->new GetAllTimeSamplingProfileResult(ResultBase.ofError(msg)));
+            return super.call("Memory.getAllTimeSamplingProfile", GetAllTimeSamplingProfileResult.class,
+                (code, msg)->new GetAllTimeSamplingProfileResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetAllTimeSamplingProfileResult> call(Executor exec) {
-            return super.call("Memory.getAllTimeSamplingProfile", GetAllTimeSamplingProfileResult.class, msg->new GetAllTimeSamplingProfileResult(ResultBase.ofError(msg)), exec);
+            return super.call("Memory.getAllTimeSamplingProfile", GetAllTimeSamplingProfileResult.class,
+                (code, msg)->new GetAllTimeSamplingProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getAllTimeSamplingProfile.*/
@@ -533,10 +547,12 @@ collected since browser process startup.*/
         }
         public GetBrowserSamplingProfileParameter() {}
         public CompletableFuture<GetBrowserSamplingProfileResult> call() {
-            return super.call("Memory.getBrowserSamplingProfile", GetBrowserSamplingProfileResult.class, msg->new GetBrowserSamplingProfileResult(ResultBase.ofError(msg)));
+            return super.call("Memory.getBrowserSamplingProfile", GetBrowserSamplingProfileResult.class,
+                (code, msg)->new GetBrowserSamplingProfileResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetBrowserSamplingProfileResult> call(Executor exec) {
-            return super.call("Memory.getBrowserSamplingProfile", GetBrowserSamplingProfileResult.class, msg->new GetBrowserSamplingProfileResult(ResultBase.ofError(msg)), exec);
+            return super.call("Memory.getBrowserSamplingProfile", GetBrowserSamplingProfileResult.class,
+                (code, msg)->new GetBrowserSamplingProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getBrowserSamplingProfile.*/
@@ -585,10 +601,12 @@ collected since browser process startup.*/
         }
         public GetSamplingProfileParameter() {}
         public CompletableFuture<GetSamplingProfileResult> call() {
-            return super.call("Memory.getSamplingProfile", GetSamplingProfileResult.class, msg->new GetSamplingProfileResult(ResultBase.ofError(msg)));
+            return super.call("Memory.getSamplingProfile", GetSamplingProfileResult.class,
+                (code, msg)->new GetSamplingProfileResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetSamplingProfileResult> call(Executor exec) {
-            return super.call("Memory.getSamplingProfile", GetSamplingProfileResult.class, msg->new GetSamplingProfileResult(ResultBase.ofError(msg)), exec);
+            return super.call("Memory.getSamplingProfile", GetSamplingProfileResult.class,
+                (code, msg)->new GetSamplingProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getSamplingProfile.*/

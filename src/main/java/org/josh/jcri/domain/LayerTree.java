@@ -488,10 +488,12 @@ transform/scrolling purposes only.*/
             this.layerId = layerId;
         }
         public CompletableFuture<CompositingReasonsResult> call() {
-            return super.call("LayerTree.compositingReasons", CompositingReasonsResult.class, msg->new CompositingReasonsResult(ResultBase.ofError(msg)));
+            return super.call("LayerTree.compositingReasons", CompositingReasonsResult.class,
+                (code, msg)->new CompositingReasonsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CompositingReasonsResult> call(Executor exec) {
-            return super.call("LayerTree.compositingReasons", CompositingReasonsResult.class, msg->new CompositingReasonsResult(ResultBase.ofError(msg)), exec);
+            return super.call("LayerTree.compositingReasons", CompositingReasonsResult.class,
+                (code, msg)->new CompositingReasonsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of compositingReasons.*/
@@ -543,10 +545,12 @@ transform/scrolling purposes only.*/
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("LayerTree.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("LayerTree.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("LayerTree.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("LayerTree.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -584,10 +588,12 @@ transform/scrolling purposes only.*/
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("LayerTree.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("LayerTree.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("LayerTree.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("LayerTree.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -643,10 +649,12 @@ transform/scrolling purposes only.*/
             this.tiles = tiles;
         }
         public CompletableFuture<LoadSnapshotResult> call() {
-            return super.call("LayerTree.loadSnapshot", LoadSnapshotResult.class, msg->new LoadSnapshotResult(ResultBase.ofError(msg)));
+            return super.call("LayerTree.loadSnapshot", LoadSnapshotResult.class,
+                (code, msg)->new LoadSnapshotResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<LoadSnapshotResult> call(Executor exec) {
-            return super.call("LayerTree.loadSnapshot", LoadSnapshotResult.class, msg->new LoadSnapshotResult(ResultBase.ofError(msg)), exec);
+            return super.call("LayerTree.loadSnapshot", LoadSnapshotResult.class,
+                (code, msg)->new LoadSnapshotResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of loadSnapshot.*/
@@ -708,10 +716,12 @@ transform/scrolling purposes only.*/
             this.layerId = layerId;
         }
         public CompletableFuture<MakeSnapshotResult> call() {
-            return super.call("LayerTree.makeSnapshot", MakeSnapshotResult.class, msg->new MakeSnapshotResult(ResultBase.ofError(msg)));
+            return super.call("LayerTree.makeSnapshot", MakeSnapshotResult.class,
+                (code, msg)->new MakeSnapshotResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<MakeSnapshotResult> call(Executor exec) {
-            return super.call("LayerTree.makeSnapshot", MakeSnapshotResult.class, msg->new MakeSnapshotResult(ResultBase.ofError(msg)), exec);
+            return super.call("LayerTree.makeSnapshot", MakeSnapshotResult.class,
+                (code, msg)->new MakeSnapshotResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of makeSnapshot.*/
@@ -803,10 +813,12 @@ transform/scrolling purposes only.*/
             this.clipRect = clipRect;
         }
         public CompletableFuture<ProfileSnapshotResult> call() {
-            return super.call("LayerTree.profileSnapshot", ProfileSnapshotResult.class, msg->new ProfileSnapshotResult(ResultBase.ofError(msg)));
+            return super.call("LayerTree.profileSnapshot", ProfileSnapshotResult.class,
+                (code, msg)->new ProfileSnapshotResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ProfileSnapshotResult> call(Executor exec) {
-            return super.call("LayerTree.profileSnapshot", ProfileSnapshotResult.class, msg->new ProfileSnapshotResult(ResultBase.ofError(msg)), exec);
+            return super.call("LayerTree.profileSnapshot", ProfileSnapshotResult.class,
+                (code, msg)->new ProfileSnapshotResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of profileSnapshot.*/
@@ -872,10 +884,12 @@ transform/scrolling purposes only.*/
             this.snapshotId = snapshotId;
         }
         public CompletableFuture<ReleaseSnapshotResult> call() {
-            return super.call("LayerTree.releaseSnapshot", ReleaseSnapshotResult.class, msg->new ReleaseSnapshotResult(ResultBase.ofError(msg)));
+            return super.call("LayerTree.releaseSnapshot", ReleaseSnapshotResult.class,
+                (code, msg)->new ReleaseSnapshotResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ReleaseSnapshotResult> call(Executor exec) {
-            return super.call("LayerTree.releaseSnapshot", ReleaseSnapshotResult.class, msg->new ReleaseSnapshotResult(ResultBase.ofError(msg)), exec);
+            return super.call("LayerTree.releaseSnapshot", ReleaseSnapshotResult.class,
+                (code, msg)->new ReleaseSnapshotResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of releaseSnapshot.*/
@@ -957,10 +971,12 @@ transform/scrolling purposes only.*/
             this.scale = scale;
         }
         public CompletableFuture<ReplaySnapshotResult> call() {
-            return super.call("LayerTree.replaySnapshot", ReplaySnapshotResult.class, msg->new ReplaySnapshotResult(ResultBase.ofError(msg)));
+            return super.call("LayerTree.replaySnapshot", ReplaySnapshotResult.class,
+                (code, msg)->new ReplaySnapshotResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ReplaySnapshotResult> call(Executor exec) {
-            return super.call("LayerTree.replaySnapshot", ReplaySnapshotResult.class, msg->new ReplaySnapshotResult(ResultBase.ofError(msg)), exec);
+            return super.call("LayerTree.replaySnapshot", ReplaySnapshotResult.class,
+                (code, msg)->new ReplaySnapshotResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of replaySnapshot.*/
@@ -1022,10 +1038,12 @@ transform/scrolling purposes only.*/
             this.snapshotId = snapshotId;
         }
         public CompletableFuture<SnapshotCommandLogResult> call() {
-            return super.call("LayerTree.snapshotCommandLog", SnapshotCommandLogResult.class, msg->new SnapshotCommandLogResult(ResultBase.ofError(msg)));
+            return super.call("LayerTree.snapshotCommandLog", SnapshotCommandLogResult.class,
+                (code, msg)->new SnapshotCommandLogResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SnapshotCommandLogResult> call(Executor exec) {
-            return super.call("LayerTree.snapshotCommandLog", SnapshotCommandLogResult.class, msg->new SnapshotCommandLogResult(ResultBase.ofError(msg)), exec);
+            return super.call("LayerTree.snapshotCommandLog", SnapshotCommandLogResult.class,
+                (code, msg)->new SnapshotCommandLogResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of snapshotCommandLog.*/

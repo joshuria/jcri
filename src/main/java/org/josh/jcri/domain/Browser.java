@@ -279,10 +279,12 @@ import javax.annotation.Nullable;
         }
         public CloseParameter() {}
         public CompletableFuture<CloseResult> call() {
-            return super.call("Browser.close", CloseResult.class, msg->new CloseResult(ResultBase.ofError(msg)));
+            return super.call("Browser.close", CloseResult.class,
+                (code, msg)->new CloseResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CloseResult> call(Executor exec) {
-            return super.call("Browser.close", CloseResult.class, msg->new CloseResult(ResultBase.ofError(msg)), exec);
+            return super.call("Browser.close", CloseResult.class,
+                (code, msg)->new CloseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of close.*/
@@ -320,10 +322,12 @@ import javax.annotation.Nullable;
         }
         public GetVersionParameter() {}
         public CompletableFuture<GetVersionResult> call() {
-            return super.call("Browser.getVersion", GetVersionResult.class, msg->new GetVersionResult(ResultBase.ofError(msg)));
+            return super.call("Browser.getVersion", GetVersionResult.class,
+                (code, msg)->new GetVersionResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetVersionResult> call(Executor exec) {
-            return super.call("Browser.getVersion", GetVersionResult.class, msg->new GetVersionResult(ResultBase.ofError(msg)), exec);
+            return super.call("Browser.getVersion", GetVersionResult.class,
+                (code, msg)->new GetVersionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getVersion.*/
@@ -406,10 +410,12 @@ import javax.annotation.Nullable;
         }
         public GetBrowserCommandLineParameter() {}
         public CompletableFuture<GetBrowserCommandLineResult> call() {
-            return super.call("Browser.getBrowserCommandLine", GetBrowserCommandLineResult.class, msg->new GetBrowserCommandLineResult(ResultBase.ofError(msg)));
+            return super.call("Browser.getBrowserCommandLine", GetBrowserCommandLineResult.class,
+                (code, msg)->new GetBrowserCommandLineResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetBrowserCommandLineResult> call(Executor exec) {
-            return super.call("Browser.getBrowserCommandLine", GetBrowserCommandLineResult.class, msg->new GetBrowserCommandLineResult(ResultBase.ofError(msg)), exec);
+            return super.call("Browser.getBrowserCommandLine", GetBrowserCommandLineResult.class,
+                (code, msg)->new GetBrowserCommandLineResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getBrowserCommandLine.
@@ -480,10 +486,12 @@ all histograms.
             this.query = query;
         }
         public CompletableFuture<GetHistogramsResult> call() {
-            return super.call("Browser.getHistograms", GetHistogramsResult.class, msg->new GetHistogramsResult(ResultBase.ofError(msg)));
+            return super.call("Browser.getHistograms", GetHistogramsResult.class,
+                (code, msg)->new GetHistogramsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetHistogramsResult> call(Executor exec) {
-            return super.call("Browser.getHistograms", GetHistogramsResult.class, msg->new GetHistogramsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Browser.getHistograms", GetHistogramsResult.class,
+                (code, msg)->new GetHistogramsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getHistograms.
@@ -552,10 +560,12 @@ all histograms.
             this.name = name;
         }
         public CompletableFuture<GetHistogramResult> call() {
-            return super.call("Browser.getHistogram", GetHistogramResult.class, msg->new GetHistogramResult(ResultBase.ofError(msg)));
+            return super.call("Browser.getHistogram", GetHistogramResult.class,
+                (code, msg)->new GetHistogramResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetHistogramResult> call(Executor exec) {
-            return super.call("Browser.getHistogram", GetHistogramResult.class, msg->new GetHistogramResult(ResultBase.ofError(msg)), exec);
+            return super.call("Browser.getHistogram", GetHistogramResult.class,
+                (code, msg)->new GetHistogramResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getHistogram.
@@ -620,10 +630,12 @@ all histograms.
             this.windowId = windowId;
         }
         public CompletableFuture<GetWindowBoundsResult> call() {
-            return super.call("Browser.getWindowBounds", GetWindowBoundsResult.class, msg->new GetWindowBoundsResult(ResultBase.ofError(msg)));
+            return super.call("Browser.getWindowBounds", GetWindowBoundsResult.class,
+                (code, msg)->new GetWindowBoundsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetWindowBoundsResult> call(Executor exec) {
-            return super.call("Browser.getWindowBounds", GetWindowBoundsResult.class, msg->new GetWindowBoundsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Browser.getWindowBounds", GetWindowBoundsResult.class,
+                (code, msg)->new GetWindowBoundsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getWindowBounds.
@@ -689,10 +701,12 @@ position and size are returned.*/
             this.targetId = targetId;
         }
         public CompletableFuture<GetWindowForTargetResult> call() {
-            return super.call("Browser.getWindowForTarget", GetWindowForTargetResult.class, msg->new GetWindowForTargetResult(ResultBase.ofError(msg)));
+            return super.call("Browser.getWindowForTarget", GetWindowForTargetResult.class,
+                (code, msg)->new GetWindowForTargetResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetWindowForTargetResult> call(Executor exec) {
-            return super.call("Browser.getWindowForTarget", GetWindowForTargetResult.class, msg->new GetWindowForTargetResult(ResultBase.ofError(msg)), exec);
+            return super.call("Browser.getWindowForTarget", GetWindowForTargetResult.class,
+                (code, msg)->new GetWindowForTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getWindowForTarget.
@@ -777,10 +791,12 @@ with 'left', 'top', 'width' or 'height'. Leaves unspecified fields unchanged.*/
             this.bounds = bounds;
         }
         public CompletableFuture<SetWindowBoundsResult> call() {
-            return super.call("Browser.setWindowBounds", SetWindowBoundsResult.class, msg->new SetWindowBoundsResult(ResultBase.ofError(msg)));
+            return super.call("Browser.setWindowBounds", SetWindowBoundsResult.class,
+                (code, msg)->new SetWindowBoundsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetWindowBoundsResult> call(Executor exec) {
-            return super.call("Browser.setWindowBounds", SetWindowBoundsResult.class, msg->new SetWindowBoundsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Browser.setWindowBounds", SetWindowBoundsResult.class,
+                (code, msg)->new SetWindowBoundsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setWindowBounds.

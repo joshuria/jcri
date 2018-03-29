@@ -223,10 +223,12 @@ import javax.annotation.Nullable;
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Overlay.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Overlay.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -264,10 +266,12 @@ import javax.annotation.Nullable;
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Overlay.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Overlay.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -319,10 +323,12 @@ import javax.annotation.Nullable;
             this.nodeId = nodeId;
         }
         public CompletableFuture<GetHighlightObjectForTestResult> call() {
-            return super.call("Overlay.getHighlightObjectForTest", GetHighlightObjectForTestResult.class, msg->new GetHighlightObjectForTestResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.getHighlightObjectForTest", GetHighlightObjectForTestResult.class,
+                (code, msg)->new GetHighlightObjectForTestResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetHighlightObjectForTestResult> call(Executor exec) {
-            return super.call("Overlay.getHighlightObjectForTest", GetHighlightObjectForTestResult.class, msg->new GetHighlightObjectForTestResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.getHighlightObjectForTest", GetHighlightObjectForTestResult.class,
+                (code, msg)->new GetHighlightObjectForTestResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getHighlightObjectForTest.*/
@@ -370,10 +376,12 @@ import javax.annotation.Nullable;
         }
         public HideHighlightParameter() {}
         public CompletableFuture<HideHighlightResult> call() {
-            return super.call("Overlay.hideHighlight", HideHighlightResult.class, msg->new HideHighlightResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.hideHighlight", HideHighlightResult.class,
+                (code, msg)->new HideHighlightResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<HideHighlightResult> call(Executor exec) {
-            return super.call("Overlay.hideHighlight", HideHighlightResult.class, msg->new HideHighlightResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.hideHighlight", HideHighlightResult.class,
+                (code, msg)->new HideHighlightResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of hideHighlight.*/
@@ -445,10 +453,12 @@ import javax.annotation.Nullable;
             this.contentOutlineColor = contentOutlineColor;
         }
         public CompletableFuture<HighlightFrameResult> call() {
-            return super.call("Overlay.highlightFrame", HighlightFrameResult.class, msg->new HighlightFrameResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.highlightFrame", HighlightFrameResult.class,
+                (code, msg)->new HighlightFrameResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<HighlightFrameResult> call(Executor exec) {
-            return super.call("Overlay.highlightFrame", HighlightFrameResult.class, msg->new HighlightFrameResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.highlightFrame", HighlightFrameResult.class,
+                (code, msg)->new HighlightFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of highlightFrame.*/
@@ -531,10 +541,12 @@ objectId must be specified.*/
             this.objectId = objectId;
         }
         public CompletableFuture<HighlightNodeResult> call() {
-            return super.call("Overlay.highlightNode", HighlightNodeResult.class, msg->new HighlightNodeResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.highlightNode", HighlightNodeResult.class,
+                (code, msg)->new HighlightNodeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<HighlightNodeResult> call(Executor exec) {
-            return super.call("Overlay.highlightNode", HighlightNodeResult.class, msg->new HighlightNodeResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.highlightNode", HighlightNodeResult.class,
+                (code, msg)->new HighlightNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of highlightNode.*/
@@ -606,10 +618,12 @@ objectId must be specified.*/
             this.outlineColor = outlineColor;
         }
         public CompletableFuture<HighlightQuadResult> call() {
-            return super.call("Overlay.highlightQuad", HighlightQuadResult.class, msg->new HighlightQuadResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.highlightQuad", HighlightQuadResult.class,
+                (code, msg)->new HighlightQuadResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<HighlightQuadResult> call(Executor exec) {
-            return super.call("Overlay.highlightQuad", HighlightQuadResult.class, msg->new HighlightQuadResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.highlightQuad", HighlightQuadResult.class,
+                (code, msg)->new HighlightQuadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of highlightQuad.*/
@@ -711,10 +725,12 @@ objectId must be specified.*/
             this.outlineColor = outlineColor;
         }
         public CompletableFuture<HighlightRectResult> call() {
-            return super.call("Overlay.highlightRect", HighlightRectResult.class, msg->new HighlightRectResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.highlightRect", HighlightRectResult.class,
+                (code, msg)->new HighlightRectResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<HighlightRectResult> call(Executor exec) {
-            return super.call("Overlay.highlightRect", HighlightRectResult.class, msg->new HighlightRectResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.highlightRect", HighlightRectResult.class,
+                (code, msg)->new HighlightRectResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of highlightRect.*/
@@ -778,10 +794,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             this.highlightConfig = highlightConfig;
         }
         public CompletableFuture<SetInspectModeResult> call() {
-            return super.call("Overlay.setInspectMode", SetInspectModeResult.class, msg->new SetInspectModeResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.setInspectMode", SetInspectModeResult.class,
+                (code, msg)->new SetInspectModeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetInspectModeResult> call(Executor exec) {
-            return super.call("Overlay.setInspectMode", SetInspectModeResult.class, msg->new SetInspectModeResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.setInspectMode", SetInspectModeResult.class,
+                (code, msg)->new SetInspectModeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setInspectMode.*/
@@ -833,10 +851,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             this.message = message;
         }
         public CompletableFuture<SetPausedInDebuggerMessageResult> call() {
-            return super.call("Overlay.setPausedInDebuggerMessage", SetPausedInDebuggerMessageResult.class, msg->new SetPausedInDebuggerMessageResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.setPausedInDebuggerMessage", SetPausedInDebuggerMessageResult.class,
+                (code, msg)->new SetPausedInDebuggerMessageResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetPausedInDebuggerMessageResult> call(Executor exec) {
-            return super.call("Overlay.setPausedInDebuggerMessage", SetPausedInDebuggerMessageResult.class, msg->new SetPausedInDebuggerMessageResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.setPausedInDebuggerMessage", SetPausedInDebuggerMessageResult.class,
+                (code, msg)->new SetPausedInDebuggerMessageResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setPausedInDebuggerMessage.*/
@@ -888,10 +908,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             this.show = show;
         }
         public CompletableFuture<SetShowDebugBordersResult> call() {
-            return super.call("Overlay.setShowDebugBorders", SetShowDebugBordersResult.class, msg->new SetShowDebugBordersResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.setShowDebugBorders", SetShowDebugBordersResult.class,
+                (code, msg)->new SetShowDebugBordersResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetShowDebugBordersResult> call(Executor exec) {
-            return super.call("Overlay.setShowDebugBorders", SetShowDebugBordersResult.class, msg->new SetShowDebugBordersResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.setShowDebugBorders", SetShowDebugBordersResult.class,
+                (code, msg)->new SetShowDebugBordersResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setShowDebugBorders.*/
@@ -943,10 +965,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             this.show = show;
         }
         public CompletableFuture<SetShowFPSCounterResult> call() {
-            return super.call("Overlay.setShowFPSCounter", SetShowFPSCounterResult.class, msg->new SetShowFPSCounterResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.setShowFPSCounter", SetShowFPSCounterResult.class,
+                (code, msg)->new SetShowFPSCounterResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetShowFPSCounterResult> call(Executor exec) {
-            return super.call("Overlay.setShowFPSCounter", SetShowFPSCounterResult.class, msg->new SetShowFPSCounterResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.setShowFPSCounter", SetShowFPSCounterResult.class,
+                (code, msg)->new SetShowFPSCounterResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setShowFPSCounter.*/
@@ -998,10 +1022,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             this.result = result;
         }
         public CompletableFuture<SetShowPaintRectsResult> call() {
-            return super.call("Overlay.setShowPaintRects", SetShowPaintRectsResult.class, msg->new SetShowPaintRectsResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.setShowPaintRects", SetShowPaintRectsResult.class,
+                (code, msg)->new SetShowPaintRectsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetShowPaintRectsResult> call(Executor exec) {
-            return super.call("Overlay.setShowPaintRects", SetShowPaintRectsResult.class, msg->new SetShowPaintRectsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.setShowPaintRects", SetShowPaintRectsResult.class,
+                (code, msg)->new SetShowPaintRectsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setShowPaintRects.*/
@@ -1053,10 +1079,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             this.show = show;
         }
         public CompletableFuture<SetShowScrollBottleneckRectsResult> call() {
-            return super.call("Overlay.setShowScrollBottleneckRects", SetShowScrollBottleneckRectsResult.class, msg->new SetShowScrollBottleneckRectsResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.setShowScrollBottleneckRects", SetShowScrollBottleneckRectsResult.class,
+                (code, msg)->new SetShowScrollBottleneckRectsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetShowScrollBottleneckRectsResult> call(Executor exec) {
-            return super.call("Overlay.setShowScrollBottleneckRects", SetShowScrollBottleneckRectsResult.class, msg->new SetShowScrollBottleneckRectsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.setShowScrollBottleneckRects", SetShowScrollBottleneckRectsResult.class,
+                (code, msg)->new SetShowScrollBottleneckRectsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setShowScrollBottleneckRects.*/
@@ -1108,10 +1136,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             this.show = show;
         }
         public CompletableFuture<SetShowViewportSizeOnResizeResult> call() {
-            return super.call("Overlay.setShowViewportSizeOnResize", SetShowViewportSizeOnResizeResult.class, msg->new SetShowViewportSizeOnResizeResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.setShowViewportSizeOnResize", SetShowViewportSizeOnResizeResult.class,
+                (code, msg)->new SetShowViewportSizeOnResizeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetShowViewportSizeOnResizeResult> call(Executor exec) {
-            return super.call("Overlay.setShowViewportSizeOnResize", SetShowViewportSizeOnResizeResult.class, msg->new SetShowViewportSizeOnResizeResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.setShowViewportSizeOnResize", SetShowViewportSizeOnResizeResult.class,
+                (code, msg)->new SetShowViewportSizeOnResizeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setShowViewportSizeOnResize.*/
@@ -1163,10 +1193,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             this.suspended = suspended;
         }
         public CompletableFuture<SetSuspendedResult> call() {
-            return super.call("Overlay.setSuspended", SetSuspendedResult.class, msg->new SetSuspendedResult(ResultBase.ofError(msg)));
+            return super.call("Overlay.setSuspended", SetSuspendedResult.class,
+                (code, msg)->new SetSuspendedResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetSuspendedResult> call(Executor exec) {
-            return super.call("Overlay.setSuspended", SetSuspendedResult.class, msg->new SetSuspendedResult(ResultBase.ofError(msg)), exec);
+            return super.call("Overlay.setSuspended", SetSuspendedResult.class,
+                (code, msg)->new SetSuspendedResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setSuspended.*/

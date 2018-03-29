@@ -214,10 +214,12 @@ import javax.annotation.Nullable;
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("ApplicationCache.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("ApplicationCache.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("ApplicationCache.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("ApplicationCache.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -269,10 +271,12 @@ import javax.annotation.Nullable;
             this.frameId = frameId;
         }
         public CompletableFuture<GetApplicationCacheForFrameResult> call() {
-            return super.call("ApplicationCache.getApplicationCacheForFrame", GetApplicationCacheForFrameResult.class, msg->new GetApplicationCacheForFrameResult(ResultBase.ofError(msg)));
+            return super.call("ApplicationCache.getApplicationCacheForFrame", GetApplicationCacheForFrameResult.class,
+                (code, msg)->new GetApplicationCacheForFrameResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetApplicationCacheForFrameResult> call(Executor exec) {
-            return super.call("ApplicationCache.getApplicationCacheForFrame", GetApplicationCacheForFrameResult.class, msg->new GetApplicationCacheForFrameResult(ResultBase.ofError(msg)), exec);
+            return super.call("ApplicationCache.getApplicationCacheForFrame", GetApplicationCacheForFrameResult.class,
+                (code, msg)->new GetApplicationCacheForFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getApplicationCacheForFrame.*/
@@ -321,10 +325,12 @@ associated with some application cache.*/
         }
         public GetFramesWithManifestsParameter() {}
         public CompletableFuture<GetFramesWithManifestsResult> call() {
-            return super.call("ApplicationCache.getFramesWithManifests", GetFramesWithManifestsResult.class, msg->new GetFramesWithManifestsResult(ResultBase.ofError(msg)));
+            return super.call("ApplicationCache.getFramesWithManifests", GetFramesWithManifestsResult.class,
+                (code, msg)->new GetFramesWithManifestsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetFramesWithManifestsResult> call(Executor exec) {
-            return super.call("ApplicationCache.getFramesWithManifests", GetFramesWithManifestsResult.class, msg->new GetFramesWithManifestsResult(ResultBase.ofError(msg)), exec);
+            return super.call("ApplicationCache.getFramesWithManifests", GetFramesWithManifestsResult.class,
+                (code, msg)->new GetFramesWithManifestsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getFramesWithManifests.*/
@@ -391,10 +397,12 @@ associated with some application cache.*/
             this.frameId = frameId;
         }
         public CompletableFuture<GetManifestForFrameResult> call() {
-            return super.call("ApplicationCache.getManifestForFrame", GetManifestForFrameResult.class, msg->new GetManifestForFrameResult(ResultBase.ofError(msg)));
+            return super.call("ApplicationCache.getManifestForFrame", GetManifestForFrameResult.class,
+                (code, msg)->new GetManifestForFrameResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetManifestForFrameResult> call(Executor exec) {
-            return super.call("ApplicationCache.getManifestForFrame", GetManifestForFrameResult.class, msg->new GetManifestForFrameResult(ResultBase.ofError(msg)), exec);
+            return super.call("ApplicationCache.getManifestForFrame", GetManifestForFrameResult.class,
+                (code, msg)->new GetManifestForFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getManifestForFrame.*/

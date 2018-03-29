@@ -81,10 +81,12 @@ import javax.annotation.Nullable;
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Performance.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Performance.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Performance.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Performance.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -122,10 +124,12 @@ import javax.annotation.Nullable;
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Performance.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Performance.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Performance.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Performance.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -163,10 +167,12 @@ import javax.annotation.Nullable;
         }
         public GetMetricsParameter() {}
         public CompletableFuture<GetMetricsResult> call() {
-            return super.call("Performance.getMetrics", GetMetricsResult.class, msg->new GetMetricsResult(ResultBase.ofError(msg)));
+            return super.call("Performance.getMetrics", GetMetricsResult.class,
+                (code, msg)->new GetMetricsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetMetricsResult> call(Executor exec) {
-            return super.call("Performance.getMetrics", GetMetricsResult.class, msg->new GetMetricsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Performance.getMetrics", GetMetricsResult.class,
+                (code, msg)->new GetMetricsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getMetrics.*/

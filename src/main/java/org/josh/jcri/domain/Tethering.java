@@ -57,10 +57,12 @@ import javax.annotation.Nullable;
             this.port = port;
         }
         public CompletableFuture<BindResult> call() {
-            return super.call("Tethering.bind", BindResult.class, msg->new BindResult(ResultBase.ofError(msg)));
+            return super.call("Tethering.bind", BindResult.class,
+                (code, msg)->new BindResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<BindResult> call(Executor exec) {
-            return super.call("Tethering.bind", BindResult.class, msg->new BindResult(ResultBase.ofError(msg)), exec);
+            return super.call("Tethering.bind", BindResult.class,
+                (code, msg)->new BindResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of bind.*/
@@ -112,10 +114,12 @@ import javax.annotation.Nullable;
             this.port = port;
         }
         public CompletableFuture<UnbindResult> call() {
-            return super.call("Tethering.unbind", UnbindResult.class, msg->new UnbindResult(ResultBase.ofError(msg)));
+            return super.call("Tethering.unbind", UnbindResult.class,
+                (code, msg)->new UnbindResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<UnbindResult> call(Executor exec) {
-            return super.call("Tethering.unbind", UnbindResult.class, msg->new UnbindResult(ResultBase.ofError(msg)), exec);
+            return super.call("Tethering.unbind", UnbindResult.class,
+                (code, msg)->new UnbindResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of unbind.*/

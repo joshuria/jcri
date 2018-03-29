@@ -667,10 +667,12 @@ elements other than parent/child/sibling.*/
             this.fetchRelatives = fetchRelatives;
         }
         public CompletableFuture<GetPartialAXTreeResult> call() {
-            return super.call("Accessibility.getPartialAXTree", GetPartialAXTreeResult.class, msg->new GetPartialAXTreeResult(ResultBase.ofError(msg)));
+            return super.call("Accessibility.getPartialAXTree", GetPartialAXTreeResult.class,
+                (code, msg)->new GetPartialAXTreeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetPartialAXTreeResult> call(Executor exec) {
-            return super.call("Accessibility.getPartialAXTree", GetPartialAXTreeResult.class, msg->new GetPartialAXTreeResult(ResultBase.ofError(msg)), exec);
+            return super.call("Accessibility.getPartialAXTree", GetPartialAXTreeResult.class,
+                (code, msg)->new GetPartialAXTreeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getPartialAXTree.

@@ -163,10 +163,12 @@ $x functions).*/
             this.heapObjectId = heapObjectId;
         }
         public CompletableFuture<AddInspectedHeapObjectResult> call() {
-            return super.call("HeapProfiler.addInspectedHeapObject", AddInspectedHeapObjectResult.class, msg->new AddInspectedHeapObjectResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.addInspectedHeapObject", AddInspectedHeapObjectResult.class,
+                (code, msg)->new AddInspectedHeapObjectResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<AddInspectedHeapObjectResult> call(Executor exec) {
-            return super.call("HeapProfiler.addInspectedHeapObject", AddInspectedHeapObjectResult.class, msg->new AddInspectedHeapObjectResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.addInspectedHeapObject", AddInspectedHeapObjectResult.class,
+                (code, msg)->new AddInspectedHeapObjectResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of addInspectedHeapObject.*/
@@ -204,10 +206,12 @@ $x functions).*/
         }
         public CollectGarbageParameter() {}
         public CompletableFuture<CollectGarbageResult> call() {
-            return super.call("HeapProfiler.collectGarbage", CollectGarbageResult.class, msg->new CollectGarbageResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.collectGarbage", CollectGarbageResult.class,
+                (code, msg)->new CollectGarbageResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CollectGarbageResult> call(Executor exec) {
-            return super.call("HeapProfiler.collectGarbage", CollectGarbageResult.class, msg->new CollectGarbageResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.collectGarbage", CollectGarbageResult.class,
+                (code, msg)->new CollectGarbageResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of collectGarbage.*/
@@ -245,10 +249,12 @@ $x functions).*/
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("HeapProfiler.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("HeapProfiler.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -286,10 +292,12 @@ $x functions).*/
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("HeapProfiler.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("HeapProfiler.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -341,10 +349,12 @@ $x functions).*/
             this.objectId = objectId;
         }
         public CompletableFuture<GetHeapObjectIdResult> call() {
-            return super.call("HeapProfiler.getHeapObjectId", GetHeapObjectIdResult.class, msg->new GetHeapObjectIdResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.getHeapObjectId", GetHeapObjectIdResult.class,
+                (code, msg)->new GetHeapObjectIdResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetHeapObjectIdResult> call(Executor exec) {
-            return super.call("HeapProfiler.getHeapObjectId", GetHeapObjectIdResult.class, msg->new GetHeapObjectIdResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.getHeapObjectId", GetHeapObjectIdResult.class,
+                (code, msg)->new GetHeapObjectIdResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getHeapObjectId.*/
@@ -416,10 +426,12 @@ $x functions).*/
             this.objectGroup = objectGroup;
         }
         public CompletableFuture<GetObjectByHeapObjectIdResult> call() {
-            return super.call("HeapProfiler.getObjectByHeapObjectId", GetObjectByHeapObjectIdResult.class, msg->new GetObjectByHeapObjectIdResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.getObjectByHeapObjectId", GetObjectByHeapObjectIdResult.class,
+                (code, msg)->new GetObjectByHeapObjectIdResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetObjectByHeapObjectIdResult> call(Executor exec) {
-            return super.call("HeapProfiler.getObjectByHeapObjectId", GetObjectByHeapObjectIdResult.class, msg->new GetObjectByHeapObjectIdResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.getObjectByHeapObjectId", GetObjectByHeapObjectIdResult.class,
+                (code, msg)->new GetObjectByHeapObjectIdResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getObjectByHeapObjectId.*/
@@ -467,10 +479,12 @@ $x functions).*/
         }
         public GetSamplingProfileParameter() {}
         public CompletableFuture<GetSamplingProfileResult> call() {
-            return super.call("HeapProfiler.getSamplingProfile", GetSamplingProfileResult.class, msg->new GetSamplingProfileResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.getSamplingProfile", GetSamplingProfileResult.class,
+                (code, msg)->new GetSamplingProfileResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetSamplingProfileResult> call(Executor exec) {
-            return super.call("HeapProfiler.getSamplingProfile", GetSamplingProfileResult.class, msg->new GetSamplingProfileResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.getSamplingProfile", GetSamplingProfileResult.class,
+                (code, msg)->new GetSamplingProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getSamplingProfile.*/
@@ -533,10 +547,12 @@ default value is 32768 bytes.
             this.samplingInterval = samplingInterval;
         }
         public CompletableFuture<StartSamplingResult> call() {
-            return super.call("HeapProfiler.startSampling", StartSamplingResult.class, msg->new StartSamplingResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.startSampling", StartSamplingResult.class,
+                (code, msg)->new StartSamplingResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartSamplingResult> call(Executor exec) {
-            return super.call("HeapProfiler.startSampling", StartSamplingResult.class, msg->new StartSamplingResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.startSampling", StartSamplingResult.class,
+                (code, msg)->new StartSamplingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of startSampling.*/
@@ -588,10 +604,12 @@ default value is 32768 bytes.
             this.trackAllocations = trackAllocations;
         }
         public CompletableFuture<StartTrackingHeapObjectsResult> call() {
-            return super.call("HeapProfiler.startTrackingHeapObjects", StartTrackingHeapObjectsResult.class, msg->new StartTrackingHeapObjectsResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.startTrackingHeapObjects", StartTrackingHeapObjectsResult.class,
+                (code, msg)->new StartTrackingHeapObjectsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartTrackingHeapObjectsResult> call(Executor exec) {
-            return super.call("HeapProfiler.startTrackingHeapObjects", StartTrackingHeapObjectsResult.class, msg->new StartTrackingHeapObjectsResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.startTrackingHeapObjects", StartTrackingHeapObjectsResult.class,
+                (code, msg)->new StartTrackingHeapObjectsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of startTrackingHeapObjects.*/
@@ -629,10 +647,12 @@ default value is 32768 bytes.
         }
         public StopSamplingParameter() {}
         public CompletableFuture<StopSamplingResult> call() {
-            return super.call("HeapProfiler.stopSampling", StopSamplingResult.class, msg->new StopSamplingResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.stopSampling", StopSamplingResult.class,
+                (code, msg)->new StopSamplingResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopSamplingResult> call(Executor exec) {
-            return super.call("HeapProfiler.stopSampling", StopSamplingResult.class, msg->new StopSamplingResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.stopSampling", StopSamplingResult.class,
+                (code, msg)->new StopSamplingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopSampling.*/
@@ -695,10 +715,12 @@ when the tracking is stopped.
             this.reportProgress = reportProgress;
         }
         public CompletableFuture<StopTrackingHeapObjectsResult> call() {
-            return super.call("HeapProfiler.stopTrackingHeapObjects", StopTrackingHeapObjectsResult.class, msg->new StopTrackingHeapObjectsResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.stopTrackingHeapObjects", StopTrackingHeapObjectsResult.class,
+                (code, msg)->new StopTrackingHeapObjectsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopTrackingHeapObjectsResult> call(Executor exec) {
-            return super.call("HeapProfiler.stopTrackingHeapObjects", StopTrackingHeapObjectsResult.class, msg->new StopTrackingHeapObjectsResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.stopTrackingHeapObjects", StopTrackingHeapObjectsResult.class,
+                (code, msg)->new StopTrackingHeapObjectsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopTrackingHeapObjects.*/
@@ -750,10 +772,12 @@ when the tracking is stopped.
             this.reportProgress = reportProgress;
         }
         public CompletableFuture<TakeHeapSnapshotResult> call() {
-            return super.call("HeapProfiler.takeHeapSnapshot", TakeHeapSnapshotResult.class, msg->new TakeHeapSnapshotResult(ResultBase.ofError(msg)));
+            return super.call("HeapProfiler.takeHeapSnapshot", TakeHeapSnapshotResult.class,
+                (code, msg)->new TakeHeapSnapshotResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<TakeHeapSnapshotResult> call(Executor exec) {
-            return super.call("HeapProfiler.takeHeapSnapshot", TakeHeapSnapshotResult.class, msg->new TakeHeapSnapshotResult(ResultBase.ofError(msg)), exec);
+            return super.call("HeapProfiler.takeHeapSnapshot", TakeHeapSnapshotResult.class,
+                (code, msg)->new TakeHeapSnapshotResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of takeHeapSnapshot.*/

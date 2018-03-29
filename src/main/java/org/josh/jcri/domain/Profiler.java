@@ -544,10 +544,12 @@ profile startTime.
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Profiler.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Profiler.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -585,10 +587,12 @@ profile startTime.
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Profiler.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Profiler.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -627,10 +631,12 @@ garbage collection.*/
         }
         public GetBestEffortCoverageParameter() {}
         public CompletableFuture<GetBestEffortCoverageResult> call() {
-            return super.call("Profiler.getBestEffortCoverage", GetBestEffortCoverageResult.class, msg->new GetBestEffortCoverageResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.getBestEffortCoverage", GetBestEffortCoverageResult.class,
+                (code, msg)->new GetBestEffortCoverageResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetBestEffortCoverageResult> call(Executor exec) {
-            return super.call("Profiler.getBestEffortCoverage", GetBestEffortCoverageResult.class, msg->new GetBestEffortCoverageResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.getBestEffortCoverage", GetBestEffortCoverageResult.class,
+                (code, msg)->new GetBestEffortCoverageResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getBestEffortCoverage.*/
@@ -696,10 +702,12 @@ garbage collection.*/
             this.interval = interval;
         }
         public CompletableFuture<SetSamplingIntervalResult> call() {
-            return super.call("Profiler.setSamplingInterval", SetSamplingIntervalResult.class, msg->new SetSamplingIntervalResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.setSamplingInterval", SetSamplingIntervalResult.class,
+                (code, msg)->new SetSamplingIntervalResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetSamplingIntervalResult> call(Executor exec) {
-            return super.call("Profiler.setSamplingInterval", SetSamplingIntervalResult.class, msg->new SetSamplingIntervalResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.setSamplingInterval", SetSamplingIntervalResult.class,
+                (code, msg)->new SetSamplingIntervalResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setSamplingInterval.*/
@@ -737,10 +745,12 @@ garbage collection.*/
         }
         public StartParameter() {}
         public CompletableFuture<StartResult> call() {
-            return super.call("Profiler.start", StartResult.class, msg->new StartResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.start", StartResult.class,
+                (code, msg)->new StartResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartResult> call(Executor exec) {
-            return super.call("Profiler.start", StartResult.class, msg->new StartResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.start", StartResult.class,
+                (code, msg)->new StartResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of start.*/
@@ -804,10 +814,12 @@ counters.*/
             this.detailed = detailed;
         }
         public CompletableFuture<StartPreciseCoverageResult> call() {
-            return super.call("Profiler.startPreciseCoverage", StartPreciseCoverageResult.class, msg->new StartPreciseCoverageResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.startPreciseCoverage", StartPreciseCoverageResult.class,
+                (code, msg)->new StartPreciseCoverageResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartPreciseCoverageResult> call(Executor exec) {
-            return super.call("Profiler.startPreciseCoverage", StartPreciseCoverageResult.class, msg->new StartPreciseCoverageResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.startPreciseCoverage", StartPreciseCoverageResult.class,
+                (code, msg)->new StartPreciseCoverageResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of startPreciseCoverage.*/
@@ -847,10 +859,12 @@ counters.*/
         }
         public StartTypeProfileParameter() {}
         public CompletableFuture<StartTypeProfileResult> call() {
-            return super.call("Profiler.startTypeProfile", StartTypeProfileResult.class, msg->new StartTypeProfileResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.startTypeProfile", StartTypeProfileResult.class,
+                (code, msg)->new StartTypeProfileResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StartTypeProfileResult> call(Executor exec) {
-            return super.call("Profiler.startTypeProfile", StartTypeProfileResult.class, msg->new StartTypeProfileResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.startTypeProfile", StartTypeProfileResult.class,
+                (code, msg)->new StartTypeProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of startTypeProfile.
@@ -889,10 +903,12 @@ counters.*/
         }
         public StopParameter() {}
         public CompletableFuture<StopResult> call() {
-            return super.call("Profiler.stop", StopResult.class, msg->new StopResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.stop", StopResult.class,
+                (code, msg)->new StopResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopResult> call(Executor exec) {
-            return super.call("Profiler.stop", StopResult.class, msg->new StopResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.stop", StopResult.class,
+                (code, msg)->new StopResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stop.*/
@@ -941,10 +957,12 @@ executing optimized code.*/
         }
         public StopPreciseCoverageParameter() {}
         public CompletableFuture<StopPreciseCoverageResult> call() {
-            return super.call("Profiler.stopPreciseCoverage", StopPreciseCoverageResult.class, msg->new StopPreciseCoverageResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.stopPreciseCoverage", StopPreciseCoverageResult.class,
+                (code, msg)->new StopPreciseCoverageResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopPreciseCoverageResult> call(Executor exec) {
-            return super.call("Profiler.stopPreciseCoverage", StopPreciseCoverageResult.class, msg->new StopPreciseCoverageResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.stopPreciseCoverage", StopPreciseCoverageResult.class,
+                (code, msg)->new StopPreciseCoverageResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopPreciseCoverage.*/
@@ -984,10 +1002,12 @@ executing optimized code.*/
         }
         public StopTypeProfileParameter() {}
         public CompletableFuture<StopTypeProfileResult> call() {
-            return super.call("Profiler.stopTypeProfile", StopTypeProfileResult.class, msg->new StopTypeProfileResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.stopTypeProfile", StopTypeProfileResult.class,
+                (code, msg)->new StopTypeProfileResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<StopTypeProfileResult> call(Executor exec) {
-            return super.call("Profiler.stopTypeProfile", StopTypeProfileResult.class, msg->new StopTypeProfileResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.stopTypeProfile", StopTypeProfileResult.class,
+                (code, msg)->new StopTypeProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of stopTypeProfile.
@@ -1027,10 +1047,12 @@ coverage needs to have started.*/
         }
         public TakePreciseCoverageParameter() {}
         public CompletableFuture<TakePreciseCoverageResult> call() {
-            return super.call("Profiler.takePreciseCoverage", TakePreciseCoverageResult.class, msg->new TakePreciseCoverageResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.takePreciseCoverage", TakePreciseCoverageResult.class,
+                (code, msg)->new TakePreciseCoverageResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<TakePreciseCoverageResult> call(Executor exec) {
-            return super.call("Profiler.takePreciseCoverage", TakePreciseCoverageResult.class, msg->new TakePreciseCoverageResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.takePreciseCoverage", TakePreciseCoverageResult.class,
+                (code, msg)->new TakePreciseCoverageResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of takePreciseCoverage.*/
@@ -1084,10 +1106,12 @@ coverage needs to have started.*/
         }
         public TakeTypeProfileParameter() {}
         public CompletableFuture<TakeTypeProfileResult> call() {
-            return super.call("Profiler.takeTypeProfile", TakeTypeProfileResult.class, msg->new TakeTypeProfileResult(ResultBase.ofError(msg)));
+            return super.call("Profiler.takeTypeProfile", TakeTypeProfileResult.class,
+                (code, msg)->new TakeTypeProfileResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<TakeTypeProfileResult> call(Executor exec) {
-            return super.call("Profiler.takeTypeProfile", TakeTypeProfileResult.class, msg->new TakeTypeProfileResult(ResultBase.ofError(msg)), exec);
+            return super.call("Profiler.takeTypeProfile", TakeTypeProfileResult.class,
+                (code, msg)->new TakeTypeProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of takeTypeProfile.

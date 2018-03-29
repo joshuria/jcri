@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 /**Common operations and fields for all protocol methods and their parameter classes.
  This base class handles method calling by sending request and waiting response from browser through
- web socket in {@link #call(String, Class, Function)}, and we use {@link java.util.concurrent.CompletableFuture}
+ web socket in {@link #call(String, Class, BiFunction)}, and we use {@link java.util.concurrent.CompletableFuture}
  to hold user specified method as a future task.
  @author Joshua */
 @ParametersAreNonnullByDefault
@@ -44,11 +44,11 @@ public abstract class CommandBase implements CommonDomainType {
      @return future instance that waits browser's reply.
      @throws IllegalArgumentException if any of parameter is not valid. */
     protected <T extends ResultBase> CompletableFuture<T> call(
-        String commandName, Class<T> resultMetaClass, Function<String, T> failResultFactory, Executor exec
+        String commandName, Class<T> resultMetaClass, BiFunction<Integer, String, T> failResultFactory, Executor exec
     ) throws IllegalArgumentException {
+        //! Check if all parameters are ok
+        check();
         return CompletableFuture.supplyAsync(() -> {
-            //! Check if all parameters are ok
-            check();
             //! Get next id from event center
             final long id = _evt.getNextMethodId();
             //! Generate raw json command string
@@ -83,7 +83,7 @@ public abstract class CommandBase implements CommonDomainType {
                 }
             }
             else {
-                final T result = failResultFactory.apply(resp.asText());
+                final T result = failResultFactory.apply(resp.get("code").asInt(), resp.get("message").asText());
                 result.setId(id);
                 return result;
             }
@@ -98,9 +98,9 @@ public abstract class CommandBase implements CommonDomainType {
      error message.
      @return future instance that waits browser's reply.
      @throws IllegalArgumentException if any of parameter is not valid.
-     @see #call(String, Class, Function, Executor) */
+     @see #call(String, Class, BiFunction, Executor) */
     protected <T extends ResultBase> CompletableFuture<T> call(
-        String commandName, Class<T> resultMetaClass, Function<String, T> failResultFactory
+        String commandName, Class<T> resultMetaClass, BiFunction<Integer, String, T> failResultFactory
     ) throws IllegalArgumentException {
         return call(commandName, resultMetaClass, failResultFactory, _evt.getExecutor());
     }

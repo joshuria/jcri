@@ -392,10 +392,12 @@ animation/transition.
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Animation.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Animation.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Animation.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -433,10 +435,12 @@ animation/transition.
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Animation.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Animation.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Animation.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -488,10 +492,12 @@ animation/transition.
             this.id = id;
         }
         public CompletableFuture<GetCurrentTimeResult> call() {
-            return super.call("Animation.getCurrentTime", GetCurrentTimeResult.class, msg->new GetCurrentTimeResult(ResultBase.ofError(msg)));
+            return super.call("Animation.getCurrentTime", GetCurrentTimeResult.class,
+                (code, msg)->new GetCurrentTimeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetCurrentTimeResult> call(Executor exec) {
-            return super.call("Animation.getCurrentTime", GetCurrentTimeResult.class, msg->new GetCurrentTimeResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.getCurrentTime", GetCurrentTimeResult.class,
+                (code, msg)->new GetCurrentTimeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getCurrentTime.*/
@@ -539,10 +545,12 @@ animation/transition.
         }
         public GetPlaybackRateParameter() {}
         public CompletableFuture<GetPlaybackRateResult> call() {
-            return super.call("Animation.getPlaybackRate", GetPlaybackRateResult.class, msg->new GetPlaybackRateResult(ResultBase.ofError(msg)));
+            return super.call("Animation.getPlaybackRate", GetPlaybackRateResult.class,
+                (code, msg)->new GetPlaybackRateResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetPlaybackRateResult> call(Executor exec) {
-            return super.call("Animation.getPlaybackRate", GetPlaybackRateResult.class, msg->new GetPlaybackRateResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.getPlaybackRate", GetPlaybackRateResult.class,
+                (code, msg)->new GetPlaybackRateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getPlaybackRate.*/
@@ -608,10 +616,12 @@ animation/transition.
             this.animations = animations;
         }
         public CompletableFuture<ReleaseAnimationsResult> call() {
-            return super.call("Animation.releaseAnimations", ReleaseAnimationsResult.class, msg->new ReleaseAnimationsResult(ResultBase.ofError(msg)));
+            return super.call("Animation.releaseAnimations", ReleaseAnimationsResult.class,
+                (code, msg)->new ReleaseAnimationsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ReleaseAnimationsResult> call(Executor exec) {
-            return super.call("Animation.releaseAnimations", ReleaseAnimationsResult.class, msg->new ReleaseAnimationsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.releaseAnimations", ReleaseAnimationsResult.class,
+                (code, msg)->new ReleaseAnimationsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of releaseAnimations.*/
@@ -663,10 +673,12 @@ animation/transition.
             this.animationId = animationId;
         }
         public CompletableFuture<ResolveAnimationResult> call() {
-            return super.call("Animation.resolveAnimation", ResolveAnimationResult.class, msg->new ResolveAnimationResult(ResultBase.ofError(msg)));
+            return super.call("Animation.resolveAnimation", ResolveAnimationResult.class,
+                (code, msg)->new ResolveAnimationResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ResolveAnimationResult> call(Executor exec) {
-            return super.call("Animation.resolveAnimation", ResolveAnimationResult.class, msg->new ResolveAnimationResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.resolveAnimation", ResolveAnimationResult.class,
+                (code, msg)->new ResolveAnimationResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of resolveAnimation.*/
@@ -742,10 +754,12 @@ animation/transition.
             this.currentTime = currentTime;
         }
         public CompletableFuture<SeekAnimationsResult> call() {
-            return super.call("Animation.seekAnimations", SeekAnimationsResult.class, msg->new SeekAnimationsResult(ResultBase.ofError(msg)));
+            return super.call("Animation.seekAnimations", SeekAnimationsResult.class,
+                (code, msg)->new SeekAnimationsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SeekAnimationsResult> call(Executor exec) {
-            return super.call("Animation.seekAnimations", SeekAnimationsResult.class, msg->new SeekAnimationsResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.seekAnimations", SeekAnimationsResult.class,
+                (code, msg)->new SeekAnimationsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of seekAnimations.*/
@@ -811,10 +825,12 @@ animation/transition.
             this.paused = paused;
         }
         public CompletableFuture<SetPausedResult> call() {
-            return super.call("Animation.setPaused", SetPausedResult.class, msg->new SetPausedResult(ResultBase.ofError(msg)));
+            return super.call("Animation.setPaused", SetPausedResult.class,
+                (code, msg)->new SetPausedResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetPausedResult> call(Executor exec) {
-            return super.call("Animation.setPaused", SetPausedResult.class, msg->new SetPausedResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.setPaused", SetPausedResult.class,
+                (code, msg)->new SetPausedResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setPaused.*/
@@ -866,10 +882,12 @@ animation/transition.
             this.playbackRate = playbackRate;
         }
         public CompletableFuture<SetPlaybackRateResult> call() {
-            return super.call("Animation.setPlaybackRate", SetPlaybackRateResult.class, msg->new SetPlaybackRateResult(ResultBase.ofError(msg)));
+            return super.call("Animation.setPlaybackRate", SetPlaybackRateResult.class,
+                (code, msg)->new SetPlaybackRateResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetPlaybackRateResult> call(Executor exec) {
-            return super.call("Animation.setPlaybackRate", SetPlaybackRateResult.class, msg->new SetPlaybackRateResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.setPlaybackRate", SetPlaybackRateResult.class,
+                (code, msg)->new SetPlaybackRateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setPlaybackRate.*/
@@ -941,10 +959,12 @@ animation/transition.
             this.delay = delay;
         }
         public CompletableFuture<SetTimingResult> call() {
-            return super.call("Animation.setTiming", SetTimingResult.class, msg->new SetTimingResult(ResultBase.ofError(msg)));
+            return super.call("Animation.setTiming", SetTimingResult.class,
+                (code, msg)->new SetTimingResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetTimingResult> call(Executor exec) {
-            return super.call("Animation.setTiming", SetTimingResult.class, msg->new SetTimingResult(ResultBase.ofError(msg)), exec);
+            return super.call("Animation.setTiming", SetTimingResult.class,
+                (code, msg)->new SetTimingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setTiming.*/

@@ -143,10 +143,12 @@ resource fetches.
         }
         public CanEmulateParameter() {}
         public CompletableFuture<CanEmulateResult> call() {
-            return super.call("Emulation.canEmulate", CanEmulateResult.class, msg->new CanEmulateResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.canEmulate", CanEmulateResult.class,
+                (code, msg)->new CanEmulateResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<CanEmulateResult> call(Executor exec) {
-            return super.call("Emulation.canEmulate", CanEmulateResult.class, msg->new CanEmulateResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.canEmulate", CanEmulateResult.class,
+                (code, msg)->new CanEmulateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of canEmulate.*/
@@ -194,10 +196,12 @@ resource fetches.
         }
         public ClearDeviceMetricsOverrideParameter() {}
         public CompletableFuture<ClearDeviceMetricsOverrideResult> call() {
-            return super.call("Emulation.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class, msg->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
+                (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearDeviceMetricsOverrideResult> call(Executor exec) {
-            return super.call("Emulation.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class, msg->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
+                (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearDeviceMetricsOverride.*/
@@ -235,10 +239,12 @@ resource fetches.
         }
         public ClearGeolocationOverrideParameter() {}
         public CompletableFuture<ClearGeolocationOverrideResult> call() {
-            return super.call("Emulation.clearGeolocationOverride", ClearGeolocationOverrideResult.class, msg->new ClearGeolocationOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
+                (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearGeolocationOverrideResult> call(Executor exec) {
-            return super.call("Emulation.clearGeolocationOverride", ClearGeolocationOverrideResult.class, msg->new ClearGeolocationOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
+                (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clearGeolocationOverride.*/
@@ -278,10 +284,12 @@ resource fetches.
         }
         public ResetPageScaleFactorParameter() {}
         public CompletableFuture<ResetPageScaleFactorResult> call() {
-            return super.call("Emulation.resetPageScaleFactor", ResetPageScaleFactorResult.class, msg->new ResetPageScaleFactorResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.resetPageScaleFactor", ResetPageScaleFactorResult.class,
+                (code, msg)->new ResetPageScaleFactorResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ResetPageScaleFactorResult> call(Executor exec) {
-            return super.call("Emulation.resetPageScaleFactor", ResetPageScaleFactorResult.class, msg->new ResetPageScaleFactorResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.resetPageScaleFactor", ResetPageScaleFactorResult.class,
+                (code, msg)->new ResetPageScaleFactorResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of resetPageScaleFactor.
@@ -336,10 +344,12 @@ resource fetches.
             this.rate = rate;
         }
         public CompletableFuture<SetCPUThrottlingRateResult> call() {
-            return super.call("Emulation.setCPUThrottlingRate", SetCPUThrottlingRateResult.class, msg->new SetCPUThrottlingRateResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setCPUThrottlingRate", SetCPUThrottlingRateResult.class,
+                (code, msg)->new SetCPUThrottlingRateResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetCPUThrottlingRateResult> call(Executor exec) {
-            return super.call("Emulation.setCPUThrottlingRate", SetCPUThrottlingRateResult.class, msg->new SetCPUThrottlingRateResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setCPUThrottlingRate", SetCPUThrottlingRateResult.class,
+                (code, msg)->new SetCPUThrottlingRateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setCPUThrottlingRate.
@@ -394,10 +404,12 @@ cleared.
             this.color = color;
         }
         public CompletableFuture<SetDefaultBackgroundColorOverrideResult> call() {
-            return super.call("Emulation.setDefaultBackgroundColorOverride", SetDefaultBackgroundColorOverrideResult.class, msg->new SetDefaultBackgroundColorOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setDefaultBackgroundColorOverride", SetDefaultBackgroundColorOverrideResult.class,
+                (code, msg)->new SetDefaultBackgroundColorOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDefaultBackgroundColorOverrideResult> call(Executor exec) {
-            return super.call("Emulation.setDefaultBackgroundColorOverride", SetDefaultBackgroundColorOverrideResult.class, msg->new SetDefaultBackgroundColorOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setDefaultBackgroundColorOverride", SetDefaultBackgroundColorOverrideResult.class,
+                (code, msg)->new SetDefaultBackgroundColorOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDefaultBackgroundColorOverride.*/
@@ -570,10 +582,12 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
             this.viewport = viewport;
         }
         public CompletableFuture<SetDeviceMetricsOverrideResult> call() {
-            return super.call("Emulation.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class, msg->new SetDeviceMetricsOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
+                (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDeviceMetricsOverrideResult> call(Executor exec) {
-            return super.call("Emulation.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class, msg->new SetDeviceMetricsOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
+                (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDeviceMetricsOverride.*/
@@ -662,10 +676,12 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
             this.configuration = configuration;
         }
         public CompletableFuture<SetEmitTouchEventsForMouseResult> call() {
-            return super.call("Emulation.setEmitTouchEventsForMouse", SetEmitTouchEventsForMouseResult.class, msg->new SetEmitTouchEventsForMouseResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setEmitTouchEventsForMouse", SetEmitTouchEventsForMouseResult.class,
+                (code, msg)->new SetEmitTouchEventsForMouseResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetEmitTouchEventsForMouseResult> call(Executor exec) {
-            return super.call("Emulation.setEmitTouchEventsForMouse", SetEmitTouchEventsForMouseResult.class, msg->new SetEmitTouchEventsForMouseResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setEmitTouchEventsForMouse", SetEmitTouchEventsForMouseResult.class,
+                (code, msg)->new SetEmitTouchEventsForMouseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setEmitTouchEventsForMouse.
@@ -718,10 +734,12 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
             this.media = media;
         }
         public CompletableFuture<SetEmulatedMediaResult> call() {
-            return super.call("Emulation.setEmulatedMedia", SetEmulatedMediaResult.class, msg->new SetEmulatedMediaResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setEmulatedMedia", SetEmulatedMediaResult.class,
+                (code, msg)->new SetEmulatedMediaResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetEmulatedMediaResult> call(Executor exec) {
-            return super.call("Emulation.setEmulatedMedia", SetEmulatedMediaResult.class, msg->new SetEmulatedMediaResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setEmulatedMedia", SetEmulatedMediaResult.class,
+                (code, msg)->new SetEmulatedMediaResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setEmulatedMedia.*/
@@ -794,10 +812,12 @@ unavailable.*/
             this.accuracy = accuracy;
         }
         public CompletableFuture<SetGeolocationOverrideResult> call() {
-            return super.call("Emulation.setGeolocationOverride", SetGeolocationOverrideResult.class, msg->new SetGeolocationOverrideResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setGeolocationOverride", SetGeolocationOverrideResult.class,
+                (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetGeolocationOverrideResult> call(Executor exec) {
-            return super.call("Emulation.setGeolocationOverride", SetGeolocationOverrideResult.class, msg->new SetGeolocationOverrideResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setGeolocationOverride", SetGeolocationOverrideResult.class,
+                (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setGeolocationOverride.*/
@@ -851,10 +871,12 @@ unavailable.*/
             this.platform = platform;
         }
         public CompletableFuture<SetNavigatorOverridesResult> call() {
-            return super.call("Emulation.setNavigatorOverrides", SetNavigatorOverridesResult.class, msg->new SetNavigatorOverridesResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setNavigatorOverrides", SetNavigatorOverridesResult.class,
+                (code, msg)->new SetNavigatorOverridesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetNavigatorOverridesResult> call(Executor exec) {
-            return super.call("Emulation.setNavigatorOverrides", SetNavigatorOverridesResult.class, msg->new SetNavigatorOverridesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setNavigatorOverrides", SetNavigatorOverridesResult.class,
+                (code, msg)->new SetNavigatorOverridesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setNavigatorOverrides.
@@ -909,10 +931,12 @@ unavailable.*/
             this.pageScaleFactor = pageScaleFactor;
         }
         public CompletableFuture<SetPageScaleFactorResult> call() {
-            return super.call("Emulation.setPageScaleFactor", SetPageScaleFactorResult.class, msg->new SetPageScaleFactorResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setPageScaleFactor", SetPageScaleFactorResult.class,
+                (code, msg)->new SetPageScaleFactorResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetPageScaleFactorResult> call(Executor exec) {
-            return super.call("Emulation.setPageScaleFactor", SetPageScaleFactorResult.class, msg->new SetPageScaleFactorResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setPageScaleFactor", SetPageScaleFactorResult.class,
+                (code, msg)->new SetPageScaleFactorResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setPageScaleFactor.
@@ -965,10 +989,12 @@ unavailable.*/
             this.value = value;
         }
         public CompletableFuture<SetScriptExecutionDisabledResult> call() {
-            return super.call("Emulation.setScriptExecutionDisabled", SetScriptExecutionDisabledResult.class, msg->new SetScriptExecutionDisabledResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setScriptExecutionDisabled", SetScriptExecutionDisabledResult.class,
+                (code, msg)->new SetScriptExecutionDisabledResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetScriptExecutionDisabledResult> call(Executor exec) {
-            return super.call("Emulation.setScriptExecutionDisabled", SetScriptExecutionDisabledResult.class, msg->new SetScriptExecutionDisabledResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setScriptExecutionDisabled", SetScriptExecutionDisabledResult.class,
+                (code, msg)->new SetScriptExecutionDisabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setScriptExecutionDisabled.*/
@@ -1030,10 +1056,12 @@ unavailable.*/
             this.maxTouchPoints = maxTouchPoints;
         }
         public CompletableFuture<SetTouchEmulationEnabledResult> call() {
-            return super.call("Emulation.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class, msg->new SetTouchEmulationEnabledResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
+                (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetTouchEmulationEnabledResult> call(Executor exec) {
-            return super.call("Emulation.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class, msg->new SetTouchEmulationEnabledResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
+                (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setTouchEmulationEnabled.*/
@@ -1121,10 +1149,12 @@ Note any previous deferred policy change is superseded.
             this.waitForNavigation = waitForNavigation;
         }
         public CompletableFuture<SetVirtualTimePolicyResult> call() {
-            return super.call("Emulation.setVirtualTimePolicy", SetVirtualTimePolicyResult.class, msg->new SetVirtualTimePolicyResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setVirtualTimePolicy", SetVirtualTimePolicyResult.class,
+                (code, msg)->new SetVirtualTimePolicyResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetVirtualTimePolicyResult> call(Executor exec) {
-            return super.call("Emulation.setVirtualTimePolicy", SetVirtualTimePolicyResult.class, msg->new SetVirtualTimePolicyResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setVirtualTimePolicy", SetVirtualTimePolicyResult.class,
+                (code, msg)->new SetVirtualTimePolicyResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setVirtualTimePolicy.
@@ -1203,10 +1233,12 @@ on Android.
             this.height = height;
         }
         public CompletableFuture<SetVisibleSizeResult> call() {
-            return super.call("Emulation.setVisibleSize", SetVisibleSizeResult.class, msg->new SetVisibleSizeResult(ResultBase.ofError(msg)));
+            return super.call("Emulation.setVisibleSize", SetVisibleSizeResult.class,
+                (code, msg)->new SetVisibleSizeResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetVisibleSizeResult> call(Executor exec) {
-            return super.call("Emulation.setVisibleSize", SetVisibleSizeResult.class, msg->new SetVisibleSizeResult(ResultBase.ofError(msg)), exec);
+            return super.call("Emulation.setVisibleSize", SetVisibleSizeResult.class,
+                (code, msg)->new SetVisibleSizeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setVisibleSize.

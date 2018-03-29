@@ -163,10 +163,12 @@ import javax.annotation.Nullable;
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("Database.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("Database.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Database.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Database.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -204,10 +206,12 @@ import javax.annotation.Nullable;
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("Database.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("Database.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Database.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("Database.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -269,10 +273,12 @@ import javax.annotation.Nullable;
             this.query = query;
         }
         public CompletableFuture<ExecuteSQLResult> call() {
-            return super.call("Database.executeSQL", ExecuteSQLResult.class, msg->new ExecuteSQLResult(ResultBase.ofError(msg)));
+            return super.call("Database.executeSQL", ExecuteSQLResult.class,
+                (code, msg)->new ExecuteSQLResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ExecuteSQLResult> call(Executor exec) {
-            return super.call("Database.executeSQL", ExecuteSQLResult.class, msg->new ExecuteSQLResult(ResultBase.ofError(msg)), exec);
+            return super.call("Database.executeSQL", ExecuteSQLResult.class,
+                (code, msg)->new ExecuteSQLResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of executeSQL.*/
@@ -365,10 +371,12 @@ import javax.annotation.Nullable;
             this.databaseId = databaseId;
         }
         public CompletableFuture<GetDatabaseTableNamesResult> call() {
-            return super.call("Database.getDatabaseTableNames", GetDatabaseTableNamesResult.class, msg->new GetDatabaseTableNamesResult(ResultBase.ofError(msg)));
+            return super.call("Database.getDatabaseTableNames", GetDatabaseTableNamesResult.class,
+                (code, msg)->new GetDatabaseTableNamesResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetDatabaseTableNamesResult> call(Executor exec) {
-            return super.call("Database.getDatabaseTableNames", GetDatabaseTableNamesResult.class, msg->new GetDatabaseTableNamesResult(ResultBase.ofError(msg)), exec);
+            return super.call("Database.getDatabaseTableNames", GetDatabaseTableNamesResult.class,
+                (code, msg)->new GetDatabaseTableNamesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getDatabaseTableNames.*/

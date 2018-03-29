@@ -117,10 +117,12 @@ import javax.annotation.Nullable;
             this.storageId = storageId;
         }
         public CompletableFuture<ClearResult> call() {
-            return super.call("DOMStorage.clear", ClearResult.class, msg->new ClearResult(ResultBase.ofError(msg)));
+            return super.call("DOMStorage.clear", ClearResult.class,
+                (code, msg)->new ClearResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<ClearResult> call(Executor exec) {
-            return super.call("DOMStorage.clear", ClearResult.class, msg->new ClearResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOMStorage.clear", ClearResult.class,
+                (code, msg)->new ClearResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of clear.*/
@@ -158,10 +160,12 @@ import javax.annotation.Nullable;
         }
         public DisableParameter() {}
         public CompletableFuture<DisableResult> call() {
-            return super.call("DOMStorage.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)));
+            return super.call("DOMStorage.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("DOMStorage.disable", DisableResult.class, msg->new DisableResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOMStorage.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of disable.*/
@@ -199,10 +203,12 @@ import javax.annotation.Nullable;
         }
         public EnableParameter() {}
         public CompletableFuture<EnableResult> call() {
-            return super.call("DOMStorage.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)));
+            return super.call("DOMStorage.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("DOMStorage.enable", EnableResult.class, msg->new EnableResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOMStorage.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of enable.*/
@@ -254,10 +260,12 @@ import javax.annotation.Nullable;
             this.storageId = storageId;
         }
         public CompletableFuture<GetDOMStorageItemsResult> call() {
-            return super.call("DOMStorage.getDOMStorageItems", GetDOMStorageItemsResult.class, msg->new GetDOMStorageItemsResult(ResultBase.ofError(msg)));
+            return super.call("DOMStorage.getDOMStorageItems", GetDOMStorageItemsResult.class,
+                (code, msg)->new GetDOMStorageItemsResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<GetDOMStorageItemsResult> call(Executor exec) {
-            return super.call("DOMStorage.getDOMStorageItems", GetDOMStorageItemsResult.class, msg->new GetDOMStorageItemsResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOMStorage.getDOMStorageItems", GetDOMStorageItemsResult.class,
+                (code, msg)->new GetDOMStorageItemsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of getDOMStorageItems.*/
@@ -333,10 +341,12 @@ import javax.annotation.Nullable;
             this.key = key;
         }
         public CompletableFuture<RemoveDOMStorageItemResult> call() {
-            return super.call("DOMStorage.removeDOMStorageItem", RemoveDOMStorageItemResult.class, msg->new RemoveDOMStorageItemResult(ResultBase.ofError(msg)));
+            return super.call("DOMStorage.removeDOMStorageItem", RemoveDOMStorageItemResult.class,
+                (code, msg)->new RemoveDOMStorageItemResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<RemoveDOMStorageItemResult> call(Executor exec) {
-            return super.call("DOMStorage.removeDOMStorageItem", RemoveDOMStorageItemResult.class, msg->new RemoveDOMStorageItemResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOMStorage.removeDOMStorageItem", RemoveDOMStorageItemResult.class,
+                (code, msg)->new RemoveDOMStorageItemResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of removeDOMStorageItem.*/
@@ -408,10 +418,12 @@ import javax.annotation.Nullable;
             this.value = value;
         }
         public CompletableFuture<SetDOMStorageItemResult> call() {
-            return super.call("DOMStorage.setDOMStorageItem", SetDOMStorageItemResult.class, msg->new SetDOMStorageItemResult(ResultBase.ofError(msg)));
+            return super.call("DOMStorage.setDOMStorageItem", SetDOMStorageItemResult.class,
+                (code, msg)->new SetDOMStorageItemResult(ResultBase.ofError(code, msg)));
         }
         public CompletableFuture<SetDOMStorageItemResult> call(Executor exec) {
-            return super.call("DOMStorage.setDOMStorageItem", SetDOMStorageItemResult.class, msg->new SetDOMStorageItemResult(ResultBase.ofError(msg)), exec);
+            return super.call("DOMStorage.setDOMStorageItem", SetDOMStorageItemResult.class,
+                (code, msg)->new SetDOMStorageItemResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setDOMStorageItem.*/
