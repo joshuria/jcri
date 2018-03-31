@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"securityOrigin\":").append('"').append(securityOrigin).append('"');
+            strBuilder.append("\"securityOrigin\":").append('"').append(DomainBase.escapeQuote(securityOrigin)).append('"');
             strBuilder.append(",\"isLocalStorage\":").append(isLocalStorage);
             strBuilder.append('}');
             return strBuilder;
@@ -327,7 +327,7 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(key).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -401,8 +401,8 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(key).append('"');
-            strBuilder.append(",\"value\":").append('"').append(value).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -468,8 +468,8 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(key).append('"');
-            strBuilder.append(",\"newValue\":").append('"').append(newValue).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
+            strBuilder.append(",\"newValue\":").append('"').append(DomainBase.escapeQuote(newValue)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -513,7 +513,7 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(key).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -563,9 +563,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(key).append('"');
-            strBuilder.append(",\"oldValue\":").append('"').append(oldValue).append('"');
-            strBuilder.append(",\"newValue\":").append('"').append(newValue).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
+            strBuilder.append(",\"oldValue\":").append('"').append(DomainBase.escapeQuote(oldValue)).append('"');
+            strBuilder.append(",\"newValue\":").append('"').append(DomainBase.escapeQuote(newValue)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

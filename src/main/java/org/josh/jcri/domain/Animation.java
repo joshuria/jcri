@@ -136,16 +136,16 @@ animation/transition.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"id\":").append('"').append(id).append('"');
-            strBuilder.append(",\"name\":").append('"').append(name).append('"');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
             strBuilder.append(",\"pausedState\":").append(pausedState);
-            strBuilder.append(",\"playState\":").append('"').append(playState).append('"');
+            strBuilder.append(",\"playState\":").append('"').append(DomainBase.escapeQuote(playState)).append('"');
             strBuilder.append(",\"playbackRate\":").append(playbackRate);
             strBuilder.append(",\"startTime\":").append(startTime);
             strBuilder.append(",\"currentTime\":").append(currentTime);
             strBuilder.append(",\"type\":").append(type);
             if (source != null) source.toJson(strBuilder.append(",\"source\":"));
-            if (cssId != null) strBuilder.append(",\"cssId\":").append('"').append(cssId).append('"');
+            if (cssId != null) strBuilder.append(",\"cssId\":").append('"').append(DomainBase.escapeQuote(cssId)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -260,11 +260,11 @@ animation/transition.
             strBuilder.append(",\"iterationStart\":").append(iterationStart);
             strBuilder.append(",\"iterations\":").append(iterations);
             strBuilder.append(",\"duration\":").append(duration);
-            strBuilder.append(",\"direction\":").append('"').append(direction).append('"');
-            strBuilder.append(",\"fill\":").append('"').append(fill).append('"');
+            strBuilder.append(",\"direction\":").append('"').append(DomainBase.escapeQuote(direction)).append('"');
+            strBuilder.append(",\"fill\":").append('"').append(DomainBase.escapeQuote(fill)).append('"');
             if (backendNodeId != null) backendNodeId.toJson(strBuilder.append(",\"backendNodeId\":"));
             if (keyframesRule != null) keyframesRule.toJson(strBuilder.append(",\"keyframesRule\":"));
-            strBuilder.append(",\"easing\":").append('"').append(easing).append('"');
+            strBuilder.append(",\"easing\":").append('"').append(DomainBase.escapeQuote(easing)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -318,7 +318,7 @@ animation/transition.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            if (name != null) strBuilder.append("\"name\":").append('"').append(name).append('"');
+            if (name != null) strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
                         strBuilder.append(",\"keyframes\":[");
             keyframes.get(0).toJson(strBuilder);
             for (int i = 1; i < keyframes.size(); ++i)
@@ -361,8 +361,8 @@ animation/transition.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"offset\":").append('"').append(offset).append('"');
-            strBuilder.append(",\"easing\":").append('"').append(easing).append('"');
+            strBuilder.append("\"offset\":").append('"').append(DomainBase.escapeQuote(offset)).append('"');
+            strBuilder.append(",\"easing\":").append('"').append(DomainBase.escapeQuote(easing)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -480,7 +480,7 @@ animation/transition.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"id\":").append('"').append(id).append('"');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -601,9 +601,9 @@ animation/transition.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"animations\":[");
-            strBuilder.append('"').append(animations.get(0)).append('"');
+            strBuilder.append('"').append(DomainBase.escapeQuote(animations.get(0))).append('"');
             for (int i = 1; i < animations.size(); ++i)
-                strBuilder.append(",\"").append(animations.get(i)).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeQuote(animations.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -661,7 +661,7 @@ animation/transition.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"animationId\":").append('"').append(animationId).append('"');
+            strBuilder.append("\"animationId\":").append('"').append(DomainBase.escapeQuote(animationId)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -736,9 +736,9 @@ animation/transition.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"animations\":[");
-            strBuilder.append('"').append(animations.get(0)).append('"');
+            strBuilder.append('"').append(DomainBase.escapeQuote(animations.get(0))).append('"');
             for (int i = 1; i < animations.size(); ++i)
-                strBuilder.append(",\"").append(animations.get(i)).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeQuote(animations.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append(",\"currentTime\":").append(currentTime);
             strBuilder.append('}');
@@ -807,9 +807,9 @@ animation/transition.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"animations\":[");
-            strBuilder.append('"').append(animations.get(0)).append('"');
+            strBuilder.append('"').append(DomainBase.escapeQuote(animations.get(0))).append('"');
             for (int i = 1; i < animations.size(); ++i)
-                strBuilder.append(",\"").append(animations.get(i)).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeQuote(animations.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append(",\"paused\":").append(paused);
             strBuilder.append('}');
@@ -941,7 +941,7 @@ animation/transition.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"animationId\":").append('"').append(animationId).append('"');
+            strBuilder.append("\"animationId\":").append('"').append(DomainBase.escapeQuote(animationId)).append('"');
             strBuilder.append(",\"duration\":").append(duration);
             strBuilder.append(",\"delay\":").append(delay);
             strBuilder.append('}');
@@ -1000,7 +1000,7 @@ animation/transition.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"id\":").append('"').append(id).append('"');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1035,7 +1035,7 @@ animation/transition.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"id\":").append('"').append(id).append('"');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

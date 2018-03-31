@@ -67,8 +67,8 @@ import javax.annotation.Nullable;
             strBuilder.append('{');
             strBuilder.append("\"vendorId\":").append(vendorId);
             strBuilder.append(",\"deviceId\":").append(deviceId);
-            strBuilder.append(",\"vendorString\":").append('"').append(vendorString).append('"');
-            strBuilder.append(",\"deviceString\":").append('"').append(deviceString).append('"');
+            strBuilder.append(",\"vendorString\":").append('"').append(DomainBase.escapeQuote(vendorString)).append('"');
+            strBuilder.append(",\"deviceString\":").append('"').append(DomainBase.escapeQuote(deviceString)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -132,9 +132,9 @@ import javax.annotation.Nullable;
             if (auxAttributes != null) strBuilder.append(",\"auxAttributes\":").append(auxAttributes);
             if (featureStatus != null) strBuilder.append(",\"featureStatus\":").append(featureStatus);
                         strBuilder.append(",\"driverBugWorkarounds\":[");
-            strBuilder.append('"').append(driverBugWorkarounds.get(0)).append('"');
+            strBuilder.append('"').append(DomainBase.escapeQuote(driverBugWorkarounds.get(0))).append('"');
             for (int i = 1; i < driverBugWorkarounds.size(); ++i)
-                strBuilder.append(",\"").append(driverBugWorkarounds.get(i)).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeQuote(driverBugWorkarounds.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -207,9 +207,9 @@ supported.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             gpu.toJson(strBuilder.append("\"gpu\":"));
-            strBuilder.append(",\"modelName\":").append('"').append(modelName).append('"');
-            strBuilder.append(",\"modelVersion\":").append('"').append(modelVersion).append('"');
-            strBuilder.append(",\"commandLine\":").append('"').append(commandLine).append('"');
+            strBuilder.append(",\"modelName\":").append('"').append(DomainBase.escapeQuote(modelName)).append('"');
+            strBuilder.append(",\"modelVersion\":").append('"').append(DomainBase.escapeQuote(modelVersion)).append('"');
+            strBuilder.append(",\"commandLine\":").append('"').append(DomainBase.escapeQuote(commandLine)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(name).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
             strBuilder.append(",\"version\":").append(version);
                         strBuilder.append(",\"objectStores\":[");
             objectStores.get(0).toJson(strBuilder);
@@ -119,7 +119,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(name).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
             keyPath.toJson(strBuilder.append(",\"keyPath\":"));
             strBuilder.append(",\"autoIncrement\":").append(autoIncrement);
                         strBuilder.append(",\"indexes\":[");
@@ -182,7 +182,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(name).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
             keyPath.toJson(strBuilder.append(",\"keyPath\":"));
             strBuilder.append(",\"unique\":").append(unique);
             strBuilder.append(",\"multiEntry\":").append(multiEntry);
@@ -277,7 +277,7 @@ import javax.annotation.Nullable;
             strBuilder.append('{');
             strBuilder.append("\"type\":").append(type);
             if (number != null) strBuilder.append(",\"number\":").append(number);
-            if (string != null) strBuilder.append(",\"string\":").append('"').append(string).append('"');
+            if (string != null) strBuilder.append(",\"string\":").append('"').append(DomainBase.escapeQuote(string)).append('"');
             if (date != null) strBuilder.append(",\"date\":").append(date);
             if (array != null) {
                 strBuilder.append(",\"array\":[");
@@ -471,12 +471,12 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"type\":").append(type);
-            if (string != null) strBuilder.append(",\"string\":").append('"').append(string).append('"');
+            if (string != null) strBuilder.append(",\"string\":").append('"').append(DomainBase.escapeQuote(string)).append('"');
             if (array != null) {
                 strBuilder.append(",\"array\":[");
-                strBuilder.append('"').append(array.get(0)).append('"');
+                strBuilder.append('"').append(DomainBase.escapeQuote(array.get(0))).append('"');
                 for (int i = 1; i < array.size(); ++i)
-                    strBuilder.append(",\"").append(array.get(i)).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeQuote(array.get(i))).append('"');
                 strBuilder.append(']');
             }
             strBuilder.append('}');
@@ -526,9 +526,9 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"securityOrigin\":").append('"').append(securityOrigin).append('"');
-            strBuilder.append(",\"databaseName\":").append('"').append(databaseName).append('"');
-            strBuilder.append(",\"objectStoreName\":").append('"').append(objectStoreName).append('"');
+            strBuilder.append("\"securityOrigin\":").append('"').append(DomainBase.escapeQuote(securityOrigin)).append('"');
+            strBuilder.append(",\"databaseName\":").append('"').append(DomainBase.escapeQuote(databaseName)).append('"');
+            strBuilder.append(",\"objectStoreName\":").append('"').append(DomainBase.escapeQuote(objectStoreName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -596,8 +596,8 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"securityOrigin\":").append('"').append(securityOrigin).append('"');
-            strBuilder.append(",\"databaseName\":").append('"').append(databaseName).append('"');
+            strBuilder.append("\"securityOrigin\":").append('"').append(DomainBase.escapeQuote(securityOrigin)).append('"');
+            strBuilder.append(",\"databaseName\":").append('"').append(DomainBase.escapeQuote(databaseName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -677,9 +677,9 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"securityOrigin\":").append('"').append(securityOrigin).append('"');
-            strBuilder.append(",\"databaseName\":").append('"').append(databaseName).append('"');
-            strBuilder.append(",\"objectStoreName\":").append('"').append(objectStoreName).append('"');
+            strBuilder.append("\"securityOrigin\":").append('"').append(DomainBase.escapeQuote(securityOrigin)).append('"');
+            strBuilder.append(",\"databaseName\":").append('"').append(DomainBase.escapeQuote(databaseName)).append('"');
+            strBuilder.append(",\"objectStoreName\":").append('"').append(DomainBase.escapeQuote(objectStoreName)).append('"');
             keyRange.toJson(strBuilder.append(",\"keyRange\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -871,10 +871,10 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"securityOrigin\":").append('"').append(securityOrigin).append('"');
-            strBuilder.append(",\"databaseName\":").append('"').append(databaseName).append('"');
-            strBuilder.append(",\"objectStoreName\":").append('"').append(objectStoreName).append('"');
-            strBuilder.append(",\"indexName\":").append('"').append(indexName).append('"');
+            strBuilder.append("\"securityOrigin\":").append('"').append(DomainBase.escapeQuote(securityOrigin)).append('"');
+            strBuilder.append(",\"databaseName\":").append('"').append(DomainBase.escapeQuote(databaseName)).append('"');
+            strBuilder.append(",\"objectStoreName\":").append('"').append(DomainBase.escapeQuote(objectStoreName)).append('"');
+            strBuilder.append(",\"indexName\":").append('"').append(DomainBase.escapeQuote(indexName)).append('"');
             strBuilder.append(",\"skipCount\":").append(skipCount);
             strBuilder.append(",\"pageSize\":").append(pageSize);
             if (keyRange != null) keyRange.toJson(strBuilder.append(",\"keyRange\":"));
@@ -975,8 +975,8 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"securityOrigin\":").append('"').append(securityOrigin).append('"');
-            strBuilder.append(",\"databaseName\":").append('"').append(databaseName).append('"');
+            strBuilder.append("\"securityOrigin\":").append('"').append(DomainBase.escapeQuote(securityOrigin)).append('"');
+            strBuilder.append(",\"databaseName\":").append('"').append(DomainBase.escapeQuote(databaseName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1045,7 +1045,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"securityOrigin\":").append('"').append(securityOrigin).append('"');
+            strBuilder.append("\"securityOrigin\":").append('"').append(DomainBase.escapeQuote(securityOrigin)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1080,9 +1080,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"databaseNames\":[");
-            strBuilder.append('"').append(databaseNames.get(0)).append('"');
+            strBuilder.append('"').append(DomainBase.escapeQuote(databaseNames.get(0))).append('"');
             for (int i = 1; i < databaseNames.size(); ++i)
-                strBuilder.append(",\"").append(databaseNames.get(i)).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeQuote(databaseNames.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;

@@ -127,8 +127,8 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
-            strBuilder.append(",\"storageTypes\":").append('"').append(storageTypes).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
+            strBuilder.append(",\"storageTypes\":").append('"').append(DomainBase.escapeQuote(storageTypes)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -187,7 +187,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -274,7 +274,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -331,7 +331,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -388,7 +388,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -445,7 +445,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -502,8 +502,8 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
-            strBuilder.append(",\"cacheName\":").append('"').append(cacheName).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
+            strBuilder.append(",\"cacheName\":").append('"').append(DomainBase.escapeQuote(cacheName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -540,7 +540,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -583,9 +583,9 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
-            strBuilder.append(",\"databaseName\":").append('"').append(databaseName).append('"');
-            strBuilder.append(",\"objectStoreName\":").append('"').append(objectStoreName).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
+            strBuilder.append(",\"databaseName\":").append('"').append(DomainBase.escapeQuote(databaseName)).append('"');
+            strBuilder.append(",\"objectStoreName\":").append('"').append(DomainBase.escapeQuote(objectStoreName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -624,7 +624,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

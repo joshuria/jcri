@@ -412,7 +412,7 @@ $x functions).*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             objectId.toJson(strBuilder.append("\"objectId\":"));
-            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(objectGroup).append('"');
+            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeQuote(objectGroup)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -813,7 +813,7 @@ when the tracking is stopped.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"chunk\":").append('"').append(chunk).append('"');
+            strBuilder.append("\"chunk\":").append('"').append(DomainBase.escapeQuote(chunk)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

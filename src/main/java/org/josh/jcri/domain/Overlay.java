@@ -142,7 +142,7 @@ import javax.annotation.Nullable;
             if (eventTargetColor != null) eventTargetColor.toJson(strBuilder.append(",\"eventTargetColor\":"));
             if (shapeColor != null) shapeColor.toJson(strBuilder.append(",\"shapeColor\":"));
             if (shapeMarginColor != null) shapeMarginColor.toJson(strBuilder.append(",\"shapeMarginColor\":"));
-            if (selectorList != null) strBuilder.append(",\"selectorList\":").append('"').append(selectorList).append('"');
+            if (selectorList != null) strBuilder.append(",\"selectorList\":").append('"').append(DomainBase.escapeQuote(selectorList)).append('"');
             if (cssGridColor != null) cssGridColor.toJson(strBuilder.append(",\"cssGridColor\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -839,7 +839,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            if (message != null) strBuilder.append("\"message\":").append('"').append(message).append('"');
+            if (message != null) strBuilder.append("\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

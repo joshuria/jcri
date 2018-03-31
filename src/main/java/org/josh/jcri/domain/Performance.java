@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(name).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
             strBuilder.append(",\"value\":").append(value);
             strBuilder.append('}');
             return strBuilder;
@@ -231,7 +231,7 @@ import javax.annotation.Nullable;
             for (int i = 1; i < metrics.size(); ++i)
                 metrics.get(i).toJson(strBuilder.append(','));
             strBuilder.append(']');
-            strBuilder.append(",\"title\":").append('"').append(title).append('"');
+            strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeQuote(title)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

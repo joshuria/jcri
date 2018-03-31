@@ -146,9 +146,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             targetId.toJson(strBuilder.append("\"targetId\":"));
-            strBuilder.append(",\"type\":").append('"').append(type).append('"');
-            strBuilder.append(",\"title\":").append('"').append(title).append('"');
-            strBuilder.append(",\"url\":").append('"').append(url).append('"');
+            strBuilder.append(",\"type\":").append('"').append(DomainBase.escapeQuote(type)).append('"');
+            strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeQuote(title)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
             strBuilder.append(",\"attached\":").append(attached);
             if (openerId != null) openerId.toJson(strBuilder.append(",\"openerId\":"));
             strBuilder.append('}');
@@ -197,7 +197,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"host\":").append('"').append(host).append('"');
+            strBuilder.append("\"host\":").append('"').append(DomainBase.escapeQuote(host)).append('"');
             strBuilder.append(",\"port\":").append(port);
             strBuilder.append('}');
             return strBuilder;
@@ -508,7 +508,7 @@ not supported on MacOS yet, false by default).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(url).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
             if (width != null) strBuilder.append(",\"width\":").append(width);
             if (height != null) strBuilder.append(",\"height\":").append(height);
             if (browserContextId != null) browserContextId.toJson(strBuilder.append(",\"browserContextId\":"));
@@ -867,7 +867,7 @@ not supported on MacOS yet, false by default).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"message\":").append('"').append(message).append('"');
+            strBuilder.append("\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
             if (sessionId != null) sessionId.toJson(strBuilder.append(",\"sessionId\":"));
             if (targetId != null) targetId.toJson(strBuilder.append(",\"targetId\":"));
             strBuilder.append('}');
@@ -1231,7 +1231,7 @@ issued multiple times per target if multiple sessions have been attached to it.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             sessionId.toJson(strBuilder.append("\"sessionId\":"));
-            strBuilder.append(",\"message\":").append('"').append(message).append('"');
+            strBuilder.append(",\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
             if (targetId != null) targetId.toJson(strBuilder.append(",\"targetId\":"));
             strBuilder.append('}');
             return strBuilder;

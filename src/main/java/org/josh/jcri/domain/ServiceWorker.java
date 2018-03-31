@@ -58,8 +58,8 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"registrationId\":").append('"').append(registrationId).append('"');
-            strBuilder.append(",\"scopeURL\":").append('"').append(scopeURL).append('"');
+            strBuilder.append("\"registrationId\":").append('"').append(DomainBase.escapeQuote(registrationId)).append('"');
+            strBuilder.append(",\"scopeURL\":").append('"').append(DomainBase.escapeQuote(scopeURL)).append('"');
             strBuilder.append(",\"isDeleted\":").append(isDeleted);
             strBuilder.append('}');
             return strBuilder;
@@ -210,9 +210,9 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"versionId\":").append('"').append(versionId).append('"');
-            strBuilder.append(",\"registrationId\":").append('"').append(registrationId).append('"');
-            strBuilder.append(",\"scriptURL\":").append('"').append(scriptURL).append('"');
+            strBuilder.append("\"versionId\":").append('"').append(DomainBase.escapeQuote(versionId)).append('"');
+            strBuilder.append(",\"registrationId\":").append('"').append(DomainBase.escapeQuote(registrationId)).append('"');
+            strBuilder.append(",\"scriptURL\":").append('"').append(DomainBase.escapeQuote(scriptURL)).append('"');
             runningStatus.toJson(strBuilder.append(",\"runningStatus\":"));
             status.toJson(strBuilder.append(",\"status\":"));
             if (scriptLastModified != null) strBuilder.append(",\"scriptLastModified\":").append(scriptLastModified);
@@ -304,10 +304,10 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"errorMessage\":").append('"').append(errorMessage).append('"');
-            strBuilder.append(",\"registrationId\":").append('"').append(registrationId).append('"');
-            strBuilder.append(",\"versionId\":").append('"').append(versionId).append('"');
-            strBuilder.append(",\"sourceURL\":").append('"').append(sourceURL).append('"');
+            strBuilder.append("\"errorMessage\":").append('"').append(DomainBase.escapeQuote(errorMessage)).append('"');
+            strBuilder.append(",\"registrationId\":").append('"').append(DomainBase.escapeQuote(registrationId)).append('"');
+            strBuilder.append(",\"versionId\":").append('"').append(DomainBase.escapeQuote(versionId)).append('"');
+            strBuilder.append(",\"sourceURL\":").append('"').append(DomainBase.escapeQuote(sourceURL)).append('"');
             strBuilder.append(",\"lineNumber\":").append(lineNumber);
             strBuilder.append(",\"columnNumber\":").append(columnNumber);
             strBuilder.append('}');
@@ -363,9 +363,9 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
-            strBuilder.append(",\"registrationId\":").append('"').append(registrationId).append('"');
-            strBuilder.append(",\"data\":").append('"').append(data).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
+            strBuilder.append(",\"registrationId\":").append('"').append(DomainBase.escapeQuote(registrationId)).append('"');
+            strBuilder.append(",\"data\":").append('"').append(DomainBase.escapeQuote(data)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -490,9 +490,9 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(origin).append('"');
-            strBuilder.append(",\"registrationId\":").append('"').append(registrationId).append('"');
-            strBuilder.append(",\"tag\":").append('"').append(tag).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
+            strBuilder.append(",\"registrationId\":").append('"').append(DomainBase.escapeQuote(registrationId)).append('"');
+            strBuilder.append(",\"tag\":").append('"').append(DomainBase.escapeQuote(tag)).append('"');
             strBuilder.append(",\"lastChance\":").append(lastChance);
             strBuilder.append('}');
             return strBuilder;
@@ -599,7 +599,7 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"versionId\":").append('"').append(versionId).append('"');
+            strBuilder.append("\"versionId\":").append('"').append(DomainBase.escapeQuote(versionId)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -713,7 +713,7 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"scopeURL\":").append('"').append(scopeURL).append('"');
+            strBuilder.append("\"scopeURL\":").append('"').append(DomainBase.escapeQuote(scopeURL)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -770,7 +770,7 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"scopeURL\":").append('"').append(scopeURL).append('"');
+            strBuilder.append("\"scopeURL\":").append('"').append(DomainBase.escapeQuote(scopeURL)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -870,7 +870,7 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"versionId\":").append('"').append(versionId).append('"');
+            strBuilder.append("\"versionId\":").append('"').append(DomainBase.escapeQuote(versionId)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -927,7 +927,7 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"scopeURL\":").append('"').append(scopeURL).append('"');
+            strBuilder.append("\"scopeURL\":").append('"').append(DomainBase.escapeQuote(scopeURL)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -984,7 +984,7 @@ For cached script it is the last time the cache entry was validated.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"scopeURL\":").append('"').append(scopeURL).append('"');
+            strBuilder.append("\"scopeURL\":").append('"').append(DomainBase.escapeQuote(scopeURL)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

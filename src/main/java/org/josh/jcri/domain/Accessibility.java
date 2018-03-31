@@ -231,13 +231,13 @@ import javax.annotation.Nullable;
             strBuilder.append('{');
             type.toJson(strBuilder.append("\"type\":"));
             if (value != null) value.toJson(strBuilder.append(",\"value\":"));
-            if (attribute != null) strBuilder.append(",\"attribute\":").append('"').append(attribute).append('"');
+            if (attribute != null) strBuilder.append(",\"attribute\":").append('"').append(DomainBase.escapeQuote(attribute)).append('"');
             if (attributeValue != null) attributeValue.toJson(strBuilder.append(",\"attributeValue\":"));
             if (superseded != null) strBuilder.append(",\"superseded\":").append(superseded);
             if (nativeSource != null) nativeSource.toJson(strBuilder.append(",\"nativeSource\":"));
             if (nativeSourceValue != null) nativeSourceValue.toJson(strBuilder.append(",\"nativeSourceValue\":"));
             if (invalid != null) strBuilder.append(",\"invalid\":").append(invalid);
-            if (invalidReason != null) strBuilder.append(",\"invalidReason\":").append('"').append(invalidReason).append('"');
+            if (invalidReason != null) strBuilder.append(",\"invalidReason\":").append('"').append(DomainBase.escapeQuote(invalidReason)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -297,8 +297,8 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             backendDOMNodeId.toJson(strBuilder.append("\"backendDOMNodeId\":"));
-            if (idref != null) strBuilder.append(",\"idref\":").append('"').append(idref).append('"');
-            if (text != null) strBuilder.append(",\"text\":").append('"').append(text).append('"');
+            if (idref != null) strBuilder.append(",\"idref\":").append('"').append(DomainBase.escapeQuote(idref)).append('"');
+            if (text != null) strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

@@ -229,7 +229,7 @@ import javax.annotation.Nullable;
             strBuilder.append('{');
             strBuilder.append("\"x\":").append(x);
             strBuilder.append(",\"y\":").append(y);
-            strBuilder.append(",\"picture\":").append('"').append(picture).append('"');
+            strBuilder.append(",\"picture\":").append('"').append(DomainBase.escapeQuote(picture)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -511,9 +511,9 @@ transform/scrolling purposes only.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"compositingReasons\":[");
-            strBuilder.append('"').append(compositingReasons.get(0)).append('"');
+            strBuilder.append('"').append(DomainBase.escapeQuote(compositingReasons.get(0))).append('"');
             for (int i = 1; i < compositingReasons.size(); ++i)
-                strBuilder.append(",\"").append(compositingReasons.get(i)).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeQuote(compositingReasons.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -993,7 +993,7 @@ transform/scrolling purposes only.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"dataURL\":").append('"').append(dataURL).append('"');
+            strBuilder.append("\"dataURL\":").append('"').append(DomainBase.escapeQuote(dataURL)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

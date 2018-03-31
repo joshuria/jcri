@@ -88,9 +88,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             id.toJson(strBuilder.append("\"id\":"));
-            strBuilder.append(",\"domain\":").append('"').append(domain).append('"');
-            strBuilder.append(",\"name\":").append('"').append(name).append('"');
-            strBuilder.append(",\"version\":").append('"').append(version).append('"');
+            strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeQuote(domain)).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append(",\"version\":").append('"').append(DomainBase.escapeQuote(version)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -132,7 +132,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"message\":").append('"').append(message).append('"');
+            strBuilder.append("\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
             strBuilder.append(",\"code\":").append(code);
             strBuilder.append('}');
             return strBuilder;
@@ -259,7 +259,7 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             databaseId.toJson(strBuilder.append("\"databaseId\":"));
-            strBuilder.append(",\"query\":").append('"').append(query).append('"');
+            strBuilder.append(",\"query\":").append('"').append(DomainBase.escapeQuote(query)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -308,9 +308,9 @@ import javax.annotation.Nullable;
             strBuilder.append('{');
             if (columnNames != null) {
                 strBuilder.append("\"columnNames\":[");
-                strBuilder.append('"').append(columnNames.get(0)).append('"');
+                strBuilder.append('"').append(DomainBase.escapeQuote(columnNames.get(0))).append('"');
                 for (int i = 1; i < columnNames.size(); ++i)
-                    strBuilder.append(",\"").append(columnNames.get(i)).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeQuote(columnNames.get(i))).append('"');
                 strBuilder.append(']');
             }
             if (values != null) {
@@ -394,9 +394,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"tableNames\":[");
-            strBuilder.append('"').append(tableNames.get(0)).append('"');
+            strBuilder.append('"').append(DomainBase.escapeQuote(tableNames.get(0))).append('"');
             for (int i = 1; i < tableNames.size(); ++i)
-                strBuilder.append(",\"").append(tableNames.get(i)).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeQuote(tableNames.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;

@@ -149,23 +149,23 @@ import javax.annotation.Nullable;
             if (enableArgumentFilter != null) strBuilder.append(",\"enableArgumentFilter\":").append(enableArgumentFilter);
             if (includedCategories != null) {
                 strBuilder.append(",\"includedCategories\":[");
-                strBuilder.append('"').append(includedCategories.get(0)).append('"');
+                strBuilder.append('"').append(DomainBase.escapeQuote(includedCategories.get(0))).append('"');
                 for (int i = 1; i < includedCategories.size(); ++i)
-                    strBuilder.append(",\"").append(includedCategories.get(i)).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeQuote(includedCategories.get(i))).append('"');
                 strBuilder.append(']');
             }
             if (excludedCategories != null) {
                 strBuilder.append(",\"excludedCategories\":[");
-                strBuilder.append('"').append(excludedCategories.get(0)).append('"');
+                strBuilder.append('"').append(DomainBase.escapeQuote(excludedCategories.get(0))).append('"');
                 for (int i = 1; i < excludedCategories.size(); ++i)
-                    strBuilder.append(",\"").append(excludedCategories.get(i)).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeQuote(excludedCategories.get(i))).append('"');
                 strBuilder.append(']');
             }
             if (syntheticDelays != null) {
                 strBuilder.append(",\"syntheticDelays\":[");
-                strBuilder.append('"').append(syntheticDelays.get(0)).append('"');
+                strBuilder.append('"').append(DomainBase.escapeQuote(syntheticDelays.get(0))).append('"');
                 for (int i = 1; i < syntheticDelays.size(); ++i)
-                    strBuilder.append(",\"").append(syntheticDelays.get(i)).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeQuote(syntheticDelays.get(i))).append('"');
                 strBuilder.append(']');
             }
             if (memoryDumpConfig != null) memoryDumpConfig.toJson(strBuilder.append(",\"memoryDumpConfig\":"));
@@ -303,9 +303,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"categories\":[");
-            strBuilder.append('"').append(categories.get(0)).append('"');
+            strBuilder.append('"').append(DomainBase.escapeQuote(categories.get(0))).append('"');
             for (int i = 1; i < categories.size(); ++i)
-                strBuilder.append(",\"").append(categories.get(i)).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeQuote(categories.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -339,7 +339,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"syncId\":").append('"').append(syncId).append('"');
+            strBuilder.append("\"syncId\":").append('"').append(DomainBase.escapeQuote(syncId)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -420,7 +420,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"dumpGuid\":").append('"').append(dumpGuid).append('"');
+            strBuilder.append("\"dumpGuid\":").append('"').append(DomainBase.escapeQuote(dumpGuid)).append('"');
             strBuilder.append(",\"success\":").append(success);
             strBuilder.append('}');
             return strBuilder;
@@ -521,8 +521,8 @@ transfer mode (defaults to `none`)
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            if (categories != null) strBuilder.append("\"categories\":").append('"').append(categories).append('"');
-            if (options != null) strBuilder.append(",\"options\":").append('"').append(options).append('"');
+            if (categories != null) strBuilder.append("\"categories\":").append('"').append(DomainBase.escapeQuote(categories)).append('"');
+            if (options != null) strBuilder.append(",\"options\":").append('"').append(DomainBase.escapeQuote(options)).append('"');
             if (bufferUsageReportingInterval != null) strBuilder.append(",\"bufferUsageReportingInterval\":").append(bufferUsageReportingInterval);
             if (transferMode != null) strBuilder.append(",\"transferMode\":").append(transferMode);
             if (streamCompression != null) streamCompression.toJson(strBuilder.append(",\"streamCompression\":"));

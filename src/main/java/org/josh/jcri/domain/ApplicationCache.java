@@ -58,9 +58,9 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(url).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
             strBuilder.append(",\"size\":").append(size);
-            strBuilder.append(",\"type\":").append('"').append(type).append('"');
+            strBuilder.append(",\"type\":").append('"').append(DomainBase.escapeQuote(type)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -121,7 +121,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"manifestURL\":").append('"').append(manifestURL).append('"');
+            strBuilder.append("\"manifestURL\":").append('"').append(DomainBase.escapeQuote(manifestURL)).append('"');
             strBuilder.append(",\"size\":").append(size);
             strBuilder.append(",\"creationTime\":").append(creationTime);
             strBuilder.append(",\"updateTime\":").append(updateTime);
@@ -181,7 +181,7 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             frameId.toJson(strBuilder.append("\"frameId\":"));
-            strBuilder.append(",\"manifestURL\":").append('"').append(manifestURL).append('"');
+            strBuilder.append(",\"manifestURL\":").append('"').append(DomainBase.escapeQuote(manifestURL)).append('"');
             strBuilder.append(",\"status\":").append(status);
             strBuilder.append('}');
             return strBuilder;
@@ -419,7 +419,7 @@ associated with some application cache.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"manifestURL\":").append('"').append(manifestURL).append('"');
+            strBuilder.append("\"manifestURL\":").append('"').append(DomainBase.escapeQuote(manifestURL)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -457,7 +457,7 @@ associated with some application cache.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             frameId.toJson(strBuilder.append("\"frameId\":"));
-            strBuilder.append(",\"manifestURL\":").append('"').append(manifestURL).append('"');
+            strBuilder.append(",\"manifestURL\":").append('"').append(DomainBase.escapeQuote(manifestURL)).append('"');
             strBuilder.append(",\"status\":").append(status);
             strBuilder.append('}');
             return strBuilder;

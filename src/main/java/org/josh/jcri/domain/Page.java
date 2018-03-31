@@ -156,14 +156,14 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"id\":").append('"').append(id).append('"');
-            if (parentId != null) strBuilder.append(",\"parentId\":").append('"').append(parentId).append('"');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
+            if (parentId != null) strBuilder.append(",\"parentId\":").append('"').append(DomainBase.escapeQuote(parentId)).append('"');
             loaderId.toJson(strBuilder.append(",\"loaderId\":"));
-            if (name != null) strBuilder.append(",\"name\":").append('"').append(name).append('"');
-            strBuilder.append(",\"url\":").append('"').append(url).append('"');
-            strBuilder.append(",\"securityOrigin\":").append('"').append(securityOrigin).append('"');
-            strBuilder.append(",\"mimeType\":").append('"').append(mimeType).append('"');
-            if (unreachableUrl != null) strBuilder.append(",\"unreachableUrl\":").append('"').append(unreachableUrl).append('"');
+            if (name != null) strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"securityOrigin\":").append('"').append(DomainBase.escapeQuote(securityOrigin)).append('"');
+            strBuilder.append(",\"mimeType\":").append('"').append(DomainBase.escapeQuote(mimeType)).append('"');
+            if (unreachableUrl != null) strBuilder.append(",\"unreachableUrl\":").append('"').append(DomainBase.escapeQuote(unreachableUrl)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -249,9 +249,9 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(url).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
             type.toJson(strBuilder.append(",\"type\":"));
-            strBuilder.append(",\"mimeType\":").append('"').append(mimeType).append('"');
+            strBuilder.append(",\"mimeType\":").append('"').append(DomainBase.escapeQuote(mimeType)).append('"');
             if (lastModified != null) lastModified.toJson(strBuilder.append(",\"lastModified\":"));
             if (contentSize != null) strBuilder.append(",\"contentSize\":").append(contentSize);
             if (failed != null) strBuilder.append(",\"failed\":").append(failed);
@@ -489,9 +489,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"id\":").append(id);
-            strBuilder.append(",\"url\":").append('"').append(url).append('"');
-            strBuilder.append(",\"userTypedURL\":").append('"').append(userTypedURL).append('"');
-            strBuilder.append(",\"title\":").append('"').append(title).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"userTypedURL\":").append('"').append(DomainBase.escapeQuote(userTypedURL)).append('"');
+            strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeQuote(title)).append('"');
             transitionType.toJson(strBuilder.append(",\"transitionType\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -669,7 +669,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"message\":").append('"').append(message).append('"');
+            strBuilder.append("\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
             strBuilder.append(",\"critical\":").append(critical);
             strBuilder.append(",\"line\":").append(line);
             strBuilder.append(",\"column\":").append(column);
@@ -929,7 +929,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"scriptSource\":").append('"').append(scriptSource).append('"');
+            strBuilder.append("\"scriptSource\":").append('"').append(DomainBase.escapeQuote(scriptSource)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -998,7 +998,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"source\":").append('"').append(source).append('"');
+            strBuilder.append("\"source\":").append('"').append(DomainBase.escapeQuote(source)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1198,7 +1198,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"data\":").append('"').append(data).append('"');
+            strBuilder.append("\"data\":").append('"').append(DomainBase.escapeQuote(data)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1391,7 +1391,7 @@ option, use with caution.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             frameId.toJson(strBuilder.append("\"frameId\":"));
-            if (worldName != null) strBuilder.append(",\"worldName\":").append('"').append(worldName).append('"');
+            if (worldName != null) strBuilder.append(",\"worldName\":").append('"').append(DomainBase.escapeQuote(worldName)).append('"');
             if (grantUniveralAccess != null) strBuilder.append(",\"grantUniveralAccess\":").append(grantUniveralAccess);
             strBuilder.append('}');
             return strBuilder;
@@ -1474,8 +1474,8 @@ option, use with caution.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"cookieName\":").append('"').append(cookieName).append('"');
-            strBuilder.append(",\"url\":").append('"').append(url).append('"');
+            strBuilder.append("\"cookieName\":").append('"').append(DomainBase.escapeQuote(cookieName)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1651,13 +1651,13 @@ option, use with caution.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(url).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
                         strBuilder.append(",\"errors\":[");
             errors.get(0).toJson(strBuilder);
             for (int i = 1; i < errors.size(); ++i)
                 errors.get(i).toJson(strBuilder.append(','));
             strBuilder.append(']');
-            if (data != null) strBuilder.append(",\"data\":").append('"').append(data).append('"');
+            if (data != null) strBuilder.append(",\"data\":").append('"').append(DomainBase.escapeQuote(data)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1957,7 +1957,7 @@ information in the `cookies` field.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             frameId.toJson(strBuilder.append("\"frameId\":"));
-            strBuilder.append(",\"url\":").append('"').append(url).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1998,7 +1998,7 @@ information in the `cookies` field.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"content\":").append('"').append(content).append('"');
+            strBuilder.append("\"content\":").append('"').append(DomainBase.escapeQuote(content)).append('"');
             strBuilder.append(",\"base64Encoded\":").append(base64Encoded);
             strBuilder.append('}');
             return strBuilder;
@@ -2100,7 +2100,7 @@ dialog.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"accept\":").append(accept);
-            if (promptText != null) strBuilder.append(",\"promptText\":").append('"').append(promptText).append('"');
+            if (promptText != null) strBuilder.append(",\"promptText\":").append('"').append(DomainBase.escapeQuote(promptText)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2180,8 +2180,8 @@ dialog.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(url).append('"');
-            if (referrer != null) strBuilder.append(",\"referrer\":").append('"').append(referrer).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            if (referrer != null) strBuilder.append(",\"referrer\":").append('"').append(DomainBase.escapeQuote(referrer)).append('"');
             if (transitionType != null) transitionType.toJson(strBuilder.append(",\"transitionType\":"));
             if (frameId != null) frameId.toJson(strBuilder.append(",\"frameId\":"));
             strBuilder.append('}');
@@ -2235,7 +2235,7 @@ dialog.
             strBuilder.append('{');
             frameId.toJson(strBuilder.append("\"frameId\":"));
             if (loaderId != null) loaderId.toJson(strBuilder.append(",\"loaderId\":"));
-            if (errorText != null) strBuilder.append(",\"errorText\":").append('"').append(errorText).append('"');
+            if (errorText != null) strBuilder.append(",\"errorText\":").append('"').append(DomainBase.escapeQuote(errorText)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2450,10 +2450,10 @@ in which case the content will be scaled to fit the paper size.
             if (marginBottom != null) strBuilder.append(",\"marginBottom\":").append(marginBottom);
             if (marginLeft != null) strBuilder.append(",\"marginLeft\":").append(marginLeft);
             if (marginRight != null) strBuilder.append(",\"marginRight\":").append(marginRight);
-            if (pageRanges != null) strBuilder.append(",\"pageRanges\":").append('"').append(pageRanges).append('"');
+            if (pageRanges != null) strBuilder.append(",\"pageRanges\":").append('"').append(DomainBase.escapeQuote(pageRanges)).append('"');
             if (ignoreInvalidPageRanges != null) strBuilder.append(",\"ignoreInvalidPageRanges\":").append(ignoreInvalidPageRanges);
-            if (headerTemplate != null) strBuilder.append(",\"headerTemplate\":").append('"').append(headerTemplate).append('"');
-            if (footerTemplate != null) strBuilder.append(",\"footerTemplate\":").append('"').append(footerTemplate).append('"');
+            if (headerTemplate != null) strBuilder.append(",\"headerTemplate\":").append('"').append(DomainBase.escapeQuote(headerTemplate)).append('"');
+            if (footerTemplate != null) strBuilder.append(",\"footerTemplate\":").append('"').append(DomainBase.escapeQuote(footerTemplate)).append('"');
             if (preferCSSPageSize != null) strBuilder.append(",\"preferCSSPageSize\":").append(preferCSSPageSize);
             strBuilder.append('}');
             return strBuilder;
@@ -2516,7 +2516,7 @@ in which case the content will be scaled to fit the paper size.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"data\":").append('"').append(data).append('"');
+            strBuilder.append("\"data\":").append('"').append(DomainBase.escapeQuote(data)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2558,7 +2558,7 @@ Argument will be ignored if reloading dataURL origin.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             if (ignoreCache != null) strBuilder.append("\"ignoreCache\":").append(ignoreCache);
-            if (scriptToEvaluateOnLoad != null) strBuilder.append(",\"scriptToEvaluateOnLoad\":").append('"').append(scriptToEvaluateOnLoad).append('"');
+            if (scriptToEvaluateOnLoad != null) strBuilder.append(",\"scriptToEvaluateOnLoad\":").append('"').append(DomainBase.escapeQuote(scriptToEvaluateOnLoad)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2874,8 +2874,8 @@ Argument will be ignored if reloading dataURL origin.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             frameId.toJson(strBuilder.append("\"frameId\":"));
-            strBuilder.append(",\"url\":").append('"').append(url).append('"');
-            strBuilder.append(",\"query\":").append('"').append(query).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"query\":").append('"').append(DomainBase.escapeQuote(query)).append('"');
             if (caseSensitive != null) strBuilder.append(",\"caseSensitive\":").append(caseSensitive);
             if (isRegex != null) strBuilder.append(",\"isRegex\":").append(isRegex);
             strBuilder.append('}');
@@ -3284,7 +3284,7 @@ autosizing and more.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             frameId.toJson(strBuilder.append("\"frameId\":"));
-            strBuilder.append(",\"html\":").append('"').append(html).append('"');
+            strBuilder.append(",\"html\":").append('"').append(DomainBase.escapeQuote(html)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3380,7 +3380,7 @@ available (otherwise deny).*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"behavior\":").append(behavior);
-            if (downloadPath != null) strBuilder.append(",\"downloadPath\":").append('"').append(downloadPath).append('"');
+            if (downloadPath != null) strBuilder.append(",\"downloadPath\":").append('"').append(DomainBase.escapeQuote(downloadPath)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -4202,7 +4202,7 @@ guaranteed to start.*/
             frameId.toJson(strBuilder.append("\"frameId\":"));
             strBuilder.append(",\"delay\":").append(delay);
             strBuilder.append(",\"reason\":").append(reason);
-            strBuilder.append(",\"url\":").append('"').append(url).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -4375,7 +4375,7 @@ guaranteed to start.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"result\":").append(result);
-            strBuilder.append(",\"userInput\":").append('"').append(userInput).append('"');
+            strBuilder.append(",\"userInput\":").append('"').append(DomainBase.escapeQuote(userInput)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -4426,10 +4426,10 @@ closed.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(url).append('"');
-            strBuilder.append(",\"message\":").append('"').append(message).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
             type.toJson(strBuilder.append(",\"type\":"));
-            if (defaultPrompt != null) strBuilder.append(",\"defaultPrompt\":").append('"').append(defaultPrompt).append('"');
+            if (defaultPrompt != null) strBuilder.append(",\"defaultPrompt\":").append('"').append(DomainBase.escapeQuote(defaultPrompt)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -4485,7 +4485,7 @@ open.
             strBuilder.append('{');
             frameId.toJson(strBuilder.append("\"frameId\":"));
             loaderId.toJson(strBuilder.append(",\"loaderId\":"));
-            strBuilder.append(",\"name\":").append('"').append(name).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
             timestamp.toJson(strBuilder.append(",\"timestamp\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -4571,7 +4571,7 @@ open.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"data\":").append('"').append(data).append('"');
+            strBuilder.append("\"data\":").append('"').append(DomainBase.escapeQuote(data)).append('"');
             metadata.toJson(strBuilder.append(",\"metadata\":"));
             strBuilder.append(",\"sessionId\":").append(sessionId);
             strBuilder.append('}');
@@ -4662,12 +4662,12 @@ open.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(url).append('"');
-            strBuilder.append(",\"windowName\":").append('"').append(windowName).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"windowName\":").append('"').append(DomainBase.escapeQuote(windowName)).append('"');
                         strBuilder.append(",\"windowFeatures\":[");
-            strBuilder.append('"').append(windowFeatures.get(0)).append('"');
+            strBuilder.append('"').append(DomainBase.escapeQuote(windowFeatures.get(0))).append('"');
             for (int i = 1; i < windowFeatures.size(); ++i)
-                strBuilder.append(",\"").append(windowFeatures.get(i)).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeQuote(windowFeatures.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append(",\"userGesture\":").append(userGesture);
             strBuilder.append('}');

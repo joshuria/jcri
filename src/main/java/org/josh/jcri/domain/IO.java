@@ -189,7 +189,7 @@ following the last read).
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             if (base64Encoded != null) strBuilder.append("\"base64Encoded\":").append(base64Encoded);
-            strBuilder.append(",\"data\":").append('"').append(data).append('"');
+            strBuilder.append(",\"data\":").append('"').append(DomainBase.escapeQuote(data)).append('"');
             strBuilder.append(",\"eof\":").append(eof);
             strBuilder.append('}');
             return strBuilder;
@@ -263,7 +263,7 @@ following the last read).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"uuid\":").append('"').append(uuid).append('"');
+            strBuilder.append("\"uuid\":").append('"').append(DomainBase.escapeQuote(uuid)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
