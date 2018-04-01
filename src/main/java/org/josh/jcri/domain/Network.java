@@ -48,7 +48,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(_value).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
         }
     }
 
@@ -70,7 +70,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(_value).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
         }
     }
 
@@ -92,7 +92,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(_value).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
         }
     }
 
