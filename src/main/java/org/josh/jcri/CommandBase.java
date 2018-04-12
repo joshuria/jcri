@@ -44,7 +44,8 @@ public abstract class CommandBase implements CommonDomainType {
      @return future instance that waits browser's reply.
      @throws IllegalArgumentException if any of parameter is not valid. */
     protected <T extends ResultBase> CompletableFuture<T> call(
-        String commandName, Class<T> resultMetaClass, BiFunction<Integer, String, T> failResultFactory, Executor exec
+        String commandName, Class<T> resultMetaClass, BiFunction<Integer, String, T> failResultFactory,
+        Executor exec
     ) throws IllegalArgumentException {
         //! Check if all parameters are ok
         check();
@@ -102,7 +103,7 @@ public abstract class CommandBase implements CommonDomainType {
     protected <T extends ResultBase> CompletableFuture<T> call(
         String commandName, Class<T> resultMetaClass, BiFunction<Integer, String, T> failResultFactory
     ) throws IllegalArgumentException {
-        return call(commandName, resultMetaClass, failResultFactory, _evt.getCommandExecutor());
+        return call(commandName, resultMetaClass, failResultFactory, _evt.getExecutor());
     }
 
     /**Let event center set browser's response.*/

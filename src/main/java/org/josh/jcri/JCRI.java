@@ -160,13 +160,10 @@ public class JCRI implements Closeable {
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
      @param timeout web socket connection timeout in second. Use 0 or negative to indicate never
         timeout.
-     @param commandExecutor executor creates new {@link java.util.concurrent.CompletableFuture} for
-        calling domain methods and waiting their response.
-     @param methodExecutor executor executes registered callback functions of domain methods. */
-    public JCRI(URI webSocketDebuggerUrl, int timeout,
-        @Nullable ExecutorService commandExecutor, @Nullable ExecutorService methodExecutor
-    ) {
-        _evt = new EventCenter(commandExecutor, methodExecutor);
+     @param executor executor creates new {@link java.util.concurrent.CompletableFuture} for calling
+         domain commands, waiting response, and executing method callbacks. */
+    public JCRI(URI webSocketDebuggerUrl, int timeout, @Nullable ExecutorService executor) {
+        _evt = new EventCenter(executor);
         _ws = new WebSocket(webSocketDebuggerUrl, timeout, _evt::onMessage, this::onError, this::onClose);
         this.Accessibility = new Accessibility(_evt, _ws);
         this.Animation = new Animation(_evt, _ws);
@@ -211,13 +208,10 @@ public class JCRI implements Closeable {
 
     /**Create new connection to browser with specified URL and default connection timeout.
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
-     @param commandExecutor executor creates new {@link java.util.concurrent.CompletableFuture} for
-     calling domain methods and waiting their response.
-     @param methodExecutor executor executes registered callback functions of domain methods. */
-    public JCRI(URI webSocketDebuggerUrl,
-        @Nullable ExecutorService commandExecutor, @Nullable ExecutorService methodExecutor
-    ) {
-        this(webSocketDebuggerUrl, DefaultConnectionTimeout, commandExecutor, methodExecutor);
+     @param executor executor creates new {@link java.util.concurrent.CompletableFuture} for calling
+         domain commands, waiting response, and executing method callbacks. */
+    public JCRI(URI webSocketDebuggerUrl, @Nullable ExecutorService executor) {
+        this(webSocketDebuggerUrl, DefaultConnectionTimeout, executor);
         try {
             final int timeout = Integer.parseInt(System.getProperty(DefaultConnectionTimeoutPropertyName));
             if (timeout != DefaultConnectionTimeout)    _ws.setConnectionLostTimeout(timeout);
@@ -229,7 +223,7 @@ public class JCRI implements Closeable {
     /**Create new connection to browser with specified URL and default connection timeout.
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser. */
     public JCRI(URI webSocketDebuggerUrl) {
-        this(webSocketDebuggerUrl, DefaultConnectionTimeout, null, null);
+        this(webSocketDebuggerUrl, DefaultConnectionTimeout, null);
         try {
             final int timeout = Integer.parseInt(System.getProperty(DefaultConnectionTimeoutPropertyName));
             if (timeout != DefaultConnectionTimeout)    _ws.setConnectionLostTimeout(timeout);
@@ -258,7 +252,7 @@ public class JCRI implements Closeable {
                 Thread.currentThread().interrupt();
                 return false;
             }
-        }, _evt.getCommandExecutor());
+        }, _evt.getExecutor());
     }
 
     /**Close connection.
@@ -267,8 +261,7 @@ public class JCRI implements Closeable {
      @apiNote this is a blocking operation. */
     @Override public void close() {
         if (_shutdownExecutorWhenClose) {
-            _evt.getCommandExecutor().shutdownNow();
-            _evt.getMethodExecutor().shutdownNow();
+            _evt.getExecutor().shutdownNow();
         }
         try { _ws.closeBlocking(); }
         catch (InterruptedException e) {
@@ -283,8 +276,7 @@ public class JCRI implements Closeable {
      @see #isClosed() */
     public void closeAsync() {
         if (_shutdownExecutorWhenClose) {
-            _evt.getCommandExecutor().shutdownNow();
-            _evt.getMethodExecutor().shutdownNow();
+            _evt.getExecutor().shutdownNow();
         }
         _ws.close();
     }
