@@ -83,7 +83,7 @@ public class Browser {
 
         //! Create browser process
         //! User specified browser path, if fail, we should notify them immediately
-        if (_browserPath != null) {
+        if (_browserPath != null && !_browserPath.isEmpty()) {
             cmd[0] = _browserPath;
             _browser = Runtime.getRuntime().exec(cmd);
             return;
