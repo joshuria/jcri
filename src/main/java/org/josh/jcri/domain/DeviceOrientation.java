@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     /**Clears the overridden Device Orientation.*/
     public ClearDeviceOrientationOverrideParameter clearDeviceOrientationOverride() { final ClearDeviceOrientationOverrideParameter v = new ClearDeviceOrientationOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clearDeviceOrientationOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDeviceOrientationOverrideParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -52,6 +54,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of clearDeviceOrientationOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDeviceOrientationOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -72,6 +75,7 @@ import javax.annotation.Nullable;
     /**Overrides the Device Orientation.*/
     public SetDeviceOrientationOverrideParameter setDeviceOrientationOverride() { final SetDeviceOrientationOverrideParameter v = new SetDeviceOrientationOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setDeviceOrientationOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDeviceOrientationOverrideParameter extends CommandBase {
         /**Mock alpha*/
         private Double alpha;
@@ -129,6 +133,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of setDeviceOrientationOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDeviceOrientationOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */

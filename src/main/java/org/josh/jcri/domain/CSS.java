@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -34,6 +35,7 @@ subsequently load the required stylesheet contents using the `getStyleSheet[Text
     public CSS(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StyleSheetId implements CommonDomainType {
         private String _value;
         public StyleSheetId() {}
@@ -87,6 +89,7 @@ inspector" rules), "regular" for regular stylesheets.*/
     }
 
     /**CSS rule collection for a single pseudo style.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PseudoElementMatches implements CommonDomainType {
         /**Pseudo element type.*/
         private DOM.PseudoType pseudoType;
@@ -130,6 +133,7 @@ inspector" rules), "regular" for regular stylesheets.*/
     }
 
     /**Inherited CSS rule collection from ancestor node.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InheritedStyleEntry implements CommonDomainType {
         /**The ancestor node's inline style, if any, in the style inheritance chain.
         <em>Optional.</em>*/
@@ -173,6 +177,7 @@ inspector" rules), "regular" for regular stylesheets.*/
     }
 
     /**Match data for a CSS rule.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RuleMatch implements CommonDomainType {
         /**CSS rule in the match.*/
         private CSSRule rule;
@@ -216,6 +221,7 @@ inspector" rules), "regular" for regular stylesheets.*/
     }
 
     /**Data for a simple selector (these are delimited by commas in a selector list).*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Value implements CommonDomainType {
         /**Value text.*/
         private String text;
@@ -255,6 +261,7 @@ inspector" rules), "regular" for regular stylesheets.*/
     }
 
     /**Selector list data.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SelectorList implements CommonDomainType {
         /**Selectors in the list.*/
         private List<Value> selectors;
@@ -298,6 +305,7 @@ inspector" rules), "regular" for regular stylesheets.*/
     }
 
     /**CSS stylesheet metainformation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CSSStyleSheetHeader implements CommonDomainType {
         /**The stylesheet identifier.*/
         private StyleSheetId styleSheetId;
@@ -448,6 +456,7 @@ document.written STYLE tags.*/
     }
 
     /**CSS rule representation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CSSRule implements CommonDomainType {
         /**The css style sheet identifier (absent for user agent stylesheet and user-specified
 stylesheet rules) this rule came from.
@@ -525,6 +534,7 @@ starting with the innermost one, going outwards.
     }
 
     /**CSS coverage information.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RuleUsage implements CommonDomainType {
         /**The css style sheet identifier (absent for user agent stylesheet and user-specified
 stylesheet rules) this rule came from.*/
@@ -585,6 +595,7 @@ stylesheet rules) this rule came from.*/
     }
 
     /**Text range within a resource. All numbers are zero-based.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SourceRange implements CommonDomainType {
         /**Start line of range.*/
         private Integer startLine;
@@ -644,6 +655,7 @@ stylesheet rules) this rule came from.*/
     }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ShorthandEntry implements CommonDomainType {
         /**Shorthand name.*/
         private String name;
@@ -693,6 +705,7 @@ stylesheet rules) this rule came from.*/
     }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CSSComputedStyleProperty implements CommonDomainType {
         /**Computed style property name.*/
         private String name;
@@ -732,6 +745,7 @@ stylesheet rules) this rule came from.*/
     }
 
     /**CSS style representation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CSSStyle implements CommonDomainType {
         /**The css style sheet identifier (absent for user agent stylesheet and user-specified
 stylesheet rules) this rule came from.
@@ -810,6 +824,7 @@ stylesheet rules) this rule came from.
     }
 
     /**CSS property declaration data.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CSSProperty implements CommonDomainType {
         /**The property name.*/
         private String name;
@@ -909,6 +924,7 @@ stylesheet rules) this rule came from.
     }
 
     /**CSS media rule descriptor.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CSSMedia implements CommonDomainType {
         /**Media query text.*/
         private String text;
@@ -1025,6 +1041,7 @@ available).
     }
 
     /**Media query descriptor.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MediaQuery implements CommonDomainType {
         /**Array of media query expressions.*/
         private List<MediaQueryExpression> expressions;
@@ -1068,6 +1085,7 @@ available).
     }
 
     /**Media query expression descriptor.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MediaQueryExpression implements CommonDomainType {
         /**Media query expression value.*/
         private Double value;
@@ -1137,6 +1155,7 @@ available).
     }
 
     /**Information about amount of glyphs that were rendered with given font.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PlatformFontUsage implements CommonDomainType {
         /**Font's family name reported by platform.*/
         private String familyName;
@@ -1186,6 +1205,7 @@ available).
     }
 
     /**Properties of a web font: https://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-descriptions*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FontFace implements CommonDomainType {
         /**The font-family.*/
         private String fontFamily;
@@ -1285,6 +1305,7 @@ available).
     }
 
     /**CSS keyframes rule representation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CSSKeyframesRule implements CommonDomainType {
         /**Animation name.*/
         private Value animationName;
@@ -1328,6 +1349,7 @@ available).
     }
 
     /**CSS keyframe rule representation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CSSKeyframeRule implements CommonDomainType {
         /**The css style sheet identifier (absent for user agent stylesheet and user-specified
 stylesheet rules) this rule came from.
@@ -1388,6 +1410,7 @@ stylesheet rules) this rule came from.
     }
 
     /**A descriptor of operation to mutate style declaration text.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StyleDeclarationEdit implements CommonDomainType {
         /**The css style sheet identifier.*/
         private StyleSheetId styleSheetId;
@@ -1439,6 +1462,7 @@ stylesheet rules) this rule came from.
 position specified by `location`.*/
     public AddRuleParameter addRule() { final AddRuleParameter v = new AddRuleParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of addRule.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddRuleParameter extends CommandBase {
         /**The css style sheet identifier where a new rule should be inserted.*/
         private StyleSheetId styleSheetId;
@@ -1496,6 +1520,7 @@ position specified by `location`.*/
         }
     }
     /**Return result class of addRule.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddRuleResult extends ResultBase {
         /**The newly created rule.*/
         private final CSSRule rule;
@@ -1526,6 +1551,7 @@ position specified by `location`.*/
     /**Returns all class names from specified stylesheet.*/
     public CollectClassNamesParameter collectClassNames() { final CollectClassNamesParameter v = new CollectClassNamesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of collectClassNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CollectClassNamesParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StyleSheetId styleSheetId;
@@ -1563,6 +1589,7 @@ position specified by `location`.*/
         }
     }
     /**Return result class of collectClassNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CollectClassNamesResult extends ResultBase {
         /**Class name list.*/
         private final List<String> classNames;
@@ -1597,6 +1624,7 @@ position specified by `location`.*/
     /**Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.*/
     public CreateStyleSheetParameter createStyleSheet() { final CreateStyleSheetParameter v = new CreateStyleSheetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of createStyleSheet.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CreateStyleSheetParameter extends CommandBase {
         /**Identifier of the frame where "via-inspector" stylesheet should be created.*/
         private Page.FrameId frameId;
@@ -1634,6 +1662,7 @@ position specified by `location`.*/
         }
     }
     /**Return result class of createStyleSheet.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CreateStyleSheetResult extends ResultBase {
         /**Identifier of the created "via-inspector" stylesheet.*/
         private final StyleSheetId styleSheetId;
@@ -1664,6 +1693,7 @@ position specified by `location`.*/
     /**Disables the CSS agent for the given page.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1687,6 +1717,7 @@ position specified by `location`.*/
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1708,6 +1739,7 @@ position specified by `location`.*/
 enabled until the result of this command is received.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1731,6 +1763,7 @@ enabled until the result of this command is received.*/
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1752,6 +1785,7 @@ enabled until the result of this command is received.*/
 the browser.*/
     public ForcePseudoStateParameter forcePseudoState() { final ForcePseudoStateParameter v = new ForcePseudoStateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of forcePseudoState.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ForcePseudoStateParameter extends CommandBase {
         /**The element id for which to force the pseudo state.*/
         private DOM.NodeId nodeId;
@@ -1803,6 +1837,7 @@ the browser.*/
         }
     }
     /**Return result class of forcePseudoState.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ForcePseudoStateResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1823,6 +1858,7 @@ the browser.*/
     /**&lt;No document in protocol.&gt;*/
     public GetBackgroundColorsParameter getBackgroundColors() { final GetBackgroundColorsParameter v = new GetBackgroundColorsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getBackgroundColors.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBackgroundColorsParameter extends CommandBase {
         /**Id of the node to get background colors for.*/
         private DOM.NodeId nodeId;
@@ -1860,6 +1896,7 @@ the browser.*/
         }
     }
     /**Return result class of getBackgroundColors.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBackgroundColorsResult extends ResultBase {
         /**The range of background colors behind this element, if it contains any visible text. If no
 visible text is present, this will be undefined. In the case of a flat background color,
@@ -1929,6 +1966,7 @@ be ignored (as if the image had failed to load).
     /**Returns the computed style for a DOM node identified by `nodeId`.*/
     public GetComputedStyleForNodeParameter getComputedStyleForNode() { final GetComputedStyleForNodeParameter v = new GetComputedStyleForNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getComputedStyleForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetComputedStyleForNodeParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private DOM.NodeId nodeId;
@@ -1966,6 +2004,7 @@ be ignored (as if the image had failed to load).
         }
     }
     /**Return result class of getComputedStyleForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetComputedStyleForNodeResult extends ResultBase {
         /**Computed style for the specified DOM node.*/
         private final List<CSSComputedStyleProperty> computedStyle;
@@ -2001,6 +2040,7 @@ be ignored (as if the image had failed to load).
 attributes) for a DOM node identified by `nodeId`.*/
     public GetInlineStylesForNodeParameter getInlineStylesForNode() { final GetInlineStylesForNodeParameter v = new GetInlineStylesForNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getInlineStylesForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetInlineStylesForNodeParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private DOM.NodeId nodeId;
@@ -2038,6 +2078,7 @@ attributes) for a DOM node identified by `nodeId`.*/
         }
     }
     /**Return result class of getInlineStylesForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetInlineStylesForNodeResult extends ResultBase {
         /**Inline style for the specified DOM node.
         <em>Optional.</em>*/
@@ -2078,6 +2119,7 @@ attributes) for a DOM node identified by `nodeId`.*/
     /**Returns requested styles for a DOM node identified by `nodeId`.*/
     public GetMatchedStylesForNodeParameter getMatchedStylesForNode() { final GetMatchedStylesForNodeParameter v = new GetMatchedStylesForNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getMatchedStylesForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetMatchedStylesForNodeParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private DOM.NodeId nodeId;
@@ -2115,6 +2157,7 @@ attributes) for a DOM node identified by `nodeId`.*/
         }
     }
     /**Return result class of getMatchedStylesForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetMatchedStylesForNodeResult extends ResultBase {
         /**Inline style for the specified DOM node.
         <em>Optional.</em>*/
@@ -2215,6 +2258,7 @@ attributes) for a DOM node identified by `nodeId`.*/
     /**Returns all media queries parsed by the rendering engine.*/
     public GetMediaQueriesParameter getMediaQueries() { final GetMediaQueriesParameter v = new GetMediaQueriesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getMediaQueries.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetMediaQueriesParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2238,6 +2282,7 @@ attributes) for a DOM node identified by `nodeId`.*/
         }
     }
     /**Return result class of getMediaQueries.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetMediaQueriesResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final List<CSSMedia> medias;
@@ -2273,6 +2318,7 @@ attributes) for a DOM node identified by `nodeId`.*/
 node.*/
     public GetPlatformFontsForNodeParameter getPlatformFontsForNode() { final GetPlatformFontsForNodeParameter v = new GetPlatformFontsForNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getPlatformFontsForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPlatformFontsForNodeParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private DOM.NodeId nodeId;
@@ -2310,6 +2356,7 @@ node.*/
         }
     }
     /**Return result class of getPlatformFontsForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPlatformFontsForNodeResult extends ResultBase {
         /**Usage statistics for every employed platform font.*/
         private final List<PlatformFontUsage> fonts;
@@ -2344,6 +2391,7 @@ node.*/
     /**Returns the current textual content and the URL for a stylesheet.*/
     public GetStyleSheetTextParameter getStyleSheetText() { final GetStyleSheetTextParameter v = new GetStyleSheetTextParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getStyleSheetText.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetStyleSheetTextParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StyleSheetId styleSheetId;
@@ -2381,6 +2429,7 @@ node.*/
         }
     }
     /**Return result class of getStyleSheetText.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetStyleSheetTextResult extends ResultBase {
         /**The stylesheet text.*/
         private final String text;
@@ -2412,6 +2461,7 @@ node.*/
 property*/
     public SetEffectivePropertyValueForNodeParameter setEffectivePropertyValueForNode() { final SetEffectivePropertyValueForNodeParameter v = new SetEffectivePropertyValueForNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setEffectivePropertyValueForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetEffectivePropertyValueForNodeParameter extends CommandBase {
         /**The element id for which to set property.*/
         private DOM.NodeId nodeId;
@@ -2469,6 +2519,7 @@ property*/
         }
     }
     /**Return result class of setEffectivePropertyValueForNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetEffectivePropertyValueForNodeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2489,6 +2540,7 @@ property*/
     /**Modifies the keyframe rule key text.*/
     public SetKeyframeKeyParameter setKeyframeKey() { final SetKeyframeKeyParameter v = new SetKeyframeKeyParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setKeyframeKey.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetKeyframeKeyParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StyleSheetId styleSheetId;
@@ -2546,6 +2598,7 @@ property*/
         }
     }
     /**Return result class of setKeyframeKey.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetKeyframeKeyResult extends ResultBase {
         /**The resulting key text after modification.*/
         private final Value keyText;
@@ -2576,6 +2629,7 @@ property*/
     /**Modifies the rule selector.*/
     public SetMediaTextParameter setMediaText() { final SetMediaTextParameter v = new SetMediaTextParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setMediaText.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetMediaTextParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StyleSheetId styleSheetId;
@@ -2633,6 +2687,7 @@ property*/
         }
     }
     /**Return result class of setMediaText.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetMediaTextResult extends ResultBase {
         /**The resulting CSS media rule after modification.*/
         private final CSSMedia media;
@@ -2663,6 +2718,7 @@ property*/
     /**Modifies the rule selector.*/
     public SetRuleSelectorParameter setRuleSelector() { final SetRuleSelectorParameter v = new SetRuleSelectorParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setRuleSelector.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetRuleSelectorParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StyleSheetId styleSheetId;
@@ -2720,6 +2776,7 @@ property*/
         }
     }
     /**Return result class of setRuleSelector.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetRuleSelectorResult extends ResultBase {
         /**The resulting selector list after modification.*/
         private final SelectorList selectorList;
@@ -2750,6 +2807,7 @@ property*/
     /**Sets the new stylesheet text.*/
     public SetStyleSheetTextParameter setStyleSheetText() { final SetStyleSheetTextParameter v = new SetStyleSheetTextParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setStyleSheetText.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetStyleSheetTextParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StyleSheetId styleSheetId;
@@ -2797,6 +2855,7 @@ property*/
         }
     }
     /**Return result class of setStyleSheetText.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetStyleSheetTextResult extends ResultBase {
         /**URL of source map associated with script (if any).
         <em>Optional.</em>*/
@@ -2828,6 +2887,7 @@ property*/
     /**Applies specified style edits one after another in the given order.*/
     public SetStyleTextsParameter setStyleTexts() { final SetStyleTextsParameter v = new SetStyleTextsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setStyleTexts.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetStyleTextsParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private List<StyleDeclarationEdit> edits;
@@ -2869,6 +2929,7 @@ property*/
         }
     }
     /**Return result class of setStyleTexts.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetStyleTextsResult extends ResultBase {
         /**The resulting styles after modification.*/
         private final List<CSSStyle> styles;
@@ -2903,6 +2964,7 @@ property*/
     /**Enables the selector recording.*/
     public StartRuleUsageTrackingParameter startRuleUsageTracking() { final StartRuleUsageTrackingParameter v = new StartRuleUsageTrackingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of startRuleUsageTracking.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartRuleUsageTrackingParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2926,6 +2988,7 @@ property*/
         }
     }
     /**Return result class of startRuleUsageTracking.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartRuleUsageTrackingResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2947,6 +3010,7 @@ property*/
 `takeCoverageDelta` (or since start of coverage instrumentation)*/
     public StopRuleUsageTrackingParameter stopRuleUsageTracking() { final StopRuleUsageTrackingParameter v = new StopRuleUsageTrackingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopRuleUsageTracking.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopRuleUsageTrackingParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2970,6 +3034,7 @@ property*/
         }
     }
     /**Return result class of stopRuleUsageTracking.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopRuleUsageTrackingResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final List<RuleUsage> ruleUsage;
@@ -3005,6 +3070,7 @@ property*/
 instrumentation)*/
     public TakeCoverageDeltaParameter takeCoverageDelta() { final TakeCoverageDeltaParameter v = new TakeCoverageDeltaParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of takeCoverageDelta.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TakeCoverageDeltaParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3028,6 +3094,7 @@ instrumentation)*/
         }
     }
     /**Return result class of takeCoverageDelta.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TakeCoverageDeltaResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final List<RuleUsage> coverage;
@@ -3061,6 +3128,7 @@ instrumentation)*/
     }
     /**Event parameter of CSS.fontsUpdated.
      @see #onFontsUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FontsUpdatedEventParameter implements CommonDomainType {
         /**The web font that has loaded.
         <em>Optional.</em>*/
@@ -3098,6 +3166,7 @@ web font
     }
     /**Event parameter of CSS.mediaQueryResultChanged.
      @see #onMediaQueryResultChanged*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MediaQueryResultChangedEventParameter implements CommonDomainType {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3125,6 +3194,7 @@ resized.) The current implementation considers only viewport-dependent media fea
     }
     /**Event parameter of CSS.styleSheetAdded.
      @see #onStyleSheetAdded*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StyleSheetAddedEventParameter implements CommonDomainType {
         /**Added stylesheet metainfo.*/
         private final CSSStyleSheetHeader header;
@@ -3160,6 +3230,7 @@ resized.) The current implementation considers only viewport-dependent media fea
     }
     /**Event parameter of CSS.styleSheetChanged.
      @see #onStyleSheetChanged*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StyleSheetChangedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final StyleSheetId styleSheetId;
@@ -3195,6 +3266,7 @@ resized.) The current implementation considers only viewport-dependent media fea
     }
     /**Event parameter of CSS.styleSheetRemoved.
      @see #onStyleSheetRemoved*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StyleSheetRemovedEventParameter implements CommonDomainType {
         /**Identifier of the removed stylesheet.*/
         private final StyleSheetId styleSheetId;

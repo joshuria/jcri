@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -58,6 +59,7 @@ execution will stop on these operations as if there was a regular breakpoint set
     }
 
     /**Object event listener.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EventListener implements CommonDomainType {
         /**`EventListener`'s type.*/
         private String type;
@@ -178,6 +180,7 @@ execution will stop on these operations as if there was a regular breakpoint set
     /**Returns event listeners of the given object.*/
     public GetEventListenersParameter getEventListeners() { final GetEventListenersParameter v = new GetEventListenersParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getEventListeners.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetEventListenersParameter extends CommandBase {
         /**Identifier of the object to return listeners for.*/
         private Runtime.RemoteObjectId objectId;
@@ -237,6 +240,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of getEventListeners.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetEventListenersResult extends ResultBase {
         /**Array of relevant listeners.*/
         private final List<EventListener> listeners;
@@ -271,6 +275,7 @@ entire subtree or provide an integer larger than 0.
     /**Removes DOM breakpoint that was set using `setDOMBreakpoint`.*/
     public RemoveDOMBreakpointParameter removeDOMBreakpoint() { final RemoveDOMBreakpointParameter v = new RemoveDOMBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of removeDOMBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveDOMBreakpointParameter extends CommandBase {
         /**Identifier of the node to remove breakpoint from.*/
         private DOM.NodeId nodeId;
@@ -318,6 +323,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of removeDOMBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveDOMBreakpointResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -338,6 +344,7 @@ entire subtree or provide an integer larger than 0.
     /**Removes breakpoint on particular DOM event.*/
     public RemoveEventListenerBreakpointParameter removeEventListenerBreakpoint() { final RemoveEventListenerBreakpointParameter v = new RemoveEventListenerBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of removeEventListenerBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveEventListenerBreakpointParameter extends CommandBase {
         /**Event name.*/
         private String eventName;
@@ -386,6 +393,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of removeEventListenerBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveEventListenerBreakpointResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -408,6 +416,7 @@ entire subtree or provide an integer larger than 0.
     public RemoveInstrumentationBreakpointParameter removeInstrumentationBreakpoint() { final RemoveInstrumentationBreakpointParameter v = new RemoveInstrumentationBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of removeInstrumentationBreakpoint.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveInstrumentationBreakpointParameter extends CommandBase {
         /**Instrumentation name to stop on.*/
         private String eventName;
@@ -446,6 +455,7 @@ entire subtree or provide an integer larger than 0.
     }
     /**Return result class of removeInstrumentationBreakpoint.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveInstrumentationBreakpointResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -466,6 +476,7 @@ entire subtree or provide an integer larger than 0.
     /**Removes breakpoint from XMLHttpRequest.*/
     public RemoveXHRBreakpointParameter removeXHRBreakpoint() { final RemoveXHRBreakpointParameter v = new RemoveXHRBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of removeXHRBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveXHRBreakpointParameter extends CommandBase {
         /**Resource URL substring.*/
         private String url;
@@ -503,6 +514,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of removeXHRBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveXHRBreakpointResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -523,6 +535,7 @@ entire subtree or provide an integer larger than 0.
     /**Sets breakpoint on particular operation with DOM.*/
     public SetDOMBreakpointParameter setDOMBreakpoint() { final SetDOMBreakpointParameter v = new SetDOMBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setDOMBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDOMBreakpointParameter extends CommandBase {
         /**Identifier of the node to set breakpoint on.*/
         private DOM.NodeId nodeId;
@@ -570,6 +583,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of setDOMBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDOMBreakpointResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -590,6 +604,7 @@ entire subtree or provide an integer larger than 0.
     /**Sets breakpoint on particular DOM event.*/
     public SetEventListenerBreakpointParameter setEventListenerBreakpoint() { final SetEventListenerBreakpointParameter v = new SetEventListenerBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setEventListenerBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetEventListenerBreakpointParameter extends CommandBase {
         /**DOM Event name to stop on (any DOM event will do).*/
         private String eventName;
@@ -639,6 +654,7 @@ EventTarget.
         }
     }
     /**Return result class of setEventListenerBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetEventListenerBreakpointResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -661,6 +677,7 @@ EventTarget.
     public SetInstrumentationBreakpointParameter setInstrumentationBreakpoint() { final SetInstrumentationBreakpointParameter v = new SetInstrumentationBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setInstrumentationBreakpoint.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetInstrumentationBreakpointParameter extends CommandBase {
         /**Instrumentation name to stop on.*/
         private String eventName;
@@ -699,6 +716,7 @@ EventTarget.
     }
     /**Return result class of setInstrumentationBreakpoint.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetInstrumentationBreakpointResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -719,6 +737,7 @@ EventTarget.
     /**Sets breakpoint on XMLHttpRequest.*/
     public SetXHRBreakpointParameter setXHRBreakpoint() { final SetXHRBreakpointParameter v = new SetXHRBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setXHRBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetXHRBreakpointParameter extends CommandBase {
         /**Resource URL substring. All XHRs having this substring in the URL will get stopped upon.*/
         private String url;
@@ -756,6 +775,7 @@ EventTarget.
         }
     }
     /**Return result class of setXHRBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetXHRBreakpointResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */

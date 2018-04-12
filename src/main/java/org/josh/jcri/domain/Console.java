@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     public Console(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Console message.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ConsoleMessage implements CommonDomainType {
         /**Message source.*/
         @ParametersAreNonnullByDefault public enum Source implements CommonDomainType {
@@ -171,6 +173,7 @@ import javax.annotation.Nullable;
     /**Does nothing.*/
     public ClearMessagesParameter clearMessages() { final ClearMessagesParameter v = new ClearMessagesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clearMessages.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearMessagesParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -194,6 +197,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of clearMessages.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearMessagesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -214,6 +218,7 @@ import javax.annotation.Nullable;
     /**Disables console domain, prevents further console messages from being reported to the client.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -237,6 +242,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -258,6 +264,7 @@ import javax.annotation.Nullable;
 `messageAdded` notification.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -281,6 +288,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -300,6 +308,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of Console.messageAdded.
      @see #onMessageAdded*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MessageAddedEventParameter implements CommonDomainType {
         /**Console message that has been added.*/
         private final ConsoleMessage message;

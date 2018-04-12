@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
 
     /**This is either obtained from another method or specifed as `blob:&lt;uuid&gt;` where
 `&lt;uuid&gt` is an UUID of a Blob.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StreamHandle implements CommonDomainType {
         private String _value;
         public StreamHandle() {}
@@ -51,6 +53,7 @@ import javax.annotation.Nullable;
     /**Close the stream, discard any temporary backing storage.*/
     public CloseParameter close() { final CloseParameter v = new CloseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of close.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CloseParameter extends CommandBase {
         /**Handle of the stream to close.*/
         private StreamHandle handle;
@@ -88,6 +91,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of close.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CloseResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -108,6 +112,7 @@ import javax.annotation.Nullable;
     /**Read a chunk of the stream*/
     public ReadParameter read() { final ReadParameter v = new ReadParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of read.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReadParameter extends CommandBase {
         /**Handle of the stream to read.*/
         private StreamHandle handle;
@@ -166,6 +171,7 @@ following the last read).
         }
     }
     /**Return result class of read.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReadResult extends ResultBase {
         /**Set if the data is base64-encoded
         <em>Optional.</em>*/
@@ -213,6 +219,7 @@ following the last read).
     /**Return UUID of Blob object specified by a remote object id.*/
     public ResolveBlobParameter resolveBlob() { final ResolveBlobParameter v = new ResolveBlobParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of resolveBlob.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResolveBlobParameter extends CommandBase {
         /**Object id of a Blob object wrapper.*/
         private Runtime.RemoteObjectId objectId;
@@ -250,6 +257,7 @@ following the last read).
         }
     }
     /**Return result class of resolveBlob.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResolveBlobResult extends ResultBase {
         /**UUID of the specified Blob.*/
         private final String uuid;

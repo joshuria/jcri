@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -27,6 +28,7 @@ import javax.annotation.Nullable;
     public Performance(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Run-time execution metric.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Metric implements CommonDomainType {
         /**Metric name.*/
         private String name;
@@ -67,6 +69,7 @@ import javax.annotation.Nullable;
     /**Disable collecting and reporting metrics.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -90,6 +93,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -110,6 +114,7 @@ import javax.annotation.Nullable;
     /**Enable collecting and reporting metrics.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -133,6 +138,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -153,6 +159,7 @@ import javax.annotation.Nullable;
     /**Retrieve current values of run-time metrics.*/
     public GetMetricsParameter getMetrics() { final GetMetricsParameter v = new GetMetricsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getMetrics.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetMetricsParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -176,6 +183,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getMetrics.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetMetricsResult extends ResultBase {
         /**Current values for run-time metrics.*/
         private final List<Metric> metrics;
@@ -209,6 +217,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of Performance.metrics.
      @see #onMetrics*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MetricsEventParameter implements CommonDomainType {
         /**Current values of the metrics.*/
         private final List<Metric> metrics;

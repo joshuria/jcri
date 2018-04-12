@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -30,6 +31,7 @@ import javax.annotation.Nullable;
     public Emulation(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Screen orientation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScreenOrientation implements CommonDomainType {
         /**Orientation type.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -129,6 +131,7 @@ resource fetches.
     /**Tells whether emulation is supported.*/
     public CanEmulateParameter canEmulate() { final CanEmulateParameter v = new CanEmulateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of canEmulate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CanEmulateParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -152,6 +155,7 @@ resource fetches.
         }
     }
     /**Return result class of canEmulate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CanEmulateResult extends ResultBase {
         /**True if emulation is supported.*/
         private final Boolean result;
@@ -182,6 +186,7 @@ resource fetches.
     /**Clears the overriden device metrics.*/
     public ClearDeviceMetricsOverrideParameter clearDeviceMetricsOverride() { final ClearDeviceMetricsOverrideParameter v = new ClearDeviceMetricsOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clearDeviceMetricsOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDeviceMetricsOverrideParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -205,6 +210,7 @@ resource fetches.
         }
     }
     /**Return result class of clearDeviceMetricsOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDeviceMetricsOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -225,6 +231,7 @@ resource fetches.
     /**Clears the overriden Geolocation Position and Error.*/
     public ClearGeolocationOverrideParameter clearGeolocationOverride() { final ClearGeolocationOverrideParameter v = new ClearGeolocationOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clearGeolocationOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearGeolocationOverrideParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -248,6 +255,7 @@ resource fetches.
         }
     }
     /**Return result class of clearGeolocationOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearGeolocationOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -270,6 +278,7 @@ resource fetches.
     public ResetPageScaleFactorParameter resetPageScaleFactor() { final ResetPageScaleFactorParameter v = new ResetPageScaleFactorParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of resetPageScaleFactor.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResetPageScaleFactorParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -294,6 +303,7 @@ resource fetches.
     }
     /**Return result class of resetPageScaleFactor.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResetPageScaleFactorResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -316,6 +326,7 @@ resource fetches.
     public SetCPUThrottlingRateParameter setCPUThrottlingRate() { final SetCPUThrottlingRateParameter v = new SetCPUThrottlingRateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setCPUThrottlingRate.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCPUThrottlingRateParameter extends CommandBase {
         /**Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc).*/
         private Double rate;
@@ -354,6 +365,7 @@ resource fetches.
     }
     /**Return result class of setCPUThrottlingRate.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCPUThrottlingRateResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -375,6 +387,7 @@ resource fetches.
 if the content does not specify one.*/
     public SetDefaultBackgroundColorOverrideParameter setDefaultBackgroundColorOverride() { final SetDefaultBackgroundColorOverrideParameter v = new SetDefaultBackgroundColorOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setDefaultBackgroundColorOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDefaultBackgroundColorOverrideParameter extends CommandBase {
         /**RGBA of the default background color. If not specified, any existing override will be
 cleared.
@@ -413,6 +426,7 @@ cleared.
         }
     }
     /**Return result class of setDefaultBackgroundColorOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDefaultBackgroundColorOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -435,6 +449,7 @@ window.innerWidth, window.innerHeight, and "device-width"/"device-height"-relate
 query results).*/
     public SetDeviceMetricsOverrideParameter setDeviceMetricsOverride() { final SetDeviceMetricsOverrideParameter v = new SetDeviceMetricsOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setDeviceMetricsOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDeviceMetricsOverrideParameter extends CommandBase {
         /**Overriding width value in pixels (minimum 0, maximum 10000000). 0 disables the override.*/
         private Integer width;
@@ -591,6 +606,7 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
         }
     }
     /**Return result class of setDeviceMetricsOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDeviceMetricsOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -613,6 +629,7 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
     public SetEmitTouchEventsForMouseParameter setEmitTouchEventsForMouse() { final SetEmitTouchEventsForMouseParameter v = new SetEmitTouchEventsForMouseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setEmitTouchEventsForMouse.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetEmitTouchEventsForMouseParameter extends CommandBase {
         /**Whether touch emulation based on mouse input should be enabled.*/
         private Boolean enabled;
@@ -686,6 +703,7 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
     }
     /**Return result class of setEmitTouchEventsForMouse.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetEmitTouchEventsForMouseResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -706,6 +724,7 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
     /**Emulates the given media for CSS media queries.*/
     public SetEmulatedMediaParameter setEmulatedMedia() { final SetEmulatedMediaParameter v = new SetEmulatedMediaParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setEmulatedMedia.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetEmulatedMediaParameter extends CommandBase {
         /**Media type to emulate. Empty string disables the override.*/
         private String media;
@@ -743,6 +762,7 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
         }
     }
     /**Return result class of setEmulatedMedia.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetEmulatedMediaResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -764,6 +784,7 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
 unavailable.*/
     public SetGeolocationOverrideParameter setGeolocationOverride() { final SetGeolocationOverrideParameter v = new SetGeolocationOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setGeolocationOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetGeolocationOverrideParameter extends CommandBase {
         /**Mock latitude
         <em>Optional.</em>*/
@@ -821,6 +842,7 @@ unavailable.*/
         }
     }
     /**Return result class of setGeolocationOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetGeolocationOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -843,6 +865,7 @@ unavailable.*/
     public SetNavigatorOverridesParameter setNavigatorOverrides() { final SetNavigatorOverridesParameter v = new SetNavigatorOverridesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setNavigatorOverrides.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetNavigatorOverridesParameter extends CommandBase {
         /**The platform navigator.platform should return.*/
         private String platform;
@@ -881,6 +904,7 @@ unavailable.*/
     }
     /**Return result class of setNavigatorOverrides.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetNavigatorOverridesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -903,6 +927,7 @@ unavailable.*/
     public SetPageScaleFactorParameter setPageScaleFactor() { final SetPageScaleFactorParameter v = new SetPageScaleFactorParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setPageScaleFactor.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPageScaleFactorParameter extends CommandBase {
         /**Page scale factor.*/
         private Double pageScaleFactor;
@@ -941,6 +966,7 @@ unavailable.*/
     }
     /**Return result class of setPageScaleFactor.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPageScaleFactorResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -961,6 +987,7 @@ unavailable.*/
     /**Switches script execution in the page.*/
     public SetScriptExecutionDisabledParameter setScriptExecutionDisabled() { final SetScriptExecutionDisabledParameter v = new SetScriptExecutionDisabledParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setScriptExecutionDisabled.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetScriptExecutionDisabledParameter extends CommandBase {
         /**Whether script execution should be disabled in the page.*/
         private Boolean value;
@@ -998,6 +1025,7 @@ unavailable.*/
         }
     }
     /**Return result class of setScriptExecutionDisabled.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetScriptExecutionDisabledResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1018,6 +1046,7 @@ unavailable.*/
     /**Enables touch on platforms which do not support them.*/
     public SetTouchEmulationEnabledParameter setTouchEmulationEnabled() { final SetTouchEmulationEnabledParameter v = new SetTouchEmulationEnabledParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setTouchEmulationEnabled.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetTouchEmulationEnabledParameter extends CommandBase {
         /**Whether the touch event emulation should be enabled.*/
         private Boolean enabled;
@@ -1065,6 +1094,7 @@ unavailable.*/
         }
     }
     /**Return result class of setTouchEmulationEnabled.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetTouchEmulationEnabledResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1088,6 +1118,7 @@ the current virtual time policy.  Note this supersedes any previous time budget.
     public SetVirtualTimePolicyParameter setVirtualTimePolicy() { final SetVirtualTimePolicyParameter v = new SetVirtualTimePolicyParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setVirtualTimePolicy.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetVirtualTimePolicyParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private VirtualTimePolicy policy;
@@ -1159,6 +1190,7 @@ Note any previous deferred policy change is superseded.
     }
     /**Return result class of setVirtualTimePolicy.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetVirtualTimePolicyResult extends ResultBase {
         /**Absolute timestamp at which virtual time was first enabled (milliseconds since epoch).*/
         private final Runtime.Timestamp virtualTimeBase;
@@ -1195,6 +1227,7 @@ on Android.
     /**Parameter class of setVisibleSize.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetVisibleSizeParameter extends CommandBase {
         /**Frame width (DIP).*/
         private Integer width;
@@ -1244,6 +1277,7 @@ on Android.
     /**Return result class of setVisibleSize.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetVisibleSizeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1264,6 +1298,7 @@ on Android.
     /**Event parameter of Emulation.virtualTimeAdvanced.
     <p><strong>Experimental.</strong></p>
      @see #onVirtualTimeAdvanced*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class VirtualTimeAdvancedEventParameter implements CommonDomainType {
         /**The amount of virtual time that has elapsed in milliseconds since virtual time was first
 enabled.*/
@@ -1302,6 +1337,7 @@ enabled.*/
     /**Event parameter of Emulation.virtualTimeBudgetExpired.
     <p><strong>Experimental.</strong></p>
      @see #onVirtualTimeBudgetExpired*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class VirtualTimeBudgetExpiredEventParameter implements CommonDomainType {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1330,6 +1366,7 @@ enabled.*/
     /**Event parameter of Emulation.virtualTimePaused.
     <p><strong>Experimental.</strong></p>
      @see #onVirtualTimePaused*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class VirtualTimePausedEventParameter implements CommonDomainType {
         /**The amount of virtual time that has elapsed in milliseconds since virtual time was first
 enabled.*/

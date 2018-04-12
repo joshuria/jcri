@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -68,6 +69,7 @@ import javax.annotation.Nullable;
     }
 
     /**Unique frame identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameId implements CommonDomainType {
         private String _value;
         public FrameId() {}
@@ -90,6 +92,7 @@ import javax.annotation.Nullable;
     }
 
     /**Information about the Frame on the page.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Frame implements CommonDomainType {
         /**Frame unique identifier.*/
         private String id;
@@ -191,6 +194,7 @@ import javax.annotation.Nullable;
 
     /**Information about the Resource on the page.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameResource implements CommonDomainType {
         /**Resource URL.*/
         private String url;
@@ -281,6 +285,7 @@ import javax.annotation.Nullable;
 
     /**Information about the Frame hierarchy along with their cached resources.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameResourceTree implements CommonDomainType {
         /**Frame information for this tree item.*/
         private Frame frame;
@@ -340,6 +345,7 @@ import javax.annotation.Nullable;
     }
 
     /**Information about the Frame hierarchy.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameTree implements CommonDomainType {
         /**Frame information for this tree item.*/
         private Frame frame;
@@ -385,6 +391,7 @@ import javax.annotation.Nullable;
     }
 
     /**Unique script identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScriptIdentifier implements CommonDomainType {
         private String _value;
         public ScriptIdentifier() {}
@@ -444,6 +451,7 @@ import javax.annotation.Nullable;
     }
 
     /**Navigation history entry.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NavigationEntry implements CommonDomainType {
         /**Unique id of the navigation history entry.*/
         private Integer id;
@@ -514,6 +522,7 @@ import javax.annotation.Nullable;
 
     /**Screencast frame metadata.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScreencastFrameMetadata implements CommonDomainType {
         /**Top offset in DIP.*/
         private Double offsetTop;
@@ -632,6 +641,7 @@ import javax.annotation.Nullable;
     }
 
     /**Error while paring app manifest.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AppManifestError implements CommonDomainType {
         /**Error message.*/
         private String message;
@@ -691,6 +701,7 @@ import javax.annotation.Nullable;
     }
 
     /**Layout viewport position and dimensions.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LayoutViewport implements CommonDomainType {
         /**Horizontal offset relative to the document (CSS pixels).*/
         private Integer pageX;
@@ -750,6 +761,7 @@ import javax.annotation.Nullable;
     }
 
     /**Visual viewport position, dimensions, and scale.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class VisualViewport implements CommonDomainType {
         /**Horizontal offset relative to the layout viewport (CSS pixels).*/
         private Double offsetX;
@@ -839,6 +851,7 @@ import javax.annotation.Nullable;
     }
 
     /**Viewport for capturing screenshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Viewport implements CommonDomainType {
         /**X offset in CSS pixels.*/
         private Double x;
@@ -913,6 +926,7 @@ import javax.annotation.Nullable;
     /**Parameter class of addScriptToEvaluateOnLoad.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddScriptToEvaluateOnLoadParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String scriptSource;
@@ -952,6 +966,7 @@ import javax.annotation.Nullable;
     /**Return result class of addScriptToEvaluateOnLoad.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddScriptToEvaluateOnLoadResult extends ResultBase {
         /**Identifier of the added script.*/
         private final ScriptIdentifier identifier;
@@ -982,6 +997,7 @@ import javax.annotation.Nullable;
     /**Evaluates given script in every frame upon creation (before loading frame's scripts).*/
     public AddScriptToEvaluateOnNewDocumentParameter addScriptToEvaluateOnNewDocument() { final AddScriptToEvaluateOnNewDocumentParameter v = new AddScriptToEvaluateOnNewDocumentParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of addScriptToEvaluateOnNewDocument.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddScriptToEvaluateOnNewDocumentParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String source;
@@ -1019,6 +1035,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of addScriptToEvaluateOnNewDocument.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddScriptToEvaluateOnNewDocumentResult extends ResultBase {
         /**Identifier of the added script.*/
         private final ScriptIdentifier identifier;
@@ -1049,6 +1066,7 @@ import javax.annotation.Nullable;
     /**Brings page to front (activates tab).*/
     public BringToFrontParameter bringToFront() { final BringToFrontParameter v = new BringToFrontParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of bringToFront.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BringToFrontParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1072,6 +1090,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of bringToFront.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BringToFrontResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1092,6 +1111,7 @@ import javax.annotation.Nullable;
     /**Capture page screenshot.*/
     public CaptureScreenshotParameter captureScreenshot() { final CaptureScreenshotParameter v = new CaptureScreenshotParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of captureScreenshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CaptureScreenshotParameter extends CommandBase {
         /**Image compression format (defaults to png).
         <em>Optional.</em>*/
@@ -1185,6 +1205,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of captureScreenshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CaptureScreenshotResult extends ResultBase {
         /**Base64-encoded image data.*/
         private final String data;
@@ -1219,6 +1240,7 @@ import javax.annotation.Nullable;
     /**Parameter class of clearDeviceMetricsOverride.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDeviceMetricsOverrideParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1244,6 +1266,7 @@ import javax.annotation.Nullable;
     /**Return result class of clearDeviceMetricsOverride.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDeviceMetricsOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1268,6 +1291,7 @@ import javax.annotation.Nullable;
     /**Parameter class of clearDeviceOrientationOverride.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDeviceOrientationOverrideParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1293,6 +1317,7 @@ import javax.annotation.Nullable;
     /**Return result class of clearDeviceOrientationOverride.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDeviceOrientationOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1315,6 +1340,7 @@ import javax.annotation.Nullable;
     public ClearGeolocationOverrideParameter clearGeolocationOverride() { final ClearGeolocationOverrideParameter v = new ClearGeolocationOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clearGeolocationOverride.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearGeolocationOverrideParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1339,6 +1365,7 @@ import javax.annotation.Nullable;
     }
     /**Return result class of clearGeolocationOverride.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearGeolocationOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1359,6 +1386,7 @@ import javax.annotation.Nullable;
     /**Creates an isolated world for the given frame.*/
     public CreateIsolatedWorldParameter createIsolatedWorld() { final CreateIsolatedWorldParameter v = new CreateIsolatedWorldParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of createIsolatedWorld.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CreateIsolatedWorldParameter extends CommandBase {
         /**Id of the frame in which the isolated world should be created.*/
         private FrameId frameId;
@@ -1417,6 +1445,7 @@ option, use with caution.
         }
     }
     /**Return result class of createIsolatedWorld.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CreateIsolatedWorldResult extends ResultBase {
         /**Execution context of the isolated world.*/
         private final Runtime.ExecutionContextId executionContextId;
@@ -1451,6 +1480,7 @@ option, use with caution.
     /**Parameter class of deleteCookie.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteCookieParameter extends CommandBase {
         /**Name of the cookie to remove.*/
         private String cookieName;
@@ -1500,6 +1530,7 @@ option, use with caution.
     /**Return result class of deleteCookie.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteCookieResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1520,6 +1551,7 @@ option, use with caution.
     /**Disables page domain notifications.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1543,6 +1575,7 @@ option, use with caution.
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1563,6 +1596,7 @@ option, use with caution.
     /**Enables page domain notifications.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1586,6 +1620,7 @@ option, use with caution.
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1606,6 +1641,7 @@ option, use with caution.
     /**&lt;No document in protocol.&gt;*/
     public GetAppManifestParameter getAppManifest() { final GetAppManifestParameter v = new GetAppManifestParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getAppManifest.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetAppManifestParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1629,6 +1665,7 @@ option, use with caution.
         }
     }
     /**Return result class of getAppManifest.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetAppManifestResult extends ResultBase {
         /**Manifest location.*/
         private final String url;
@@ -1685,6 +1722,7 @@ information in the `cookies` field.
     /**Parameter class of getCookies.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCookiesParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1710,6 +1748,7 @@ information in the `cookies` field.
     /**Return result class of getCookies.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCookiesResult extends ResultBase {
         /**Array of cookie objects.*/
         private final List<Network.Cookie> cookies;
@@ -1744,6 +1783,7 @@ information in the `cookies` field.
     /**Returns present frame tree structure.*/
     public GetFrameTreeParameter getFrameTree() { final GetFrameTreeParameter v = new GetFrameTreeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getFrameTree.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetFrameTreeParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1767,6 +1807,7 @@ information in the `cookies` field.
         }
     }
     /**Return result class of getFrameTree.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetFrameTreeResult extends ResultBase {
         /**Present frame tree structure.*/
         private final FrameTree frameTree;
@@ -1797,6 +1838,7 @@ information in the `cookies` field.
     /**Returns metrics relating to the layouting of the page, such as viewport bounds/scale.*/
     public GetLayoutMetricsParameter getLayoutMetrics() { final GetLayoutMetricsParameter v = new GetLayoutMetricsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getLayoutMetrics.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetLayoutMetricsParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1820,6 +1862,7 @@ information in the `cookies` field.
         }
     }
     /**Return result class of getLayoutMetrics.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetLayoutMetricsResult extends ResultBase {
         /**Metrics relating to the layout viewport.*/
         private final LayoutViewport layoutViewport;
@@ -1866,6 +1909,7 @@ information in the `cookies` field.
     /**Returns navigation history for the current page.*/
     public GetNavigationHistoryParameter getNavigationHistory() { final GetNavigationHistoryParameter v = new GetNavigationHistoryParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getNavigationHistory.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetNavigationHistoryParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1889,6 +1933,7 @@ information in the `cookies` field.
         }
     }
     /**Return result class of getNavigationHistory.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetNavigationHistoryResult extends ResultBase {
         /**Index of the current navigation history entry.*/
         private final Integer currentIndex;
@@ -1933,6 +1978,7 @@ information in the `cookies` field.
     public GetResourceContentParameter getResourceContent() { final GetResourceContentParameter v = new GetResourceContentParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getResourceContent.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetResourceContentParameter extends CommandBase {
         /**Frame id to get resource for.*/
         private FrameId frameId;
@@ -1981,6 +2027,7 @@ information in the `cookies` field.
     }
     /**Return result class of getResourceContent.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetResourceContentResult extends ResultBase {
         /**Resource content.*/
         private final String content;
@@ -2021,6 +2068,7 @@ information in the `cookies` field.
     public GetResourceTreeParameter getResourceTree() { final GetResourceTreeParameter v = new GetResourceTreeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getResourceTree.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetResourceTreeParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2045,6 +2093,7 @@ information in the `cookies` field.
     }
     /**Return result class of getResourceTree.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetResourceTreeResult extends ResultBase {
         /**Present frame / resource tree structure.*/
         private final FrameResourceTree frameTree;
@@ -2075,6 +2124,7 @@ information in the `cookies` field.
     /**Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).*/
     public HandleJavaScriptDialogParameter handleJavaScriptDialog() { final HandleJavaScriptDialogParameter v = new HandleJavaScriptDialogParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of handleJavaScriptDialog.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HandleJavaScriptDialogParameter extends CommandBase {
         /**Whether to accept or dismiss the dialog.*/
         private Boolean accept;
@@ -2123,6 +2173,7 @@ dialog.
         }
     }
     /**Return result class of handleJavaScriptDialog.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HandleJavaScriptDialogResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2143,6 +2194,7 @@ dialog.
     /**Navigates current page to the given URL.*/
     public NavigateParameter navigate() { final NavigateParameter v = new NavigateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of navigate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NavigateParameter extends CommandBase {
         /**URL to navigate the page to.*/
         private String url;
@@ -2210,6 +2262,7 @@ dialog.
         }
     }
     /**Return result class of navigate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NavigateResult extends ResultBase {
         /**Frame id that has navigated (or failed to navigate)*/
         private final FrameId frameId;
@@ -2258,6 +2311,7 @@ dialog.
     /**Navigates current page to the given history entry.*/
     public NavigateToHistoryEntryParameter navigateToHistoryEntry() { final NavigateToHistoryEntryParameter v = new NavigateToHistoryEntryParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of navigateToHistoryEntry.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NavigateToHistoryEntryParameter extends CommandBase {
         /**Unique id of the entry to navigate to.*/
         private Integer entryId;
@@ -2295,6 +2349,7 @@ dialog.
         }
     }
     /**Return result class of navigateToHistoryEntry.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NavigateToHistoryEntryResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2315,6 +2370,7 @@ dialog.
     /**Print page as PDF.*/
     public PrintToPDFParameter printToPDF() { final PrintToPDFParameter v = new PrintToPDFParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of printToPDF.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PrintToPDFParameter extends CommandBase {
         /**Paper orientation. Defaults to false.
         <em>Optional.</em>*/
@@ -2503,6 +2559,7 @@ in which case the content will be scaled to fit the paper size.
         }
     }
     /**Return result class of printToPDF.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PrintToPDFResult extends ResultBase {
         /**Base64-encoded pdf data.*/
         private final String data;
@@ -2533,6 +2590,7 @@ in which case the content will be scaled to fit the paper size.
     /**Reloads given page optionally ignoring the cache.*/
     public ReloadParameter reload() { final ReloadParameter v = new ReloadParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of reload.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReloadParameter extends CommandBase {
         /**If true, browser cache is ignored (as if the user pressed Shift+refresh).
         <em>Optional.</em>*/
@@ -2581,6 +2639,7 @@ Argument will be ignored if reloading dataURL origin.
         }
     }
     /**Return result class of reload.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReloadResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2605,6 +2664,7 @@ Argument will be ignored if reloading dataURL origin.
     /**Parameter class of removeScriptToEvaluateOnLoad.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveScriptToEvaluateOnLoadParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private ScriptIdentifier identifier;
@@ -2644,6 +2704,7 @@ Argument will be ignored if reloading dataURL origin.
     /**Return result class of removeScriptToEvaluateOnLoad.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveScriptToEvaluateOnLoadResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2664,6 +2725,7 @@ Argument will be ignored if reloading dataURL origin.
     /**Removes given script from the list.*/
     public RemoveScriptToEvaluateOnNewDocumentParameter removeScriptToEvaluateOnNewDocument() { final RemoveScriptToEvaluateOnNewDocumentParameter v = new RemoveScriptToEvaluateOnNewDocumentParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of removeScriptToEvaluateOnNewDocument.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveScriptToEvaluateOnNewDocumentParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private ScriptIdentifier identifier;
@@ -2701,6 +2763,7 @@ Argument will be ignored if reloading dataURL origin.
         }
     }
     /**Return result class of removeScriptToEvaluateOnNewDocument.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveScriptToEvaluateOnNewDocumentResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2723,6 +2786,7 @@ Argument will be ignored if reloading dataURL origin.
     public RequestAppBannerParameter requestAppBanner() { final RequestAppBannerParameter v = new RequestAppBannerParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestAppBanner.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestAppBannerParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2747,6 +2811,7 @@ Argument will be ignored if reloading dataURL origin.
     }
     /**Return result class of requestAppBanner.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestAppBannerResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2769,6 +2834,7 @@ Argument will be ignored if reloading dataURL origin.
     public ScreencastFrameAckParameter screencastFrameAck() { final ScreencastFrameAckParameter v = new ScreencastFrameAckParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of screencastFrameAck.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScreencastFrameAckParameter extends CommandBase {
         /**Frame number.*/
         private Integer sessionId;
@@ -2807,6 +2873,7 @@ Argument will be ignored if reloading dataURL origin.
     }
     /**Return result class of screencastFrameAck.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScreencastFrameAckResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2829,6 +2896,7 @@ Argument will be ignored if reloading dataURL origin.
     public SearchInResourceParameter searchInResource() { final SearchInResourceParameter v = new SearchInResourceParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of searchInResource.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SearchInResourceParameter extends CommandBase {
         /**Frame id for resource to search in.*/
         private FrameId frameId;
@@ -2907,6 +2975,7 @@ Argument will be ignored if reloading dataURL origin.
     }
     /**Return result class of searchInResource.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SearchInResourceResult extends ResultBase {
         /**List of search matches.*/
         private final List<Debugger.SearchMatch> result;
@@ -2943,6 +3012,7 @@ Argument will be ignored if reloading dataURL origin.
     public SetAdBlockingEnabledParameter setAdBlockingEnabled() { final SetAdBlockingEnabledParameter v = new SetAdBlockingEnabledParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setAdBlockingEnabled.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAdBlockingEnabledParameter extends CommandBase {
         /**Whether to block ads.*/
         private Boolean enabled;
@@ -2981,6 +3051,7 @@ Argument will be ignored if reloading dataURL origin.
     }
     /**Return result class of setAdBlockingEnabled.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAdBlockingEnabledResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3007,6 +3078,7 @@ query results).
     /**Parameter class of setDeviceMetricsOverride.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDeviceMetricsOverrideParameter extends CommandBase {
         /**Overriding width value in pixels (minimum 0, maximum 10000000). 0 disables the override.*/
         private Integer width;
@@ -3157,6 +3229,7 @@ autosizing and more.*/
     /**Return result class of setDeviceMetricsOverride.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDeviceMetricsOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3181,6 +3254,7 @@ autosizing and more.*/
     /**Parameter class of setDeviceOrientationOverride.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDeviceOrientationOverrideParameter extends CommandBase {
         /**Mock alpha*/
         private Double alpha;
@@ -3240,6 +3314,7 @@ autosizing and more.*/
     /**Return result class of setDeviceOrientationOverride.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDeviceOrientationOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3260,6 +3335,7 @@ autosizing and more.*/
     /**Sets given markup as the document's HTML.*/
     public SetDocumentContentParameter setDocumentContent() { final SetDocumentContentParameter v = new SetDocumentContentParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setDocumentContent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDocumentContentParameter extends CommandBase {
         /**Frame id to set HTML for.*/
         private FrameId frameId;
@@ -3307,6 +3383,7 @@ autosizing and more.*/
         }
     }
     /**Return result class of setDocumentContent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDocumentContentResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3329,6 +3406,7 @@ autosizing and more.*/
     public SetDownloadBehaviorParameter setDownloadBehavior() { final SetDownloadBehaviorParameter v = new SetDownloadBehaviorParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setDownloadBehavior.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDownloadBehaviorParameter extends CommandBase {
         /**Whether to allow all or deny all download requests, or use default Chrome behavior if
 available (otherwise deny).*/
@@ -3404,6 +3482,7 @@ available (otherwise deny).*/
     }
     /**Return result class of setDownloadBehavior.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDownloadBehaviorResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3427,6 +3506,7 @@ unavailable.
     public SetGeolocationOverrideParameter setGeolocationOverride() { final SetGeolocationOverrideParameter v = new SetGeolocationOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setGeolocationOverride.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetGeolocationOverrideParameter extends CommandBase {
         /**Mock latitude
         <em>Optional.</em>*/
@@ -3485,6 +3565,7 @@ unavailable.
     }
     /**Return result class of setGeolocationOverride.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetGeolocationOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3507,6 +3588,7 @@ unavailable.
     public SetLifecycleEventsEnabledParameter setLifecycleEventsEnabled() { final SetLifecycleEventsEnabledParameter v = new SetLifecycleEventsEnabledParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setLifecycleEventsEnabled.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetLifecycleEventsEnabledParameter extends CommandBase {
         /**If true, starts emitting lifecycle events.*/
         private Boolean enabled;
@@ -3545,6 +3627,7 @@ unavailable.
     }
     /**Return result class of setLifecycleEventsEnabled.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetLifecycleEventsEnabledResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3569,6 +3652,7 @@ unavailable.
     /**Parameter class of setTouchEmulationEnabled.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetTouchEmulationEnabledParameter extends CommandBase {
         /**Whether the touch event emulation should be enabled.*/
         private Boolean enabled;
@@ -3643,6 +3727,7 @@ unavailable.
     /**Return result class of setTouchEmulationEnabled.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetTouchEmulationEnabledResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3665,6 +3750,7 @@ unavailable.
     public StartScreencastParameter startScreencast() { final StartScreencastParameter v = new StartScreencastParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of startScreencast.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartScreencastParameter extends CommandBase {
         /**Image compression format.
         <em>Optional.</em>*/
@@ -3768,6 +3854,7 @@ unavailable.
     }
     /**Return result class of startScreencast.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartScreencastResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3788,6 +3875,7 @@ unavailable.
     /**Force the page stop all navigations and pending resource fetches.*/
     public StopLoadingParameter stopLoading() { final StopLoadingParameter v = new StopLoadingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopLoading.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopLoadingParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3811,6 +3899,7 @@ unavailable.
         }
     }
     /**Return result class of stopLoading.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopLoadingResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3833,6 +3922,7 @@ unavailable.
     public CrashParameter crash() { final CrashParameter v = new CrashParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of crash.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CrashParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3857,6 +3947,7 @@ unavailable.
     }
     /**Return result class of crash.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CrashResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3879,6 +3970,7 @@ unavailable.
     public StopScreencastParameter stopScreencast() { final StopScreencastParameter v = new StopScreencastParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopScreencast.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopScreencastParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3903,6 +3995,7 @@ unavailable.
     }
     /**Return result class of stopScreencast.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopScreencastResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3922,6 +4015,7 @@ unavailable.
     }
     /**Event parameter of Page.domContentEventFired.
      @see #onDomContentEventFired*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DomContentEventFiredEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final Network.MonotonicTime timestamp;
@@ -3957,6 +4051,7 @@ unavailable.
     }
     /**Event parameter of Page.frameAttached.
      @see #onFrameAttached*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameAttachedEventParameter implements CommonDomainType {
         /**Id of the frame that has been attached.*/
         private final FrameId frameId;
@@ -4008,6 +4103,7 @@ unavailable.
     /**Event parameter of Page.frameClearedScheduledNavigation.
     <p><strong>Experimental.</strong></p>
      @see #onFrameClearedScheduledNavigation*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameClearedScheduledNavigationEventParameter implements CommonDomainType {
         /**Id of the frame that has cleared its scheduled navigation.*/
         private final FrameId frameId;
@@ -4044,6 +4140,7 @@ unavailable.
     }
     /**Event parameter of Page.frameDetached.
      @see #onFrameDetached*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameDetachedEventParameter implements CommonDomainType {
         /**Id of the frame that has been detached.*/
         private final FrameId frameId;
@@ -4079,6 +4176,7 @@ unavailable.
     }
     /**Event parameter of Page.frameNavigated.
      @see #onFrameNavigated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameNavigatedEventParameter implements CommonDomainType {
         /**Frame object.*/
         private final Frame frame;
@@ -4115,6 +4213,7 @@ unavailable.
     /**Event parameter of Page.frameResized.
     <p><strong>Experimental.</strong></p>
      @see #onFrameResized*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameResizedEventParameter implements CommonDomainType {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -4143,6 +4242,7 @@ unavailable.
     /**Event parameter of Page.frameScheduledNavigation.
     <p><strong>Experimental.</strong></p>
      @see #onFrameScheduledNavigation*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameScheduledNavigationEventParameter implements CommonDomainType {
         /**Id of the frame that has scheduled a navigation.*/
         private final FrameId frameId;
@@ -4232,6 +4332,7 @@ guaranteed to start.*/
     /**Event parameter of Page.frameStartedLoading.
     <p><strong>Experimental.</strong></p>
      @see #onFrameStartedLoading*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameStartedLoadingEventParameter implements CommonDomainType {
         /**Id of the frame that has started loading.*/
         private final FrameId frameId;
@@ -4269,6 +4370,7 @@ guaranteed to start.*/
     /**Event parameter of Page.frameStoppedLoading.
     <p><strong>Experimental.</strong></p>
      @see #onFrameStoppedLoading*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameStoppedLoadingEventParameter implements CommonDomainType {
         /**Id of the frame that has stopped loading.*/
         private final FrameId frameId;
@@ -4305,6 +4407,7 @@ guaranteed to start.*/
     }
     /**Event parameter of Page.interstitialHidden.
      @see #onInterstitialHidden*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InterstitialHiddenEventParameter implements CommonDomainType {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -4331,6 +4434,7 @@ guaranteed to start.*/
     }
     /**Event parameter of Page.interstitialShown.
      @see #onInterstitialShown*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InterstitialShownEventParameter implements CommonDomainType {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -4357,6 +4461,7 @@ guaranteed to start.*/
     }
     /**Event parameter of Page.javascriptDialogClosed.
      @see #onJavascriptDialogClosed*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class JavascriptDialogClosedEventParameter implements CommonDomainType {
         /**Whether dialog was confirmed.*/
         private final Boolean result;
@@ -4400,6 +4505,7 @@ closed.
     }
     /**Event parameter of Page.javascriptDialogOpening.
      @see #onJavascriptDialogOpening*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class JavascriptDialogOpeningEventParameter implements CommonDomainType {
         /**Frame url.*/
         private final String url;
@@ -4458,6 +4564,7 @@ open.
     }
     /**Event parameter of Page.lifecycleEvent.
      @see #onLifecycleEvent*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LifecycleEventEventParameter implements CommonDomainType {
         /**Id of the frame.*/
         private final FrameId frameId;
@@ -4514,6 +4621,7 @@ open.
     }
     /**Event parameter of Page.loadEventFired.
      @see #onLoadEventFired*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LoadEventFiredEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final Network.MonotonicTime timestamp;
@@ -4550,6 +4658,7 @@ open.
     /**Event parameter of Page.screencastFrame.
     <p><strong>Experimental.</strong></p>
      @see #onScreencastFrame*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScreencastFrameEventParameter implements CommonDomainType {
         /**Base64-encoded compressed image.*/
         private final String data;
@@ -4601,6 +4710,7 @@ open.
     /**Event parameter of Page.screencastVisibilityChanged.
     <p><strong>Experimental.</strong></p>
      @see #onScreencastVisibilityChanged*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScreencastVisibilityChangedEventParameter implements CommonDomainType {
         /**True if the page is visible.*/
         private final Boolean visible;
@@ -4637,6 +4747,7 @@ open.
     }
     /**Event parameter of Page.windowOpen.
      @see #onWindowOpen*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WindowOpenEventParameter implements CommonDomainType {
         /**The URL for the new window.*/
         private final String url;

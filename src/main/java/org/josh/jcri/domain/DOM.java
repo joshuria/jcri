@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -34,6 +35,7 @@ corresponding document elements as their child nodes.</p>
     public DOM(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Unique DOM node identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NodeId implements CommonDomainType {
         private Integer _value;
         public NodeId() {}
@@ -57,6 +59,7 @@ corresponding document elements as their child nodes.</p>
 
     /**Unique DOM node identifier used to reference a node that may not have been pushed to the
 front-end.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BackendNodeId implements CommonDomainType {
         private Integer _value;
         public BackendNodeId() {}
@@ -79,6 +82,7 @@ front-end.*/
     }
 
     /**Backend node with a friendly name.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BackendNode implements CommonDomainType {
         /**`Node`'s nodeType.*/
         private Integer nodeType;
@@ -197,6 +201,7 @@ front-end.*/
 
     /**DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes.
 DOMNode is a base node mirror type.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Node implements CommonDomainType {
         /**Node identifier that is passed into the rest of the DOM messages as the `nodeId`. Backend
 will only push node with given `id` once. It is aware of all requested nodes and will only
@@ -528,6 +533,7 @@ fire DOM events for nodes known to the client.*/
     }
 
     /**A structure holding an RGBA color.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RGBA implements CommonDomainType {
         /**The red component, in the [0-255] range.*/
         private Integer r;
@@ -587,6 +593,7 @@ fire DOM events for nodes known to the client.*/
     }
 
     /**An array of quad vertices, x immediately followed by y for each point, points clock-wise.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Quad implements CommonDomainType {
         private List<Double> _value;
         public Quad() {}
@@ -608,6 +615,7 @@ fire DOM events for nodes known to the client.*/
     }
 
     /**Box model.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BoxModel implements CommonDomainType {
         /**Content box*/
         private Quad content;
@@ -697,6 +705,7 @@ fire DOM events for nodes known to the client.*/
     }
 
     /**CSS Shape Outside details.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ShapeOutsideInfo implements CommonDomainType {
         /**Shape bounds*/
         private Quad bounds;
@@ -754,6 +763,7 @@ fire DOM events for nodes known to the client.*/
     }
 
     /**Rectangle.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Rect implements CommonDomainType {
         /**X coordinate*/
         private Double x;
@@ -816,6 +826,7 @@ fire DOM events for nodes known to the client.*/
     public CollectClassNamesFromSubtreeParameter collectClassNamesFromSubtree() { final CollectClassNamesFromSubtreeParameter v = new CollectClassNamesFromSubtreeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of collectClassNamesFromSubtree.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CollectClassNamesFromSubtreeParameter extends CommandBase {
         /**Id of the node to collect class names.*/
         private NodeId nodeId;
@@ -854,6 +865,7 @@ fire DOM events for nodes known to the client.*/
     }
     /**Return result class of collectClassNamesFromSubtree.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CollectClassNamesFromSubtreeResult extends ResultBase {
         /**Class name list.*/
         private final List<String> classNames;
@@ -891,6 +903,7 @@ given anchor.
     public CopyToParameter copyTo() { final CopyToParameter v = new CopyToParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of copyTo.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CopyToParameter extends CommandBase {
         /**Id of the node to copy.*/
         private NodeId nodeId;
@@ -950,6 +963,7 @@ given anchor.
     }
     /**Return result class of copyTo.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CopyToResult extends ResultBase {
         /**Id of the node clone.*/
         private final NodeId nodeId;
@@ -981,6 +995,7 @@ given anchor.
 objects, can be used for automation.*/
     public DescribeNodeParameter describeNode() { final DescribeNodeParameter v = new DescribeNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of describeNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DescribeNodeParameter extends CommandBase {
         /**Identifier of the node.
         <em>Optional.</em>*/
@@ -1060,6 +1075,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of describeNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DescribeNodeResult extends ResultBase {
         /**Node description.*/
         private final Node node;
@@ -1090,6 +1106,7 @@ entire subtree or provide an integer larger than 0.
     /**Disables DOM agent for the given page.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1113,6 +1130,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1136,6 +1154,7 @@ be called for that search.
     public DiscardSearchResultsParameter discardSearchResults() { final DiscardSearchResultsParameter v = new DiscardSearchResultsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of discardSearchResults.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DiscardSearchResultsParameter extends CommandBase {
         /**Unique search session identifier.*/
         private String searchId;
@@ -1174,6 +1193,7 @@ be called for that search.
     }
     /**Return result class of discardSearchResults.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DiscardSearchResultsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1194,6 +1214,7 @@ be called for that search.
     /**Enables DOM agent for the given page.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1217,6 +1238,7 @@ be called for that search.
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1237,6 +1259,7 @@ be called for that search.
     /**Focuses the given element.*/
     public FocusParameter focus() { final FocusParameter v = new FocusParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of focus.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FocusParameter extends CommandBase {
         /**Identifier of the node.
         <em>Optional.</em>*/
@@ -1294,6 +1317,7 @@ be called for that search.
         }
     }
     /**Return result class of focus.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FocusResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1314,6 +1338,7 @@ be called for that search.
     /**Returns attributes for the specified node.*/
     public GetAttributesParameter getAttributes() { final GetAttributesParameter v = new GetAttributesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getAttributes.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetAttributesParameter extends CommandBase {
         /**Id of the node to retrieve attibutes for.*/
         private NodeId nodeId;
@@ -1351,6 +1376,7 @@ be called for that search.
         }
     }
     /**Return result class of getAttributes.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetAttributesResult extends ResultBase {
         /**An interleaved array of node attribute names and values.*/
         private final List<String> attributes;
@@ -1385,6 +1411,7 @@ be called for that search.
     /**Returns boxes for the given node.*/
     public GetBoxModelParameter getBoxModel() { final GetBoxModelParameter v = new GetBoxModelParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getBoxModel.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBoxModelParameter extends CommandBase {
         /**Identifier of the node.
         <em>Optional.</em>*/
@@ -1442,6 +1469,7 @@ be called for that search.
         }
     }
     /**Return result class of getBoxModel.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBoxModelResult extends ResultBase {
         /**Box model for the node.*/
         private final BoxModel model;
@@ -1472,6 +1500,7 @@ be called for that search.
     /**Returns the root DOM node (and optionally the subtree) to the caller.*/
     public GetDocumentParameter getDocument() { final GetDocumentParameter v = new GetDocumentParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getDocument.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDocumentParameter extends CommandBase {
         /**The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
 entire subtree or provide an integer larger than 0.
@@ -1521,6 +1550,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of getDocument.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDocumentResult extends ResultBase {
         /**Resulting node.*/
         private final Node root;
@@ -1551,6 +1581,7 @@ entire subtree or provide an integer larger than 0.
     /**Returns the root DOM node (and optionally the subtree) to the caller.*/
     public GetFlattenedDocumentParameter getFlattenedDocument() { final GetFlattenedDocumentParameter v = new GetFlattenedDocumentParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getFlattenedDocument.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetFlattenedDocumentParameter extends CommandBase {
         /**The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
 entire subtree or provide an integer larger than 0.
@@ -1600,6 +1631,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of getFlattenedDocument.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetFlattenedDocumentResult extends ResultBase {
         /**Resulting node.*/
         private final List<Node> nodes;
@@ -1636,6 +1668,7 @@ entire subtree or provide an integer larger than 0.
     public GetNodeForLocationParameter getNodeForLocation() { final GetNodeForLocationParameter v = new GetNodeForLocationParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getNodeForLocation.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetNodeForLocationParameter extends CommandBase {
         /**X coordinate.*/
         private Integer x;
@@ -1694,6 +1727,7 @@ entire subtree or provide an integer larger than 0.
     }
     /**Return result class of getNodeForLocation.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetNodeForLocationResult extends ResultBase {
         /**Id of the node at given coordinates.*/
         private final NodeId nodeId;
@@ -1724,6 +1758,7 @@ entire subtree or provide an integer larger than 0.
     /**Returns node's HTML markup.*/
     public GetOuterHTMLParameter getOuterHTML() { final GetOuterHTMLParameter v = new GetOuterHTMLParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getOuterHTML.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetOuterHTMLParameter extends CommandBase {
         /**Identifier of the node.
         <em>Optional.</em>*/
@@ -1781,6 +1816,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of getOuterHTML.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetOuterHTMLResult extends ResultBase {
         /**Outer HTML markup.*/
         private final String outerHTML;
@@ -1813,6 +1849,7 @@ entire subtree or provide an integer larger than 0.
     public GetRelayoutBoundaryParameter getRelayoutBoundary() { final GetRelayoutBoundaryParameter v = new GetRelayoutBoundaryParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getRelayoutBoundary.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetRelayoutBoundaryParameter extends CommandBase {
         /**Id of the node.*/
         private NodeId nodeId;
@@ -1851,6 +1888,7 @@ entire subtree or provide an integer larger than 0.
     }
     /**Return result class of getRelayoutBoundary.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetRelayoutBoundaryResult extends ResultBase {
         /**Relayout boundary node id for the given node.*/
         private final NodeId nodeId;
@@ -1884,6 +1922,7 @@ identifier.
     public GetSearchResultsParameter getSearchResults() { final GetSearchResultsParameter v = new GetSearchResultsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getSearchResults.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetSearchResultsParameter extends CommandBase {
         /**Unique search session identifier.*/
         private String searchId;
@@ -1942,6 +1981,7 @@ identifier.
     }
     /**Return result class of getSearchResults.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetSearchResultsResult extends ResultBase {
         /**Ids of the search result nodes.*/
         private final List<NodeId> nodeIds;
@@ -1976,6 +2016,7 @@ identifier.
     /**Hides any highlight.*/
     public HideHighlightParameter hideHighlight() { final HideHighlightParameter v = new HideHighlightParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of hideHighlight.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HideHighlightParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1999,6 +2040,7 @@ identifier.
         }
     }
     /**Return result class of hideHighlight.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HideHighlightResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2019,6 +2061,7 @@ identifier.
     /**Highlights DOM node.*/
     public HighlightNodeParameter highlightNode() { final HighlightNodeParameter v = new HighlightNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of highlightNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightNodeParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2042,6 +2085,7 @@ identifier.
         }
     }
     /**Return result class of highlightNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightNodeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2062,6 +2106,7 @@ identifier.
     /**Highlights given rectangle.*/
     public HighlightRectParameter highlightRect() { final HighlightRectParameter v = new HighlightRectParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of highlightRect.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightRectParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2085,6 +2130,7 @@ identifier.
         }
     }
     /**Return result class of highlightRect.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightRectResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2107,6 +2153,7 @@ identifier.
     public MarkUndoableStateParameter markUndoableState() { final MarkUndoableStateParameter v = new MarkUndoableStateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of markUndoableState.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MarkUndoableStateParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2131,6 +2178,7 @@ identifier.
     }
     /**Return result class of markUndoableState.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MarkUndoableStateResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2151,6 +2199,7 @@ identifier.
     /**Moves node into the new container, places it before the given anchor.*/
     public MoveToParameter moveTo() { final MoveToParameter v = new MoveToParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of moveTo.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MoveToParameter extends CommandBase {
         /**Id of the node to move.*/
         private NodeId nodeId;
@@ -2209,6 +2258,7 @@ identifier.
         }
     }
     /**Return result class of moveTo.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MoveToResult extends ResultBase {
         /**New id of the moved node.*/
         private final NodeId nodeId;
@@ -2242,6 +2292,7 @@ identifier.
     public PerformSearchParameter performSearch() { final PerformSearchParameter v = new PerformSearchParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of performSearch.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PerformSearchParameter extends CommandBase {
         /**Plain text or query selector or XPath search query.*/
         private String query;
@@ -2290,6 +2341,7 @@ identifier.
     }
     /**Return result class of performSearch.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PerformSearchResult extends ResultBase {
         /**Unique search session identifier.*/
         private final String searchId;
@@ -2330,6 +2382,7 @@ identifier.
     public PushNodeByPathToFrontendParameter pushNodeByPathToFrontend() { final PushNodeByPathToFrontendParameter v = new PushNodeByPathToFrontendParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of pushNodeByPathToFrontend.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PushNodeByPathToFrontendParameter extends CommandBase {
         /**Path to node in the proprietary format.*/
         private String path;
@@ -2368,6 +2421,7 @@ identifier.
     }
     /**Return result class of pushNodeByPathToFrontend.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PushNodeByPathToFrontendResult extends ResultBase {
         /**Id of the node for given path.*/
         private final NodeId nodeId;
@@ -2400,6 +2454,7 @@ identifier.
     public PushNodesByBackendIdsToFrontendParameter pushNodesByBackendIdsToFrontend() { final PushNodesByBackendIdsToFrontendParameter v = new PushNodesByBackendIdsToFrontendParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of pushNodesByBackendIdsToFrontend.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PushNodesByBackendIdsToFrontendParameter extends CommandBase {
         /**The array of backend node ids.*/
         private List<BackendNodeId> backendNodeIds;
@@ -2442,6 +2497,7 @@ identifier.
     }
     /**Return result class of pushNodesByBackendIdsToFrontend.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PushNodesByBackendIdsToFrontendResult extends ResultBase {
         /**The array of ids of pushed nodes that correspond to the backend ids specified in
 backendNodeIds.*/
@@ -2477,6 +2533,7 @@ backendNodeIds.*/
     /**Executes `querySelector` on a given node.*/
     public QuerySelectorParameter querySelector() { final QuerySelectorParameter v = new QuerySelectorParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of querySelector.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class QuerySelectorParameter extends CommandBase {
         /**Id of the node to query upon.*/
         private NodeId nodeId;
@@ -2524,6 +2581,7 @@ backendNodeIds.*/
         }
     }
     /**Return result class of querySelector.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class QuerySelectorResult extends ResultBase {
         /**Query selector result.*/
         private final NodeId nodeId;
@@ -2554,6 +2612,7 @@ backendNodeIds.*/
     /**Executes `querySelectorAll` on a given node.*/
     public QuerySelectorAllParameter querySelectorAll() { final QuerySelectorAllParameter v = new QuerySelectorAllParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of querySelectorAll.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class QuerySelectorAllParameter extends CommandBase {
         /**Id of the node to query upon.*/
         private NodeId nodeId;
@@ -2601,6 +2660,7 @@ backendNodeIds.*/
         }
     }
     /**Return result class of querySelectorAll.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class QuerySelectorAllResult extends ResultBase {
         /**Query selector result.*/
         private final List<NodeId> nodeIds;
@@ -2637,6 +2697,7 @@ backendNodeIds.*/
     public RedoParameter redo() { final RedoParameter v = new RedoParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of redo.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RedoParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2661,6 +2722,7 @@ backendNodeIds.*/
     }
     /**Return result class of redo.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RedoResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2681,6 +2743,7 @@ backendNodeIds.*/
     /**Removes attribute with given name from an element with given id.*/
     public RemoveAttributeParameter removeAttribute() { final RemoveAttributeParameter v = new RemoveAttributeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of removeAttribute.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveAttributeParameter extends CommandBase {
         /**Id of the element to remove attribute from.*/
         private NodeId nodeId;
@@ -2728,6 +2791,7 @@ backendNodeIds.*/
         }
     }
     /**Return result class of removeAttribute.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveAttributeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2748,6 +2812,7 @@ backendNodeIds.*/
     /**Removes node with given id.*/
     public RemoveNodeParameter removeNode() { final RemoveNodeParameter v = new RemoveNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of removeNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveNodeParameter extends CommandBase {
         /**Id of the node to remove.*/
         private NodeId nodeId;
@@ -2785,6 +2850,7 @@ backendNodeIds.*/
         }
     }
     /**Return result class of removeNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveNodeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2807,6 +2873,7 @@ backendNodeIds.*/
 the specified depth.*/
     public RequestChildNodesParameter requestChildNodes() { final RequestChildNodesParameter v = new RequestChildNodesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestChildNodes.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestChildNodesParameter extends CommandBase {
         /**Id of the node to get children for.*/
         private NodeId nodeId;
@@ -2866,6 +2933,7 @@ entire subtree or provide an integer larger than 0.
         }
     }
     /**Return result class of requestChildNodes.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestChildNodesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2888,6 +2956,7 @@ nodes that form the path from the node to the root are also sent to the client a
 `setChildNodes` notifications.*/
     public RequestNodeParameter requestNode() { final RequestNodeParameter v = new RequestNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestNodeParameter extends CommandBase {
         /**JavaScript object id to convert into node.*/
         private Runtime.RemoteObjectId objectId;
@@ -2925,6 +2994,7 @@ nodes that form the path from the node to the root are also sent to the client a
         }
     }
     /**Return result class of requestNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestNodeResult extends ResultBase {
         /**Node id for given object.*/
         private final NodeId nodeId;
@@ -2955,6 +3025,7 @@ nodes that form the path from the node to the root are also sent to the client a
     /**Resolves the JavaScript node object for a given NodeId or BackendNodeId.*/
     public ResolveNodeParameter resolveNode() { final ResolveNodeParameter v = new ResolveNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of resolveNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResolveNodeParameter extends CommandBase {
         /**Id of the node to resolve.
         <em>Optional.</em>*/
@@ -3012,6 +3083,7 @@ nodes that form the path from the node to the root are also sent to the client a
         }
     }
     /**Return result class of resolveNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResolveNodeResult extends ResultBase {
         /**JavaScript object wrapper for given node.*/
         private final Runtime.RemoteObject object;
@@ -3042,6 +3114,7 @@ nodes that form the path from the node to the root are also sent to the client a
     /**Sets attribute for an element with given id.*/
     public SetAttributeValueParameter setAttributeValue() { final SetAttributeValueParameter v = new SetAttributeValueParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setAttributeValue.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAttributeValueParameter extends CommandBase {
         /**Id of the element to set attribute for.*/
         private NodeId nodeId;
@@ -3099,6 +3172,7 @@ nodes that form the path from the node to the root are also sent to the client a
         }
     }
     /**Return result class of setAttributeValue.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAttributeValueResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3120,6 +3194,7 @@ nodes that form the path from the node to the root are also sent to the client a
 attribute value and types in several attribute name/value pairs.*/
     public SetAttributesAsTextParameter setAttributesAsText() { final SetAttributesAsTextParameter v = new SetAttributesAsTextParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setAttributesAsText.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAttributesAsTextParameter extends CommandBase {
         /**Id of the element to set attributes for.*/
         private NodeId nodeId;
@@ -3178,6 +3253,7 @@ successfully.
         }
     }
     /**Return result class of setAttributesAsText.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAttributesAsTextResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3198,6 +3274,7 @@ successfully.
     /**Sets files for the given file input element.*/
     public SetFileInputFilesParameter setFileInputFiles() { final SetFileInputFilesParameter v = new SetFileInputFilesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setFileInputFiles.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetFileInputFilesParameter extends CommandBase {
         /**Array of file paths to set.*/
         private List<String> files;
@@ -3269,6 +3346,7 @@ successfully.
         }
     }
     /**Return result class of setFileInputFiles.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetFileInputFilesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3292,6 +3370,7 @@ $x functions).
     public SetInspectedNodeParameter setInspectedNode() { final SetInspectedNodeParameter v = new SetInspectedNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setInspectedNode.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetInspectedNodeParameter extends CommandBase {
         /**DOM node id to be accessible by means of $x command line API.*/
         private NodeId nodeId;
@@ -3330,6 +3409,7 @@ $x functions).
     }
     /**Return result class of setInspectedNode.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetInspectedNodeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3350,6 +3430,7 @@ $x functions).
     /**Sets node name for a node with given id.*/
     public SetNodeNameParameter setNodeName() { final SetNodeNameParameter v = new SetNodeNameParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setNodeName.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetNodeNameParameter extends CommandBase {
         /**Id of the node to set name for.*/
         private NodeId nodeId;
@@ -3397,6 +3478,7 @@ $x functions).
         }
     }
     /**Return result class of setNodeName.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetNodeNameResult extends ResultBase {
         /**New node's id.*/
         private final NodeId nodeId;
@@ -3427,6 +3509,7 @@ $x functions).
     /**Sets node value for a node with given id.*/
     public SetNodeValueParameter setNodeValue() { final SetNodeValueParameter v = new SetNodeValueParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setNodeValue.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetNodeValueParameter extends CommandBase {
         /**Id of the node to set value for.*/
         private NodeId nodeId;
@@ -3474,6 +3557,7 @@ $x functions).
         }
     }
     /**Return result class of setNodeValue.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetNodeValueResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3494,6 +3578,7 @@ $x functions).
     /**Sets node HTML markup, returns new node id.*/
     public SetOuterHTMLParameter setOuterHTML() { final SetOuterHTMLParameter v = new SetOuterHTMLParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setOuterHTML.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetOuterHTMLParameter extends CommandBase {
         /**Id of the node to set markup for.*/
         private NodeId nodeId;
@@ -3541,6 +3626,7 @@ $x functions).
         }
     }
     /**Return result class of setOuterHTML.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetOuterHTMLResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3563,6 +3649,7 @@ $x functions).
     public UndoParameter undo() { final UndoParameter v = new UndoParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of undo.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UndoParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3587,6 +3674,7 @@ $x functions).
     }
     /**Return result class of undo.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UndoResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3609,6 +3697,7 @@ $x functions).
     public GetFrameOwnerParameter getFrameOwner() { final GetFrameOwnerParameter v = new GetFrameOwnerParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getFrameOwner.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetFrameOwnerParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private Page.FrameId frameId;
@@ -3647,6 +3736,7 @@ $x functions).
     }
     /**Return result class of getFrameOwner.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetFrameOwnerResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final NodeId nodeId;
@@ -3676,6 +3766,7 @@ $x functions).
     }
     /**Event parameter of DOM.attributeModified.
      @see #onAttributeModified*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AttributeModifiedEventParameter implements CommonDomainType {
         /**Id of the node that has changed.*/
         private final NodeId nodeId;
@@ -3725,6 +3816,7 @@ $x functions).
     }
     /**Event parameter of DOM.attributeRemoved.
      @see #onAttributeRemoved*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AttributeRemovedEventParameter implements CommonDomainType {
         /**Id of the node that has changed.*/
         private final NodeId nodeId;
@@ -3767,6 +3859,7 @@ $x functions).
     }
     /**Event parameter of DOM.characterDataModified.
      @see #onCharacterDataModified*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CharacterDataModifiedEventParameter implements CommonDomainType {
         /**Id of the node that has changed.*/
         private final NodeId nodeId;
@@ -3809,6 +3902,7 @@ $x functions).
     }
     /**Event parameter of DOM.childNodeCountUpdated.
      @see #onChildNodeCountUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ChildNodeCountUpdatedEventParameter implements CommonDomainType {
         /**Id of the node that has changed.*/
         private final NodeId nodeId;
@@ -3851,6 +3945,7 @@ $x functions).
     }
     /**Event parameter of DOM.childNodeInserted.
      @see #onChildNodeInserted*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ChildNodeInsertedEventParameter implements CommonDomainType {
         /**Id of the node that has changed.*/
         private final NodeId parentNodeId;
@@ -3900,6 +3995,7 @@ $x functions).
     }
     /**Event parameter of DOM.childNodeRemoved.
      @see #onChildNodeRemoved*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ChildNodeRemovedEventParameter implements CommonDomainType {
         /**Parent id.*/
         private final NodeId parentNodeId;
@@ -3943,6 +4039,7 @@ $x functions).
     /**Event parameter of DOM.distributedNodesUpdated.
     <p><strong>Experimental.</strong></p>
      @see #onDistributedNodesUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DistributedNodesUpdatedEventParameter implements CommonDomainType {
         /**Insertion point where distrubuted nodes were updated.*/
         private final NodeId insertionPointId;
@@ -3990,6 +4087,7 @@ $x functions).
     }
     /**Event parameter of DOM.documentUpdated.
      @see #onDocumentUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DocumentUpdatedEventParameter implements CommonDomainType {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -4017,6 +4115,7 @@ $x functions).
     /**Event parameter of DOM.inlineStyleInvalidated.
     <p><strong>Experimental.</strong></p>
      @see #onInlineStyleInvalidated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InlineStyleInvalidatedEventParameter implements CommonDomainType {
         /**Ids of the nodes for which the inline styles have been invalidated.*/
         private final List<NodeId> nodeIds;
@@ -4058,6 +4157,7 @@ $x functions).
     /**Event parameter of DOM.pseudoElementAdded.
     <p><strong>Experimental.</strong></p>
      @see #onPseudoElementAdded*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PseudoElementAddedEventParameter implements CommonDomainType {
         /**Pseudo element's parent element id.*/
         private final NodeId parentId;
@@ -4102,6 +4202,7 @@ $x functions).
     /**Event parameter of DOM.pseudoElementRemoved.
     <p><strong>Experimental.</strong></p>
      @see #onPseudoElementRemoved*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PseudoElementRemovedEventParameter implements CommonDomainType {
         /**Pseudo element's parent element id.*/
         private final NodeId parentId;
@@ -4145,6 +4246,7 @@ $x functions).
     }
     /**Event parameter of DOM.setChildNodes.
      @see #onSetChildNodes*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetChildNodesEventParameter implements CommonDomainType {
         /**Parent node id to populate with children.*/
         private final NodeId parentId;
@@ -4193,6 +4295,7 @@ most of the calls requesting node ids.
     /**Event parameter of DOM.shadowRootPopped.
     <p><strong>Experimental.</strong></p>
      @see #onShadowRootPopped*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ShadowRootPoppedEventParameter implements CommonDomainType {
         /**Host element id.*/
         private final NodeId hostId;
@@ -4237,6 +4340,7 @@ most of the calls requesting node ids.
     /**Event parameter of DOM.shadowRootPushed.
     <p><strong>Experimental.</strong></p>
      @see #onShadowRootPushed*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ShadowRootPushedEventParameter implements CommonDomainType {
         /**Host element id.*/
         private final NodeId hostId;

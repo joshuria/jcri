@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -31,6 +32,7 @@ import javax.annotation.Nullable;
     public Overlay(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Configuration data for the highlighting of page elements.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightConfig implements CommonDomainType {
         /**Whether the node info tooltip should be shown (default: false).
         <em>Optional.</em>*/
@@ -209,6 +211,7 @@ import javax.annotation.Nullable;
     /**Disables domain notifications.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -232,6 +235,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -252,6 +256,7 @@ import javax.annotation.Nullable;
     /**Enables domain notifications.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -275,6 +280,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -295,6 +301,7 @@ import javax.annotation.Nullable;
     /**For testing.*/
     public GetHighlightObjectForTestParameter getHighlightObjectForTest() { final GetHighlightObjectForTestParameter v = new GetHighlightObjectForTestParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getHighlightObjectForTest.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetHighlightObjectForTestParameter extends CommandBase {
         /**Id of the node to get highlight object for.*/
         private DOM.NodeId nodeId;
@@ -332,6 +339,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getHighlightObjectForTest.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetHighlightObjectForTestResult extends ResultBase {
         /**Highlight data for the node.*/
         private final Object highlight;
@@ -362,6 +370,7 @@ import javax.annotation.Nullable;
     /**Hides any highlight.*/
     public HideHighlightParameter hideHighlight() { final HideHighlightParameter v = new HideHighlightParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of hideHighlight.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HideHighlightParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -385,6 +394,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of hideHighlight.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HideHighlightResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -405,6 +415,7 @@ import javax.annotation.Nullable;
     /**Highlights owner element of the frame with given id.*/
     public HighlightFrameParameter highlightFrame() { final HighlightFrameParameter v = new HighlightFrameParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of highlightFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightFrameParameter extends CommandBase {
         /**Identifier of the frame to highlight.*/
         private Page.FrameId frameId;
@@ -462,6 +473,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of highlightFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightFrameResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -483,6 +495,7 @@ import javax.annotation.Nullable;
 objectId must be specified.*/
     public HighlightNodeParameter highlightNode() { final HighlightNodeParameter v = new HighlightNodeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of highlightNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightNodeParameter extends CommandBase {
         /**A descriptor for the highlight appearance.*/
         private HighlightConfig highlightConfig;
@@ -550,6 +563,7 @@ objectId must be specified.*/
         }
     }
     /**Return result class of highlightNode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightNodeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -570,6 +584,7 @@ objectId must be specified.*/
     /**Highlights given quad. Coordinates are absolute with respect to the main frame viewport.*/
     public HighlightQuadParameter highlightQuad() { final HighlightQuadParameter v = new HighlightQuadParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of highlightQuad.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightQuadParameter extends CommandBase {
         /**Quad to highlight*/
         private DOM.Quad quad;
@@ -627,6 +642,7 @@ objectId must be specified.*/
         }
     }
     /**Return result class of highlightQuad.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightQuadResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -647,6 +663,7 @@ objectId must be specified.*/
     /**Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.*/
     public HighlightRectParameter highlightRect() { final HighlightRectParameter v = new HighlightRectParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of highlightRect.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightRectParameter extends CommandBase {
         /**X coordinate*/
         private Integer x;
@@ -734,6 +751,7 @@ objectId must be specified.*/
         }
     }
     /**Return result class of highlightRect.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HighlightRectResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -755,6 +773,7 @@ objectId must be specified.*/
 Backend then generates 'inspectNodeRequested' event upon element selection.*/
     public SetInspectModeParameter setInspectMode() { final SetInspectModeParameter v = new SetInspectModeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setInspectMode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetInspectModeParameter extends CommandBase {
         /**Set an inspection mode.*/
         private InspectMode mode;
@@ -803,6 +822,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
         }
     }
     /**Return result class of setInspectMode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetInspectModeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -823,6 +843,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
     /**&lt;No document in protocol.&gt;*/
     public SetPausedInDebuggerMessageParameter setPausedInDebuggerMessage() { final SetPausedInDebuggerMessageParameter v = new SetPausedInDebuggerMessageParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setPausedInDebuggerMessage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPausedInDebuggerMessageParameter extends CommandBase {
         /**The message to display, also triggers resume and step over controls.
         <em>Optional.</em>*/
@@ -860,6 +881,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
         }
     }
     /**Return result class of setPausedInDebuggerMessage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPausedInDebuggerMessageResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -880,6 +902,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
     /**Requests that backend shows debug borders on layers*/
     public SetShowDebugBordersParameter setShowDebugBorders() { final SetShowDebugBordersParameter v = new SetShowDebugBordersParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setShowDebugBorders.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowDebugBordersParameter extends CommandBase {
         /**True for showing debug borders*/
         private Boolean show;
@@ -917,6 +940,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
         }
     }
     /**Return result class of setShowDebugBorders.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowDebugBordersResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -937,6 +961,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
     /**Requests that backend shows the FPS counter*/
     public SetShowFPSCounterParameter setShowFPSCounter() { final SetShowFPSCounterParameter v = new SetShowFPSCounterParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setShowFPSCounter.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowFPSCounterParameter extends CommandBase {
         /**True for showing the FPS counter*/
         private Boolean show;
@@ -974,6 +999,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
         }
     }
     /**Return result class of setShowFPSCounter.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowFPSCounterResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -994,6 +1020,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
     /**Requests that backend shows paint rectangles*/
     public SetShowPaintRectsParameter setShowPaintRects() { final SetShowPaintRectsParameter v = new SetShowPaintRectsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setShowPaintRects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowPaintRectsParameter extends CommandBase {
         /**True for showing paint rectangles*/
         private Boolean result;
@@ -1031,6 +1058,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
         }
     }
     /**Return result class of setShowPaintRects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowPaintRectsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1051,6 +1079,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
     /**Requests that backend shows scroll bottleneck rects*/
     public SetShowScrollBottleneckRectsParameter setShowScrollBottleneckRects() { final SetShowScrollBottleneckRectsParameter v = new SetShowScrollBottleneckRectsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setShowScrollBottleneckRects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowScrollBottleneckRectsParameter extends CommandBase {
         /**True for showing scroll bottleneck rects*/
         private Boolean show;
@@ -1088,6 +1117,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
         }
     }
     /**Return result class of setShowScrollBottleneckRects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowScrollBottleneckRectsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1108,6 +1138,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
     /**Paints viewport size upon main frame resize.*/
     public SetShowViewportSizeOnResizeParameter setShowViewportSizeOnResize() { final SetShowViewportSizeOnResizeParameter v = new SetShowViewportSizeOnResizeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setShowViewportSizeOnResize.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowViewportSizeOnResizeParameter extends CommandBase {
         /**Whether to paint size or not.*/
         private Boolean show;
@@ -1145,6 +1176,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
         }
     }
     /**Return result class of setShowViewportSizeOnResize.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetShowViewportSizeOnResizeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1165,6 +1197,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
     /**&lt;No document in protocol.&gt;*/
     public SetSuspendedParameter setSuspended() { final SetSuspendedParameter v = new SetSuspendedParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setSuspended.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetSuspendedParameter extends CommandBase {
         /**Whether overlay should be suspended and not consume any resources until resumed.*/
         private Boolean suspended;
@@ -1202,6 +1235,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
         }
     }
     /**Return result class of setSuspended.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetSuspendedResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1221,6 +1255,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
     }
     /**Event parameter of Overlay.inspectNodeRequested.
      @see #onInspectNodeRequested*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InspectNodeRequestedEventParameter implements CommonDomainType {
         /**Id of the node to inspect.*/
         private final DOM.BackendNodeId backendNodeId;
@@ -1257,6 +1292,7 @@ user manually inspects an element.
     }
     /**Event parameter of Overlay.nodeHighlightRequested.
      @see #onNodeHighlightRequested*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NodeHighlightRequestedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final DOM.NodeId nodeId;
@@ -1292,6 +1328,7 @@ user manually inspects an element.
     }
     /**Event parameter of Overlay.screenshotRequested.
      @see #onScreenshotRequested*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScreenshotRequestedEventParameter implements CommonDomainType {
         /**Viewport to capture, in CSS.*/
         private final Page.Viewport viewport;

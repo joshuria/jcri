@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
     public DOMStorage(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**DOM Storage identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StorageId implements CommonDomainType {
         /**Security origin for the storage.*/
         private String securityOrigin;
@@ -67,6 +69,7 @@ import javax.annotation.Nullable;
     }
 
     /**DOM Storage item.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Item implements CommonDomainType {
         private List<String> _value;
         public Item() {}
@@ -89,6 +92,7 @@ import javax.annotation.Nullable;
     /**&lt;No document in protocol.&gt;*/
     public ClearParameter clear() { final ClearParameter v = new ClearParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clear.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StorageId storageId;
@@ -126,6 +130,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of clear.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -146,6 +151,7 @@ import javax.annotation.Nullable;
     /**Disables storage tracking, prevents storage events from being sent to the client.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -169,6 +175,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -189,6 +196,7 @@ import javax.annotation.Nullable;
     /**Enables storage tracking, storage events will now be delivered to the client.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -212,6 +220,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -232,6 +241,7 @@ import javax.annotation.Nullable;
     /**&lt;No document in protocol.&gt;*/
     public GetDOMStorageItemsParameter getDOMStorageItems() { final GetDOMStorageItemsParameter v = new GetDOMStorageItemsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getDOMStorageItems.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDOMStorageItemsParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StorageId storageId;
@@ -269,6 +279,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getDOMStorageItems.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDOMStorageItemsResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final List<Item> entries;
@@ -303,6 +314,7 @@ import javax.annotation.Nullable;
     /**&lt;No document in protocol.&gt;*/
     public RemoveDOMStorageItemParameter removeDOMStorageItem() { final RemoveDOMStorageItemParameter v = new RemoveDOMStorageItemParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of removeDOMStorageItem.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveDOMStorageItemParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StorageId storageId;
@@ -350,6 +362,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of removeDOMStorageItem.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveDOMStorageItemResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -370,6 +383,7 @@ import javax.annotation.Nullable;
     /**&lt;No document in protocol.&gt;*/
     public SetDOMStorageItemParameter setDOMStorageItem() { final SetDOMStorageItemParameter v = new SetDOMStorageItemParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setDOMStorageItem.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDOMStorageItemParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private StorageId storageId;
@@ -427,6 +441,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of setDOMStorageItem.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDOMStorageItemResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -446,6 +461,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of DOMStorage.domStorageItemAdded.
      @see #onDomStorageItemAdded*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DomStorageItemAddedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final StorageId storageId;
@@ -495,6 +511,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of DOMStorage.domStorageItemRemoved.
      @see #onDomStorageItemRemoved*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DomStorageItemRemovedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final StorageId storageId;
@@ -537,6 +554,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of DOMStorage.domStorageItemUpdated.
      @see #onDomStorageItemUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DomStorageItemUpdatedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final StorageId storageId;
@@ -593,6 +611,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of DOMStorage.domStorageItemsCleared.
      @see #onDomStorageItemsCleared*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DomStorageItemsClearedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final StorageId storageId;

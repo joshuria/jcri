@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
     public Debugger(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Breakpoint identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BreakpointId implements CommonDomainType {
         private String _value;
         public BreakpointId() {}
@@ -51,6 +53,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
     }
 
     /**Call frame identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CallFrameId implements CommonDomainType {
         private String _value;
         public CallFrameId() {}
@@ -73,6 +76,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
     }
 
     /**Location in the source code.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Location implements CommonDomainType {
         /**Script identifier as reported in the `Debugger.scriptParsed`.*/
         private Runtime.ScriptId scriptId;
@@ -123,6 +127,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
 
     /**Location in the source code.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScriptPosition implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private Integer lineNumber;
@@ -162,6 +167,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
     }
 
     /**JavaScript call frame. Array of call frames form the call stack.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CallFrame implements CommonDomainType {
         /**Call frame identifier. This identifier is only valid while the virtual machine is paused.*/
         private CallFrameId callFrameId;
@@ -265,6 +271,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
     }
 
     /**Scope description.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Scope implements CommonDomainType {
         /**Scope type.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -368,6 +375,7 @@ variables as its properties.*/
     }
 
     /**Search match for resource.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SearchMatch implements CommonDomainType {
         /**Line number in resource content.*/
         private Double lineNumber;
@@ -407,6 +415,7 @@ variables as its properties.*/
     }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BreakLocation implements CommonDomainType {
         /**Script identifier as reported in the `Debugger.scriptParsed`.*/
         private Runtime.ScriptId scriptId;
@@ -493,6 +502,7 @@ variables as its properties.*/
     /**Continues execution until specific location is reached.*/
     public ContinueToLocationParameter continueToLocation() { final ContinueToLocationParameter v = new ContinueToLocationParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of continueToLocation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ContinueToLocationParameter extends CommandBase {
         /**Location to continue to.*/
         private Location location;
@@ -565,6 +575,7 @@ variables as its properties.*/
         }
     }
     /**Return result class of continueToLocation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ContinueToLocationResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -585,6 +596,7 @@ variables as its properties.*/
     /**Disables debugger for given page.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -608,6 +620,7 @@ variables as its properties.*/
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -629,6 +642,7 @@ variables as its properties.*/
 enabled until the result for this command is received.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -652,6 +666,7 @@ enabled until the result for this command is received.*/
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Unique identifier of the debugger.
         <p><strong>Experimental.</strong></p>*/
@@ -683,6 +698,7 @@ enabled until the result for this command is received.*/
     /**Evaluates expression on a given call frame.*/
     public EvaluateOnCallFrameParameter evaluateOnCallFrame() { final EvaluateOnCallFrameParameter v = new EvaluateOnCallFrameParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of evaluateOnCallFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EvaluateOnCallFrameParameter extends CommandBase {
         /**Call frame identifier to evaluate on.*/
         private CallFrameId callFrameId;
@@ -794,6 +810,7 @@ execution. Overrides `setPauseOnException` state.
         }
     }
     /**Return result class of evaluateOnCallFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EvaluateOnCallFrameResult extends ResultBase {
         /**Object wrapper for the evaluation result.*/
         private final Runtime.RemoteObject result;
@@ -834,6 +851,7 @@ execution. Overrides `setPauseOnException` state.
 the same.*/
     public GetPossibleBreakpointsParameter getPossibleBreakpoints() { final GetPossibleBreakpointsParameter v = new GetPossibleBreakpointsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getPossibleBreakpoints.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPossibleBreakpointsParameter extends CommandBase {
         /**Start of range to search possible breakpoint locations in.*/
         private Location start;
@@ -892,6 +910,7 @@ of scripts is used as end of range.
         }
     }
     /**Return result class of getPossibleBreakpoints.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPossibleBreakpointsResult extends ResultBase {
         /**List of the possible breakpoint locations.*/
         private final List<BreakLocation> locations;
@@ -926,6 +945,7 @@ of scripts is used as end of range.
     /**Returns source for the script with given id.*/
     public GetScriptSourceParameter getScriptSource() { final GetScriptSourceParameter v = new GetScriptSourceParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getScriptSource.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetScriptSourceParameter extends CommandBase {
         /**Id of the script to get source for.*/
         private Runtime.ScriptId scriptId;
@@ -963,6 +983,7 @@ of scripts is used as end of range.
         }
     }
     /**Return result class of getScriptSource.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetScriptSourceResult extends ResultBase {
         /**Script source.*/
         private final String scriptSource;
@@ -995,6 +1016,7 @@ of scripts is used as end of range.
     public GetStackTraceParameter getStackTrace() { final GetStackTraceParameter v = new GetStackTraceParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getStackTrace.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetStackTraceParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private Runtime.StackTraceId stackTraceId;
@@ -1033,6 +1055,7 @@ of scripts is used as end of range.
     }
     /**Return result class of getStackTrace.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetStackTraceResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final Runtime.StackTrace stackTrace;
@@ -1063,6 +1086,7 @@ of scripts is used as end of range.
     /**Stops on the next JavaScript statement.*/
     public PauseParameter pause() { final PauseParameter v = new PauseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of pause.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PauseParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1086,6 +1110,7 @@ of scripts is used as end of range.
         }
     }
     /**Return result class of pause.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PauseResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1108,6 +1133,7 @@ of scripts is used as end of range.
     public PauseOnAsyncCallParameter pauseOnAsyncCall() { final PauseOnAsyncCallParameter v = new PauseOnAsyncCallParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of pauseOnAsyncCall.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PauseOnAsyncCallParameter extends CommandBase {
         /**Debugger will pause when async call with given stack trace is started.*/
         private Runtime.StackTraceId parentStackTraceId;
@@ -1146,6 +1172,7 @@ of scripts is used as end of range.
     }
     /**Return result class of pauseOnAsyncCall.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PauseOnAsyncCallResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1166,6 +1193,7 @@ of scripts is used as end of range.
     /**Removes JavaScript breakpoint.*/
     public RemoveBreakpointParameter removeBreakpoint() { final RemoveBreakpointParameter v = new RemoveBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of removeBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveBreakpointParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private BreakpointId breakpointId;
@@ -1203,6 +1231,7 @@ of scripts is used as end of range.
         }
     }
     /**Return result class of removeBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoveBreakpointResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1223,6 +1252,7 @@ of scripts is used as end of range.
     /**Restarts particular call frame from the beginning.*/
     public RestartFrameParameter restartFrame() { final RestartFrameParameter v = new RestartFrameParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of restartFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RestartFrameParameter extends CommandBase {
         /**Call frame identifier to evaluate on.*/
         private CallFrameId callFrameId;
@@ -1260,6 +1290,7 @@ of scripts is used as end of range.
         }
     }
     /**Return result class of restartFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RestartFrameResult extends ResultBase {
         /**New stack trace.*/
         private final List<CallFrame> callFrames;
@@ -1313,6 +1344,7 @@ of scripts is used as end of range.
     /**Resumes JavaScript execution.*/
     public ResumeParameter resume() { final ResumeParameter v = new ResumeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of resume.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResumeParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1336,6 +1368,7 @@ of scripts is used as end of range.
         }
     }
     /**Return result class of resume.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResumeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1361,6 +1394,7 @@ task were scheduled or another scheduleStepIntoAsync was called.
     public ScheduleStepIntoAsyncParameter scheduleStepIntoAsync() { final ScheduleStepIntoAsyncParameter v = new ScheduleStepIntoAsyncParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of scheduleStepIntoAsync.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScheduleStepIntoAsyncParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1385,6 +1419,7 @@ task were scheduled or another scheduleStepIntoAsync was called.
     }
     /**Return result class of scheduleStepIntoAsync.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScheduleStepIntoAsyncResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1405,6 +1440,7 @@ task were scheduled or another scheduleStepIntoAsync was called.
     /**Searches for given string in script content.*/
     public SearchInContentParameter searchInContent() { final SearchInContentParameter v = new SearchInContentParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of searchInContent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SearchInContentParameter extends CommandBase {
         /**Id of the script to search in.*/
         private Runtime.ScriptId scriptId;
@@ -1472,6 +1508,7 @@ task were scheduled or another scheduleStepIntoAsync was called.
         }
     }
     /**Return result class of searchInContent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SearchInContentResult extends ResultBase {
         /**List of search matches.*/
         private final List<SearchMatch> result;
@@ -1506,6 +1543,7 @@ task were scheduled or another scheduleStepIntoAsync was called.
     /**Enables or disables async call stacks tracking.*/
     public SetAsyncCallStackDepthParameter setAsyncCallStackDepth() { final SetAsyncCallStackDepthParameter v = new SetAsyncCallStackDepthParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setAsyncCallStackDepth.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAsyncCallStackDepthParameter extends CommandBase {
         /**Maximum depth of async call stacks. Setting to `0` will effectively disable collecting async
 call stacks (default).*/
@@ -1544,6 +1582,7 @@ call stacks (default).*/
         }
     }
     /**Return result class of setAsyncCallStackDepth.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAsyncCallStackDepthResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1568,6 +1607,7 @@ performing 'step in' several times, finally resorting to 'step out' if unsuccess
     public SetBlackboxPatternsParameter setBlackboxPatterns() { final SetBlackboxPatternsParameter v = new SetBlackboxPatternsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setBlackboxPatterns.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBlackboxPatternsParameter extends CommandBase {
         /**Array of regexps that will be used to check script url for blackbox state.*/
         private List<String> patterns;
@@ -1610,6 +1650,7 @@ performing 'step in' several times, finally resorting to 'step out' if unsuccess
     }
     /**Return result class of setBlackboxPatterns.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBlackboxPatternsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1635,6 +1676,7 @@ blackboxed. Array should be sorted.
     public SetBlackboxedRangesParameter setBlackboxedRanges() { final SetBlackboxedRangesParameter v = new SetBlackboxedRangesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setBlackboxedRanges.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBlackboxedRangesParameter extends CommandBase {
         /**Id of the script.*/
         private Runtime.ScriptId scriptId;
@@ -1687,6 +1729,7 @@ blackboxed. Array should be sorted.
     }
     /**Return result class of setBlackboxedRanges.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBlackboxedRangesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1707,6 +1750,7 @@ blackboxed. Array should be sorted.
     /**Sets JavaScript breakpoint at a given location.*/
     public SetBreakpointParameter setBreakpoint() { final SetBreakpointParameter v = new SetBreakpointParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBreakpointParameter extends CommandBase {
         /**Location to set breakpoint in.*/
         private Location location;
@@ -1755,6 +1799,7 @@ breakpoint if this expression evaluates to true.
         }
     }
     /**Return result class of setBreakpoint.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBreakpointResult extends ResultBase {
         /**Id of the created breakpoint for further reference.*/
         private final BreakpointId breakpointId;
@@ -1796,6 +1841,7 @@ command is issued, all existing parsed scripts will have breakpoints resolved an
 `breakpointResolved` events issued. This logical breakpoint will survive page reloads.*/
     public SetBreakpointByUrlParameter setBreakpointByUrl() { final SetBreakpointByUrlParameter v = new SetBreakpointByUrlParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setBreakpointByUrl.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBreakpointByUrlParameter extends CommandBase {
         /**Line number to set breakpoint at.*/
         private Integer lineNumber;
@@ -1885,6 +1931,7 @@ breakpoint if this expression evaluates to true.
         }
     }
     /**Return result class of setBreakpointByUrl.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBreakpointByUrlResult extends ResultBase {
         /**Id of the created breakpoint for further reference.*/
         private final BreakpointId breakpointId;
@@ -1927,6 +1974,7 @@ breakpoint if this expression evaluates to true.
     /**Activates / deactivates all breakpoints on the page.*/
     public SetBreakpointsActiveParameter setBreakpointsActive() { final SetBreakpointsActiveParameter v = new SetBreakpointsActiveParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setBreakpointsActive.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBreakpointsActiveParameter extends CommandBase {
         /**New value for breakpoints active state.*/
         private Boolean active;
@@ -1964,6 +2012,7 @@ breakpoint if this expression evaluates to true.
         }
     }
     /**Return result class of setBreakpointsActive.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBreakpointsActiveResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1985,6 +2034,7 @@ breakpoint if this expression evaluates to true.
 no exceptions. Initial pause on exceptions state is `none`.*/
     public SetPauseOnExceptionsParameter setPauseOnExceptions() { final SetPauseOnExceptionsParameter v = new SetPauseOnExceptionsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setPauseOnExceptions.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPauseOnExceptionsParameter extends CommandBase {
         /**Pause on exceptions mode.*/
         @ParametersAreNonnullByDefault public enum State implements CommonDomainType {
@@ -2048,6 +2098,7 @@ no exceptions. Initial pause on exceptions state is `none`.*/
         }
     }
     /**Return result class of setPauseOnExceptions.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPauseOnExceptionsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2070,6 +2121,7 @@ no exceptions. Initial pause on exceptions state is `none`.*/
     public SetReturnValueParameter setReturnValue() { final SetReturnValueParameter v = new SetReturnValueParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setReturnValue.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetReturnValueParameter extends CommandBase {
         /**New return value.*/
         private Runtime.CallArgument newValue;
@@ -2108,6 +2160,7 @@ no exceptions. Initial pause on exceptions state is `none`.*/
     }
     /**Return result class of setReturnValue.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetReturnValueResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2128,6 +2181,7 @@ no exceptions. Initial pause on exceptions state is `none`.*/
     /**Edits JavaScript source live.*/
     public SetScriptSourceParameter setScriptSource() { final SetScriptSourceParameter v = new SetScriptSourceParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setScriptSource.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetScriptSourceParameter extends CommandBase {
         /**Id of the script to edit.*/
         private Runtime.ScriptId scriptId;
@@ -2186,6 +2240,7 @@ description without actually modifying the code.
         }
     }
     /**Return result class of setScriptSource.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetScriptSourceResult extends ResultBase {
         /**New stack trace in case editing has happened while VM was stopped.
         <em>Optional.</em>*/
@@ -2260,6 +2315,7 @@ description without actually modifying the code.
     /**Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc).*/
     public SetSkipAllPausesParameter setSkipAllPauses() { final SetSkipAllPausesParameter v = new SetSkipAllPausesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setSkipAllPauses.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetSkipAllPausesParameter extends CommandBase {
         /**New value for skip pauses state.*/
         private Boolean skip;
@@ -2297,6 +2353,7 @@ description without actually modifying the code.
         }
     }
     /**Return result class of setSkipAllPauses.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetSkipAllPausesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2318,6 +2375,7 @@ description without actually modifying the code.
 mutated manually.*/
     public SetVariableValueParameter setVariableValue() { final SetVariableValueParameter v = new SetVariableValueParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setVariableValue.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetVariableValueParameter extends CommandBase {
         /**0-based number of scope as was listed in scope chain. Only 'local', 'closure' and 'catch'
 scope types are allowed. Other scopes could be manipulated manually.*/
@@ -2386,6 +2444,7 @@ scope types are allowed. Other scopes could be manipulated manually.*/
         }
     }
     /**Return result class of setVariableValue.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetVariableValueResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2406,6 +2465,7 @@ scope types are allowed. Other scopes could be manipulated manually.*/
     /**Steps into the function call.*/
     public StepIntoParameter stepInto() { final StepIntoParameter v = new StepIntoParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stepInto.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StepIntoParameter extends CommandBase {
         /**Debugger will issue additional Debugger.paused notification if any async task is scheduled
 before next pause.
@@ -2445,6 +2505,7 @@ before next pause.
         }
     }
     /**Return result class of stepInto.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StepIntoResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2465,6 +2526,7 @@ before next pause.
     /**Steps out of the function call.*/
     public StepOutParameter stepOut() { final StepOutParameter v = new StepOutParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stepOut.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StepOutParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2488,6 +2550,7 @@ before next pause.
         }
     }
     /**Return result class of stepOut.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StepOutResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2508,6 +2571,7 @@ before next pause.
     /**Steps over the statement.*/
     public StepOverParameter stepOver() { final StepOverParameter v = new StepOverParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stepOver.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StepOverParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2531,6 +2595,7 @@ before next pause.
         }
     }
     /**Return result class of stepOver.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StepOverResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2550,6 +2615,7 @@ before next pause.
     }
     /**Event parameter of Debugger.breakpointResolved.
      @see #onBreakpointResolved*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BreakpointResolvedEventParameter implements CommonDomainType {
         /**Breakpoint unique identifier.*/
         private final BreakpointId breakpointId;
@@ -2592,6 +2658,7 @@ before next pause.
     }
     /**Event parameter of Debugger.paused.
      @see #onPaused*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PausedEventParameter implements CommonDomainType {
         /**Call stack the virtual machine stopped on.*/
         private final List<CallFrame> callFrames;
@@ -2720,6 +2787,7 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
     }
     /**Event parameter of Debugger.resumed.
      @see #onResumed*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResumedEventParameter implements CommonDomainType {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2746,6 +2814,7 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
     }
     /**Event parameter of Debugger.scriptFailedToParse.
      @see #onScriptFailedToParse*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScriptFailedToParseEventParameter implements CommonDomainType {
         /**Identifier of the script parsed.*/
         private final Runtime.ScriptId scriptId;
@@ -2879,6 +2948,7 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
     }
     /**Event parameter of Debugger.scriptParsed.
      @see #onScriptParsed*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScriptParsedEventParameter implements CommonDomainType {
         /**Identifier of the script parsed.*/
         private final Runtime.ScriptId scriptId;

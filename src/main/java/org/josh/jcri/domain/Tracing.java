@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     public Tracing(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Configuration for memory dump. Used only when "memory-infra" category is enabled.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MemoryDumpConfig implements CommonDomainType {
         private Object _value;
         public MemoryDumpConfig() {}
@@ -51,6 +53,7 @@ import javax.annotation.Nullable;
     }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TraceConfig implements CommonDomainType {
         /**Controls how the trace buffer stores data.
         <em>Optional.</em>*/
@@ -223,6 +226,7 @@ import javax.annotation.Nullable;
     /**Stop trace events collection.*/
     public EndParameter end() { final EndParameter v = new EndParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of end.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EndParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -246,6 +250,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of end.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EndResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -266,6 +271,7 @@ import javax.annotation.Nullable;
     /**Gets supported tracing categories.*/
     public GetCategoriesParameter getCategories() { final GetCategoriesParameter v = new GetCategoriesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getCategories.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCategoriesParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -289,6 +295,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getCategories.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCategoriesResult extends ResultBase {
         /**A list of supported tracing categories.*/
         private final List<String> categories;
@@ -323,6 +330,7 @@ import javax.annotation.Nullable;
     /**Record a clock sync marker in the trace.*/
     public RecordClockSyncMarkerParameter recordClockSyncMarker() { final RecordClockSyncMarkerParameter v = new RecordClockSyncMarkerParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of recordClockSyncMarker.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RecordClockSyncMarkerParameter extends CommandBase {
         /**The ID of this clock sync marker*/
         private String syncId;
@@ -360,6 +368,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of recordClockSyncMarker.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RecordClockSyncMarkerResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -380,6 +389,7 @@ import javax.annotation.Nullable;
     /**Request a global memory dump.*/
     public RequestMemoryDumpParameter requestMemoryDump() { final RequestMemoryDumpParameter v = new RequestMemoryDumpParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestMemoryDump.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestMemoryDumpParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -403,6 +413,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of requestMemoryDump.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestMemoryDumpResult extends ResultBase {
         /**GUID of the resulting global memory dump.*/
         private final String dumpGuid;
@@ -441,6 +452,7 @@ import javax.annotation.Nullable;
     /**Start trace events collection.*/
     public StartParameter start() { final StartParameter v = new StartParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of start.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartParameter extends CommandBase {
         /**Category/tag filter
         <em>Optional.</em>
@@ -557,6 +569,7 @@ transfer mode (defaults to `none`)
         }
     }
     /**Return result class of start.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -576,6 +589,7 @@ transfer mode (defaults to `none`)
     }
     /**Event parameter of Tracing.bufferUsage.
      @see #onBufferUsage*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BufferUsageEventParameter implements CommonDomainType {
         /**A number in range [0..1] that indicates the used size of event buffer as a fraction of its
 total size.
@@ -630,6 +644,7 @@ total size.
     }
     /**Event parameter of Tracing.dataCollected.
      @see #onDataCollected*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DataCollectedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final List<Object> value;
@@ -670,6 +685,7 @@ send as a sequence of dataCollected events followed by tracingComplete event.
     }
     /**Event parameter of Tracing.tracingComplete.
      @see #onTracingComplete*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TracingCompleteEventParameter implements CommonDomainType {
         /**A handle of the stream that holds resulting trace data.
         <em>Optional.</em>*/

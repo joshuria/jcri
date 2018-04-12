@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -64,6 +65,7 @@ import javax.annotation.Nullable;
     }
 
     /**Usage for a storage type.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UsageForType implements CommonDomainType {
         /**Name of storage type.*/
         private StorageType storageType;
@@ -104,6 +106,7 @@ import javax.annotation.Nullable;
     /**Clears storage for origin.*/
     public ClearDataForOriginParameter clearDataForOrigin() { final ClearDataForOriginParameter v = new ClearDataForOriginParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clearDataForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDataForOriginParameter extends CommandBase {
         /**Security origin.*/
         private String origin;
@@ -151,6 +154,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of clearDataForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearDataForOriginResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -171,6 +175,7 @@ import javax.annotation.Nullable;
     /**Returns usage and quota in bytes.*/
     public GetUsageAndQuotaParameter getUsageAndQuota() { final GetUsageAndQuotaParameter v = new GetUsageAndQuotaParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getUsageAndQuota.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetUsageAndQuotaParameter extends CommandBase {
         /**Security origin.*/
         private String origin;
@@ -208,6 +213,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getUsageAndQuota.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetUsageAndQuotaResult extends ResultBase {
         /**Storage usage (bytes).*/
         private final Double usage;
@@ -258,6 +264,7 @@ import javax.annotation.Nullable;
     /**Registers origin to be notified when an update occurs to its cache storage list.*/
     public TrackCacheStorageForOriginParameter trackCacheStorageForOrigin() { final TrackCacheStorageForOriginParameter v = new TrackCacheStorageForOriginParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of trackCacheStorageForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TrackCacheStorageForOriginParameter extends CommandBase {
         /**Security origin.*/
         private String origin;
@@ -295,6 +302,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of trackCacheStorageForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TrackCacheStorageForOriginResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -315,6 +323,7 @@ import javax.annotation.Nullable;
     /**Registers origin to be notified when an update occurs to its IndexedDB.*/
     public TrackIndexedDBForOriginParameter trackIndexedDBForOrigin() { final TrackIndexedDBForOriginParameter v = new TrackIndexedDBForOriginParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of trackIndexedDBForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TrackIndexedDBForOriginParameter extends CommandBase {
         /**Security origin.*/
         private String origin;
@@ -352,6 +361,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of trackIndexedDBForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TrackIndexedDBForOriginResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -372,6 +382,7 @@ import javax.annotation.Nullable;
     /**Unregisters origin from receiving notifications for cache storage.*/
     public UntrackCacheStorageForOriginParameter untrackCacheStorageForOrigin() { final UntrackCacheStorageForOriginParameter v = new UntrackCacheStorageForOriginParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of untrackCacheStorageForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UntrackCacheStorageForOriginParameter extends CommandBase {
         /**Security origin.*/
         private String origin;
@@ -409,6 +420,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of untrackCacheStorageForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UntrackCacheStorageForOriginResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -429,6 +441,7 @@ import javax.annotation.Nullable;
     /**Unregisters origin from receiving notifications for IndexedDB.*/
     public UntrackIndexedDBForOriginParameter untrackIndexedDBForOrigin() { final UntrackIndexedDBForOriginParameter v = new UntrackIndexedDBForOriginParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of untrackIndexedDBForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UntrackIndexedDBForOriginParameter extends CommandBase {
         /**Security origin.*/
         private String origin;
@@ -466,6 +479,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of untrackIndexedDBForOrigin.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UntrackIndexedDBForOriginResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -485,6 +499,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of Storage.cacheStorageContentUpdated.
      @see #onCacheStorageContentUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CacheStorageContentUpdatedEventParameter implements CommonDomainType {
         /**Origin to update.*/
         private final String origin;
@@ -527,6 +542,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of Storage.cacheStorageListUpdated.
      @see #onCacheStorageListUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CacheStorageListUpdatedEventParameter implements CommonDomainType {
         /**Origin to update.*/
         private final String origin;
@@ -562,6 +578,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of Storage.indexedDBContentUpdated.
      @see #onIndexedDBContentUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class IndexedDBContentUpdatedEventParameter implements CommonDomainType {
         /**Origin to update.*/
         private final String origin;
@@ -611,6 +628,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of Storage.indexedDBListUpdated.
      @see #onIndexedDBListUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class IndexedDBListUpdatedEventParameter implements CommonDomainType {
         /**Origin to update.*/
         private final String origin;

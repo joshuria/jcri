@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -30,6 +31,7 @@ import javax.annotation.Nullable;
     public HeadlessExperimental(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Encoding options for a screenshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScreenshotParams implements CommonDomainType {
         /**Image compression format (defaults to png).
         <em>Optional.</em>*/
@@ -98,6 +100,7 @@ BeginFrameControl. Designed for use with --run-all-compositor-stages-before-draw
 https://goo.gl/3zHXhB for more background.*/
     public BeginFrameParameter beginFrame() { final BeginFrameParameter v = new BeginFrameParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of beginFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BeginFrameParameter extends CommandBase {
         /**Timestamp of this BeginFrame (milliseconds since epoch). If not set, the current time will
 be used.
@@ -182,6 +185,7 @@ during renderer initialization. In such a case, no screenshot data will be retur
         }
     }
     /**Return result class of beginFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BeginFrameResult extends ResultBase {
         /**Whether the BeginFrame resulted in damage and, thus, a new frame was committed to the
 display. Reported for diagnostic uses, may be removed in the future.*/
@@ -223,6 +227,7 @@ display. Reported for diagnostic uses, may be removed in the future.*/
 Only supported in headless mode.  Once set there's no way of leaving deterministic mode.*/
     public EnterDeterministicModeParameter enterDeterministicMode() { final EnterDeterministicModeParameter v = new EnterDeterministicModeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enterDeterministicMode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnterDeterministicModeParameter extends CommandBase {
         /**Number of seconds since the Epoch
         <em>Optional.</em>*/
@@ -260,6 +265,7 @@ Only supported in headless mode.  Once set there's no way of leaving determinist
         }
     }
     /**Return result class of enterDeterministicMode.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnterDeterministicModeResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -280,6 +286,7 @@ Only supported in headless mode.  Once set there's no way of leaving determinist
     /**Disables headless events for the target.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -303,6 +310,7 @@ Only supported in headless mode.  Once set there's no way of leaving determinist
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -323,6 +331,7 @@ Only supported in headless mode.  Once set there's no way of leaving determinist
     /**Enables headless events for the target.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -346,6 +355,7 @@ Only supported in headless mode.  Once set there's no way of leaving determinist
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -365,6 +375,7 @@ Only supported in headless mode.  Once set there's no way of leaving determinist
     }
     /**Event parameter of HeadlessExperimental.needsBeginFramesChanged.
      @see #onNeedsBeginFramesChanged*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NeedsBeginFramesChangedEventParameter implements CommonDomainType {
         /**True if BeginFrames are needed, false otherwise.*/
         private final Boolean needsBeginFrames;

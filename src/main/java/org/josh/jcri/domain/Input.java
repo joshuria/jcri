@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -27,6 +28,7 @@ import javax.annotation.Nullable;
     public Input(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TouchPoint implements CommonDomainType {
         /**X coordinate of the event relative to the main frame's viewport in CSS pixels.*/
         private Double x;
@@ -146,6 +148,7 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
     }
 
     /**UTC time in seconds, counted from January 1, 1970.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TimeSinceEpoch implements CommonDomainType {
         private Double _value;
         public TimeSinceEpoch() {}
@@ -169,6 +172,7 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
     /**Dispatches a key event to the page.*/
     public DispatchKeyEventParameter dispatchKeyEvent() { final DispatchKeyEventParameter v = new DispatchKeyEventParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of dispatchKeyEvent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DispatchKeyEventParameter extends CommandBase {
         /**Type of the key event.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -368,6 +372,7 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
         }
     }
     /**Return result class of dispatchKeyEvent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DispatchKeyEventResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -388,6 +393,7 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
     /**Dispatches a mouse event to the page.*/
     public DispatchMouseEventParameter dispatchMouseEvent() { final DispatchMouseEventParameter v = new DispatchMouseEventParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of dispatchMouseEvent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DispatchMouseEventParameter extends CommandBase {
         /**Type of the mouse event.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -561,6 +567,7 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
         }
     }
     /**Return result class of dispatchMouseEvent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DispatchMouseEventResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -581,6 +588,7 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
     /**Dispatches a touch event to the page.*/
     public DispatchTouchEventParameter dispatchTouchEvent() { final DispatchTouchEventParameter v = new DispatchTouchEventParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of dispatchTouchEvent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DispatchTouchEventParameter extends CommandBase {
         /**Type of the touch event. TouchEnd and TouchCancel must not contain any touch points, while
 TouchStart and TouchMove must contains at least one.*/
@@ -683,6 +691,7 @@ one by one.*/
         }
     }
     /**Return result class of dispatchTouchEvent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DispatchTouchEventResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -705,6 +714,7 @@ one by one.*/
     public EmulateTouchFromMouseEventParameter emulateTouchFromMouseEvent() { final EmulateTouchFromMouseEventParameter v = new EmulateTouchFromMouseEventParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of emulateTouchFromMouseEvent.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EmulateTouchFromMouseEventParameter extends CommandBase {
         /**Type of the mouse event.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -878,6 +888,7 @@ one by one.*/
     }
     /**Return result class of emulateTouchFromMouseEvent.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EmulateTouchFromMouseEventResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -898,6 +909,7 @@ one by one.*/
     /**Ignores input events (useful while auditing page).*/
     public SetIgnoreInputEventsParameter setIgnoreInputEvents() { final SetIgnoreInputEventsParameter v = new SetIgnoreInputEventsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setIgnoreInputEvents.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetIgnoreInputEventsParameter extends CommandBase {
         /**Ignores input events processing when set to true.*/
         private Boolean ignore;
@@ -935,6 +947,7 @@ one by one.*/
         }
     }
     /**Return result class of setIgnoreInputEvents.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetIgnoreInputEventsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -957,6 +970,7 @@ one by one.*/
     public SynthesizePinchGestureParameter synthesizePinchGesture() { final SynthesizePinchGestureParameter v = new SynthesizePinchGestureParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of synthesizePinchGesture.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SynthesizePinchGestureParameter extends CommandBase {
         /**X coordinate of the start of the gesture in CSS pixels.*/
         private Double x;
@@ -1036,6 +1050,7 @@ for the preferred input type).
     }
     /**Return result class of synthesizePinchGesture.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SynthesizePinchGestureResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1058,6 +1073,7 @@ for the preferred input type).
     public SynthesizeScrollGestureParameter synthesizeScrollGesture() { final SynthesizeScrollGestureParameter v = new SynthesizeScrollGestureParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of synthesizeScrollGesture.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SynthesizeScrollGestureParameter extends CommandBase {
         /**X coordinate of the start of the gesture in CSS pixels.*/
         private Double x;
@@ -1209,6 +1225,7 @@ for the preferred input type).
     }
     /**Return result class of synthesizeScrollGesture.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SynthesizeScrollGestureResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1231,6 +1248,7 @@ for the preferred input type).
     public SynthesizeTapGestureParameter synthesizeTapGesture() { final SynthesizeTapGestureParameter v = new SynthesizeTapGestureParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of synthesizeTapGesture.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SynthesizeTapGestureParameter extends CommandBase {
         /**X coordinate of the start of the gesture in CSS pixels.*/
         private Double x;
@@ -1310,6 +1328,7 @@ for the preferred input type).
     }
     /**Return result class of synthesizeTapGesture.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SynthesizeTapGestureResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */

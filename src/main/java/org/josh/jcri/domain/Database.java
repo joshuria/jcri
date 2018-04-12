@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
     public Database(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Unique identifier of Database object.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DatabaseId implements CommonDomainType {
         private String _value;
         public DatabaseId() {}
@@ -50,6 +52,7 @@ import javax.annotation.Nullable;
     }
 
     /**Database object.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DatabaseType implements CommonDomainType {
         /**Database ID.*/
         private DatabaseId id;
@@ -109,6 +112,7 @@ import javax.annotation.Nullable;
     }
 
     /**Database error.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Error implements CommonDomainType {
         /**Error message.*/
         private String message;
@@ -149,6 +153,7 @@ import javax.annotation.Nullable;
     /**Disables database tracking, prevents database events from being sent to the client.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -172,6 +177,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -192,6 +198,7 @@ import javax.annotation.Nullable;
     /**Enables database tracking, database events will now be delivered to the client.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -215,6 +222,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -235,6 +243,7 @@ import javax.annotation.Nullable;
     /**&lt;No document in protocol.&gt;*/
     public ExecuteSQLParameter executeSQL() { final ExecuteSQLParameter v = new ExecuteSQLParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of executeSQL.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExecuteSQLParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private DatabaseId databaseId;
@@ -282,6 +291,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of executeSQL.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExecuteSQLResult extends ResultBase {
         /**&lt;No document in protocol.&gt;
         <em>Optional.</em>*/
@@ -343,6 +353,7 @@ import javax.annotation.Nullable;
     /**&lt;No document in protocol.&gt;*/
     public GetDatabaseTableNamesParameter getDatabaseTableNames() { final GetDatabaseTableNamesParameter v = new GetDatabaseTableNamesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getDatabaseTableNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDatabaseTableNamesParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private DatabaseId databaseId;
@@ -380,6 +391,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getDatabaseTableNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDatabaseTableNamesResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final List<String> tableNames;
@@ -413,6 +425,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of Database.addDatabase.
      @see #onAddDatabase*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddDatabaseEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final DatabaseType database;

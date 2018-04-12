@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     public LayerTree(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Unique Layer identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LayerId implements CommonDomainType {
         private String _value;
         public LayerId() {}
@@ -51,6 +53,7 @@ import javax.annotation.Nullable;
     }
 
     /**Unique snapshot identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SnapshotId implements CommonDomainType {
         private String _value;
         public SnapshotId() {}
@@ -73,6 +76,7 @@ import javax.annotation.Nullable;
     }
 
     /**Rectangle where scrolling happens on the main thread.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScrollRect implements CommonDomainType {
         /**Rectangle itself.*/
         private DOM.Rect rect;
@@ -138,6 +142,7 @@ import javax.annotation.Nullable;
     }
 
     /**Sticky position constraints.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StickyPositionConstraint implements CommonDomainType {
         /**Layout rectangle of the sticky element before being shifted*/
         private DOM.Rect stickyBoxRect;
@@ -197,6 +202,7 @@ import javax.annotation.Nullable;
     }
 
     /**Serialized fragment of layer picture along with its offset within the layer.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PictureTile implements CommonDomainType {
         /**Offset from owning layer left boundary*/
         private Double x;
@@ -246,6 +252,7 @@ import javax.annotation.Nullable;
     }
 
     /**Information about a compositing layer.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Layer implements CommonDomainType {
         /**The unique id for this layer.*/
         private LayerId layerId;
@@ -438,6 +445,7 @@ transform/scrolling purposes only.*/
     }
 
     /**Array of timings, one per paint step.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PaintProfile implements CommonDomainType {
         private List<Double> _value;
         public PaintProfile() {}
@@ -460,6 +468,7 @@ transform/scrolling purposes only.*/
     /**Provides the reasons why the given layer was composited.*/
     public CompositingReasonsParameter compositingReasons() { final CompositingReasonsParameter v = new CompositingReasonsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of compositingReasons.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CompositingReasonsParameter extends CommandBase {
         /**The id of the layer for which we want to get the reasons it was composited.*/
         private LayerId layerId;
@@ -497,6 +506,7 @@ transform/scrolling purposes only.*/
         }
     }
     /**Return result class of compositingReasons.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CompositingReasonsResult extends ResultBase {
         /**A list of strings specifying reasons for the given layer to become composited.*/
         private final List<String> compositingReasons;
@@ -531,6 +541,7 @@ transform/scrolling purposes only.*/
     /**Disables compositing tree inspection.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -554,6 +565,7 @@ transform/scrolling purposes only.*/
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -574,6 +586,7 @@ transform/scrolling purposes only.*/
     /**Enables compositing tree inspection.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -597,6 +610,7 @@ transform/scrolling purposes only.*/
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -617,6 +631,7 @@ transform/scrolling purposes only.*/
     /**Returns the snapshot identifier.*/
     public LoadSnapshotParameter loadSnapshot() { final LoadSnapshotParameter v = new LoadSnapshotParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of loadSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LoadSnapshotParameter extends CommandBase {
         /**An array of tiles composing the snapshot.*/
         private List<PictureTile> tiles;
@@ -658,6 +673,7 @@ transform/scrolling purposes only.*/
         }
     }
     /**Return result class of loadSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LoadSnapshotResult extends ResultBase {
         /**The id of the snapshot.*/
         private final SnapshotId snapshotId;
@@ -688,6 +704,7 @@ transform/scrolling purposes only.*/
     /**Returns the layer snapshot identifier.*/
     public MakeSnapshotParameter makeSnapshot() { final MakeSnapshotParameter v = new MakeSnapshotParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of makeSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MakeSnapshotParameter extends CommandBase {
         /**The id of the layer.*/
         private LayerId layerId;
@@ -725,6 +742,7 @@ transform/scrolling purposes only.*/
         }
     }
     /**Return result class of makeSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MakeSnapshotResult extends ResultBase {
         /**The id of the layer snapshot.*/
         private final SnapshotId snapshotId;
@@ -755,6 +773,7 @@ transform/scrolling purposes only.*/
     /**&lt;No document in protocol.&gt;*/
     public ProfileSnapshotParameter profileSnapshot() { final ProfileSnapshotParameter v = new ProfileSnapshotParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of profileSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ProfileSnapshotParameter extends CommandBase {
         /**The id of the layer snapshot.*/
         private SnapshotId snapshotId;
@@ -822,6 +841,7 @@ transform/scrolling purposes only.*/
         }
     }
     /**Return result class of profileSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ProfileSnapshotResult extends ResultBase {
         /**The array of paint profiles, one per run.*/
         private final List<PaintProfile> timings;
@@ -856,6 +876,7 @@ transform/scrolling purposes only.*/
     /**Releases layer snapshot captured by the back-end.*/
     public ReleaseSnapshotParameter releaseSnapshot() { final ReleaseSnapshotParameter v = new ReleaseSnapshotParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of releaseSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReleaseSnapshotParameter extends CommandBase {
         /**The id of the layer snapshot.*/
         private SnapshotId snapshotId;
@@ -893,6 +914,7 @@ transform/scrolling purposes only.*/
         }
     }
     /**Return result class of releaseSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReleaseSnapshotResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -913,6 +935,7 @@ transform/scrolling purposes only.*/
     /**Replays the layer snapshot and returns the resulting bitmap.*/
     public ReplaySnapshotParameter replaySnapshot() { final ReplaySnapshotParameter v = new ReplaySnapshotParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of replaySnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReplaySnapshotParameter extends CommandBase {
         /**The id of the layer snapshot.*/
         private SnapshotId snapshotId;
@@ -980,6 +1003,7 @@ transform/scrolling purposes only.*/
         }
     }
     /**Return result class of replaySnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReplaySnapshotResult extends ResultBase {
         /**A data: URL for resulting image.*/
         private final String dataURL;
@@ -1010,6 +1034,7 @@ transform/scrolling purposes only.*/
     /**Replays the layer snapshot and returns canvas log.*/
     public SnapshotCommandLogParameter snapshotCommandLog() { final SnapshotCommandLogParameter v = new SnapshotCommandLogParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of snapshotCommandLog.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SnapshotCommandLogParameter extends CommandBase {
         /**The id of the layer snapshot.*/
         private SnapshotId snapshotId;
@@ -1047,6 +1072,7 @@ transform/scrolling purposes only.*/
         }
     }
     /**Return result class of snapshotCommandLog.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SnapshotCommandLogResult extends ResultBase {
         /**The array of canvas function calls.*/
         private final List<Object> commandLog;
@@ -1080,6 +1106,7 @@ transform/scrolling purposes only.*/
     }
     /**Event parameter of LayerTree.layerPainted.
      @see #onLayerPainted*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LayerPaintedEventParameter implements CommonDomainType {
         /**The id of the painted layer.*/
         private final LayerId layerId;
@@ -1122,6 +1149,7 @@ transform/scrolling purposes only.*/
     }
     /**Event parameter of LayerTree.layerTreeDidChange.
      @see #onLayerTreeDidChange*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LayerTreeDidChangeEventParameter implements CommonDomainType {
         /**Layer tree, absent if not in the comspositing mode.
         <em>Optional.</em>*/

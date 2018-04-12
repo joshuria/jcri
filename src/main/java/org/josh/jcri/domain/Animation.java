@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -30,6 +31,7 @@ import javax.annotation.Nullable;
     public Animation(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Animation instance.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AnimationType implements CommonDomainType {
         /**`Animation`'s id.*/
         private String id;
@@ -176,6 +178,7 @@ animation/transition.
     }
 
     /**AnimationEffect instance*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AnimationEffect implements CommonDomainType {
         /**`AnimationEffect`'s delay.*/
         private Double delay;
@@ -295,6 +298,7 @@ animation/transition.
     }
 
     /**Keyframes Rule*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class KeyframesRule implements CommonDomainType {
         /**CSS keyframed animation's name.
         <em>Optional.</em>*/
@@ -338,6 +342,7 @@ animation/transition.
     }
 
     /**Keyframe Style*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class KeyframeStyle implements CommonDomainType {
         /**Keyframe's time offset.*/
         private String offset;
@@ -378,6 +383,7 @@ animation/transition.
     /**Disables animation domain notifications.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -401,6 +407,7 @@ animation/transition.
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -421,6 +428,7 @@ animation/transition.
     /**Enables animation domain notifications.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -444,6 +452,7 @@ animation/transition.
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -464,6 +473,7 @@ animation/transition.
     /**Returns the current time of the an animation.*/
     public GetCurrentTimeParameter getCurrentTime() { final GetCurrentTimeParameter v = new GetCurrentTimeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getCurrentTime.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCurrentTimeParameter extends CommandBase {
         /**Id of animation.*/
         private String id;
@@ -501,6 +511,7 @@ animation/transition.
         }
     }
     /**Return result class of getCurrentTime.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCurrentTimeResult extends ResultBase {
         /**Current time of the page.*/
         private final Double currentTime;
@@ -531,6 +542,7 @@ animation/transition.
     /**Gets the playback rate of the document timeline.*/
     public GetPlaybackRateParameter getPlaybackRate() { final GetPlaybackRateParameter v = new GetPlaybackRateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getPlaybackRate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPlaybackRateParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -554,6 +566,7 @@ animation/transition.
         }
     }
     /**Return result class of getPlaybackRate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPlaybackRateResult extends ResultBase {
         /**Playback rate for animations on page.*/
         private final Double playbackRate;
@@ -584,6 +597,7 @@ animation/transition.
     /**Releases a set of animations to no longer be manipulated.*/
     public ReleaseAnimationsParameter releaseAnimations() { final ReleaseAnimationsParameter v = new ReleaseAnimationsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of releaseAnimations.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReleaseAnimationsParameter extends CommandBase {
         /**List of animation ids to seek.*/
         private List<String> animations;
@@ -625,6 +639,7 @@ animation/transition.
         }
     }
     /**Return result class of releaseAnimations.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReleaseAnimationsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -645,6 +660,7 @@ animation/transition.
     /**Gets the remote object of the Animation.*/
     public ResolveAnimationParameter resolveAnimation() { final ResolveAnimationParameter v = new ResolveAnimationParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of resolveAnimation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResolveAnimationParameter extends CommandBase {
         /**Animation id.*/
         private String animationId;
@@ -682,6 +698,7 @@ animation/transition.
         }
     }
     /**Return result class of resolveAnimation.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResolveAnimationResult extends ResultBase {
         /**Corresponding remote object.*/
         private final Runtime.RemoteObject remoteObject;
@@ -712,6 +729,7 @@ animation/transition.
     /**Seek a set of animations to a particular time within each animation.*/
     public SeekAnimationsParameter seekAnimations() { final SeekAnimationsParameter v = new SeekAnimationsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of seekAnimations.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SeekAnimationsParameter extends CommandBase {
         /**List of animation ids to seek.*/
         private List<String> animations;
@@ -763,6 +781,7 @@ animation/transition.
         }
     }
     /**Return result class of seekAnimations.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SeekAnimationsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -783,6 +802,7 @@ animation/transition.
     /**Sets the paused state of a set of animations.*/
     public SetPausedParameter setPaused() { final SetPausedParameter v = new SetPausedParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setPaused.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPausedParameter extends CommandBase {
         /**Animations to set the pause state of.*/
         private List<String> animations;
@@ -834,6 +854,7 @@ animation/transition.
         }
     }
     /**Return result class of setPaused.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPausedResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -854,6 +875,7 @@ animation/transition.
     /**Sets the playback rate of the document timeline.*/
     public SetPlaybackRateParameter setPlaybackRate() { final SetPlaybackRateParameter v = new SetPlaybackRateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setPlaybackRate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPlaybackRateParameter extends CommandBase {
         /**Playback rate for animations on page*/
         private Double playbackRate;
@@ -891,6 +913,7 @@ animation/transition.
         }
     }
     /**Return result class of setPlaybackRate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPlaybackRateResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -911,6 +934,7 @@ animation/transition.
     /**Sets the timing of an animation node.*/
     public SetTimingParameter setTiming() { final SetTimingParameter v = new SetTimingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setTiming.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetTimingParameter extends CommandBase {
         /**Animation id.*/
         private String animationId;
@@ -968,6 +992,7 @@ animation/transition.
         }
     }
     /**Return result class of setTiming.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetTimingResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -987,6 +1012,7 @@ animation/transition.
     }
     /**Event parameter of Animation.animationCanceled.
      @see #onAnimationCanceled*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AnimationCanceledEventParameter implements CommonDomainType {
         /**Id of the animation that was cancelled.*/
         private final String id;
@@ -1022,6 +1048,7 @@ animation/transition.
     }
     /**Event parameter of Animation.animationCreated.
      @see #onAnimationCreated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AnimationCreatedEventParameter implements CommonDomainType {
         /**Id of the animation that was created.*/
         private final String id;
@@ -1057,6 +1084,7 @@ animation/transition.
     }
     /**Event parameter of Animation.animationStarted.
      @see #onAnimationStarted*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AnimationStartedEventParameter implements CommonDomainType {
         /**Animation that was started.*/
         private final AnimationType animation;

@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     public HeapProfiler(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Heap snapshot object id.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HeapSnapshotObjectId implements CommonDomainType {
         private String _value;
         public HeapSnapshotObjectId() {}
@@ -51,6 +53,7 @@ import javax.annotation.Nullable;
     }
 
     /**Sampling Heap Profile node. Holds callsite information, allocation statistics and child nodes.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SamplingHeapProfileNode implements CommonDomainType {
         /**Function location.*/
         private Runtime.CallFrame callFrame;
@@ -104,6 +107,7 @@ import javax.annotation.Nullable;
     }
 
     /**Profile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SamplingHeapProfile implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private SamplingHeapProfileNode head;
@@ -135,6 +139,7 @@ import javax.annotation.Nullable;
 $x functions).*/
     public AddInspectedHeapObjectParameter addInspectedHeapObject() { final AddInspectedHeapObjectParameter v = new AddInspectedHeapObjectParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of addInspectedHeapObject.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddInspectedHeapObjectParameter extends CommandBase {
         /**Heap snapshot object id to be accessible by means of $x command line API.*/
         private HeapSnapshotObjectId heapObjectId;
@@ -172,6 +177,7 @@ $x functions).*/
         }
     }
     /**Return result class of addInspectedHeapObject.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddInspectedHeapObjectResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -192,6 +198,7 @@ $x functions).*/
     /**&lt;No document in protocol.&gt;*/
     public CollectGarbageParameter collectGarbage() { final CollectGarbageParameter v = new CollectGarbageParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of collectGarbage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CollectGarbageParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -215,6 +222,7 @@ $x functions).*/
         }
     }
     /**Return result class of collectGarbage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CollectGarbageResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -235,6 +243,7 @@ $x functions).*/
     /**&lt;No document in protocol.&gt;*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -258,6 +267,7 @@ $x functions).*/
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -278,6 +288,7 @@ $x functions).*/
     /**&lt;No document in protocol.&gt;*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -301,6 +312,7 @@ $x functions).*/
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -321,6 +333,7 @@ $x functions).*/
     /**&lt;No document in protocol.&gt;*/
     public GetHeapObjectIdParameter getHeapObjectId() { final GetHeapObjectIdParameter v = new GetHeapObjectIdParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getHeapObjectId.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetHeapObjectIdParameter extends CommandBase {
         /**Identifier of the object to get heap object id for.*/
         private Runtime.RemoteObjectId objectId;
@@ -358,6 +371,7 @@ $x functions).*/
         }
     }
     /**Return result class of getHeapObjectId.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetHeapObjectIdResult extends ResultBase {
         /**Id of the heap snapshot object corresponding to the passed remote object id.*/
         private final HeapSnapshotObjectId heapSnapshotObjectId;
@@ -388,6 +402,7 @@ $x functions).*/
     /**&lt;No document in protocol.&gt;*/
     public GetObjectByHeapObjectIdParameter getObjectByHeapObjectId() { final GetObjectByHeapObjectIdParameter v = new GetObjectByHeapObjectIdParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getObjectByHeapObjectId.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetObjectByHeapObjectIdParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private HeapSnapshotObjectId objectId;
@@ -435,6 +450,7 @@ $x functions).*/
         }
     }
     /**Return result class of getObjectByHeapObjectId.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetObjectByHeapObjectIdResult extends ResultBase {
         /**Evaluation result.*/
         private final Runtime.RemoteObject result;
@@ -465,6 +481,7 @@ $x functions).*/
     /**&lt;No document in protocol.&gt;*/
     public GetSamplingProfileParameter getSamplingProfile() { final GetSamplingProfileParameter v = new GetSamplingProfileParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getSamplingProfile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetSamplingProfileParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -488,6 +505,7 @@ $x functions).*/
         }
     }
     /**Return result class of getSamplingProfile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetSamplingProfileResult extends ResultBase {
         /**Return the sampling profile being collected.*/
         private final SamplingHeapProfile profile;
@@ -518,6 +536,7 @@ $x functions).*/
     /**&lt;No document in protocol.&gt;*/
     public StartSamplingParameter startSampling() { final StartSamplingParameter v = new StartSamplingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of startSampling.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartSamplingParameter extends CommandBase {
         /**Average sample interval in bytes. Poisson distribution is used for the intervals. The
 default value is 32768 bytes.
@@ -556,6 +575,7 @@ default value is 32768 bytes.
         }
     }
     /**Return result class of startSampling.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartSamplingResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -576,6 +596,7 @@ default value is 32768 bytes.
     /**&lt;No document in protocol.&gt;*/
     public StartTrackingHeapObjectsParameter startTrackingHeapObjects() { final StartTrackingHeapObjectsParameter v = new StartTrackingHeapObjectsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of startTrackingHeapObjects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartTrackingHeapObjectsParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;
         <em>Optional.</em>*/
@@ -613,6 +634,7 @@ default value is 32768 bytes.
         }
     }
     /**Return result class of startTrackingHeapObjects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartTrackingHeapObjectsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -633,6 +655,7 @@ default value is 32768 bytes.
     /**&lt;No document in protocol.&gt;*/
     public StopSamplingParameter stopSampling() { final StopSamplingParameter v = new StopSamplingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopSampling.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopSamplingParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -656,6 +679,7 @@ default value is 32768 bytes.
         }
     }
     /**Return result class of stopSampling.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopSamplingResult extends ResultBase {
         /**Recorded sampling heap profile.*/
         private final SamplingHeapProfile profile;
@@ -686,6 +710,7 @@ default value is 32768 bytes.
     /**&lt;No document in protocol.&gt;*/
     public StopTrackingHeapObjectsParameter stopTrackingHeapObjects() { final StopTrackingHeapObjectsParameter v = new StopTrackingHeapObjectsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopTrackingHeapObjects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopTrackingHeapObjectsParameter extends CommandBase {
         /**If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken
 when the tracking is stopped.
@@ -724,6 +749,7 @@ when the tracking is stopped.
         }
     }
     /**Return result class of stopTrackingHeapObjects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopTrackingHeapObjectsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -744,6 +770,7 @@ when the tracking is stopped.
     /**&lt;No document in protocol.&gt;*/
     public TakeHeapSnapshotParameter takeHeapSnapshot() { final TakeHeapSnapshotParameter v = new TakeHeapSnapshotParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of takeHeapSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TakeHeapSnapshotParameter extends CommandBase {
         /**If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken.
         <em>Optional.</em>*/
@@ -781,6 +808,7 @@ when the tracking is stopped.
         }
     }
     /**Return result class of takeHeapSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TakeHeapSnapshotResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -800,6 +828,7 @@ when the tracking is stopped.
     }
     /**Event parameter of HeapProfiler.addHeapSnapshotChunk.
      @see #onAddHeapSnapshotChunk*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AddHeapSnapshotChunkEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final String chunk;
@@ -835,6 +864,7 @@ when the tracking is stopped.
     }
     /**Event parameter of HeapProfiler.heapStatsUpdate.
      @see #onHeapStatsUpdate*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HeapStatsUpdateEventParameter implements CommonDomainType {
         /**An array of triplets. Each triplet describes a fragment. The first integer is the fragment
 index, the second integer is a total count of objects for the fragment, the third integer is
@@ -876,6 +906,7 @@ a total size of the objects for the fragment.*/
     }
     /**Event parameter of HeapProfiler.lastSeenObjectId.
      @see #onLastSeenObjectId*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LastSeenObjectIdEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final Integer lastSeenObjectId;
@@ -920,6 +951,7 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
     }
     /**Event parameter of HeapProfiler.reportHeapSnapshotProgress.
      @see #onReportHeapSnapshotProgress*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReportHeapSnapshotProgressEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final Integer done;
@@ -970,6 +1002,7 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
     }
     /**Event parameter of HeapProfiler.resetProfiles.
      @see #onResetProfiles*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResetProfilesEventParameter implements CommonDomainType {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */

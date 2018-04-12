@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
 
     /**&lt;No document in protocol.&gt;
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WindowID implements CommonDomainType {
         private Integer _value;
         public WindowID() {}
@@ -81,6 +83,7 @@ import javax.annotation.Nullable;
 
     /**Browser window bounds information
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Bounds implements CommonDomainType {
         /**The offset from the left edge of the screen to the window in pixels.
         <em>Optional.</em>*/
@@ -151,6 +154,7 @@ import javax.annotation.Nullable;
 
     /**Chrome histogram bucket.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Bucket implements CommonDomainType {
         /**Minimum value (inclusive).*/
         private Integer low;
@@ -201,6 +205,7 @@ import javax.annotation.Nullable;
 
     /**Chrome histogram.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Histogram implements CommonDomainType {
         /**Name.*/
         private String name;
@@ -265,6 +270,7 @@ import javax.annotation.Nullable;
     /**Close browser gracefully.*/
     public CloseParameter close() { final CloseParameter v = new CloseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of close.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CloseParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -288,6 +294,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of close.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CloseResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -308,6 +315,7 @@ import javax.annotation.Nullable;
     /**Returns version information.*/
     public GetVersionParameter getVersion() { final GetVersionParameter v = new GetVersionParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getVersion.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetVersionParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -331,6 +339,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getVersion.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetVersionResult extends ResultBase {
         /**Protocol version.*/
         private final String protocolVersion;
@@ -396,6 +405,7 @@ import javax.annotation.Nullable;
     public GetBrowserCommandLineParameter getBrowserCommandLine() { final GetBrowserCommandLineParameter v = new GetBrowserCommandLineParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getBrowserCommandLine.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBrowserCommandLineParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -420,6 +430,7 @@ import javax.annotation.Nullable;
     }
     /**Return result class of getBrowserCommandLine.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBrowserCommandLineResult extends ResultBase {
         /**Commandline parameters*/
         private final List<String> arguments;
@@ -456,6 +467,7 @@ import javax.annotation.Nullable;
     public GetHistogramsParameter getHistograms() { final GetHistogramsParameter v = new GetHistogramsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getHistograms.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetHistogramsParameter extends CommandBase {
         /**Requested substring in name. Only histograms which have query as a
 substring in their name are extracted. An empty or absent query returns
@@ -496,6 +508,7 @@ all histograms.
     }
     /**Return result class of getHistograms.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetHistogramsResult extends ResultBase {
         /**Histograms.*/
         private final List<Histogram> histograms;
@@ -532,6 +545,7 @@ all histograms.
     public GetHistogramParameter getHistogram() { final GetHistogramParameter v = new GetHistogramParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getHistogram.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetHistogramParameter extends CommandBase {
         /**Requested histogram name.*/
         private String name;
@@ -570,6 +584,7 @@ all histograms.
     }
     /**Return result class of getHistogram.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetHistogramResult extends ResultBase {
         /**Histogram.*/
         private final Histogram histogram;
@@ -602,6 +617,7 @@ all histograms.
     public GetWindowBoundsParameter getWindowBounds() { final GetWindowBoundsParameter v = new GetWindowBoundsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getWindowBounds.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetWindowBoundsParameter extends CommandBase {
         /**Browser window id.*/
         private WindowID windowId;
@@ -640,6 +656,7 @@ all histograms.
     }
     /**Return result class of getWindowBounds.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetWindowBoundsResult extends ResultBase {
         /**Bounds information of the window. When window state is 'minimized', the restored window
 position and size are returned.*/
@@ -673,6 +690,7 @@ position and size are returned.*/
     public GetWindowForTargetParameter getWindowForTarget() { final GetWindowForTargetParameter v = new GetWindowForTargetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getWindowForTarget.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetWindowForTargetParameter extends CommandBase {
         /**Devtools agent host id.*/
         private Target.TargetID targetId;
@@ -711,6 +729,7 @@ position and size are returned.*/
     }
     /**Return result class of getWindowForTarget.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetWindowForTargetResult extends ResultBase {
         /**Browser window id.*/
         private final WindowID windowId;
@@ -752,6 +771,7 @@ position and size are returned.*/
     public SetWindowBoundsParameter setWindowBounds() { final SetWindowBoundsParameter v = new SetWindowBoundsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setWindowBounds.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetWindowBoundsParameter extends CommandBase {
         /**Browser window id.*/
         private WindowID windowId;
@@ -801,6 +821,7 @@ with 'left', 'top', 'width' or 'height'. Leaves unspecified fields unchanged.*/
     }
     /**Return result class of setWindowBounds.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetWindowBoundsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */

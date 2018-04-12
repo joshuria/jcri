@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -31,6 +32,7 @@ import javax.annotation.Nullable;
 applies to images.*/
     public GetEncodedResponseParameter getEncodedResponse() { final GetEncodedResponseParameter v = new GetEncodedResponseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getEncodedResponse.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetEncodedResponseParameter extends CommandBase {
         /**Identifier of the network request to get content for.*/
         private Network.RequestId requestId;
@@ -124,6 +126,7 @@ applies to images.*/
         }
     }
     /**Return result class of getEncodedResponse.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetEncodedResponseResult extends ResultBase {
         /**The encoded body as a base64 string. Omitted if sizeOnly is true.
         <em>Optional.</em>*/

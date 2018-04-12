@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     public Profiler(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Profile node. Holds callsite information, execution statistics and child nodes.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ProfileNode implements CommonDomainType {
         /**Unique id of the node.*/
         private Integer id;
@@ -121,6 +123,7 @@ optimize.
     }
 
     /**Profile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Profile implements CommonDomainType {
         /**The list of profile nodes. First item is the root node.*/
         private List<ProfileNode> nodes;
@@ -207,6 +210,7 @@ profile startTime.
     }
 
     /**Specifies a number of samples attributed to a certain source position.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PositionTickInfo implements CommonDomainType {
         /**Source line number (1-based).*/
         private Integer line;
@@ -246,6 +250,7 @@ profile startTime.
     }
 
     /**Coverage data for a source range.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CoverageRange implements CommonDomainType {
         /**JavaScript script source offset for the range start.*/
         private Integer startOffset;
@@ -295,6 +300,7 @@ profile startTime.
     }
 
     /**Coverage data for a JavaScript function.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FunctionCoverage implements CommonDomainType {
         /**JavaScript function name.*/
         private String functionName;
@@ -348,6 +354,7 @@ profile startTime.
     }
 
     /**Coverage data for a JavaScript script.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScriptCoverage implements CommonDomainType {
         /**JavaScript script id.*/
         private Runtime.ScriptId scriptId;
@@ -402,6 +409,7 @@ profile startTime.
 
     /**Describes a type collected during runtime.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TypeObject implements CommonDomainType {
         /**Name of a type collected with type profiling.*/
         private String name;
@@ -432,6 +440,7 @@ profile startTime.
 
     /**Source offset and types for a parameter or return value.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TypeProfileEntry implements CommonDomainType {
         /**Source offset of the parameter or end of function for return values.*/
         private Integer offset;
@@ -476,6 +485,7 @@ profile startTime.
 
     /**Type profile data collected during runtime for a JavaScript script.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScriptTypeProfile implements CommonDomainType {
         /**JavaScript script id.*/
         private Runtime.ScriptId scriptId;
@@ -530,6 +540,7 @@ profile startTime.
     /**&lt;No document in protocol.&gt;*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -553,6 +564,7 @@ profile startTime.
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -573,6 +585,7 @@ profile startTime.
     /**&lt;No document in protocol.&gt;*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -596,6 +609,7 @@ profile startTime.
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -617,6 +631,7 @@ profile startTime.
 garbage collection.*/
     public GetBestEffortCoverageParameter getBestEffortCoverage() { final GetBestEffortCoverageParameter v = new GetBestEffortCoverageParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getBestEffortCoverage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBestEffortCoverageParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -640,6 +655,7 @@ garbage collection.*/
         }
     }
     /**Return result class of getBestEffortCoverage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBestEffortCoverageResult extends ResultBase {
         /**Coverage data for the current isolate.*/
         private final List<ScriptCoverage> result;
@@ -674,6 +690,7 @@ garbage collection.*/
     /**Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.*/
     public SetSamplingIntervalParameter setSamplingInterval() { final SetSamplingIntervalParameter v = new SetSamplingIntervalParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setSamplingInterval.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetSamplingIntervalParameter extends CommandBase {
         /**New sampling interval in microseconds.*/
         private Integer interval;
@@ -711,6 +728,7 @@ garbage collection.*/
         }
     }
     /**Return result class of setSamplingInterval.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetSamplingIntervalResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -731,6 +749,7 @@ garbage collection.*/
     /**&lt;No document in protocol.&gt;*/
     public StartParameter start() { final StartParameter v = new StartParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of start.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -754,6 +773,7 @@ garbage collection.*/
         }
     }
     /**Return result class of start.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -776,6 +796,7 @@ coverage may be incomplete. Enabling prevents running optimized code and resets 
 counters.*/
     public StartPreciseCoverageParameter startPreciseCoverage() { final StartPreciseCoverageParameter v = new StartPreciseCoverageParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of startPreciseCoverage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartPreciseCoverageParameter extends CommandBase {
         /**Collect accurate call counts beyond simple 'covered' or 'not covered'.
         <em>Optional.</em>*/
@@ -823,6 +844,7 @@ counters.*/
         }
     }
     /**Return result class of startPreciseCoverage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartPreciseCoverageResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -845,6 +867,7 @@ counters.*/
     public StartTypeProfileParameter startTypeProfile() { final StartTypeProfileParameter v = new StartTypeProfileParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of startTypeProfile.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartTypeProfileParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -869,6 +892,7 @@ counters.*/
     }
     /**Return result class of startTypeProfile.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartTypeProfileResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -889,6 +913,7 @@ counters.*/
     /**&lt;No document in protocol.&gt;*/
     public StopParameter stop() { final StopParameter v = new StopParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stop.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -912,6 +937,7 @@ counters.*/
         }
     }
     /**Return result class of stop.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopResult extends ResultBase {
         /**Recorded profile.*/
         private final Profile profile;
@@ -943,6 +969,7 @@ counters.*/
 executing optimized code.*/
     public StopPreciseCoverageParameter stopPreciseCoverage() { final StopPreciseCoverageParameter v = new StopPreciseCoverageParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopPreciseCoverage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopPreciseCoverageParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -966,6 +993,7 @@ executing optimized code.*/
         }
     }
     /**Return result class of stopPreciseCoverage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopPreciseCoverageResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -988,6 +1016,7 @@ executing optimized code.*/
     public StopTypeProfileParameter stopTypeProfile() { final StopTypeProfileParameter v = new StopTypeProfileParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopTypeProfile.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopTypeProfileParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1012,6 +1041,7 @@ executing optimized code.*/
     }
     /**Return result class of stopTypeProfile.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopTypeProfileResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1033,6 +1063,7 @@ executing optimized code.*/
 coverage needs to have started.*/
     public TakePreciseCoverageParameter takePreciseCoverage() { final TakePreciseCoverageParameter v = new TakePreciseCoverageParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of takePreciseCoverage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TakePreciseCoverageParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1056,6 +1087,7 @@ coverage needs to have started.*/
         }
     }
     /**Return result class of takePreciseCoverage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TakePreciseCoverageResult extends ResultBase {
         /**Coverage data for the current isolate.*/
         private final List<ScriptCoverage> result;
@@ -1092,6 +1124,7 @@ coverage needs to have started.*/
     public TakeTypeProfileParameter takeTypeProfile() { final TakeTypeProfileParameter v = new TakeTypeProfileParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of takeTypeProfile.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TakeTypeProfileParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1116,6 +1149,7 @@ coverage needs to have started.*/
     }
     /**Return result class of takeTypeProfile.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TakeTypeProfileResult extends ResultBase {
         /**Type profile for all scripts since startTypeProfile() was turned on.*/
         private final List<ScriptTypeProfile> result;
@@ -1149,6 +1183,7 @@ coverage needs to have started.*/
     }
     /**Event parameter of Profiler.consoleProfileFinished.
      @see #onConsoleProfileFinished*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ConsoleProfileFinishedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final String id;
@@ -1206,6 +1241,7 @@ coverage needs to have started.*/
     }
     /**Event parameter of Profiler.consoleProfileStarted.
      @see #onConsoleProfileStarted*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ConsoleProfileStartedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final String id;

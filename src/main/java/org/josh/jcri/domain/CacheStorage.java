@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
     public CacheStorage(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Unique identifier of the Cache object.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CacheId implements CommonDomainType {
         private String _value;
         public CacheId() {}
@@ -50,6 +52,7 @@ import javax.annotation.Nullable;
     }
 
     /**Data entry.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DataEntry implements CommonDomainType {
         /**Request URL.*/
         private String requestURL;
@@ -147,6 +150,7 @@ import javax.annotation.Nullable;
     }
 
     /**Cache identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Cache implements CommonDomainType {
         /**An opaque unique id of the cache.*/
         private CacheId cacheId;
@@ -196,6 +200,7 @@ import javax.annotation.Nullable;
     }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Header implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private String name;
@@ -235,6 +240,7 @@ import javax.annotation.Nullable;
     }
 
     /**Cached response*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CachedResponse implements CommonDomainType {
         /**Entry content, base64-encoded.*/
         private String body;
@@ -265,6 +271,7 @@ import javax.annotation.Nullable;
     /**Deletes a cache.*/
     public DeleteCacheParameter deleteCache() { final DeleteCacheParameter v = new DeleteCacheParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of deleteCache.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteCacheParameter extends CommandBase {
         /**Id of cache for deletion.*/
         private CacheId cacheId;
@@ -302,6 +309,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of deleteCache.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteCacheResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -322,6 +330,7 @@ import javax.annotation.Nullable;
     /**Deletes a cache entry.*/
     public DeleteEntryParameter deleteEntry() { final DeleteEntryParameter v = new DeleteEntryParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of deleteEntry.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteEntryParameter extends CommandBase {
         /**Id of cache where the entry will be deleted.*/
         private CacheId cacheId;
@@ -369,6 +378,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of deleteEntry.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteEntryResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -389,6 +399,7 @@ import javax.annotation.Nullable;
     /**Requests cache names.*/
     public RequestCacheNamesParameter requestCacheNames() { final RequestCacheNamesParameter v = new RequestCacheNamesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestCacheNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestCacheNamesParameter extends CommandBase {
         /**Security origin.*/
         private String securityOrigin;
@@ -426,6 +437,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of requestCacheNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestCacheNamesResult extends ResultBase {
         /**Caches for the security origin.*/
         private final List<Cache> caches;
@@ -460,6 +472,7 @@ import javax.annotation.Nullable;
     /**Fetches cache entry.*/
     public RequestCachedResponseParameter requestCachedResponse() { final RequestCachedResponseParameter v = new RequestCachedResponseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestCachedResponse.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestCachedResponseParameter extends CommandBase {
         /**Id of cache that contains the enty.*/
         private CacheId cacheId;
@@ -507,6 +520,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of requestCachedResponse.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestCachedResponseResult extends ResultBase {
         /**Response read from the cache.*/
         private final CachedResponse response;
@@ -537,6 +551,7 @@ import javax.annotation.Nullable;
     /**Requests data from cache.*/
     public RequestEntriesParameter requestEntries() { final RequestEntriesParameter v = new RequestEntriesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestEntries.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestEntriesParameter extends CommandBase {
         /**ID of cache to get entries from.*/
         private CacheId cacheId;
@@ -594,6 +609,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of requestEntries.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestEntriesResult extends ResultBase {
         /**Array of object store data entries.*/
         private final List<DataEntry> cacheDataEntries;

@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -31,6 +32,7 @@ other objects in their object group.
     public Runtime(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Unique script identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ScriptId implements CommonDomainType {
         private String _value;
         public ScriptId() {}
@@ -53,6 +55,7 @@ other objects in their object group.
     }
 
     /**Unique object identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoteObjectId implements CommonDomainType {
         private String _value;
         public RemoteObjectId() {}
@@ -76,6 +79,7 @@ other objects in their object group.
 
     /**Primitive value which cannot be JSON-stringified. Includes values `-0`, `NaN`, `Infinity`,
 `-Infinity`, and bigint literals.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UnserializableValue implements CommonDomainType {
         private String _value;
         public UnserializableValue() {}
@@ -98,6 +102,7 @@ other objects in their object group.
     }
 
     /**Mirror object referencing original JavaScript object.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoteObject implements CommonDomainType {
         /**Object type.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -280,6 +285,7 @@ property.
 
     /**&lt;No document in protocol.&gt;
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CustomPreview implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private String header;
@@ -350,6 +356,7 @@ property.
 
     /**Object containing abbreviated remote object value.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ObjectPreview implements CommonDomainType {
         /**Object type.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -506,6 +513,7 @@ property.
 
     /**&lt;No document in protocol.&gt;
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PropertyPreview implements CommonDomainType {
         /**Property name.*/
         private String name;
@@ -643,6 +651,7 @@ property.
 
     /**&lt;No document in protocol.&gt;
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EntryPreview implements CommonDomainType {
         /**Preview of the key. Specified for map-like collection entries.
         <em>Optional.</em>*/
@@ -682,6 +691,7 @@ property.
     }
 
     /**Object property descriptor.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PropertyDescriptor implements CommonDomainType {
         /**Property name or symbol description.*/
         private String name;
@@ -805,6 +815,7 @@ object.*/
     }
 
     /**Object internal property descriptor. This property isn't normally visible in JavaScript code.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InternalPropertyDescriptor implements CommonDomainType {
         /**Conventional property name.*/
         private String name;
@@ -845,6 +856,7 @@ object.*/
 
     /**Represents function call argument. Either remote object id `objectId`, primitive `value`,
 unserializable primitive value or neither of (for undefined) them should be specified.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CallArgument implements CommonDomainType {
         /**Primitive value or serializable javascript object.
         <em>Optional.</em>*/
@@ -894,6 +906,7 @@ unserializable primitive value or neither of (for undefined) them should be spec
     }
 
     /**Id of an execution context.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExecutionContextId implements CommonDomainType {
         private Integer _value;
         public ExecutionContextId() {}
@@ -916,6 +929,7 @@ unserializable primitive value or neither of (for undefined) them should be spec
     }
 
     /**Description of an isolated world.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExecutionContextDescription implements CommonDomainType {
         /**Unique id of the execution context. It can be used to specify in which execution context
 script evaluation should be performed.*/
@@ -977,6 +991,7 @@ script evaluation should be performed.*/
 
     /**Detailed information about exception (or error) that was thrown during script compilation or
 execution.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExceptionDetails implements CommonDomainType {
         /**Exception id.*/
         private Integer exceptionId;
@@ -1086,6 +1101,7 @@ execution.*/
     }
 
     /**Number of milliseconds since epoch.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Timestamp implements CommonDomainType {
         private Double _value;
         public Timestamp() {}
@@ -1108,6 +1124,7 @@ execution.*/
     }
 
     /**Stack entry for runtime errors and assertions.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CallFrame implements CommonDomainType {
         /**JavaScript function name.*/
         private String functionName;
@@ -1177,6 +1194,7 @@ execution.*/
     }
 
     /**Call frames for assertions or error messages.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StackTrace implements CommonDomainType {
         /**String label of this stack trace. For async traces this may be a name of the function that
 initiated the async call.
@@ -1243,6 +1261,7 @@ initiated the async call.
 
     /**Unique identifier of current debugger.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UniqueDebuggerId implements CommonDomainType {
         private String _value;
         public UniqueDebuggerId() {}
@@ -1267,6 +1286,7 @@ initiated the async call.
     /**If `debuggerId` is set stack trace comes from another debugger and can be resolved there. This
 allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StackTraceId implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private String id;
@@ -1307,6 +1327,7 @@ allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.pau
     /**Add handler to promise with given promise object id.*/
     public AwaitPromiseParameter awaitPromise() { final AwaitPromiseParameter v = new AwaitPromiseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of awaitPromise.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AwaitPromiseParameter extends CommandBase {
         /**Identifier of the promise.*/
         private RemoteObjectId promiseObjectId;
@@ -1364,6 +1385,7 @@ allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.pau
         }
     }
     /**Return result class of awaitPromise.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AwaitPromiseResult extends ResultBase {
         /**Promise result. Will contain rejected value if promise was rejected.*/
         private final RemoteObject result;
@@ -1404,6 +1426,7 @@ allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.pau
 inherited from the target object.*/
     public CallFunctionOnParameter callFunctionOn() { final CallFunctionOnParameter v = new CallFunctionOnParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of callFunctionOn.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CallFunctionOnParameter extends CommandBase {
         /**Declaration of the function to call.*/
         private String functionDeclaration;
@@ -1544,6 +1567,7 @@ specified and objectId is, objectGroup will be inherited from object.
         }
     }
     /**Return result class of callFunctionOn.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CallFunctionOnResult extends ResultBase {
         /**Call result.*/
         private final RemoteObject result;
@@ -1583,6 +1607,7 @@ specified and objectId is, objectGroup will be inherited from object.
     /**Compiles expression.*/
     public CompileScriptParameter compileScript() { final CompileScriptParameter v = new CompileScriptParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of compileScript.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CompileScriptParameter extends CommandBase {
         /**Expression to compile.*/
         private String expression;
@@ -1651,6 +1676,7 @@ evaluation will be performed in the context of the inspected page.
         }
     }
     /**Return result class of compileScript.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CompileScriptResult extends ResultBase {
         /**Id of the script.
         <em>Optional.</em>*/
@@ -1691,6 +1717,7 @@ evaluation will be performed in the context of the inspected page.
     /**Disables reporting of execution contexts creation.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1714,6 +1741,7 @@ evaluation will be performed in the context of the inspected page.
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1734,6 +1762,7 @@ evaluation will be performed in the context of the inspected page.
     /**Discards collected exceptions and console API calls.*/
     public DiscardConsoleEntriesParameter discardConsoleEntries() { final DiscardConsoleEntriesParameter v = new DiscardConsoleEntriesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of discardConsoleEntries.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DiscardConsoleEntriesParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1757,6 +1786,7 @@ evaluation will be performed in the context of the inspected page.
         }
     }
     /**Return result class of discardConsoleEntries.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DiscardConsoleEntriesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1779,6 +1809,7 @@ When the reporting gets enabled the event will be sent immediately for each exis
 context.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1802,6 +1833,7 @@ context.*/
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1822,6 +1854,7 @@ context.*/
     /**Evaluates expression on global object.*/
     public EvaluateParameter evaluate() { final EvaluateParameter v = new EvaluateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of evaluate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EvaluateParameter extends CommandBase {
         /**Expression to evaluate.*/
         private String expression;
@@ -1954,6 +1987,7 @@ resolved.
         }
     }
     /**Return result class of evaluate.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EvaluateResult extends ResultBase {
         /**Evaluation result.*/
         private final RemoteObject result;
@@ -1994,6 +2028,7 @@ resolved.
 object.*/
     public GetPropertiesParameter getProperties() { final GetPropertiesParameter v = new GetPropertiesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getProperties.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPropertiesParameter extends CommandBase {
         /**Identifier of the object to return properties for.*/
         private RemoteObjectId objectId;
@@ -2065,6 +2100,7 @@ returned either.
         }
     }
     /**Return result class of getProperties.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPropertiesResult extends ResultBase {
         /**Object properties.*/
         private final List<PropertyDescriptor> result;
@@ -2123,6 +2159,7 @@ returned either.
     /**Returns all let, const and class variables from global scope.*/
     public GlobalLexicalScopeNamesParameter globalLexicalScopeNames() { final GlobalLexicalScopeNamesParameter v = new GlobalLexicalScopeNamesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of globalLexicalScopeNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GlobalLexicalScopeNamesParameter extends CommandBase {
         /**Specifies in which execution context to lookup global scope variables.
         <em>Optional.</em>*/
@@ -2160,6 +2197,7 @@ returned either.
         }
     }
     /**Return result class of globalLexicalScopeNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GlobalLexicalScopeNamesResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final List<String> names;
@@ -2194,6 +2232,7 @@ returned either.
     /**&lt;No document in protocol.&gt;*/
     public QueryObjectsParameter queryObjects() { final QueryObjectsParameter v = new QueryObjectsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of queryObjects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class QueryObjectsParameter extends CommandBase {
         /**Identifier of the prototype to return objects for.*/
         private RemoteObjectId prototypeObjectId;
@@ -2241,6 +2280,7 @@ returned either.
         }
     }
     /**Return result class of queryObjects.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class QueryObjectsResult extends ResultBase {
         /**Array with objects.*/
         private final RemoteObject objects;
@@ -2271,6 +2311,7 @@ returned either.
     /**Releases remote object with given id.*/
     public ReleaseObjectParameter releaseObject() { final ReleaseObjectParameter v = new ReleaseObjectParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of releaseObject.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReleaseObjectParameter extends CommandBase {
         /**Identifier of the object to release.*/
         private RemoteObjectId objectId;
@@ -2308,6 +2349,7 @@ returned either.
         }
     }
     /**Return result class of releaseObject.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReleaseObjectResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2328,6 +2370,7 @@ returned either.
     /**Releases all remote objects that belong to a given group.*/
     public ReleaseObjectGroupParameter releaseObjectGroup() { final ReleaseObjectGroupParameter v = new ReleaseObjectGroupParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of releaseObjectGroup.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReleaseObjectGroupParameter extends CommandBase {
         /**Symbolic object group name.*/
         private String objectGroup;
@@ -2365,6 +2408,7 @@ returned either.
         }
     }
     /**Return result class of releaseObjectGroup.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReleaseObjectGroupResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2385,6 +2429,7 @@ returned either.
     /**Tells inspected instance to run if it was waiting for debugger to attach.*/
     public RunIfWaitingForDebuggerParameter runIfWaitingForDebugger() { final RunIfWaitingForDebuggerParameter v = new RunIfWaitingForDebuggerParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of runIfWaitingForDebugger.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RunIfWaitingForDebuggerParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2408,6 +2453,7 @@ returned either.
         }
     }
     /**Return result class of runIfWaitingForDebugger.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RunIfWaitingForDebuggerResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2428,6 +2474,7 @@ returned either.
     /**Runs script with given id in a given context.*/
     public RunScriptParameter runScript() { final RunScriptParameter v = new RunScriptParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of runScript.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RunScriptParameter extends CommandBase {
         /**Id of the script to run.*/
         private ScriptId scriptId;
@@ -2538,6 +2585,7 @@ resolved.
         }
     }
     /**Return result class of runScript.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RunScriptResult extends ResultBase {
         /**Run result.*/
         private final RemoteObject result;
@@ -2579,6 +2627,7 @@ resolved.
     public SetCustomObjectFormatterEnabledParameter setCustomObjectFormatterEnabled() { final SetCustomObjectFormatterEnabledParameter v = new SetCustomObjectFormatterEnabledParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setCustomObjectFormatterEnabled.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCustomObjectFormatterEnabledParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private Boolean enabled;
@@ -2617,6 +2666,7 @@ resolved.
     }
     /**Return result class of setCustomObjectFormatterEnabled.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCustomObjectFormatterEnabledResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2640,6 +2690,7 @@ Will cancel the termination when the outer-most script execution ends.
     public TerminateExecutionParameter terminateExecution() { final TerminateExecutionParameter v = new TerminateExecutionParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of terminateExecution.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TerminateExecutionParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2664,6 +2715,7 @@ Will cancel the termination when the outer-most script execution ends.
     }
     /**Return result class of terminateExecution.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TerminateExecutionResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2683,6 +2735,7 @@ Will cancel the termination when the outer-most script execution ends.
     }
     /**Event parameter of Runtime.consoleAPICalled.
      @see #onConsoleAPICalled*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ConsoleAPICalledEventParameter implements CommonDomainType {
         /**Type of the call.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -2803,6 +2856,7 @@ on named context.
     }
     /**Event parameter of Runtime.exceptionRevoked.
      @see #onExceptionRevoked*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExceptionRevokedEventParameter implements CommonDomainType {
         /**Reason describing why exception was revoked.*/
         private final String reason;
@@ -2845,6 +2899,7 @@ on named context.
     }
     /**Event parameter of Runtime.exceptionThrown.
      @see #onExceptionThrown*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExceptionThrownEventParameter implements CommonDomainType {
         /**Timestamp of the exception.*/
         private final Timestamp timestamp;
@@ -2887,6 +2942,7 @@ on named context.
     }
     /**Event parameter of Runtime.executionContextCreated.
      @see #onExecutionContextCreated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExecutionContextCreatedEventParameter implements CommonDomainType {
         /**A newly created execution context.*/
         private final ExecutionContextDescription context;
@@ -2922,6 +2978,7 @@ on named context.
     }
     /**Event parameter of Runtime.executionContextDestroyed.
      @see #onExecutionContextDestroyed*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExecutionContextDestroyedEventParameter implements CommonDomainType {
         /**Id of the destroyed context*/
         private final ExecutionContextId executionContextId;
@@ -2957,6 +3014,7 @@ on named context.
     }
     /**Event parameter of Runtime.executionContextsCleared.
      @see #onExecutionContextsCleared*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ExecutionContextsClearedEventParameter implements CommonDomainType {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2983,6 +3041,7 @@ on named context.
     }
     /**Event parameter of Runtime.inspectRequested.
      @see #onInspectRequested*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InspectRequestedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final RemoteObject object;

@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
     public SystemInfo(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Describes a single graphics processor (GPU).*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GPUDevice implements CommonDomainType {
         /**PCI ID of the GPU vendor, if available; 0 otherwise.*/
         private Double vendorId;
@@ -87,6 +89,7 @@ import javax.annotation.Nullable;
     }
 
     /**Provides information about the GPU(s) on the system.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GPUInfo implements CommonDomainType {
         /**The graphics devices on the system. Element 0 is the primary GPU.*/
         private List<GPUDevice> devices;
@@ -155,6 +158,7 @@ import javax.annotation.Nullable;
     /**Returns information about the system.*/
     public GetInfoParameter getInfo() { final GetInfoParameter v = new GetInfoParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getInfo.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetInfoParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -178,6 +182,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getInfo.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetInfoResult extends ResultBase {
         /**Information about the GPUs on the system.*/
         private final GPUInfo gpu;

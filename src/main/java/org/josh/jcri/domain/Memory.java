@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -55,6 +56,7 @@ import javax.annotation.Nullable;
     }
 
     /**Heap profile sample.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SamplingProfileNode implements CommonDomainType {
         /**Size of the sampled allocation.*/
         private Double size;
@@ -108,6 +110,7 @@ import javax.annotation.Nullable;
     }
 
     /**Array of heap profile samples.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SamplingProfile implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private List<SamplingProfileNode> samples;
@@ -142,6 +145,7 @@ import javax.annotation.Nullable;
     /**&lt;No document in protocol.&gt;*/
     public GetDOMCountersParameter getDOMCounters() { final GetDOMCountersParameter v = new GetDOMCountersParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getDOMCounters.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDOMCountersParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -165,6 +169,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getDOMCounters.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDOMCountersResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final Integer documents;
@@ -211,6 +216,7 @@ import javax.annotation.Nullable;
     /**&lt;No document in protocol.&gt;*/
     public PrepareForLeakDetectionParameter prepareForLeakDetection() { final PrepareForLeakDetectionParameter v = new PrepareForLeakDetectionParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of prepareForLeakDetection.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PrepareForLeakDetectionParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -234,6 +240,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of prepareForLeakDetection.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class PrepareForLeakDetectionResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -254,6 +261,7 @@ import javax.annotation.Nullable;
     /**Enable/disable suppressing memory pressure notifications in all processes.*/
     public SetPressureNotificationsSuppressedParameter setPressureNotificationsSuppressed() { final SetPressureNotificationsSuppressedParameter v = new SetPressureNotificationsSuppressedParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setPressureNotificationsSuppressed.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPressureNotificationsSuppressedParameter extends CommandBase {
         /**If true, memory pressure notifications will be suppressed.*/
         private Boolean suppressed;
@@ -291,6 +299,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of setPressureNotificationsSuppressed.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetPressureNotificationsSuppressedResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -311,6 +320,7 @@ import javax.annotation.Nullable;
     /**Simulate a memory pressure notification in all processes.*/
     public SimulatePressureNotificationParameter simulatePressureNotification() { final SimulatePressureNotificationParameter v = new SimulatePressureNotificationParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of simulatePressureNotification.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SimulatePressureNotificationParameter extends CommandBase {
         /**Memory pressure level of the notification.*/
         private PressureLevel level;
@@ -348,6 +358,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of simulatePressureNotification.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SimulatePressureNotificationResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -368,6 +379,7 @@ import javax.annotation.Nullable;
     /**Start collecting native memory profile.*/
     public StartSamplingParameter startSampling() { final StartSamplingParameter v = new StartSamplingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of startSampling.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartSamplingParameter extends CommandBase {
         /**Average number of bytes between samples.
         <em>Optional.</em>*/
@@ -415,6 +427,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of startSampling.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartSamplingResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -435,6 +448,7 @@ import javax.annotation.Nullable;
     /**Stop collecting native memory profile.*/
     public StopSamplingParameter stopSampling() { final StopSamplingParameter v = new StopSamplingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopSampling.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopSamplingParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -458,6 +472,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of stopSampling.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopSamplingResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -479,6 +494,7 @@ import javax.annotation.Nullable;
 collected since renderer process startup.*/
     public GetAllTimeSamplingProfileParameter getAllTimeSamplingProfile() { final GetAllTimeSamplingProfileParameter v = new GetAllTimeSamplingProfileParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getAllTimeSamplingProfile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetAllTimeSamplingProfileParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -502,6 +518,7 @@ collected since renderer process startup.*/
         }
     }
     /**Return result class of getAllTimeSamplingProfile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetAllTimeSamplingProfileResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final SamplingProfile profile;
@@ -533,6 +550,7 @@ collected since renderer process startup.*/
 collected since browser process startup.*/
     public GetBrowserSamplingProfileParameter getBrowserSamplingProfile() { final GetBrowserSamplingProfileParameter v = new GetBrowserSamplingProfileParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getBrowserSamplingProfile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBrowserSamplingProfileParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -556,6 +574,7 @@ collected since browser process startup.*/
         }
     }
     /**Return result class of getBrowserSamplingProfile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetBrowserSamplingProfileResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final SamplingProfile profile;
@@ -587,6 +606,7 @@ collected since browser process startup.*/
 `startSampling` call.*/
     public GetSamplingProfileParameter getSamplingProfile() { final GetSamplingProfileParameter v = new GetSamplingProfileParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getSamplingProfile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetSamplingProfileParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -610,6 +630,7 @@ collected since browser process startup.*/
         }
     }
     /**Return result class of getSamplingProfile.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetSamplingProfileResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final SamplingProfile profile;

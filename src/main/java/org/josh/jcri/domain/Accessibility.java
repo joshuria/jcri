@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     public Accessibility(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Unique accessibility node identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AXNodeId implements CommonDomainType {
         private String _value;
         public AXNodeId() {}
@@ -157,6 +159,7 @@ import javax.annotation.Nullable;
     }
 
     /**A single source for a computed AX property.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AXValueSource implements CommonDomainType {
         /**What type of source this is.*/
         private AXValueSourceType type;
@@ -266,6 +269,7 @@ import javax.annotation.Nullable;
     }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AXRelatedNode implements CommonDomainType {
         /**The BackendNodeId of the related DOM node.*/
         private DOM.BackendNodeId backendDOMNodeId;
@@ -315,6 +319,7 @@ import javax.annotation.Nullable;
     }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AXProperty implements CommonDomainType {
         /**The name of this property.*/
         private AXPropertyName name;
@@ -354,6 +359,7 @@ import javax.annotation.Nullable;
     }
 
     /**A single computed AX property.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AXValue implements CommonDomainType {
         /**The type of this value.*/
         private AXValueType type;
@@ -489,6 +495,7 @@ elements other than parent/child/sibling.*/
     }
 
     /**A node in the accessibility tree.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AXNode implements CommonDomainType {
         /**Unique identifier for this node.*/
         private AXNodeId nodeId;
@@ -629,6 +636,7 @@ elements other than parent/child/sibling.*/
     public GetPartialAXTreeParameter getPartialAXTree() { final GetPartialAXTreeParameter v = new GetPartialAXTreeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getPartialAXTree.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPartialAXTreeParameter extends CommandBase {
         /**ID of node to get the partial accessibility tree for.*/
         private DOM.NodeId nodeId;
@@ -677,6 +685,7 @@ elements other than parent/child/sibling.*/
     }
     /**Return result class of getPartialAXTree.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPartialAXTreeResult extends ResultBase {
         /**The `Accessibility.AXNode` for this DOM node, if it exists, plus its ancestors, siblings and
 children, if requested.*/

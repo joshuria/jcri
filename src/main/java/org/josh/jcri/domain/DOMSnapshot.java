@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -32,6 +33,7 @@ import javax.annotation.Nullable;
     public DOMSnapshot(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**A Node in the DOM tree.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DOMNode implements CommonDomainType {
         /**`Node`'s nodeType.*/
         private Integer nodeType;
@@ -354,6 +356,7 @@ clicked.
 
     /**Details of post layout rendered text positions. The exact layout should not be regarded as
 stable and may change between versions.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InlineTextBox implements CommonDomainType {
         /**The absolute position bounding box.*/
         private DOM.Rect boundingBox;
@@ -405,6 +408,7 @@ represented as a surrogate pair in UTF-16 have length 2.*/
     }
 
     /**Details of an element in the DOM tree with a LayoutObject.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LayoutTreeNode implements CommonDomainType {
         /**The index of the related DOM node in the `domNodes` array returned by `getSnapshot`.*/
         private Integer domNodeIndex;
@@ -492,6 +496,7 @@ getSnapshot was true.
     }
 
     /**A subset of the full ComputedStyle as defined by the request whitelist.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ComputedStyle implements CommonDomainType {
         /**Name/value pairs of computed style properties.*/
         private List<NameValue> properties;
@@ -525,6 +530,7 @@ getSnapshot was true.
     }
 
     /**A name/value pair.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NameValue implements CommonDomainType {
         /**Attribute/property name.*/
         private String name;
@@ -568,6 +574,7 @@ white-listed computed style information for the nodes. Shadow DOM in the returne
 flattened.*/
     public GetSnapshotParameter getSnapshot() { final GetSnapshotParameter v = new GetSnapshotParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetSnapshotParameter extends CommandBase {
         /**Whitelist of computed styles to return.*/
         private List<String> computedStyleWhitelist;
@@ -629,6 +636,7 @@ flattened.*/
         }
     }
     /**Return result class of getSnapshot.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetSnapshotResult extends ResultBase {
         /**The nodes in the DOM tree. The DOMNode at index 0 corresponds to the root document.*/
         private final List<DOMNode> domNodes;

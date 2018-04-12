@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -27,6 +28,7 @@ import javax.annotation.Nullable;
     public Security(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**An internal certificate ID value.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CertificateId implements CommonDomainType {
         private Integer _value;
         public CertificateId() {}
@@ -108,6 +110,7 @@ https://www.w3.org/TR/mixed-content/#categories*/
     }
 
     /**An explanation of an factor contributing to the security state.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SecurityStateExplanation implements CommonDomainType {
         /**Security state representing the severity of the factor being explained.*/
         private SecurityState securityState;
@@ -191,6 +194,7 @@ https://www.w3.org/TR/mixed-content/#categories*/
     }
 
     /**Information about insecure content on the page.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InsecureContentStatus implements CommonDomainType {
         /**True if the page was loaded over HTTPS and ran mixed (HTTP) content such as scripts.*/
         private Boolean ranMixedContent;
@@ -311,6 +315,7 @@ request and cancel will cancel the request.*/
     /**Disables tracking security state changes.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -334,6 +339,7 @@ request and cancel will cancel the request.*/
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -354,6 +360,7 @@ request and cancel will cancel the request.*/
     /**Enables tracking security state changes.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -377,6 +384,7 @@ request and cancel will cancel the request.*/
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -399,6 +407,7 @@ request and cancel will cancel the request.*/
     public SetIgnoreCertificateErrorsParameter setIgnoreCertificateErrors() { final SetIgnoreCertificateErrorsParameter v = new SetIgnoreCertificateErrorsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setIgnoreCertificateErrors.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetIgnoreCertificateErrorsParameter extends CommandBase {
         /**If true, all certificate errors will be ignored.*/
         private Boolean ignore;
@@ -437,6 +446,7 @@ request and cancel will cancel the request.*/
     }
     /**Return result class of setIgnoreCertificateErrors.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetIgnoreCertificateErrorsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -459,6 +469,7 @@ request and cancel will cancel the request.*/
     public HandleCertificateErrorParameter handleCertificateError() { final HandleCertificateErrorParameter v = new HandleCertificateErrorParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of handleCertificateError.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HandleCertificateErrorParameter extends CommandBase {
         /**The ID of the event.*/
         private Integer eventId;
@@ -507,6 +518,7 @@ request and cancel will cancel the request.*/
     }
     /**Return result class of handleCertificateError.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class HandleCertificateErrorResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -530,6 +542,7 @@ be handled by the DevTools client and should be answered with handleCertificateE
     public SetOverrideCertificateErrorsParameter setOverrideCertificateErrors() { final SetOverrideCertificateErrorsParameter v = new SetOverrideCertificateErrorsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setOverrideCertificateErrors.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetOverrideCertificateErrorsParameter extends CommandBase {
         /**If true, certificate errors will be overridden.*/
         private Boolean override;
@@ -568,6 +581,7 @@ be handled by the DevTools client and should be answered with handleCertificateE
     }
     /**Return result class of setOverrideCertificateErrors.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetOverrideCertificateErrorsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -588,6 +602,7 @@ be handled by the DevTools client and should be answered with handleCertificateE
     /**Event parameter of Security.certificateError.
      @see #onCertificateError
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CertificateErrorEventParameter implements CommonDomainType {
         /**The ID of the event.*/
         private final Integer eventId;
@@ -641,6 +656,7 @@ certificate errors at the same time.
     }
     /**Event parameter of Security.securityStateChanged.
      @see #onSecurityStateChanged*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SecurityStateChangedEventParameter implements CommonDomainType {
         /**Security state.*/
         private final SecurityState securityState;

@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
     public ApplicationCache(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Detailed application cache resource information.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ApplicationCacheResource implements CommonDomainType {
         /**Resource url.*/
         private String url;
@@ -77,6 +79,7 @@ import javax.annotation.Nullable;
     }
 
     /**Detailed application cache information.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ApplicationCacheType implements CommonDomainType {
         /**Manifest URL.*/
         private String manifestURL;
@@ -150,6 +153,7 @@ import javax.annotation.Nullable;
     }
 
     /**Frame identifier - manifest URL pair.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class FrameWithManifest implements CommonDomainType {
         /**Frame identifier.*/
         private Page.FrameId frameId;
@@ -200,6 +204,7 @@ import javax.annotation.Nullable;
     /**Enables application cache domain notifications.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -223,6 +228,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -243,6 +249,7 @@ import javax.annotation.Nullable;
     /**Returns relevant application cache data for the document in given frame.*/
     public GetApplicationCacheForFrameParameter getApplicationCacheForFrame() { final GetApplicationCacheForFrameParameter v = new GetApplicationCacheForFrameParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getApplicationCacheForFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetApplicationCacheForFrameParameter extends CommandBase {
         /**Identifier of the frame containing document whose application cache is retrieved.*/
         private Page.FrameId frameId;
@@ -280,6 +287,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getApplicationCacheForFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetApplicationCacheForFrameResult extends ResultBase {
         /**Relevant application cache data for the document in given frame.*/
         private final ApplicationCacheType applicationCache;
@@ -311,6 +319,7 @@ import javax.annotation.Nullable;
 associated with some application cache.*/
     public GetFramesWithManifestsParameter getFramesWithManifests() { final GetFramesWithManifestsParameter v = new GetFramesWithManifestsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getFramesWithManifests.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetFramesWithManifestsParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -334,6 +343,7 @@ associated with some application cache.*/
         }
     }
     /**Return result class of getFramesWithManifests.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetFramesWithManifestsResult extends ResultBase {
         /**Array of frame identifiers with manifest urls for each frame containing a document
 associated with some application cache.*/
@@ -369,6 +379,7 @@ associated with some application cache.*/
     /**Returns manifest URL for document in the given frame.*/
     public GetManifestForFrameParameter getManifestForFrame() { final GetManifestForFrameParameter v = new GetManifestForFrameParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getManifestForFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetManifestForFrameParameter extends CommandBase {
         /**Identifier of the frame containing document whose manifest is retrieved.*/
         private Page.FrameId frameId;
@@ -406,6 +417,7 @@ associated with some application cache.*/
         }
     }
     /**Return result class of getManifestForFrame.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetManifestForFrameResult extends ResultBase {
         /**Manifest URL for document in the given frame.*/
         private final String manifestURL;
@@ -435,6 +447,7 @@ associated with some application cache.*/
     }
     /**Event parameter of ApplicationCache.applicationCacheStatusUpdated.
      @see #onApplicationCacheStatusUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ApplicationCacheStatusUpdatedEventParameter implements CommonDomainType {
         /**Identifier of the frame containing document whose application cache updated status.*/
         private final Page.FrameId frameId;
@@ -484,6 +497,7 @@ associated with some application cache.*/
     }
     /**Event parameter of ApplicationCache.networkStateUpdated.
      @see #onNetworkStateUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class NetworkStateUpdatedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final Boolean isNowOnline;

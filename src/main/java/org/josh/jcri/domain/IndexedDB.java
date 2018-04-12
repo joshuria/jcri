@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     public IndexedDB(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Database with an array of object stores.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DatabaseWithObjectStores implements CommonDomainType {
         /**Database name.*/
         private String name;
@@ -82,6 +84,7 @@ import javax.annotation.Nullable;
     }
 
     /**Object store.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ObjectStore implements CommonDomainType {
         /**Object store name.*/
         private String name;
@@ -145,6 +148,7 @@ import javax.annotation.Nullable;
     }
 
     /**Object store index.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ObjectStoreIndex implements CommonDomainType {
         /**Index name.*/
         private String name;
@@ -204,6 +208,7 @@ import javax.annotation.Nullable;
     }
 
     /**Key.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Key implements CommonDomainType {
         /**Key type.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -306,6 +311,7 @@ import javax.annotation.Nullable;
     }
 
     /**Key range.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class KeyRange implements CommonDomainType {
         /**Lower bound.
         <em>Optional.</em>*/
@@ -365,6 +371,7 @@ import javax.annotation.Nullable;
     }
 
     /**Data entry.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DataEntry implements CommonDomainType {
         /**Key object.*/
         private Runtime.RemoteObject key;
@@ -414,6 +421,7 @@ import javax.annotation.Nullable;
     }
 
     /**Key path.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class KeyPath implements CommonDomainType {
         /**Key path type.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -496,6 +504,7 @@ import javax.annotation.Nullable;
     /**Clears all entries from an object store.*/
     public ClearObjectStoreParameter clearObjectStore() { final ClearObjectStoreParameter v = new ClearObjectStoreParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clearObjectStore.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearObjectStoreParameter extends CommandBase {
         /**Security origin.*/
         private String securityOrigin;
@@ -553,6 +562,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of clearObjectStore.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearObjectStoreResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -573,6 +583,7 @@ import javax.annotation.Nullable;
     /**Deletes a database.*/
     public DeleteDatabaseParameter deleteDatabase() { final DeleteDatabaseParameter v = new DeleteDatabaseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of deleteDatabase.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteDatabaseParameter extends CommandBase {
         /**Security origin.*/
         private String securityOrigin;
@@ -620,6 +631,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of deleteDatabase.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteDatabaseResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -640,6 +652,7 @@ import javax.annotation.Nullable;
     /**Delete a range of entries from an object store*/
     public DeleteObjectStoreEntriesParameter deleteObjectStoreEntries() { final DeleteObjectStoreEntriesParameter v = new DeleteObjectStoreEntriesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of deleteObjectStoreEntries.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteObjectStoreEntriesParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String securityOrigin;
@@ -707,6 +720,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of deleteObjectStoreEntries.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteObjectStoreEntriesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -727,6 +741,7 @@ import javax.annotation.Nullable;
     /**Disables events from backend.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -750,6 +765,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -770,6 +786,7 @@ import javax.annotation.Nullable;
     /**Enables events from backend.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -793,6 +810,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -813,6 +831,7 @@ import javax.annotation.Nullable;
     /**Requests data from object store or index.*/
     public RequestDataParameter requestData() { final RequestDataParameter v = new RequestDataParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestData.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestDataParameter extends CommandBase {
         /**Security origin.*/
         private String securityOrigin;
@@ -910,6 +929,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of requestData.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestDataResult extends ResultBase {
         /**Array of object store data entries.*/
         private final List<DataEntry> objectStoreDataEntries;
@@ -952,6 +972,7 @@ import javax.annotation.Nullable;
     /**Requests database with given name in given frame.*/
     public RequestDatabaseParameter requestDatabase() { final RequestDatabaseParameter v = new RequestDatabaseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestDatabase.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestDatabaseParameter extends CommandBase {
         /**Security origin.*/
         private String securityOrigin;
@@ -999,6 +1020,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of requestDatabase.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestDatabaseResult extends ResultBase {
         /**Database with an array of object stores.*/
         private final DatabaseWithObjectStores databaseWithObjectStores;
@@ -1029,6 +1051,7 @@ import javax.annotation.Nullable;
     /**Requests database names for given security origin.*/
     public RequestDatabaseNamesParameter requestDatabaseNames() { final RequestDatabaseNamesParameter v = new RequestDatabaseNamesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of requestDatabaseNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestDatabaseNamesParameter extends CommandBase {
         /**Security origin.*/
         private String securityOrigin;
@@ -1066,6 +1089,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of requestDatabaseNames.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestDatabaseNamesResult extends ResultBase {
         /**Database names for origin.*/
         private final List<String> databaseNames;

@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -27,6 +28,7 @@ import javax.annotation.Nullable;
     public Target(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TargetID implements CommonDomainType {
         private String _value;
         public TargetID() {}
@@ -49,6 +51,7 @@ import javax.annotation.Nullable;
     }
 
     /**Unique identifier of attached debugging session.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SessionID implements CommonDomainType {
         private String _value;
         public SessionID() {}
@@ -72,6 +75,7 @@ import javax.annotation.Nullable;
 
     /**&lt;No document in protocol.&gt;
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BrowserContextID implements CommonDomainType {
         private String _value;
         public BrowserContextID() {}
@@ -94,6 +98,7 @@ import javax.annotation.Nullable;
     }
 
     /**&lt;No document in protocol.&gt;*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TargetInfo implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private TargetID targetId;
@@ -174,6 +179,7 @@ import javax.annotation.Nullable;
 
     /**&lt;No document in protocol.&gt;
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RemoteLocation implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private String host;
@@ -214,6 +220,7 @@ import javax.annotation.Nullable;
     /**Activates (focuses) the target.*/
     public ActivateTargetParameter activateTarget() { final ActivateTargetParameter v = new ActivateTargetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of activateTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ActivateTargetParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private TargetID targetId;
@@ -251,6 +258,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of activateTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ActivateTargetResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -271,6 +279,7 @@ import javax.annotation.Nullable;
     /**Attaches to the target with given id.*/
     public AttachToTargetParameter attachToTarget() { final AttachToTargetParameter v = new AttachToTargetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of attachToTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AttachToTargetParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private TargetID targetId;
@@ -308,6 +317,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of attachToTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AttachToTargetResult extends ResultBase {
         /**Id assigned to the session.*/
         private final SessionID sessionId;
@@ -338,6 +348,7 @@ import javax.annotation.Nullable;
     /**Closes the target. If the target is a page that gets closed too.*/
     public CloseTargetParameter closeTarget() { final CloseTargetParameter v = new CloseTargetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of closeTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CloseTargetParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private TargetID targetId;
@@ -375,6 +386,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of closeTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CloseTargetResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final Boolean success;
@@ -408,6 +420,7 @@ one.
     public CreateBrowserContextParameter createBrowserContext() { final CreateBrowserContextParameter v = new CreateBrowserContextParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of createBrowserContext.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CreateBrowserContextParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -432,6 +445,7 @@ one.
     }
     /**Return result class of createBrowserContext.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CreateBrowserContextResult extends ResultBase {
         /**The id of the context created.*/
         private final BrowserContextID browserContextId;
@@ -462,6 +476,7 @@ one.
     /**Creates a new page.*/
     public CreateTargetParameter createTarget() { final CreateTargetParameter v = new CreateTargetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of createTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CreateTargetParameter extends CommandBase {
         /**The initial URL the page will be navigated to.*/
         private String url;
@@ -541,6 +556,7 @@ not supported on MacOS yet, false by default).
         }
     }
     /**Return result class of createTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CreateTargetResult extends ResultBase {
         /**The id of the page opened.*/
         private final TargetID targetId;
@@ -571,6 +587,7 @@ not supported on MacOS yet, false by default).
     /**Detaches session with given id.*/
     public DetachFromTargetParameter detachFromTarget() { final DetachFromTargetParameter v = new DetachFromTargetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of detachFromTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DetachFromTargetParameter extends CommandBase {
         /**Session to detach.
         <em>Optional.</em>*/
@@ -619,6 +636,7 @@ not supported on MacOS yet, false by default).
         }
     }
     /**Return result class of detachFromTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DetachFromTargetResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -641,6 +659,7 @@ not supported on MacOS yet, false by default).
     public DisposeBrowserContextParameter disposeBrowserContext() { final DisposeBrowserContextParameter v = new DisposeBrowserContextParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disposeBrowserContext.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisposeBrowserContextParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private BrowserContextID browserContextId;
@@ -679,6 +698,7 @@ not supported on MacOS yet, false by default).
     }
     /**Return result class of disposeBrowserContext.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisposeBrowserContextResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final Boolean success;
@@ -711,6 +731,7 @@ not supported on MacOS yet, false by default).
     public GetTargetInfoParameter getTargetInfo() { final GetTargetInfoParameter v = new GetTargetInfoParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getTargetInfo.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetTargetInfoParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private TargetID targetId;
@@ -749,6 +770,7 @@ not supported on MacOS yet, false by default).
     }
     /**Return result class of getTargetInfo.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetTargetInfoResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final TargetInfo targetInfo;
@@ -779,6 +801,7 @@ not supported on MacOS yet, false by default).
     /**Retrieves a list of available targets.*/
     public GetTargetsParameter getTargets() { final GetTargetsParameter v = new GetTargetsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getTargets.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetTargetsParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -802,6 +825,7 @@ not supported on MacOS yet, false by default).
         }
     }
     /**Return result class of getTargets.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetTargetsResult extends ResultBase {
         /**The list of targets.*/
         private final List<TargetInfo> targetInfos;
@@ -836,6 +860,7 @@ not supported on MacOS yet, false by default).
     /**Sends protocol message over session with given id.*/
     public SendMessageToTargetParameter sendMessageToTarget() { final SendMessageToTargetParameter v = new SendMessageToTargetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of sendMessageToTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SendMessageToTargetParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String message;
@@ -894,6 +919,7 @@ not supported on MacOS yet, false by default).
         }
     }
     /**Return result class of sendMessageToTarget.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SendMessageToTargetResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -918,6 +944,7 @@ automatically detaches from all currently attached targets.
     public SetAutoAttachParameter setAutoAttach() { final SetAutoAttachParameter v = new SetAutoAttachParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setAutoAttach.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAutoAttachParameter extends CommandBase {
         /**Whether to auto-attach to related targets.*/
         private Boolean autoAttach;
@@ -967,6 +994,7 @@ to run paused targets.*/
     }
     /**Return result class of setAutoAttach.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetAutoAttachResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -988,6 +1016,7 @@ to run paused targets.*/
 `targetCreated/targetInfoChanged/targetDestroyed` events.*/
     public SetDiscoverTargetsParameter setDiscoverTargets() { final SetDiscoverTargetsParameter v = new SetDiscoverTargetsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setDiscoverTargets.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDiscoverTargetsParameter extends CommandBase {
         /**Whether to discover available targets.*/
         private Boolean discover;
@@ -1025,6 +1054,7 @@ to run paused targets.*/
         }
     }
     /**Return result class of setDiscoverTargets.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDiscoverTargetsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1048,6 +1078,7 @@ to run paused targets.*/
     public SetRemoteLocationsParameter setRemoteLocations() { final SetRemoteLocationsParameter v = new SetRemoteLocationsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setRemoteLocations.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetRemoteLocationsParameter extends CommandBase {
         /**List of remote locations.*/
         private List<RemoteLocation> locations;
@@ -1090,6 +1121,7 @@ to run paused targets.*/
     }
     /**Return result class of setRemoteLocations.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetRemoteLocationsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1110,6 +1142,7 @@ to run paused targets.*/
     /**Event parameter of Target.attachedToTarget.
     <p><strong>Experimental.</strong></p>
      @see #onAttachedToTarget*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AttachedToTargetEventParameter implements CommonDomainType {
         /**Identifier assigned to the session used to send/receive messages.*/
         private final SessionID sessionId;
@@ -1161,6 +1194,7 @@ to run paused targets.*/
     /**Event parameter of Target.detachedFromTarget.
     <p><strong>Experimental.</strong></p>
      @see #onDetachedFromTarget*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DetachedFromTargetEventParameter implements CommonDomainType {
         /**Detached session identifier.*/
         private final SessionID sessionId;
@@ -1207,6 +1241,7 @@ issued multiple times per target if multiple sessions have been attached to it.
     }
     /**Event parameter of Target.receivedMessageFromTarget.
      @see #onReceivedMessageFromTarget*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReceivedMessageFromTargetEventParameter implements CommonDomainType {
         /**Identifier of a session which sends a message.*/
         private final SessionID sessionId;
@@ -1259,6 +1294,7 @@ issued multiple times per target if multiple sessions have been attached to it.
     }
     /**Event parameter of Target.targetCreated.
      @see #onTargetCreated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TargetCreatedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final TargetInfo targetInfo;
@@ -1294,6 +1330,7 @@ issued multiple times per target if multiple sessions have been attached to it.
     }
     /**Event parameter of Target.targetDestroyed.
      @see #onTargetDestroyed*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TargetDestroyedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final TargetID targetId;
@@ -1329,6 +1366,7 @@ issued multiple times per target if multiple sessions have been attached to it.
     }
     /**Event parameter of Target.targetInfoChanged.
      @see #onTargetInfoChanged*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TargetInfoChangedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final TargetInfo targetInfo;

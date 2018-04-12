@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     /**Request browser port binding.*/
     public BindParameter bind() { final BindParameter v = new BindParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of bind.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BindParameter extends CommandBase {
         /**Port number to bind.*/
         private Integer port;
@@ -66,6 +68,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of bind.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BindResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -86,6 +89,7 @@ import javax.annotation.Nullable;
     /**Request browser port unbinding.*/
     public UnbindParameter unbind() { final UnbindParameter v = new UnbindParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of unbind.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UnbindParameter extends CommandBase {
         /**Port number to unbind.*/
         private Integer port;
@@ -123,6 +127,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of unbind.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UnbindResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -142,6 +147,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of Tethering.accepted.
      @see #onAccepted*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AcceptedEventParameter implements CommonDomainType {
         /**Port number that was successfully bound.*/
         private final Integer port;

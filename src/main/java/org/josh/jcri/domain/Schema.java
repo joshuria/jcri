@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
     public Schema(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Description of the protocol domain.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Domain implements CommonDomainType {
         /**Domain name.*/
         private String name;
@@ -68,6 +70,7 @@ import javax.annotation.Nullable;
     /**Returns supported domains.*/
     public GetDomainsParameter getDomains() { final GetDomainsParameter v = new GetDomainsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getDomains.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDomainsParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -91,6 +94,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of getDomains.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetDomainsResult extends ResultBase {
         /**List of supported domains.*/
         private final List<Domain> domains;

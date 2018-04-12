@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -31,6 +32,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     public Network(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Unique loader identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LoaderId implements CommonDomainType {
         private String _value;
         public LoaderId() {}
@@ -53,6 +55,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     }
 
     /**Unique request identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestId implements CommonDomainType {
         private String _value;
         public RequestId() {}
@@ -75,6 +78,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     }
 
     /**Unique intercepted request identifier.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InterceptionId implements CommonDomainType {
         private String _value;
         public InterceptionId() {}
@@ -134,6 +138,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     }
 
     /**UTC time in seconds, counted from January 1, 1970.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class TimeSinceEpoch implements CommonDomainType {
         private Double _value;
         public TimeSinceEpoch() {}
@@ -156,6 +161,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     }
 
     /**Monotonically increasing time in seconds since an arbitrary point in the past.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class MonotonicTime implements CommonDomainType {
         private Double _value;
         public MonotonicTime() {}
@@ -178,6 +184,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     }
 
     /**Request / response headers as keys / values of JSON object.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Headers implements CommonDomainType {
         private Object _value;
         public Headers() {}
@@ -262,6 +269,7 @@ https://tools.ietf.org/html/draft-west-first-party-cookies*/
     }
 
     /**Timing information for the request.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResourceTiming implements CommonDomainType {
         /**Timing's requestTime is a baseline in seconds, while the other numbers are ticks in
 milliseconds relatively to this requestTime.*/
@@ -476,6 +484,7 @@ milliseconds relatively to this requestTime.*/
     }
 
     /**HTTP request data.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Request implements CommonDomainType {
         /**Request URL.*/
         private String url;
@@ -616,6 +625,7 @@ milliseconds relatively to this requestTime.*/
     }
 
     /**Details of a signed certificate timestamp (SCT).*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SignedCertificateTimestamp implements CommonDomainType {
         /**Validation status.*/
         private String status;
@@ -715,6 +725,7 @@ milliseconds relatively to this requestTime.*/
     }
 
     /**Security details about a request.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SecurityDetails implements CommonDomainType {
         /**Protocol name (e.g. "TLS 1.2" or "QUIC").*/
         private String protocol;
@@ -893,6 +904,7 @@ milliseconds relatively to this requestTime.*/
     }
 
     /**HTTP response data.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Response implements CommonDomainType {
         /**Response URL. This URL can be different from CachedResource.url in case of redirect.*/
         private String url;
@@ -1102,6 +1114,7 @@ milliseconds relatively to this requestTime.*/
     }
 
     /**WebSocket request data.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketRequest implements CommonDomainType {
         /**HTTP request headers.*/
         private Headers headers;
@@ -1131,6 +1144,7 @@ milliseconds relatively to this requestTime.*/
     }
 
     /**WebSocket response data.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketResponse implements CommonDomainType {
         /**HTTP response status code.*/
         private Integer status;
@@ -1210,6 +1224,7 @@ milliseconds relatively to this requestTime.*/
     }
 
     /**WebSocket frame data.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketFrame implements CommonDomainType {
         /**WebSocket frame opcode.*/
         private Double opcode;
@@ -1259,6 +1274,7 @@ milliseconds relatively to this requestTime.*/
     }
 
     /**Information about the cached resource.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CachedResource implements CommonDomainType {
         /**Resource URL. This is the url of the original network request.*/
         private String url;
@@ -1318,6 +1334,7 @@ milliseconds relatively to this requestTime.*/
     }
 
     /**Information about the request initiator.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Initiator implements CommonDomainType {
         /**Type of this initiator.*/
         @ParametersAreNonnullByDefault public enum Type implements CommonDomainType {
@@ -1405,6 +1422,7 @@ module) (0-based).
     }
 
     /**Cookie object*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Cookie implements CommonDomainType {
         /**Cookie name.*/
         private String name;
@@ -1524,6 +1542,7 @@ module) (0-based).
     }
 
     /**Cookie parameter object*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CookieParam implements CommonDomainType {
         /**Cookie name.*/
         private String name;
@@ -1635,6 +1654,7 @@ default domain and path values of the created cookie.
 
     /**Authorization challenge for HTTP status code 401 or 407.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AuthChallenge implements CommonDomainType {
         /**Source of the authentication challenge.
         <em>Optional.</em>*/
@@ -1720,6 +1740,7 @@ default domain and path values of the created cookie.
 
     /**Response to an AuthChallenge.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class AuthChallengeResponse implements CommonDomainType {
         /**The decision on what to do in response to the authorization challenge.  Default means
 deferring to the default behavior of the net stack, which will likely either the Cancel
@@ -1829,6 +1850,7 @@ sent. Response will intercept after the response is received.
 
     /**Request pattern for interception.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestPattern implements CommonDomainType {
         /**Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is
 backslash. Omitting is equivalent to "*".
@@ -1882,6 +1904,7 @@ backslash. Omitting is equivalent to "*".
     public CanClearBrowserCacheParameter canClearBrowserCache() { final CanClearBrowserCacheParameter v = new CanClearBrowserCacheParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of canClearBrowserCache.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CanClearBrowserCacheParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1906,6 +1929,7 @@ backslash. Omitting is equivalent to "*".
     }
     /**Return result class of canClearBrowserCache.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CanClearBrowserCacheResult extends ResultBase {
         /**True if browser cache can be cleared.*/
         private final Boolean result;
@@ -1938,6 +1962,7 @@ backslash. Omitting is equivalent to "*".
     public CanClearBrowserCookiesParameter canClearBrowserCookies() { final CanClearBrowserCookiesParameter v = new CanClearBrowserCookiesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of canClearBrowserCookies.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CanClearBrowserCookiesParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1962,6 +1987,7 @@ backslash. Omitting is equivalent to "*".
     }
     /**Return result class of canClearBrowserCookies.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CanClearBrowserCookiesResult extends ResultBase {
         /**True if browser cookies can be cleared.*/
         private final Boolean result;
@@ -1994,6 +2020,7 @@ backslash. Omitting is equivalent to "*".
     public CanEmulateNetworkConditionsParameter canEmulateNetworkConditions() { final CanEmulateNetworkConditionsParameter v = new CanEmulateNetworkConditionsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of canEmulateNetworkConditions.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CanEmulateNetworkConditionsParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2018,6 +2045,7 @@ backslash. Omitting is equivalent to "*".
     }
     /**Return result class of canEmulateNetworkConditions.
     @Deprecated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class CanEmulateNetworkConditionsResult extends ResultBase {
         /**True if emulation of network conditions is supported.*/
         private final Boolean result;
@@ -2048,6 +2076,7 @@ backslash. Omitting is equivalent to "*".
     /**Clears browser cache.*/
     public ClearBrowserCacheParameter clearBrowserCache() { final ClearBrowserCacheParameter v = new ClearBrowserCacheParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clearBrowserCache.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearBrowserCacheParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2071,6 +2100,7 @@ backslash. Omitting is equivalent to "*".
         }
     }
     /**Return result class of clearBrowserCache.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearBrowserCacheResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2091,6 +2121,7 @@ backslash. Omitting is equivalent to "*".
     /**Clears browser cookies.*/
     public ClearBrowserCookiesParameter clearBrowserCookies() { final ClearBrowserCookiesParameter v = new ClearBrowserCookiesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clearBrowserCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearBrowserCookiesParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2114,6 +2145,7 @@ backslash. Omitting is equivalent to "*".
         }
     }
     /**Return result class of clearBrowserCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearBrowserCookiesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2139,6 +2171,7 @@ event will be sent with the same InterceptionId.
     public ContinueInterceptedRequestParameter continueInterceptedRequest() { final ContinueInterceptedRequestParameter v = new ContinueInterceptedRequestParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of continueInterceptedRequest.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ContinueInterceptedRequestParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private InterceptionId interceptionId;
@@ -2253,6 +2286,7 @@ authChallenge.
     }
     /**Return result class of continueInterceptedRequest.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ContinueInterceptedRequestResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2273,6 +2307,7 @@ authChallenge.
     /**Deletes browser cookies with matching name and url or domain/path pair.*/
     public DeleteCookiesParameter deleteCookies() { final DeleteCookiesParameter v = new DeleteCookiesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of deleteCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteCookiesParameter extends CommandBase {
         /**Name of the cookies to remove.*/
         private String name;
@@ -2341,6 +2376,7 @@ provided URL.
         }
     }
     /**Return result class of deleteCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeleteCookiesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2361,6 +2397,7 @@ provided URL.
     /**Disables network tracking, prevents network events from being sent to the client.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2384,6 +2421,7 @@ provided URL.
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2404,6 +2442,7 @@ provided URL.
     /**Activates emulation of network conditions.*/
     public EmulateNetworkConditionsParameter emulateNetworkConditions() { final EmulateNetworkConditionsParameter v = new EmulateNetworkConditionsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of emulateNetworkConditions.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EmulateNetworkConditionsParameter extends CommandBase {
         /**True to emulate internet disconnection.*/
         private Boolean offline;
@@ -2481,6 +2520,7 @@ provided URL.
         }
     }
     /**Return result class of emulateNetworkConditions.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EmulateNetworkConditionsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2501,6 +2541,7 @@ provided URL.
     /**Enables network tracking, network events will now be delivered to the client.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Buffer size in bytes to use when preserving network payloads (XHRs, etc).
         <em>Optional.</em>
@@ -2560,6 +2601,7 @@ provided URL.
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2581,6 +2623,7 @@ provided URL.
 information in the `cookies` field.*/
     public GetAllCookiesParameter getAllCookies() { final GetAllCookiesParameter v = new GetAllCookiesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getAllCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetAllCookiesParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -2604,6 +2647,7 @@ information in the `cookies` field.*/
         }
     }
     /**Return result class of getAllCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetAllCookiesResult extends ResultBase {
         /**Array of cookie objects.*/
         private final List<Cookie> cookies;
@@ -2640,6 +2684,7 @@ information in the `cookies` field.*/
     public GetCertificateParameter getCertificate() { final GetCertificateParameter v = new GetCertificateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getCertificate.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCertificateParameter extends CommandBase {
         /**Origin to get certificate for.*/
         private String origin;
@@ -2678,6 +2723,7 @@ information in the `cookies` field.*/
     }
     /**Return result class of getCertificate.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCertificateResult extends ResultBase {
         /**&lt;No document in protocol.&gt;*/
         private final List<String> tableNames;
@@ -2713,6 +2759,7 @@ information in the `cookies` field.*/
 detailed cookie information in the `cookies` field.*/
     public GetCookiesParameter getCookies() { final GetCookiesParameter v = new GetCookiesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCookiesParameter extends CommandBase {
         /**The list of URLs for which applicable cookies will be fetched
         <em>Optional.</em>*/
@@ -2756,6 +2803,7 @@ detailed cookie information in the `cookies` field.*/
         }
     }
     /**Return result class of getCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetCookiesResult extends ResultBase {
         /**Array of cookie objects.*/
         private final List<Cookie> cookies;
@@ -2790,6 +2838,7 @@ detailed cookie information in the `cookies` field.*/
     /**Returns content served for the given request.*/
     public GetResponseBodyParameter getResponseBody() { final GetResponseBodyParameter v = new GetResponseBodyParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getResponseBody.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetResponseBodyParameter extends CommandBase {
         /**Identifier of the network request to get content for.*/
         private RequestId requestId;
@@ -2827,6 +2876,7 @@ detailed cookie information in the `cookies` field.*/
         }
     }
     /**Return result class of getResponseBody.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetResponseBodyResult extends ResultBase {
         /**Response body.*/
         private final String body;
@@ -2865,6 +2915,7 @@ detailed cookie information in the `cookies` field.*/
     /**Returns post data sent with the request. Returns an error when no data was sent with the request.*/
     public GetRequestPostDataParameter getRequestPostData() { final GetRequestPostDataParameter v = new GetRequestPostDataParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getRequestPostData.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetRequestPostDataParameter extends CommandBase {
         /**Identifier of the network request to get content for.*/
         private RequestId requestId;
@@ -2902,6 +2953,7 @@ detailed cookie information in the `cookies` field.*/
         }
     }
     /**Return result class of getRequestPostData.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetRequestPostDataResult extends ResultBase {
         /**Base64-encoded request body.*/
         private final String postData;
@@ -2934,6 +2986,7 @@ detailed cookie information in the `cookies` field.*/
     public GetResponseBodyForInterceptionParameter getResponseBodyForInterception() { final GetResponseBodyForInterceptionParameter v = new GetResponseBodyForInterceptionParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getResponseBodyForInterception.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetResponseBodyForInterceptionParameter extends CommandBase {
         /**Identifier for the intercepted request to get body for.*/
         private InterceptionId interceptionId;
@@ -2972,6 +3025,7 @@ detailed cookie information in the `cookies` field.*/
     }
     /**Return result class of getResponseBodyForInterception.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetResponseBodyForInterceptionResult extends ResultBase {
         /**Response body.*/
         private final String body;
@@ -3014,6 +3068,7 @@ attribute, user, password.
     public ReplayXHRParameter replayXHR() { final ReplayXHRParameter v = new ReplayXHRParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of replayXHR.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReplayXHRParameter extends CommandBase {
         /**Identifier of XHR to replay.*/
         private RequestId requestId;
@@ -3052,6 +3107,7 @@ attribute, user, password.
     }
     /**Return result class of replayXHR.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ReplayXHRResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3074,6 +3130,7 @@ attribute, user, password.
     public SearchInResponseBodyParameter searchInResponseBody() { final SearchInResponseBodyParameter v = new SearchInResponseBodyParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of searchInResponseBody.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SearchInResponseBodyParameter extends CommandBase {
         /**Identifier of the network response to search.*/
         private RequestId requestId;
@@ -3142,6 +3199,7 @@ attribute, user, password.
     }
     /**Return result class of searchInResponseBody.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SearchInResponseBodyResult extends ResultBase {
         /**List of search matches.*/
         private final List<Debugger.SearchMatch> result;
@@ -3178,6 +3236,7 @@ attribute, user, password.
     public SetBlockedURLsParameter setBlockedURLs() { final SetBlockedURLsParameter v = new SetBlockedURLsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setBlockedURLs.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBlockedURLsParameter extends CommandBase {
         /**URL patterns to block. Wildcards ('*') are allowed.*/
         private List<String> urls;
@@ -3220,6 +3279,7 @@ attribute, user, password.
     }
     /**Return result class of setBlockedURLs.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBlockedURLsResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3242,6 +3302,7 @@ attribute, user, password.
     public SetBypassServiceWorkerParameter setBypassServiceWorker() { final SetBypassServiceWorkerParameter v = new SetBypassServiceWorkerParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setBypassServiceWorker.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBypassServiceWorkerParameter extends CommandBase {
         /**Bypass service worker and load from network.*/
         private Boolean bypass;
@@ -3280,6 +3341,7 @@ attribute, user, password.
     }
     /**Return result class of setBypassServiceWorker.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetBypassServiceWorkerResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3300,6 +3362,7 @@ attribute, user, password.
     /**Toggles ignoring cache for each request. If `true`, cache will not be used.*/
     public SetCacheDisabledParameter setCacheDisabled() { final SetCacheDisabledParameter v = new SetCacheDisabledParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setCacheDisabled.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCacheDisabledParameter extends CommandBase {
         /**Cache disabled state.*/
         private Boolean cacheDisabled;
@@ -3337,6 +3400,7 @@ attribute, user, password.
         }
     }
     /**Return result class of setCacheDisabled.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCacheDisabledResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3357,6 +3421,7 @@ attribute, user, password.
     /**Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.*/
     public SetCookieParameter setCookie() { final SetCookieParameter v = new SetCookieParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setCookie.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCookieParameter extends CommandBase {
         /**Cookie name.*/
         private String name;
@@ -3475,6 +3540,7 @@ default domain and path values of the created cookie.
         }
     }
     /**Return result class of setCookie.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCookieResult extends ResultBase {
         /**True if successfully set cookie.*/
         private final Boolean success;
@@ -3505,6 +3571,7 @@ default domain and path values of the created cookie.
     /**Sets given cookies.*/
     public SetCookiesParameter setCookies() { final SetCookiesParameter v = new SetCookiesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCookiesParameter extends CommandBase {
         /**Cookies to be set.*/
         private List<CookieParam> cookies;
@@ -3546,6 +3613,7 @@ default domain and path values of the created cookie.
         }
     }
     /**Return result class of setCookies.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetCookiesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3568,6 +3636,7 @@ default domain and path values of the created cookie.
     public SetDataSizeLimitsForTestParameter setDataSizeLimitsForTest() { final SetDataSizeLimitsForTestParameter v = new SetDataSizeLimitsForTestParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setDataSizeLimitsForTest.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDataSizeLimitsForTestParameter extends CommandBase {
         /**Maximum total buffer size.*/
         private Integer maxTotalSize;
@@ -3616,6 +3685,7 @@ default domain and path values of the created cookie.
     }
     /**Return result class of setDataSizeLimitsForTest.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetDataSizeLimitsForTestResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3636,6 +3706,7 @@ default domain and path values of the created cookie.
     /**Specifies whether to always send extra HTTP headers with the requests from this page.*/
     public SetExtraHTTPHeadersParameter setExtraHTTPHeaders() { final SetExtraHTTPHeadersParameter v = new SetExtraHTTPHeadersParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setExtraHTTPHeaders.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetExtraHTTPHeadersParameter extends CommandBase {
         /**Map with extra HTTP headers.*/
         private Headers headers;
@@ -3673,6 +3744,7 @@ default domain and path values of the created cookie.
         }
     }
     /**Return result class of setExtraHTTPHeaders.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetExtraHTTPHeadersResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3695,6 +3767,7 @@ default domain and path values of the created cookie.
     public SetRequestInterceptionParameter setRequestInterception() { final SetRequestInterceptionParameter v = new SetRequestInterceptionParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setRequestInterception.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetRequestInterceptionParameter extends CommandBase {
         /**Requests matching any of these patterns will be forwarded and wait for the corresponding
 continueInterceptedRequest call.*/
@@ -3738,6 +3811,7 @@ continueInterceptedRequest call.*/
     }
     /**Return result class of setRequestInterception.
     <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetRequestInterceptionResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3758,6 +3832,7 @@ continueInterceptedRequest call.*/
     /**Allows overriding user agent with the given string.*/
     public SetUserAgentOverrideParameter setUserAgentOverride() { final SetUserAgentOverrideParameter v = new SetUserAgentOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setUserAgentOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetUserAgentOverrideParameter extends CommandBase {
         /**User agent to use.*/
         private String userAgent;
@@ -3795,6 +3870,7 @@ continueInterceptedRequest call.*/
         }
     }
     /**Return result class of setUserAgentOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetUserAgentOverrideResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -3814,6 +3890,7 @@ continueInterceptedRequest call.*/
     }
     /**Event parameter of Network.dataReceived.
      @see #onDataReceived*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DataReceivedEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -3870,6 +3947,7 @@ continueInterceptedRequest call.*/
     }
     /**Event parameter of Network.eventSourceMessageReceived.
      @see #onEventSourceMessageReceived*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EventSourceMessageReceivedEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -3933,6 +4011,7 @@ continueInterceptedRequest call.*/
     }
     /**Event parameter of Network.loadingFailed.
      @see #onLoadingFailed*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LoadingFailedEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4005,6 +4084,7 @@ continueInterceptedRequest call.*/
     }
     /**Event parameter of Network.loadingFinished.
      @see #onLoadingFinished*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LoadingFinishedEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4063,6 +4143,7 @@ continueInterceptedRequest call.*/
     /**Event parameter of Network.requestIntercepted.
     <p><strong>Experimental.</strong></p>
      @see #onRequestIntercepted*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestInterceptedEventParameter implements CommonDomainType {
         /**Each request the page makes will have a unique id, however if any redirects are encountered
 while processing that fetch, they will be reported with the same id as the original fetch.
@@ -4174,6 +4255,7 @@ mocked.
     }
     /**Event parameter of Network.requestServedFromCache.
      @see #onRequestServedFromCache*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestServedFromCacheEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4209,6 +4291,7 @@ mocked.
     }
     /**Event parameter of Network.requestWillBeSent.
      @see #onRequestWillBeSent*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class RequestWillBeSentEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4319,6 +4402,7 @@ mocked.
     /**Event parameter of Network.resourceChangedPriority.
     <p><strong>Experimental.</strong></p>
      @see #onResourceChangedPriority*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResourceChangedPriorityEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4369,6 +4453,7 @@ mocked.
     }
     /**Event parameter of Network.responseReceived.
      @see #onResponseReceived*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ResponseReceivedEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4440,6 +4525,7 @@ mocked.
     }
     /**Event parameter of Network.webSocketClosed.
      @see #onWebSocketClosed*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketClosedEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4482,6 +4568,7 @@ mocked.
     }
     /**Event parameter of Network.webSocketCreated.
      @see #onWebSocketCreated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketCreatedEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4532,6 +4619,7 @@ mocked.
     }
     /**Event parameter of Network.webSocketFrameError.
      @see #onWebSocketFrameError*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketFrameErrorEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4581,6 +4669,7 @@ mocked.
     }
     /**Event parameter of Network.webSocketFrameReceived.
      @see #onWebSocketFrameReceived*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketFrameReceivedEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4630,6 +4719,7 @@ mocked.
     }
     /**Event parameter of Network.webSocketFrameSent.
      @see #onWebSocketFrameSent*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketFrameSentEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4679,6 +4769,7 @@ mocked.
     }
     /**Event parameter of Network.webSocketHandshakeResponseReceived.
      @see #onWebSocketHandshakeResponseReceived*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketHandshakeResponseReceivedEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;
@@ -4728,6 +4819,7 @@ mocked.
     }
     /**Event parameter of Network.webSocketWillSendHandshakeRequest.
      @see #onWebSocketWillSendHandshakeRequest*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WebSocketWillSendHandshakeRequestEventParameter implements CommonDomainType {
         /**Request identifier.*/
         private final RequestId requestId;

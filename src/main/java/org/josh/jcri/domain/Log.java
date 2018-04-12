@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
     public Log(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**Log entry.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LogEntry implements CommonDomainType {
         /**Log entry source.*/
         @ParametersAreNonnullByDefault public enum Source implements CommonDomainType {
@@ -217,6 +219,7 @@ import javax.annotation.Nullable;
     }
 
     /**Violation configuration setting.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ViolationSetting implements CommonDomainType {
         /**Violation type.*/
         @ParametersAreNonnullByDefault public enum Name implements CommonDomainType {
@@ -287,6 +290,7 @@ import javax.annotation.Nullable;
     /**Clears the log.*/
     public ClearParameter clear() { final ClearParameter v = new ClearParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of clear.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -310,6 +314,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of clear.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ClearResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -330,6 +335,7 @@ import javax.annotation.Nullable;
     /**Disables log domain, prevents further log entries from being reported to the client.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -353,6 +359,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -374,6 +381,7 @@ import javax.annotation.Nullable;
 `entryAdded` notification.*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -397,6 +405,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -417,6 +426,7 @@ import javax.annotation.Nullable;
     /**start violation reporting.*/
     public StartViolationsReportParameter startViolationsReport() { final StartViolationsReportParameter v = new StartViolationsReportParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of startViolationsReport.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartViolationsReportParameter extends CommandBase {
         /**Configuration for violations.*/
         private List<ViolationSetting> config;
@@ -458,6 +468,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of startViolationsReport.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartViolationsReportResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -478,6 +489,7 @@ import javax.annotation.Nullable;
     /**Stop violation reporting.*/
     public StopViolationsReportParameter stopViolationsReport() { final StopViolationsReportParameter v = new StopViolationsReportParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopViolationsReport.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopViolationsReportParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -501,6 +513,7 @@ import javax.annotation.Nullable;
         }
     }
     /**Return result class of stopViolationsReport.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopViolationsReportResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -520,6 +533,7 @@ import javax.annotation.Nullable;
     }
     /**Event parameter of Log.entryAdded.
      @see #onEntryAdded*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EntryAddedEventParameter implements CommonDomainType {
         /**The entry.*/
         private final LogEntry entry;

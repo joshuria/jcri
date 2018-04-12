@@ -1,5 +1,6 @@
 package org.josh.jcri.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.josh.jcri.CommandBase;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
     public ServiceWorker(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
     /**ServiceWorker registration.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ServiceWorkerRegistration implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private String registrationId;
@@ -137,6 +139,7 @@ import javax.annotation.Nullable;
     }
 
     /**ServiceWorker version.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ServiceWorkerVersion implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private String versionId;
@@ -253,6 +256,7 @@ For cached script it is the last time the cache entry was validated.
     }
 
     /**ServiceWorker error message.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class ServiceWorkerErrorMessage implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private String errorMessage;
@@ -333,6 +337,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public DeliverPushMessageParameter deliverPushMessage() { final DeliverPushMessageParameter v = new DeliverPushMessageParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of deliverPushMessage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeliverPushMessageParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String origin;
@@ -390,6 +395,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of deliverPushMessage.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DeliverPushMessageResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -410,6 +416,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -433,6 +440,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of disable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -453,6 +461,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public DispatchSyncEventParameter dispatchSyncEvent() { final DispatchSyncEventParameter v = new DispatchSyncEventParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of dispatchSyncEvent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DispatchSyncEventParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String origin;
@@ -520,6 +529,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of dispatchSyncEvent.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DispatchSyncEventResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -540,6 +550,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public EnableParameter enable() { final EnableParameter v = new EnableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -563,6 +574,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of enable.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class EnableResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -583,6 +595,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public InspectWorkerParameter inspectWorker() { final InspectWorkerParameter v = new InspectWorkerParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of inspectWorker.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InspectWorkerParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String versionId;
@@ -620,6 +633,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of inspectWorker.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class InspectWorkerResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -640,6 +654,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public SetForceUpdateOnPageLoadParameter setForceUpdateOnPageLoad() { final SetForceUpdateOnPageLoadParameter v = new SetForceUpdateOnPageLoadParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setForceUpdateOnPageLoad.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetForceUpdateOnPageLoadParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private Boolean forceUpdateOnPageLoad;
@@ -677,6 +692,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of setForceUpdateOnPageLoad.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetForceUpdateOnPageLoadResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -697,6 +713,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public SkipWaitingParameter skipWaiting() { final SkipWaitingParameter v = new SkipWaitingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of skipWaiting.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SkipWaitingParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String scopeURL;
@@ -734,6 +751,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of skipWaiting.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SkipWaitingResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -754,6 +772,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public StartWorkerParameter startWorker() { final StartWorkerParameter v = new StartWorkerParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of startWorker.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartWorkerParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String scopeURL;
@@ -791,6 +810,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of startWorker.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StartWorkerResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -811,6 +831,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public StopAllWorkersParameter stopAllWorkers() { final StopAllWorkersParameter v = new StopAllWorkersParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopAllWorkers.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopAllWorkersParameter extends CommandBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -834,6 +855,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of stopAllWorkers.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopAllWorkersResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -854,6 +876,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public StopWorkerParameter stopWorker() { final StopWorkerParameter v = new StopWorkerParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of stopWorker.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopWorkerParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String versionId;
@@ -891,6 +914,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of stopWorker.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class StopWorkerResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -911,6 +935,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public UnregisterParameter unregister() { final UnregisterParameter v = new UnregisterParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of unregister.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UnregisterParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String scopeURL;
@@ -948,6 +973,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of unregister.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UnregisterResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -968,6 +994,7 @@ For cached script it is the last time the cache entry was validated.
     /**&lt;No document in protocol.&gt;*/
     public UpdateRegistrationParameter updateRegistration() { final UpdateRegistrationParameter v = new UpdateRegistrationParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of updateRegistration.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UpdateRegistrationParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String scopeURL;
@@ -1005,6 +1032,7 @@ For cached script it is the last time the cache entry was validated.
         }
     }
     /**Return result class of updateRegistration.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class UpdateRegistrationResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
@@ -1024,6 +1052,7 @@ For cached script it is the last time the cache entry was validated.
     }
     /**Event parameter of ServiceWorker.workerErrorReported.
      @see #onWorkerErrorReported*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WorkerErrorReportedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final ServiceWorkerErrorMessage errorMessage;
@@ -1059,6 +1088,7 @@ For cached script it is the last time the cache entry was validated.
     }
     /**Event parameter of ServiceWorker.workerRegistrationUpdated.
      @see #onWorkerRegistrationUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WorkerRegistrationUpdatedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final List<ServiceWorkerRegistration> registrations;
@@ -1098,6 +1128,7 @@ For cached script it is the last time the cache entry was validated.
     }
     /**Event parameter of ServiceWorker.workerVersionUpdated.
      @see #onWorkerVersionUpdated*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class WorkerVersionUpdatedEventParameter implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private final List<ServiceWorkerVersion> versions;
