@@ -57,8 +57,8 @@ import javax.annotation.Nullable;
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Format format;
         /**Compression quality from range [0..100] (jpeg only).
@@ -103,13 +103,21 @@ https://goo.gl/3zHXhB for more background.*/
     @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class BeginFrameParameter extends CommandBase {
         /**Timestamp of this BeginFrame (milliseconds since epoch). If not set, the current time will
-be used.
+be used unless frameTicks is specified.
         <em>Optional.</em>*/
         private Runtime.Timestamp frameTime;
+        /**Timestamp of this BeginFrame in Renderer TimeTicks (milliseconds of uptime). If not set,
+the current time will be used unless frameTime is specified.
+        <em>Optional.</em>*/
+        private Double frameTimeTicks;
         /**Deadline of this BeginFrame (milliseconds since epoch). If not set, the deadline will be
-calculated from the frameTime and interval.
+calculated from the frameTime and interval unless deadlineTicks is specified.
         <em>Optional.</em>*/
         private Runtime.Timestamp deadline;
+        /**Deadline of this BeginFrame in Renderer TimeTicks  (milliseconds of uptime). If not set,
+the deadline will be calculated from the frameTime and interval unless deadline is specified.
+        <em>Optional.</em>*/
+        private Double deadlineTicks;
         /**The interval between BeginFrames that is reported to the compositor, in milliseconds.
 Defaults to a 60 frames/second interval, i.e. about 16.666 milliseconds.
         <em>Optional.</em>*/
@@ -128,10 +136,18 @@ during renderer initialization. In such a case, no screenshot data will be retur
         public final BeginFrameParameter optFrameTime(@Nullable Runtime.Timestamp frameTime) { return frameTime(frameTime); }
         public final Runtime.Timestamp frameTime() { return frameTime; }
         public final Runtime.Timestamp getFrameTime() { return frameTime(); }
+        public final BeginFrameParameter frameTimeTicks(@Nullable Double frameTimeTicks) { this.frameTimeTicks = frameTimeTicks; return this; }
+        public final BeginFrameParameter optFrameTimeTicks(@Nullable Double frameTimeTicks) { return frameTimeTicks(frameTimeTicks); }
+        public final Double frameTimeTicks() { return frameTimeTicks; }
+        public final Double getFrameTimeTicks() { return frameTimeTicks(); }
         public final BeginFrameParameter deadline(@Nullable Runtime.Timestamp deadline) { this.deadline = deadline; return this; }
         public final BeginFrameParameter optDeadline(@Nullable Runtime.Timestamp deadline) { return deadline(deadline); }
         public final Runtime.Timestamp deadline() { return deadline; }
         public final Runtime.Timestamp getDeadline() { return deadline(); }
+        public final BeginFrameParameter deadlineTicks(@Nullable Double deadlineTicks) { this.deadlineTicks = deadlineTicks; return this; }
+        public final BeginFrameParameter optDeadlineTicks(@Nullable Double deadlineTicks) { return deadlineTicks(deadlineTicks); }
+        public final Double deadlineTicks() { return deadlineTicks; }
+        public final Double getDeadlineTicks() { return deadlineTicks(); }
         public final BeginFrameParameter interval(@Nullable Double interval) { this.interval = interval; return this; }
         public final BeginFrameParameter optInterval(@Nullable Double interval) { return interval(interval); }
         public final Double interval() { return interval; }
@@ -153,7 +169,9 @@ during renderer initialization. In such a case, no screenshot data will be retur
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             if (frameTime != null) frameTime.toJson(strBuilder.append("\"frameTime\":"));
+            if (frameTimeTicks != null) strBuilder.append(",\"frameTimeTicks\":").append(frameTimeTicks);
             if (deadline != null) deadline.toJson(strBuilder.append(",\"deadline\":"));
+            if (deadlineTicks != null) strBuilder.append(",\"deadlineTicks\":").append(deadlineTicks);
             if (interval != null) strBuilder.append(",\"interval\":").append(interval);
             if (noDisplayUpdates != null) strBuilder.append(",\"noDisplayUpdates\":").append(noDisplayUpdates);
             if (screenshot != null) screenshot.toJson(strBuilder.append(",\"screenshot\":"));
@@ -163,14 +181,18 @@ during renderer initialization. In such a case, no screenshot data will be retur
         public BeginFrameParameter() {}
         public BeginFrameParameter(
             @Nullable @JsonProperty("frameTime")Runtime.Timestamp frameTime,
+            @Nullable @JsonProperty("frameTimeTicks")Double frameTimeTicks,
             @Nullable @JsonProperty("deadline")Runtime.Timestamp deadline,
+            @Nullable @JsonProperty("deadlineTicks")Double deadlineTicks,
             @Nullable @JsonProperty("interval")Double interval,
             @Nullable @JsonProperty("noDisplayUpdates")Boolean noDisplayUpdates,
             @Nullable @JsonProperty("screenshot")ScreenshotParams screenshot
         ) {
             this();
             this.frameTime = frameTime;
+            this.frameTimeTicks = frameTimeTicks;
             this.deadline = deadline;
+            this.deadlineTicks = deadlineTicks;
             this.interval = interval;
             this.noDisplayUpdates = noDisplayUpdates;
             this.screenshot = screenshot;

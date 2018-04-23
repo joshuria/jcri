@@ -143,8 +143,8 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**UTC time in seconds, counted from January 1, 1970.*/
@@ -199,8 +199,8 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**Bit field representing pressed modifier keys. Alt=1, Ctrl=2, Meta/Command=4, Shift=8
@@ -420,8 +420,8 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**X coordinate of the event relative to the main frame's viewport in CSS pixels.*/
@@ -462,8 +462,8 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Button button;
         /**Number of times the mouse button was clicked (default: 0).
@@ -616,8 +616,8 @@ TouchStart and TouchMove must contains at least one.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**Active touch points on the touch device. One event per any changed point (compared to
@@ -741,8 +741,8 @@ one by one.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**X coordinate of the mouse pointer in DIP.*/
@@ -774,8 +774,8 @@ one by one.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Button button;
         /**Time at which the event occurred (default: current time).

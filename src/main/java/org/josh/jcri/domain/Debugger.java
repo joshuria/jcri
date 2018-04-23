@@ -303,8 +303,8 @@ breakpoints, stepping through execution, exploring stack traces, etc.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**Object representing the scope. For `global` and `with` scopes it represents the actual
@@ -449,8 +449,8 @@ variables as its properties.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         public final BreakLocation scriptId(Runtime.ScriptId scriptId) { this.scriptId = scriptId; return this; }
@@ -530,8 +530,8 @@ variables as its properties.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private TargetCallFrames targetCallFrames;
         public final ContinueToLocationParameter location(Location location) { this.location = location; return this; }
@@ -2060,8 +2060,8 @@ no exceptions. Initial pause on exceptions state is `none`.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private State state;
         public final SetPauseOnExceptionsParameter state(State state) { this.state = state; return this; }
@@ -2693,8 +2693,8 @@ before next pause.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private final Reason reason;
         /**Object containing break-specific auxiliary properties.

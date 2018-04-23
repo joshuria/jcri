@@ -75,7 +75,7 @@ public abstract class CommandBase implements CommonDomainType {
             if (_success) {
                 try {
                     final T result = EventCenter.deserializeJson(resp, resultMetaClass);
-                    result.setId(id);
+                    result.setCommandId(id);
                     return result;
                 }
                 catch (IOException e) {
@@ -85,7 +85,7 @@ public abstract class CommandBase implements CommonDomainType {
             }
             else {
                 final T result = failResultFactory.apply(resp.get("code").asInt(), resp.get("message").asText());
-                result.setId(id);
+                result.setCommandId(id);
                 return result;
             }
         }, exec);

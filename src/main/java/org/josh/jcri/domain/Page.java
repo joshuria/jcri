@@ -64,8 +64,8 @@ import javax.annotation.Nullable;
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**Unique frame identifier.*/
@@ -446,8 +446,8 @@ import javax.annotation.Nullable;
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**Navigation history entry.*/
@@ -636,8 +636,8 @@ import javax.annotation.Nullable;
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**Error while paring app manifest.*/
@@ -1137,8 +1137,8 @@ import javax.annotation.Nullable;
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Format format;
         /**Compression quality from range [0..100] (jpeg only).
@@ -2412,13 +2412,13 @@ Defaults to false.
         private Boolean ignoreInvalidPageRanges;
         /**HTML template for the print header. Should be valid HTML markup with following
 classes used to inject printing values into them:
-- date - formatted print date
-- title - document title
-- url - document location
-- pageNumber - current page number
-- totalPages - total pages in the document
+- `date`: formatted print date
+- `title`: document title
+- `url`: document location
+- `pageNumber`: current page number
+- `totalPages`: total pages in the document
 
-For example, <span class=title></span> would generate span containing the title.
+For example, `<span class=title></span>` would generate span containing the title.
         <em>Optional.</em>*/
         private String headerTemplate;
         /**HTML template for the print footer. Should use the same format as the `headerTemplate`.
@@ -3069,6 +3069,68 @@ Argument will be ignored if reloading dataURL origin.
             super(e);
         }
     }
+    /**Enable page Content Security Policy by-passing.
+    <p><strong>Experimental.</strong></p>*/
+    public SetBypassCSPParameter setBypassCSP() { final SetBypassCSPParameter v = new SetBypassCSPParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setBypassCSP.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetBypassCSPParameter extends CommandBase {
+        /**Whether to bypass page CSP.*/
+        private Boolean enabled;
+        public final SetBypassCSPParameter enabled(Boolean enabled) { this.enabled = enabled; return this; }
+        public final SetBypassCSPParameter setEnabled(Boolean enabled) { return enabled(enabled); }
+        public final Boolean enabled() { return enabled; }
+        public final Boolean getEnabled() { return enabled(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (enabled == null) throw new IllegalArgumentException("Page.SetBypassCSPParameter.enabled is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"enabled\":").append(enabled);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetBypassCSPParameter() {}
+        public SetBypassCSPParameter(
+            @JsonProperty("enabled")Boolean enabled
+        ) {
+            this();
+            this.enabled = enabled;
+        }
+        public CompletableFuture<SetBypassCSPResult> call() {
+            return super.call("Page.setBypassCSP", SetBypassCSPResult.class,
+                (code, msg)->new SetBypassCSPResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBypassCSPResult> call(Executor exec) {
+            return super.call("Page.setBypassCSP", SetBypassCSPResult.class,
+                (code, msg)->new SetBypassCSPResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setBypassCSP.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetBypassCSPResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetBypassCSPResult() { super(); }
+        public SetBypassCSPResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
     /**Overrides the values of device screen dimensions (window.screen.width, window.screen.height,
 window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media
 query results).
@@ -3433,8 +3495,8 @@ available (otherwise deny).*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Behavior behavior;
         /**The default path to save downloaded files to. This is requred if behavior is set to 'allow'
@@ -3680,8 +3742,8 @@ unavailable.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Configuration configuration;
         public final SetTouchEmulationEnabledParameter enabled(Boolean enabled) { this.enabled = enabled; return this; }
@@ -3776,8 +3838,8 @@ unavailable.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Format format;
         /**Compression quality from range [0..100].
@@ -4277,8 +4339,8 @@ guaranteed to start.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private final Reason reason;
         /**The destination URL for the scheduled navigation.*/
@@ -4513,6 +4575,10 @@ closed.
         private final String message;
         /**Dialog type.*/
         private final DialogType type;
+        /**True iff browser is capable showing or acting on the given dialog. When browser has no
+dialog handler for given target, calling alert while Page domain is engaged will stall
+the page execution. Execution can be resumed via calling Page.handleJavaScriptDialog.*/
+        private final Boolean hasBrowserHandler;
         /**Default dialog prompt.
         <em>Optional.</em>*/
         private final String defaultPrompt;
@@ -4522,6 +4588,8 @@ closed.
         public final String getMessage() { return message(); }
         public final DialogType type() { return type; }
         public final DialogType getType() { return type(); }
+        public final Boolean hasBrowserHandler() { return hasBrowserHandler; }
+        public final Boolean getHasBrowserHandler() { return hasBrowserHandler(); }
         public final String defaultPrompt() { return defaultPrompt; }
         public final String getDefaultPrompt() { return defaultPrompt(); }
         /**Check if parameter fields of method are all valid.
@@ -4535,6 +4603,7 @@ closed.
             strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
             strBuilder.append(",\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
             type.toJson(strBuilder.append(",\"type\":"));
+            strBuilder.append(",\"hasBrowserHandler\":").append(hasBrowserHandler);
             if (defaultPrompt != null) strBuilder.append(",\"defaultPrompt\":").append('"').append(DomainBase.escapeQuote(defaultPrompt)).append('"');
             strBuilder.append('}');
             return strBuilder;
@@ -4543,11 +4612,13 @@ closed.
             @JsonProperty("url")String url,
             @JsonProperty("message")String message,
             @JsonProperty("type")DialogType type,
+            @JsonProperty("hasBrowserHandler")Boolean hasBrowserHandler,
             @Nullable @JsonProperty("defaultPrompt")String defaultPrompt
         ) {
             this.url = url;
             this.message = message;
             this.type = type;
+            this.hasBrowserHandler = hasBrowserHandler;
             this.defaultPrompt = defaultPrompt;
         }
     }
@@ -4651,6 +4722,51 @@ open.
         registerEventCallback("Page.loadEventFired", node -> {
             LoadEventFiredEventParameter param;
             try { param = EventCenter.deserializeJson(node, LoadEventFiredEventParameter.class); }
+            catch (IOException e) { e.printStackTrace(); return; }
+            callback.accept(param);
+        });
+    }
+    /**Event parameter of Page.navigatedWithinDocument.
+    <p><strong>Experimental.</strong></p>
+     @see #onNavigatedWithinDocument*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class NavigatedWithinDocumentEventParameter implements CommonDomainType {
+        /**Id of the frame.*/
+        private final FrameId frameId;
+        /**Frame's new url.*/
+        private final String url;
+        public final FrameId frameId() { return frameId; }
+        public final FrameId getFrameId() { return frameId(); }
+        public final String url() { return url; }
+        public final String getUrl() { return url(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            frameId.toJson(strBuilder.append("\"frameId\":"));
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        NavigatedWithinDocumentEventParameter(
+            @JsonProperty("frameId")FrameId frameId,
+            @JsonProperty("url")String url
+        ) {
+            this.frameId = frameId;
+            this.url = url;
+        }
+    }
+    /**Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation.
+    <p><strong>Experimental.</strong></p>
+     @see NavigatedWithinDocumentEventParameter*/
+    public void onNavigatedWithinDocument(Consumer<NavigatedWithinDocumentEventParameter> callback) {
+        registerEventCallback("Page.navigatedWithinDocument", node -> {
+            NavigatedWithinDocumentEventParameter param;
+            try { param = EventCenter.deserializeJson(node, NavigatedWithinDocumentEventParameter.class); }
             catch (IOException e) { e.printStackTrace(); return; }
             callback.accept(param);
         });

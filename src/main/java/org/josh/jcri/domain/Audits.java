@@ -60,8 +60,8 @@ applies to images.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Encoding encoding;
         /**The quality of the encoding (0-1). (defaults to 1)

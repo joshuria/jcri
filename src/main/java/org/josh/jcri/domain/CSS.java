@@ -84,8 +84,8 @@ inspector" rules), "regular" for regular stylesheets.*/
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**CSS rule collection for a single pseudo style.*/
@@ -956,8 +956,8 @@ stylesheet's STYLE tag.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Source source;
         /**URL of the document containing the media query description.
@@ -2388,7 +2388,7 @@ node.*/
             fonts = null;
         }
     }
-    /**Returns the current textual content and the URL for a stylesheet.*/
+    /**Returns the current textual content for a stylesheet.*/
     public GetStyleSheetTextParameter getStyleSheetText() { final GetStyleSheetTextParameter v = new GetStyleSheetTextParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of getStyleSheetText.*/
     @JsonIgnoreProperties(ignoreUnknown = true)

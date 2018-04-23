@@ -75,8 +75,8 @@ https://www.w3.org/TR/mixed-content/#categories*/
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**The security level of a page or resource.*/
@@ -105,8 +105,8 @@ https://www.w3.org/TR/mixed-content/#categories*/
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**An explanation of an factor contributing to the security state.*/
@@ -309,8 +309,8 @@ request and cancel will cancel the request.*/
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
     /**Disables tracking security state changes.*/
     public DisableParameter disable() { final DisableParameter v = new DisableParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
@@ -537,7 +537,7 @@ request and cancel will cancel the request.*/
         }
     }
     /**Enable/disable overriding certificate errors. If enabled, all certificate error events need to
-be handled by the DevTools client and should be answered with handleCertificateError commands.
+be handled by the DevTools client and should be answered with `handleCertificateError` commands.
     @Deprecated*/
     public SetOverrideCertificateErrorsParameter setOverrideCertificateErrors() { final SetOverrideCertificateErrorsParameter v = new SetOverrideCertificateErrorsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setOverrideCertificateErrors.
@@ -641,7 +641,7 @@ be handled by the DevTools client and should be answered with handleCertificateE
         }
     }
     /**There is a certificate error. If overriding certificate errors is enabled, then it should be
-handled with the handleCertificateError command. Note: this event does not fire if the
+handled with the `handleCertificateError` command. Note: this event does not fire if the
 certificate error has been allowed internally. Only one client per target should override
 certificate errors at the same time.
      @see CertificateErrorEventParameter

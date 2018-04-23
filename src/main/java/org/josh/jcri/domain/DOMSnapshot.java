@@ -584,6 +584,9 @@ flattened.*/
         /**Whether to determine and include the paint order index of LayoutTreeNodes (default false).
         <em>Optional.</em>*/
         private Boolean includePaintOrder;
+        /**Whether to include UA shadow tree in the snapshot (default false).
+        <em>Optional.</em>*/
+        private Boolean includeUserAgentShadowTree;
         public final GetSnapshotParameter computedStyleWhitelist(List<String> computedStyleWhitelist) { this.computedStyleWhitelist = computedStyleWhitelist; return this; }
         public final GetSnapshotParameter setComputedStyleWhitelist(List<String> computedStyleWhitelist) { return computedStyleWhitelist(computedStyleWhitelist); }
         public final List<String> computedStyleWhitelist() { return computedStyleWhitelist; }
@@ -596,6 +599,10 @@ flattened.*/
         public final GetSnapshotParameter optIncludePaintOrder(@Nullable Boolean includePaintOrder) { return includePaintOrder(includePaintOrder); }
         public final Boolean includePaintOrder() { return includePaintOrder; }
         public final Boolean getIncludePaintOrder() { return includePaintOrder(); }
+        public final GetSnapshotParameter includeUserAgentShadowTree(@Nullable Boolean includeUserAgentShadowTree) { this.includeUserAgentShadowTree = includeUserAgentShadowTree; return this; }
+        public final GetSnapshotParameter optIncludeUserAgentShadowTree(@Nullable Boolean includeUserAgentShadowTree) { return includeUserAgentShadowTree(includeUserAgentShadowTree); }
+        public final Boolean includeUserAgentShadowTree() { return includeUserAgentShadowTree; }
+        public final Boolean getIncludeUserAgentShadowTree() { return includeUserAgentShadowTree(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -612,6 +619,7 @@ flattened.*/
             strBuilder.append(']');
             if (includeEventListeners != null) strBuilder.append(",\"includeEventListeners\":").append(includeEventListeners);
             if (includePaintOrder != null) strBuilder.append(",\"includePaintOrder\":").append(includePaintOrder);
+            if (includeUserAgentShadowTree != null) strBuilder.append(",\"includeUserAgentShadowTree\":").append(includeUserAgentShadowTree);
             strBuilder.append('}');
             return strBuilder;
         }
@@ -619,12 +627,14 @@ flattened.*/
         public GetSnapshotParameter(
             @JsonProperty("computedStyleWhitelist")List<String> computedStyleWhitelist,
             @Nullable @JsonProperty("includeEventListeners")Boolean includeEventListeners,
-            @Nullable @JsonProperty("includePaintOrder")Boolean includePaintOrder
+            @Nullable @JsonProperty("includePaintOrder")Boolean includePaintOrder,
+            @Nullable @JsonProperty("includeUserAgentShadowTree")Boolean includeUserAgentShadowTree
         ) {
             this();
             this.computedStyleWhitelist = computedStyleWhitelist;
             this.includeEventListeners = includeEventListeners;
             this.includePaintOrder = includePaintOrder;
+            this.includeUserAgentShadowTree = includeUserAgentShadowTree;
         }
         public CompletableFuture<GetSnapshotResult> call() {
             return super.call("DOMSnapshot.getSnapshot", GetSnapshotResult.class,

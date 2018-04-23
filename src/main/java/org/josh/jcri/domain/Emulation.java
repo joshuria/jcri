@@ -58,8 +58,8 @@ import javax.annotation.Nullable;
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**Orientation angle.*/
@@ -125,8 +125,8 @@ resource fetches.
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
     /**Tells whether emulation is supported.*/
     public CanEmulateParameter canEmulate() { final CanEmulateParameter v = new CanEmulateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
@@ -657,8 +657,8 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Configuration configuration;
         public final SetEmitTouchEventsForMouseParameter enabled(Boolean enabled) { this.enabled = enabled; return this; }
@@ -1194,8 +1194,12 @@ Note any previous deferred policy change is superseded.
     @ParametersAreNonnullByDefault public static class SetVirtualTimePolicyResult extends ResultBase {
         /**Absolute timestamp at which virtual time was first enabled (milliseconds since epoch).*/
         private final Runtime.Timestamp virtualTimeBase;
+        /**Absolute timestamp at which virtual time was first enabled (up time in milliseconds).*/
+        private final Double virtualTimeTicksBase;
         public final Runtime.Timestamp virtualTimeBase() { return virtualTimeBase; }
         public final Runtime.Timestamp getVirtualTimeBase() { return virtualTimeBase(); }
+        public final Double virtualTimeTicksBase() { return virtualTimeTicksBase; }
+        public final Double getVirtualTimeTicksBase() { return virtualTimeTicksBase(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -1205,17 +1209,21 @@ Note any previous deferred policy change is superseded.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             virtualTimeBase.toJson(strBuilder.append("\"virtualTimeBase\":"));
+            strBuilder.append(",\"virtualTimeTicksBase\":").append(virtualTimeTicksBase);
             strBuilder.append('}');
             return strBuilder;
         }
         public SetVirtualTimePolicyResult(
-            @JsonProperty("virtualTimeBase")Runtime.Timestamp virtualTimeBase
+            @JsonProperty("virtualTimeBase")Runtime.Timestamp virtualTimeBase,
+            @JsonProperty("virtualTimeTicksBase")Double virtualTimeTicksBase
         ) {
             this.virtualTimeBase = virtualTimeBase;
+            this.virtualTimeTicksBase = virtualTimeTicksBase;
         }
         public SetVirtualTimePolicyResult(ResultBase.FailedResult e) {
             super(e);
             virtualTimeBase = null;
+            virtualTimeTicksBase = null;
         }
     }
     /**Resizes the frame/viewport of the page. Note that this does not affect the frame's container

@@ -90,8 +90,8 @@ import javax.annotation.Nullable;
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**Enum of possible property sources.*/
@@ -121,8 +121,8 @@ import javax.annotation.Nullable;
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**Enum of possible native property sources (as a subtype of a particular AXValueSourceType).*/
@@ -154,8 +154,8 @@ import javax.annotation.Nullable;
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**A single source for a computed AX property.*/
@@ -490,8 +490,8 @@ elements other than parent/child/sibling.*/
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**A node in the accessibility tree.*/
@@ -638,15 +638,30 @@ elements other than parent/child/sibling.*/
     <p><strong>Experimental.</strong></p>*/
     @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetPartialAXTreeParameter extends CommandBase {
-        /**ID of node to get the partial accessibility tree for.*/
+        /**Identifier of the node to get the partial accessibility tree for.
+        <em>Optional.</em>*/
         private DOM.NodeId nodeId;
+        /**Identifier of the backend node to get the partial accessibility tree for.
+        <em>Optional.</em>*/
+        private DOM.BackendNodeId backendNodeId;
+        /**JavaScript object id of the node wrapper to get the partial accessibility tree for.
+        <em>Optional.</em>*/
+        private Runtime.RemoteObjectId objectId;
         /**Whether to fetch this nodes ancestors, siblings and children. Defaults to true.
         <em>Optional.</em>*/
         private Boolean fetchRelatives;
-        public final GetPartialAXTreeParameter nodeId(DOM.NodeId nodeId) { this.nodeId = nodeId; return this; }
-        public final GetPartialAXTreeParameter setNodeId(DOM.NodeId nodeId) { return nodeId(nodeId); }
+        public final GetPartialAXTreeParameter nodeId(@Nullable DOM.NodeId nodeId) { this.nodeId = nodeId; return this; }
+        public final GetPartialAXTreeParameter optNodeId(@Nullable DOM.NodeId nodeId) { return nodeId(nodeId); }
         public final DOM.NodeId nodeId() { return nodeId; }
         public final DOM.NodeId getNodeId() { return nodeId(); }
+        public final GetPartialAXTreeParameter backendNodeId(@Nullable DOM.BackendNodeId backendNodeId) { this.backendNodeId = backendNodeId; return this; }
+        public final GetPartialAXTreeParameter optBackendNodeId(@Nullable DOM.BackendNodeId backendNodeId) { return backendNodeId(backendNodeId); }
+        public final DOM.BackendNodeId backendNodeId() { return backendNodeId; }
+        public final DOM.BackendNodeId getBackendNodeId() { return backendNodeId(); }
+        public final GetPartialAXTreeParameter objectId(@Nullable Runtime.RemoteObjectId objectId) { this.objectId = objectId; return this; }
+        public final GetPartialAXTreeParameter optObjectId(@Nullable Runtime.RemoteObjectId objectId) { return objectId(objectId); }
+        public final Runtime.RemoteObjectId objectId() { return objectId; }
+        public final Runtime.RemoteObjectId getObjectId() { return objectId(); }
         public final GetPartialAXTreeParameter fetchRelatives(@Nullable Boolean fetchRelatives) { this.fetchRelatives = fetchRelatives; return this; }
         public final GetPartialAXTreeParameter optFetchRelatives(@Nullable Boolean fetchRelatives) { return fetchRelatives(fetchRelatives); }
         public final Boolean fetchRelatives() { return fetchRelatives; }
@@ -654,24 +669,29 @@ elements other than parent/child/sibling.*/
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
-            if (nodeId == null) throw new IllegalArgumentException("Accessibility.GetPartialAXTreeParameter.nodeId is necessary field.");
         }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            nodeId.toJson(strBuilder.append("\"nodeId\":"));
+            if (nodeId != null) nodeId.toJson(strBuilder.append("\"nodeId\":"));
+            if (backendNodeId != null) backendNodeId.toJson(strBuilder.append(",\"backendNodeId\":"));
+            if (objectId != null) objectId.toJson(strBuilder.append(",\"objectId\":"));
             if (fetchRelatives != null) strBuilder.append(",\"fetchRelatives\":").append(fetchRelatives);
             strBuilder.append('}');
             return strBuilder;
         }
         public GetPartialAXTreeParameter() {}
         public GetPartialAXTreeParameter(
-            @JsonProperty("nodeId")DOM.NodeId nodeId,
+            @Nullable @JsonProperty("nodeId")DOM.NodeId nodeId,
+            @Nullable @JsonProperty("backendNodeId")DOM.BackendNodeId backendNodeId,
+            @Nullable @JsonProperty("objectId")Runtime.RemoteObjectId objectId,
             @Nullable @JsonProperty("fetchRelatives")Boolean fetchRelatives
         ) {
             this();
             this.nodeId = nodeId;
+            this.backendNodeId = backendNodeId;
+            this.objectId = objectId;
             this.fetchRelatives = fetchRelatives;
         }
         public CompletableFuture<GetPartialAXTreeResult> call() {

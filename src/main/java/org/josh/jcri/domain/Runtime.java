@@ -133,8 +133,8 @@ other objects in their object group.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**Object subtype hint. Specified for `object` type values only.
@@ -174,8 +174,8 @@ other objects in their object group.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Subtype subtype;
         /**Object class (constructor) name. Specified for `object` type values only.
@@ -387,8 +387,8 @@ property.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**Object subtype hint. Specified for `object` type values only.
@@ -425,8 +425,8 @@ property.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Subtype subtype;
         /**String representation of the object.
@@ -547,8 +547,8 @@ property.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**User-friendly property value string.
@@ -591,8 +591,8 @@ property.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Subtype subtype;
         public final PropertyPreview name(String name) { this.name = name; return this; }
@@ -1115,6 +1115,29 @@ execution.*/
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
             if (_value == null) throw new IllegalArgumentException("Runtime.Timestamp.value is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            return strBuilder.append(_value);
+        }
+    }
+
+    /**Number of milliseconds.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class TimeDelta implements CommonDomainType {
+        private Double _value;
+        public TimeDelta() {}
+        public TimeDelta(Double value) { _value = value; }
+        public final TimeDelta value(Double value) { _value = value; return this; }
+        public final Double value() { return _value; }
+        public final TimeDelta setValue(Double value) { return value(value); }
+        public final Double getValue() { return value(); }
+        @Override public String toString() { return String.valueOf(_value); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (_value == null) throw new IllegalArgumentException("Runtime.TimeDelta.value is necessary field.");
         }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
@@ -1890,6 +1913,10 @@ resolved.
         <em>Optional.</em>
         <p><strong>Experimental.</strong></p>*/
         private Boolean throwOnSideEffect;
+        /**Terminate execution after timing out (number of milliseconds).
+        <em>Optional.</em>
+        <p><strong>Experimental.</strong></p>*/
+        private TimeDelta timeout;
         public final EvaluateParameter expression(String expression) { this.expression = expression; return this; }
         public final EvaluateParameter setExpression(String expression) { return expression(expression); }
         public final String expression() { return expression; }
@@ -1930,6 +1957,10 @@ resolved.
         public final EvaluateParameter optThrowOnSideEffect(@Nullable Boolean throwOnSideEffect) { return throwOnSideEffect(throwOnSideEffect); }
         public final Boolean throwOnSideEffect() { return throwOnSideEffect; }
         public final Boolean getThrowOnSideEffect() { return throwOnSideEffect(); }
+        public final EvaluateParameter timeout(@Nullable TimeDelta timeout) { this.timeout = timeout; return this; }
+        public final EvaluateParameter optTimeout(@Nullable TimeDelta timeout) { return timeout(timeout); }
+        public final TimeDelta timeout() { return timeout; }
+        public final TimeDelta getTimeout() { return timeout(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -1949,6 +1980,7 @@ resolved.
             if (userGesture != null) strBuilder.append(",\"userGesture\":").append(userGesture);
             if (awaitPromise != null) strBuilder.append(",\"awaitPromise\":").append(awaitPromise);
             if (throwOnSideEffect != null) strBuilder.append(",\"throwOnSideEffect\":").append(throwOnSideEffect);
+            if (timeout != null) timeout.toJson(strBuilder.append(",\"timeout\":"));
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1963,7 +1995,8 @@ resolved.
             @Nullable @JsonProperty("generatePreview")Boolean generatePreview,
             @Nullable @JsonProperty("userGesture")Boolean userGesture,
             @Nullable @JsonProperty("awaitPromise")Boolean awaitPromise,
-            @Nullable @JsonProperty("throwOnSideEffect")Boolean throwOnSideEffect
+            @Nullable @JsonProperty("throwOnSideEffect")Boolean throwOnSideEffect,
+            @Nullable @JsonProperty("timeout")TimeDelta timeout
         ) {
             this();
             this.expression = expression;
@@ -1976,6 +2009,7 @@ resolved.
             this.userGesture = userGesture;
             this.awaitPromise = awaitPromise;
             this.throwOnSideEffect = throwOnSideEffect;
+            this.timeout = timeout;
         }
         public CompletableFuture<EvaluateResult> call() {
             return super.call("Runtime.evaluate", EvaluateResult.class,
@@ -2022,6 +2056,131 @@ resolved.
             super(e);
             result = null;
             exceptionDetails = null;
+        }
+    }
+    /**Returns the isolate id.
+    <p><strong>Experimental.</strong></p>*/
+    public GetIsolateIdParameter getIsolateId() { final GetIsolateIdParameter v = new GetIsolateIdParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of getIsolateId.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GetIsolateIdParameter extends CommandBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GetIsolateIdParameter() {}
+        public CompletableFuture<GetIsolateIdResult> call() {
+            return super.call("Runtime.getIsolateId", GetIsolateIdResult.class,
+                (code, msg)->new GetIsolateIdResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetIsolateIdResult> call(Executor exec) {
+            return super.call("Runtime.getIsolateId", GetIsolateIdResult.class,
+                (code, msg)->new GetIsolateIdResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of getIsolateId.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GetIsolateIdResult extends ResultBase {
+        /**The isolate id.*/
+        private final String id;
+        public final String id() { return id; }
+        public final String getId() { return id(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GetIsolateIdResult(
+            @JsonProperty("id")String id
+        ) {
+            this.id = id;
+        }
+        public GetIsolateIdResult(ResultBase.FailedResult e) {
+            super(e);
+            id = null;
+        }
+    }
+    /**Returns the JavaScript heap usage.
+It is the total usage of the corresponding isolate not scoped to a particular Runtime.
+    <p><strong>Experimental.</strong></p>*/
+    public GetHeapUsageParameter getHeapUsage() { final GetHeapUsageParameter v = new GetHeapUsageParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of getHeapUsage.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GetHeapUsageParameter extends CommandBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GetHeapUsageParameter() {}
+        public CompletableFuture<GetHeapUsageResult> call() {
+            return super.call("Runtime.getHeapUsage", GetHeapUsageResult.class,
+                (code, msg)->new GetHeapUsageResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetHeapUsageResult> call(Executor exec) {
+            return super.call("Runtime.getHeapUsage", GetHeapUsageResult.class,
+                (code, msg)->new GetHeapUsageResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of getHeapUsage.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GetHeapUsageResult extends ResultBase {
+        /**Used heap size in bytes.*/
+        private final Double usedSize;
+        /**Allocated heap size in bytes.*/
+        private final Double totalSize;
+        public final Double usedSize() { return usedSize; }
+        public final Double getUsedSize() { return usedSize(); }
+        public final Double totalSize() { return totalSize; }
+        public final Double getTotalSize() { return totalSize(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"usedSize\":").append(usedSize);
+            strBuilder.append(",\"totalSize\":").append(totalSize);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GetHeapUsageResult(
+            @JsonProperty("usedSize")Double usedSize,
+            @JsonProperty("totalSize")Double totalSize
+        ) {
+            this.usedSize = usedSize;
+            this.totalSize = totalSize;
+        }
+        public GetHeapUsageResult(ResultBase.FailedResult e) {
+            super(e);
+            usedSize = null;
+            totalSize = null;
         }
     }
     /**Returns properties of a given object. Object group of the result is inherited from the target
@@ -2776,8 +2935,8 @@ Will cancel the termination when the outer-most script execution ends.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private final Type type;
         /**Call arguments.*/

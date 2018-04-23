@@ -36,9 +36,9 @@ public abstract class ResultBase implements CommonDomainType {
     }
 
     /**Set method's Id.*/
-    final void setId(long id) { _id = id; }
+    final void setCommandId(long id) { _id = id; }
     /**Get method's Id.*/
-    public final long getId() { return _id; }
+    public final long getCommandId() { return _id; }
     /**Get error code returned by browser.*/
     public final long getCode() { return _errorCode; }
     /**Get if this result is success or not.*/

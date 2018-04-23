@@ -133,8 +133,8 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**UTC time in seconds, counted from January 1, 1970.*/
@@ -236,8 +236,8 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**Represents the cookie's 'SameSite' status:
@@ -264,8 +264,8 @@ https://tools.ietf.org/html/draft-west-first-party-cookies*/
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**Timing information for the request.*/
@@ -479,8 +479,8 @@ milliseconds relatively to this requestTime.*/
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**HTTP request data.*/
@@ -532,8 +532,8 @@ milliseconds relatively to this requestTime.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private ReferrerPolicy referrerPolicy;
         /**Whether is loaded via link preload.
@@ -753,6 +753,8 @@ milliseconds relatively to this requestTime.*/
         private TimeSinceEpoch validTo;
         /**List of signed certificate timestamps (SCTs).*/
         private List<SignedCertificateTimestamp> signedCertificateTimestampList;
+        /**Whether the request complied with Certificate Transparency policy*/
+        private CertificateTransparencyCompliance certificateTransparencyCompliance;
         public final SecurityDetails protocol(String protocol) { this.protocol = protocol; return this; }
         public final SecurityDetails setProtocol(String protocol) { return protocol(protocol); }
         public final String protocol() { return protocol; }
@@ -801,6 +803,10 @@ milliseconds relatively to this requestTime.*/
         public final SecurityDetails setSignedCertificateTimestampList(List<SignedCertificateTimestamp> signedCertificateTimestampList) { return signedCertificateTimestampList(signedCertificateTimestampList); }
         public final List<SignedCertificateTimestamp> signedCertificateTimestampList() { return signedCertificateTimestampList; }
         public final List<SignedCertificateTimestamp> getSignedCertificateTimestampList() { return signedCertificateTimestampList(); }
+        public final SecurityDetails certificateTransparencyCompliance(CertificateTransparencyCompliance certificateTransparencyCompliance) { this.certificateTransparencyCompliance = certificateTransparencyCompliance; return this; }
+        public final SecurityDetails setCertificateTransparencyCompliance(CertificateTransparencyCompliance certificateTransparencyCompliance) { return certificateTransparencyCompliance(certificateTransparencyCompliance); }
+        public final CertificateTransparencyCompliance certificateTransparencyCompliance() { return certificateTransparencyCompliance; }
+        public final CertificateTransparencyCompliance getCertificateTransparencyCompliance() { return certificateTransparencyCompliance(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -814,6 +820,7 @@ milliseconds relatively to this requestTime.*/
             if (validFrom == null) throw new IllegalArgumentException("Network.SecurityDetails.validFrom is necessary field.");
             if (validTo == null) throw new IllegalArgumentException("Network.SecurityDetails.validTo is necessary field.");
             if (signedCertificateTimestampList == null) throw new IllegalArgumentException("Network.SecurityDetails.signedCertificateTimestampList is necessary field.");
+            if (certificateTransparencyCompliance == null) throw new IllegalArgumentException("Network.SecurityDetails.certificateTransparencyCompliance is necessary field.");
         }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
@@ -839,6 +846,7 @@ milliseconds relatively to this requestTime.*/
             for (int i = 1; i < signedCertificateTimestampList.size(); ++i)
                 signedCertificateTimestampList.get(i).toJson(strBuilder.append(','));
             strBuilder.append(']');
+            certificateTransparencyCompliance.toJson(strBuilder.append(",\"certificateTransparencyCompliance\":"));
             strBuilder.append('}');
             return strBuilder;
         }
@@ -855,7 +863,8 @@ milliseconds relatively to this requestTime.*/
             @JsonProperty("issuer")String issuer,
             @JsonProperty("validFrom")TimeSinceEpoch validFrom,
             @JsonProperty("validTo")TimeSinceEpoch validTo,
-            @JsonProperty("signedCertificateTimestampList")List<SignedCertificateTimestamp> signedCertificateTimestampList
+            @JsonProperty("signedCertificateTimestampList")List<SignedCertificateTimestamp> signedCertificateTimestampList,
+            @JsonProperty("certificateTransparencyCompliance")CertificateTransparencyCompliance certificateTransparencyCompliance
         ) {
             this.protocol = protocol;
             this.keyExchange = keyExchange;
@@ -869,7 +878,36 @@ milliseconds relatively to this requestTime.*/
             this.validFrom = validFrom;
             this.validTo = validTo;
             this.signedCertificateTimestampList = signedCertificateTimestampList;
+            this.certificateTransparencyCompliance = certificateTransparencyCompliance;
         }
+    }
+
+    /**Whether the request complied with Certificate Transparency policy.*/
+    @ParametersAreNonnullByDefault public enum CertificateTransparencyCompliance implements CommonDomainType {
+        Unknown("unknown"),
+        Not_compliant("not-compliant"),
+        Compliant("compliant");
+
+        private final String _value;
+        private static final Map<String, CertificateTransparencyCompliance> _Lookup;
+        static {
+            Map<String, CertificateTransparencyCompliance> m = new HashMap<>();
+            for(CertificateTransparencyCompliance v: values()) m.put(v.toString(), v);
+            _Lookup = Collections.unmodifiableMap(m);
+        }
+        /**Convert string representation to type.
+         @throws IllegalArgumentException if given value cannot convert to enum type. */
+        @JsonCreator public static CertificateTransparencyCompliance of(String value) {
+            CertificateTransparencyCompliance v = _Lookup.get(value.toLowerCase());
+            return v != null ? v : Enum.valueOf(CertificateTransparencyCompliance.class, value);
+        }
+        CertificateTransparencyCompliance(String value) { _value = value; }
+        /**Check if parameter fields of method are all valid. */
+        @Override public void check() throws IllegalArgumentException { /* Need not check */ }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**The reason why request was blocked.*/
@@ -899,8 +937,8 @@ milliseconds relatively to this requestTime.*/
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**HTTP response data.*/
@@ -1361,8 +1399,8 @@ milliseconds relatively to this requestTime.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Type type;
         /**Initiator JavaScript stack trace, set for Script only.
@@ -1680,8 +1718,8 @@ default domain and path values of the created cookie.
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Source source;
         /**Origin of the challenger.*/
@@ -1768,8 +1806,8 @@ authentication or display a popup dialog box.*/
             @Override public void check() throws IllegalArgumentException { /* Need not check */ }
             /**Convert method parameter object into json string and append into string builder.
              @return string builder instance that is given in parameter (for chaining coding style use.) */
-            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-            @Override public String toString() { return _value; }
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
         }
         private Response response;
         /**The username to provide, possibly empty. Should only be set if response is
@@ -1844,8 +1882,8 @@ sent. Response will intercept after the response is received.
         @Override public void check() throws IllegalArgumentException { /* Need not check */ }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append(toString()); }
-        @Override public String toString() { return _value; }
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
     }
 
     /**Request pattern for interception.
