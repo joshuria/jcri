@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -66,7 +67,12 @@ public abstract class CommandBase implements CommonDomainType {
             //System.out.println("Send command: " + strBuilder.toString());
 
             /// Wait response
-            try { _latch.await(); }
+            try {
+                for (int retry = 0; retry < 30; ++retry) {
+                    if (_latch.await(1, TimeUnit.SECONDS))  break;
+                    if (Thread.currentThread().isInterrupted() || _ws.isClosed()) break;
+                }
+            }
             catch (InterruptedException e) { Thread.currentThread().interrupt(); }
 
             /// Check success or fail
