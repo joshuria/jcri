@@ -47,17 +47,10 @@ import javax.annotation.Nullable;
         Other("Other");
 
         private final String _value;
-        private static final Map<String, ResourceType> _Lookup;
-        static {
-            Map<String, ResourceType> m = new HashMap<>();
-            for(ResourceType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ResourceType of(String value) {
-            ResourceType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(ResourceType.class, value);
+            return Enum.valueOf(ResourceType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         ResourceType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -429,17 +422,10 @@ import javax.annotation.Nullable;
         Other("other");
 
         private final String _value;
-        private static final Map<String, TransitionType> _Lookup;
-        static {
-            Map<String, TransitionType> m = new HashMap<>();
-            for(TransitionType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static TransitionType of(String value) {
-            TransitionType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(TransitionType.class, value);
+            return Enum.valueOf(TransitionType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         TransitionType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -619,17 +605,10 @@ import javax.annotation.Nullable;
         Beforeunload("beforeunload");
 
         private final String _value;
-        private static final Map<String, DialogType> _Lookup;
-        static {
-            Map<String, DialogType> m = new HashMap<>();
-            for(DialogType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static DialogType of(String value) {
-            DialogType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(DialogType.class, value);
+            return Enum.valueOf(DialogType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         DialogType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -1120,17 +1099,10 @@ import javax.annotation.Nullable;
             Png("png");
 
             private final String _value;
-            private static final Map<String, Format> _Lookup;
-            static {
-                Map<String, Format> m = new HashMap<>();
-                for(Format v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Format of(String value) {
-                Format v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Format.class, value);
+                return Enum.valueOf(Format.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Format(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -3478,17 +3450,10 @@ available (otherwise deny).*/
             Default("default");
 
             private final String _value;
-            private static final Map<String, Behavior> _Lookup;
-            static {
-                Map<String, Behavior> m = new HashMap<>();
-                for(Behavior v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Behavior of(String value) {
-                Behavior v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Behavior.class, value);
+                return Enum.valueOf(Behavior.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Behavior(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -3725,17 +3690,10 @@ unavailable.
             Desktop("desktop");
 
             private final String _value;
-            private static final Map<String, Configuration> _Lookup;
-            static {
-                Map<String, Configuration> m = new HashMap<>();
-                for(Configuration v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Configuration of(String value) {
-                Configuration v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Configuration.class, value);
+                return Enum.valueOf(Configuration.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Configuration(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -3821,17 +3779,10 @@ unavailable.
             Png("png");
 
             private final String _value;
-            private static final Map<String, Format> _Lookup;
-            static {
-                Map<String, Format> m = new HashMap<>();
-                for(Format v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Format of(String value) {
-                Format v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Format.class, value);
+                return Enum.valueOf(Format.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Format(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -4322,17 +4273,10 @@ guaranteed to start.*/
             Reload("reload");
 
             private final String _value;
-            private static final Map<String, Reason> _Lookup;
-            static {
-                Map<String, Reason> m = new HashMap<>();
-                for(Reason v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Reason of(String value) {
-                Reason v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Reason.class, value);
+                return Enum.valueOf(Reason.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Reason(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */

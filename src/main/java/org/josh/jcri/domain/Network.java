@@ -116,17 +116,10 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         AddressUnreachable("AddressUnreachable");
 
         private final String _value;
-        private static final Map<String, ErrorReason> _Lookup;
-        static {
-            Map<String, ErrorReason> m = new HashMap<>();
-            for(ErrorReason v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ErrorReason of(String value) {
-            ErrorReason v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(ErrorReason.class, value);
+            return Enum.valueOf(ErrorReason.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         ErrorReason(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -219,17 +212,10 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         Other("other");
 
         private final String _value;
-        private static final Map<String, ConnectionType> _Lookup;
-        static {
-            Map<String, ConnectionType> m = new HashMap<>();
-            for(ConnectionType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ConnectionType of(String value) {
-            ConnectionType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(ConnectionType.class, value);
+            return Enum.valueOf(ConnectionType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         ConnectionType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -247,17 +233,10 @@ https://tools.ietf.org/html/draft-west-first-party-cookies*/
         Lax("Lax");
 
         private final String _value;
-        private static final Map<String, CookieSameSite> _Lookup;
-        static {
-            Map<String, CookieSameSite> m = new HashMap<>();
-            for(CookieSameSite v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static CookieSameSite of(String value) {
-            CookieSameSite v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(CookieSameSite.class, value);
+            return Enum.valueOf(CookieSameSite.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         CookieSameSite(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -462,17 +441,10 @@ milliseconds relatively to this requestTime.*/
         VeryHigh("VeryHigh");
 
         private final String _value;
-        private static final Map<String, ResourcePriority> _Lookup;
-        static {
-            Map<String, ResourcePriority> m = new HashMap<>();
-            for(ResourcePriority v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ResourcePriority of(String value) {
-            ResourcePriority v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(ResourcePriority.class, value);
+            return Enum.valueOf(ResourcePriority.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         ResourcePriority(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -515,17 +487,10 @@ milliseconds relatively to this requestTime.*/
             Strict_origin_when_cross_origin("strict-origin-when-cross-origin");
 
             private final String _value;
-            private static final Map<String, ReferrerPolicy> _Lookup;
-            static {
-                Map<String, ReferrerPolicy> m = new HashMap<>();
-                for(ReferrerPolicy v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static ReferrerPolicy of(String value) {
-                ReferrerPolicy v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(ReferrerPolicy.class, value);
+                return Enum.valueOf(ReferrerPolicy.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             ReferrerPolicy(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -889,17 +854,10 @@ milliseconds relatively to this requestTime.*/
         Compliant("compliant");
 
         private final String _value;
-        private static final Map<String, CertificateTransparencyCompliance> _Lookup;
-        static {
-            Map<String, CertificateTransparencyCompliance> m = new HashMap<>();
-            for(CertificateTransparencyCompliance v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static CertificateTransparencyCompliance of(String value) {
-            CertificateTransparencyCompliance v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(CertificateTransparencyCompliance.class, value);
+            return Enum.valueOf(CertificateTransparencyCompliance.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         CertificateTransparencyCompliance(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -920,17 +878,10 @@ milliseconds relatively to this requestTime.*/
         Other("other");
 
         private final String _value;
-        private static final Map<String, BlockedReason> _Lookup;
-        static {
-            Map<String, BlockedReason> m = new HashMap<>();
-            for(BlockedReason v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static BlockedReason of(String value) {
-            BlockedReason v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(BlockedReason.class, value);
+            return Enum.valueOf(BlockedReason.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         BlockedReason(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -1382,17 +1333,10 @@ milliseconds relatively to this requestTime.*/
             Other("other");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup;
-            static {
-                Map<String, Type> m = new HashMap<>();
-                for(Type v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
-                Type v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Type.class, value);
+                return Enum.valueOf(Type.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Type(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -1701,17 +1645,10 @@ default domain and path values of the created cookie.
             Proxy("Proxy");
 
             private final String _value;
-            private static final Map<String, Source> _Lookup;
-            static {
-                Map<String, Source> m = new HashMap<>();
-                for(Source v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Source of(String value) {
-                Source v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Source.class, value);
+                return Enum.valueOf(Source.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Source(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -1789,17 +1726,10 @@ authentication or display a popup dialog box.*/
             ProvideCredentials("ProvideCredentials");
 
             private final String _value;
-            private static final Map<String, Response> _Lookup;
-            static {
-                Map<String, Response> m = new HashMap<>();
-                for(Response v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Response of(String value) {
-                Response v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Response.class, value);
+                return Enum.valueOf(Response.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Response(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -1865,17 +1795,10 @@ sent. Response will intercept after the response is received.
         HeadersReceived("HeadersReceived");
 
         private final String _value;
-        private static final Map<String, InterceptionStage> _Lookup;
-        static {
-            Map<String, InterceptionStage> m = new HashMap<>();
-            for(InterceptionStage v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static InterceptionStage of(String value) {
-            InterceptionStage v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(InterceptionStage.class, value);
+            return Enum.valueOf(InterceptionStage.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         InterceptionStage(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */

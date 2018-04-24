@@ -73,17 +73,10 @@ import javax.annotation.Nullable;
         ValueUndefined("valueUndefined");
 
         private final String _value;
-        private static final Map<String, AXValueType> _Lookup;
-        static {
-            Map<String, AXValueType> m = new HashMap<>();
-            for(AXValueType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static AXValueType of(String value) {
-            AXValueType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(AXValueType.class, value);
+            return Enum.valueOf(AXValueType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         AXValueType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -104,17 +97,10 @@ import javax.annotation.Nullable;
         RelatedElement("relatedElement");
 
         private final String _value;
-        private static final Map<String, AXValueSourceType> _Lookup;
-        static {
-            Map<String, AXValueSourceType> m = new HashMap<>();
-            for(AXValueSourceType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static AXValueSourceType of(String value) {
-            AXValueSourceType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(AXValueSourceType.class, value);
+            return Enum.valueOf(AXValueSourceType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         AXValueSourceType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -137,17 +123,10 @@ import javax.annotation.Nullable;
         Other("other");
 
         private final String _value;
-        private static final Map<String, AXValueNativeSourceType> _Lookup;
-        static {
-            Map<String, AXValueNativeSourceType> m = new HashMap<>();
-            for(AXValueNativeSourceType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static AXValueNativeSourceType of(String value) {
-            AXValueNativeSourceType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(AXValueNativeSourceType.class, value);
+            return Enum.valueOf(AXValueNativeSourceType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         AXValueNativeSourceType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -473,17 +452,10 @@ elements other than parent/child/sibling.*/
         Owns("owns");
 
         private final String _value;
-        private static final Map<String, AXPropertyName> _Lookup;
-        static {
-            Map<String, AXPropertyName> m = new HashMap<>();
-            for(AXPropertyName v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static AXPropertyName of(String value) {
-            AXPropertyName v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(AXPropertyName.class, value);
+            return Enum.valueOf(AXPropertyName.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         AXPropertyName(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */

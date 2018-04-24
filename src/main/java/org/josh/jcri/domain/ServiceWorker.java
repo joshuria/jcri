@@ -86,17 +86,10 @@ import javax.annotation.Nullable;
         Stopping("stopping");
 
         private final String _value;
-        private static final Map<String, ServiceWorkerVersionRunningStatus> _Lookup;
-        static {
-            Map<String, ServiceWorkerVersionRunningStatus> m = new HashMap<>();
-            for(ServiceWorkerVersionRunningStatus v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ServiceWorkerVersionRunningStatus of(String value) {
-            ServiceWorkerVersionRunningStatus v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(ServiceWorkerVersionRunningStatus.class, value);
+            return Enum.valueOf(ServiceWorkerVersionRunningStatus.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         ServiceWorkerVersionRunningStatus(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -117,17 +110,10 @@ import javax.annotation.Nullable;
         Redundant("redundant");
 
         private final String _value;
-        private static final Map<String, ServiceWorkerVersionStatus> _Lookup;
-        static {
-            Map<String, ServiceWorkerVersionStatus> m = new HashMap<>();
-            for(ServiceWorkerVersionStatus v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ServiceWorkerVersionStatus of(String value) {
-            ServiceWorkerVersionStatus v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(ServiceWorkerVersionStatus.class, value);
+            return Enum.valueOf(ServiceWorkerVersionStatus.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         ServiceWorkerVersionStatus(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */

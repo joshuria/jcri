@@ -40,17 +40,10 @@ import javax.annotation.Nullable;
             Png("png");
 
             private final String _value;
-            private static final Map<String, Format> _Lookup;
-            static {
-                Map<String, Format> m = new HashMap<>();
-                for(Format v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Format of(String value) {
-                Format v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Format.class, value);
+                return Enum.valueOf(Format.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Format(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */

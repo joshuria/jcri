@@ -43,17 +43,10 @@ import javax.annotation.Nullable;
         Other("other");
 
         private final String _value;
-        private static final Map<String, StorageType> _Lookup;
-        static {
-            Map<String, StorageType> m = new HashMap<>();
-            for(StorageType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static StorageType of(String value) {
-            StorageType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(StorageType.class, value);
+            return Enum.valueOf(StorageType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         StorageType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */

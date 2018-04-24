@@ -150,17 +150,10 @@ front-end.*/
         Input_list_button("input-list-button");
 
         private final String _value;
-        private static final Map<String, PseudoType> _Lookup;
-        static {
-            Map<String, PseudoType> m = new HashMap<>();
-            for(PseudoType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static PseudoType of(String value) {
-            PseudoType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(PseudoType.class, value);
+            return Enum.valueOf(PseudoType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         PseudoType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -178,17 +171,10 @@ front-end.*/
         Closed("closed");
 
         private final String _value;
-        private static final Map<String, ShadowRootType> _Lookup;
-        static {
-            Map<String, ShadowRootType> m = new HashMap<>();
-            for(ShadowRootType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static ShadowRootType of(String value) {
-            ShadowRootType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(ShadowRootType.class, value);
+            return Enum.valueOf(ShadowRootType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         ShadowRootType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */

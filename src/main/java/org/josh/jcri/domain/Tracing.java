@@ -64,17 +64,10 @@ import javax.annotation.Nullable;
             EchoToConsole("echoToConsole");
 
             private final String _value;
-            private static final Map<String, RecordMode> _Lookup;
-            static {
-                Map<String, RecordMode> m = new HashMap<>();
-                for(RecordMode v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static RecordMode of(String value) {
-                RecordMode v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(RecordMode.class, value);
+                return Enum.valueOf(RecordMode.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             RecordMode(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -203,17 +196,10 @@ import javax.annotation.Nullable;
         Gzip("gzip");
 
         private final String _value;
-        private static final Map<String, StreamCompression> _Lookup;
-        static {
-            Map<String, StreamCompression> m = new HashMap<>();
-            for(StreamCompression v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static StreamCompression of(String value) {
-            StreamCompression v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(StreamCompression.class, value);
+            return Enum.valueOf(StreamCompression.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         StreamCompression(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -473,17 +459,10 @@ stream (defaults to `ReportEvents`).
             ReturnAsStream("ReturnAsStream");
 
             private final String _value;
-            private static final Map<String, TransferMode> _Lookup;
-            static {
-                Map<String, TransferMode> m = new HashMap<>();
-                for(TransferMode v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static TransferMode of(String value) {
-                TransferMode v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(TransferMode.class, value);
+                return Enum.valueOf(TransferMode.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             TransferMode(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */

@@ -49,17 +49,10 @@ import javax.annotation.Nullable;
             Other("other");
 
             private final String _value;
-            private static final Map<String, Source> _Lookup;
-            static {
-                Map<String, Source> m = new HashMap<>();
-                for(Source v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Source of(String value) {
-                Source v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Source.class, value);
+                return Enum.valueOf(Source.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Source(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -78,17 +71,10 @@ import javax.annotation.Nullable;
             Error("error");
 
             private final String _value;
-            private static final Map<String, Level> _Lookup;
-            static {
-                Map<String, Level> m = new HashMap<>();
-                for(Level v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Level of(String value) {
-                Level v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Level.class, value);
+                return Enum.valueOf(Level.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Level(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -232,17 +218,10 @@ import javax.annotation.Nullable;
             RecurringHandler("recurringHandler");
 
             private final String _value;
-            private static final Map<String, Name> _Lookup;
-            static {
-                Map<String, Name> m = new HashMap<>();
-                for(Name v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Name of(String value) {
-                Name v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Name.class, value);
+                return Enum.valueOf(Name.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Name(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */

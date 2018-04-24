@@ -43,17 +43,10 @@ applies to images.*/
             Png("png");
 
             private final String _value;
-            private static final Map<String, Encoding> _Lookup;
-            static {
-                Map<String, Encoding> m = new HashMap<>();
-                for(Encoding v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Encoding of(String value) {
-                Encoding v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Encoding.class, value);
+                return Enum.valueOf(Encoding.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Encoding(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */

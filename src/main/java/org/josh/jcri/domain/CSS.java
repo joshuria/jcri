@@ -67,17 +67,10 @@ inspector" rules), "regular" for regular stylesheets.*/
         Regular("regular");
 
         private final String _value;
-        private static final Map<String, StyleSheetOrigin> _Lookup;
-        static {
-            Map<String, StyleSheetOrigin> m = new HashMap<>();
-            for(StyleSheetOrigin v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static StyleSheetOrigin of(String value) {
-            StyleSheetOrigin v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(StyleSheetOrigin.class, value);
+            return Enum.valueOf(StyleSheetOrigin.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         StyleSheetOrigin(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -939,17 +932,10 @@ stylesheet's STYLE tag.*/
             InlineSheet("inlineSheet");
 
             private final String _value;
-            private static final Map<String, Source> _Lookup;
-            static {
-                Map<String, Source> m = new HashMap<>();
-                for(Source v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Source of(String value) {
-                Source v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Source.class, value);
+                return Enum.valueOf(Source.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Source(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */

@@ -87,17 +87,10 @@ import javax.annotation.Nullable;
             WheelEventHandler("WheelEventHandler");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup;
-            static {
-                Map<String, Type> m = new HashMap<>();
-                for(Type v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
-                Type v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Type.class, value);
+                return Enum.valueOf(Type.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Type(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */

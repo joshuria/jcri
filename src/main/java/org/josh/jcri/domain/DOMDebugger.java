@@ -37,17 +37,10 @@ execution will stop on these operations as if there was a regular breakpoint set
         Node_removed("node-removed");
 
         private final String _value;
-        private static final Map<String, DOMBreakpointType> _Lookup;
-        static {
-            Map<String, DOMBreakpointType> m = new HashMap<>();
-            for(DOMBreakpointType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static DOMBreakpointType of(String value) {
-            DOMBreakpointType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(DOMBreakpointType.class, value);
+            return Enum.valueOf(DOMBreakpointType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         DOMBreakpointType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */

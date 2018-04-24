@@ -58,17 +58,10 @@ https://www.w3.org/TR/mixed-content/#categories*/
         None("none");
 
         private final String _value;
-        private static final Map<String, MixedContentType> _Lookup;
-        static {
-            Map<String, MixedContentType> m = new HashMap<>();
-            for(MixedContentType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static MixedContentType of(String value) {
-            MixedContentType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(MixedContentType.class, value);
+            return Enum.valueOf(MixedContentType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         MixedContentType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -88,17 +81,10 @@ https://www.w3.org/TR/mixed-content/#categories*/
         Info("info");
 
         private final String _value;
-        private static final Map<String, SecurityState> _Lookup;
-        static {
-            Map<String, SecurityState> m = new HashMap<>();
-            for(SecurityState v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static SecurityState of(String value) {
-            SecurityState v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(SecurityState.class, value);
+            return Enum.valueOf(SecurityState.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         SecurityState(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -292,17 +278,10 @@ request and cancel will cancel the request.*/
         Cancel("cancel");
 
         private final String _value;
-        private static final Map<String, CertificateErrorAction> _Lookup;
-        static {
-            Map<String, CertificateErrorAction> m = new HashMap<>();
-            for(CertificateErrorAction v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static CertificateErrorAction of(String value) {
-            CertificateErrorAction v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(CertificateErrorAction.class, value);
+            return Enum.valueOf(CertificateErrorAction.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         CertificateErrorAction(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */

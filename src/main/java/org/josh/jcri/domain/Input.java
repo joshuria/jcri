@@ -126,17 +126,10 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
         Mouse("mouse");
 
         private final String _value;
-        private static final Map<String, GestureSourceType> _Lookup;
-        static {
-            Map<String, GestureSourceType> m = new HashMap<>();
-            for(GestureSourceType v: values()) m.put(v.toString(), v);
-            _Lookup = Collections.unmodifiableMap(m);
-        }
         /**Convert string representation to type.
          @throws IllegalArgumentException if given value cannot convert to enum type. */
         @JsonCreator public static GestureSourceType of(String value) {
-            GestureSourceType v = _Lookup.get(value.toLowerCase());
-            return v != null ? v : Enum.valueOf(GestureSourceType.class, value);
+            return Enum.valueOf(GestureSourceType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
         }
         GestureSourceType(String value) { _value = value; }
         /**Check if parameter fields of method are all valid. */
@@ -182,17 +175,10 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
             Char("char");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup;
-            static {
-                Map<String, Type> m = new HashMap<>();
-                for(Type v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
-                Type v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Type.class, value);
+                return Enum.valueOf(Type.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Type(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -403,17 +389,10 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
             MouseWheel("mouseWheel");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup;
-            static {
-                Map<String, Type> m = new HashMap<>();
-                for(Type v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
-                Type v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Type.class, value);
+                return Enum.valueOf(Type.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Type(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -445,17 +424,10 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
             Right("right");
 
             private final String _value;
-            private static final Map<String, Button> _Lookup;
-            static {
-                Map<String, Button> m = new HashMap<>();
-                for(Button v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Button of(String value) {
-                Button v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Button.class, value);
+                return Enum.valueOf(Button.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Button(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -599,17 +571,10 @@ TouchStart and TouchMove must contains at least one.*/
             TouchCancel("touchCancel");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup;
-            static {
-                Map<String, Type> m = new HashMap<>();
-                for(Type v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
-                Type v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Type.class, value);
+                return Enum.valueOf(Type.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Type(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -724,17 +689,10 @@ one by one.*/
             MouseWheel("mouseWheel");
 
             private final String _value;
-            private static final Map<String, Type> _Lookup;
-            static {
-                Map<String, Type> m = new HashMap<>();
-                for(Type v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Type of(String value) {
-                Type v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Type.class, value);
+                return Enum.valueOf(Type.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Type(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
@@ -757,17 +715,10 @@ one by one.*/
             Right("right");
 
             private final String _value;
-            private static final Map<String, Button> _Lookup;
-            static {
-                Map<String, Button> m = new HashMap<>();
-                for(Button v: values()) m.put(v.toString(), v);
-                _Lookup = Collections.unmodifiableMap(m);
-            }
             /**Convert string representation to type.
              @throws IllegalArgumentException if given value cannot convert to enum type. */
             @JsonCreator public static Button of(String value) {
-                Button v = _Lookup.get(value.toLowerCase());
-                return v != null ? v : Enum.valueOf(Button.class, value);
+                return Enum.valueOf(Button.class, value.substring(0, 1).toUpperCase() + value.substring(1));
             }
             Button(String value) { _value = value; }
             /**Check if parameter fields of method are all valid. */
