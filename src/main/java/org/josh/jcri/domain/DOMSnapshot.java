@@ -241,10 +241,10 @@ clicked.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"nodeType\":").append(nodeType);
-            strBuilder.append(",\"nodeName\":").append('"').append(DomainBase.escapeQuote(nodeName)).append('"');
-            strBuilder.append(",\"nodeValue\":").append('"').append(DomainBase.escapeQuote(nodeValue)).append('"');
-            if (textValue != null) strBuilder.append(",\"textValue\":").append('"').append(DomainBase.escapeQuote(textValue)).append('"');
-            if (inputValue != null) strBuilder.append(",\"inputValue\":").append('"').append(DomainBase.escapeQuote(inputValue)).append('"');
+            strBuilder.append(",\"nodeName\":").append('"').append(DomainBase.escapeJson(nodeName)).append('"');
+            strBuilder.append(",\"nodeValue\":").append('"').append(DomainBase.escapeJson(nodeValue)).append('"');
+            if (textValue != null) strBuilder.append(",\"textValue\":").append('"').append(DomainBase.escapeJson(textValue)).append('"');
+            if (inputValue != null) strBuilder.append(",\"inputValue\":").append('"').append(DomainBase.escapeJson(inputValue)).append('"');
             if (inputChecked != null) strBuilder.append(",\"inputChecked\":").append(inputChecked);
             if (optionSelected != null) strBuilder.append(",\"optionSelected\":").append(optionSelected);
             backendNodeId.toJson(strBuilder.append(",\"backendNodeId\":"));
@@ -270,12 +270,12 @@ clicked.
                 strBuilder.append(']');
             }
             if (layoutNodeIndex != null) strBuilder.append(",\"layoutNodeIndex\":").append(layoutNodeIndex);
-            if (documentURL != null) strBuilder.append(",\"documentURL\":").append('"').append(DomainBase.escapeQuote(documentURL)).append('"');
-            if (baseURL != null) strBuilder.append(",\"baseURL\":").append('"').append(DomainBase.escapeQuote(baseURL)).append('"');
-            if (contentLanguage != null) strBuilder.append(",\"contentLanguage\":").append('"').append(DomainBase.escapeQuote(contentLanguage)).append('"');
-            if (documentEncoding != null) strBuilder.append(",\"documentEncoding\":").append('"').append(DomainBase.escapeQuote(documentEncoding)).append('"');
-            if (publicId != null) strBuilder.append(",\"publicId\":").append('"').append(DomainBase.escapeQuote(publicId)).append('"');
-            if (systemId != null) strBuilder.append(",\"systemId\":").append('"').append(DomainBase.escapeQuote(systemId)).append('"');
+            if (documentURL != null) strBuilder.append(",\"documentURL\":").append('"').append(DomainBase.escapeJson(documentURL)).append('"');
+            if (baseURL != null) strBuilder.append(",\"baseURL\":").append('"').append(DomainBase.escapeJson(baseURL)).append('"');
+            if (contentLanguage != null) strBuilder.append(",\"contentLanguage\":").append('"').append(DomainBase.escapeJson(contentLanguage)).append('"');
+            if (documentEncoding != null) strBuilder.append(",\"documentEncoding\":").append('"').append(DomainBase.escapeJson(documentEncoding)).append('"');
+            if (publicId != null) strBuilder.append(",\"publicId\":").append('"').append(DomainBase.escapeJson(publicId)).append('"');
+            if (systemId != null) strBuilder.append(",\"systemId\":").append('"').append(DomainBase.escapeJson(systemId)).append('"');
             if (frameId != null) frameId.toJson(strBuilder.append(",\"frameId\":"));
             if (contentDocumentIndex != null) strBuilder.append(",\"contentDocumentIndex\":").append(contentDocumentIndex);
             if (importedDocumentIndex != null) strBuilder.append(",\"importedDocumentIndex\":").append(importedDocumentIndex);
@@ -290,7 +290,7 @@ clicked.
                     eventListeners.get(i).toJson(strBuilder.append(','));
                 strBuilder.append(']');
             }
-            if (currentSourceURL != null) strBuilder.append(",\"currentSourceURL\":").append('"').append(DomainBase.escapeQuote(currentSourceURL)).append('"');
+            if (currentSourceURL != null) strBuilder.append(",\"currentSourceURL\":").append('"').append(DomainBase.escapeJson(currentSourceURL)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -464,7 +464,7 @@ getSnapshot was true.
             strBuilder.append('{');
             strBuilder.append("\"domNodeIndex\":").append(domNodeIndex);
             boundingBox.toJson(strBuilder.append(",\"boundingBox\":"));
-            if (layoutText != null) strBuilder.append(",\"layoutText\":").append('"').append(DomainBase.escapeQuote(layoutText)).append('"');
+            if (layoutText != null) strBuilder.append(",\"layoutText\":").append('"').append(DomainBase.escapeJson(layoutText)).append('"');
             if (inlineTextNodes != null) {
                 strBuilder.append(",\"inlineTextNodes\":[");
                 inlineTextNodes.get(0).toJson(strBuilder);
@@ -554,8 +554,8 @@ getSnapshot was true.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -613,9 +613,9 @@ flattened.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"computedStyleWhitelist\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(computedStyleWhitelist.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(computedStyleWhitelist.get(0))).append('"');
             for (int i = 1; i < computedStyleWhitelist.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(computedStyleWhitelist.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(computedStyleWhitelist.get(i))).append('"');
             strBuilder.append(']');
             if (includeEventListeners != null) strBuilder.append(",\"includeEventListeners\":").append(includeEventListeners);
             if (includePaintOrder != null) strBuilder.append(",\"includePaintOrder\":").append(includePaintOrder);

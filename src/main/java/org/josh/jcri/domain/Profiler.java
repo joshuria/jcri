@@ -93,7 +93,7 @@ optimize.
                     strBuilder.append(',').append(children.get(i));
                 strBuilder.append(']');
             }
-            if (deoptReason != null) strBuilder.append(",\"deoptReason\":").append('"').append(DomainBase.escapeQuote(deoptReason)).append('"');
+            if (deoptReason != null) strBuilder.append(",\"deoptReason\":").append('"').append(DomainBase.escapeJson(deoptReason)).append('"');
             if (positionTicks != null) {
                 strBuilder.append(",\"positionTicks\":[");
                 positionTicks.get(0).toJson(strBuilder);
@@ -331,7 +331,7 @@ profile startTime.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"functionName\":").append('"').append(DomainBase.escapeQuote(functionName)).append('"');
+            strBuilder.append("\"functionName\":").append('"').append(DomainBase.escapeJson(functionName)).append('"');
                         strBuilder.append(",\"ranges\":[");
             ranges.get(0).toJson(strBuilder);
             for (int i = 1; i < ranges.size(); ++i)
@@ -386,7 +386,7 @@ profile startTime.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             scriptId.toJson(strBuilder.append("\"scriptId\":"));
-            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
                         strBuilder.append(",\"functions\":[");
             functions.get(0).toJson(strBuilder);
             for (int i = 1; i < functions.size(); ++i)
@@ -426,7 +426,7 @@ profile startTime.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -517,7 +517,7 @@ profile startTime.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             scriptId.toJson(strBuilder.append("\"scriptId\":"));
-            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
                         strBuilder.append(",\"entries\":[");
             entries.get(0).toJson(strBuilder);
             for (int i = 1; i < entries.size(); ++i)
@@ -1210,10 +1210,10 @@ coverage needs to have started.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeJson(id)).append('"');
             location.toJson(strBuilder.append(",\"location\":"));
             profile.toJson(strBuilder.append(",\"profile\":"));
-            if (title != null) strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeQuote(title)).append('"');
+            if (title != null) strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeJson(title)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1264,9 +1264,9 @@ coverage needs to have started.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeJson(id)).append('"');
             location.toJson(strBuilder.append(",\"location\":"));
-            if (title != null) strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeQuote(title)).append('"');
+            if (title != null) strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeJson(title)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

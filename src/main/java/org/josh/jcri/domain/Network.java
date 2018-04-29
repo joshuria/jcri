@@ -50,7 +50,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -73,7 +73,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -96,7 +96,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -553,10 +553,10 @@ milliseconds relatively to this requestTime.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
-            strBuilder.append(",\"method\":").append('"').append(DomainBase.escapeQuote(method)).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
+            strBuilder.append(",\"method\":").append('"').append(DomainBase.escapeJson(method)).append('"');
             headers.toJson(strBuilder.append(",\"headers\":"));
-            if (postData != null) strBuilder.append(",\"postData\":").append('"').append(DomainBase.escapeQuote(postData)).append('"');
+            if (postData != null) strBuilder.append(",\"postData\":").append('"').append(DomainBase.escapeJson(postData)).append('"');
             if (hasPostData != null) strBuilder.append(",\"hasPostData\":").append(hasPostData);
             if (mixedContentType != null) mixedContentType.toJson(strBuilder.append(",\"mixedContentType\":"));
             initialPriority.toJson(strBuilder.append(",\"initialPriority\":"));
@@ -656,14 +656,14 @@ milliseconds relatively to this requestTime.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"status\":").append('"').append(DomainBase.escapeQuote(status)).append('"');
-            strBuilder.append(",\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
-            strBuilder.append(",\"logDescription\":").append('"').append(DomainBase.escapeQuote(logDescription)).append('"');
-            strBuilder.append(",\"logId\":").append('"').append(DomainBase.escapeQuote(logId)).append('"');
+            strBuilder.append("\"status\":").append('"').append(DomainBase.escapeJson(status)).append('"');
+            strBuilder.append(",\"origin\":").append('"').append(DomainBase.escapeJson(origin)).append('"');
+            strBuilder.append(",\"logDescription\":").append('"').append(DomainBase.escapeJson(logDescription)).append('"');
+            strBuilder.append(",\"logId\":").append('"').append(DomainBase.escapeJson(logId)).append('"');
             timestamp.toJson(strBuilder.append(",\"timestamp\":"));
-            strBuilder.append(",\"hashAlgorithm\":").append('"').append(DomainBase.escapeQuote(hashAlgorithm)).append('"');
-            strBuilder.append(",\"signatureAlgorithm\":").append('"').append(DomainBase.escapeQuote(signatureAlgorithm)).append('"');
-            strBuilder.append(",\"signatureData\":").append('"').append(DomainBase.escapeQuote(signatureData)).append('"');
+            strBuilder.append(",\"hashAlgorithm\":").append('"').append(DomainBase.escapeJson(hashAlgorithm)).append('"');
+            strBuilder.append(",\"signatureAlgorithm\":").append('"').append(DomainBase.escapeJson(signatureAlgorithm)).append('"');
+            strBuilder.append(",\"signatureData\":").append('"').append(DomainBase.escapeJson(signatureData)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -791,19 +791,19 @@ milliseconds relatively to this requestTime.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"protocol\":").append('"').append(DomainBase.escapeQuote(protocol)).append('"');
-            strBuilder.append(",\"keyExchange\":").append('"').append(DomainBase.escapeQuote(keyExchange)).append('"');
-            if (keyExchangeGroup != null) strBuilder.append(",\"keyExchangeGroup\":").append('"').append(DomainBase.escapeQuote(keyExchangeGroup)).append('"');
-            strBuilder.append(",\"cipher\":").append('"').append(DomainBase.escapeQuote(cipher)).append('"');
-            if (mac != null) strBuilder.append(",\"mac\":").append('"').append(DomainBase.escapeQuote(mac)).append('"');
+            strBuilder.append("\"protocol\":").append('"').append(DomainBase.escapeJson(protocol)).append('"');
+            strBuilder.append(",\"keyExchange\":").append('"').append(DomainBase.escapeJson(keyExchange)).append('"');
+            if (keyExchangeGroup != null) strBuilder.append(",\"keyExchangeGroup\":").append('"').append(DomainBase.escapeJson(keyExchangeGroup)).append('"');
+            strBuilder.append(",\"cipher\":").append('"').append(DomainBase.escapeJson(cipher)).append('"');
+            if (mac != null) strBuilder.append(",\"mac\":").append('"').append(DomainBase.escapeJson(mac)).append('"');
             certificateId.toJson(strBuilder.append(",\"certificateId\":"));
-            strBuilder.append(",\"subjectName\":").append('"').append(DomainBase.escapeQuote(subjectName)).append('"');
+            strBuilder.append(",\"subjectName\":").append('"').append(DomainBase.escapeJson(subjectName)).append('"');
                         strBuilder.append(",\"sanList\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(sanList.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(sanList.get(0))).append('"');
             for (int i = 1; i < sanList.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(sanList.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(sanList.get(i))).append('"');
             strBuilder.append(']');
-            strBuilder.append(",\"issuer\":").append('"').append(DomainBase.escapeQuote(issuer)).append('"');
+            strBuilder.append(",\"issuer\":").append('"').append(DomainBase.escapeJson(issuer)).append('"');
             validFrom.toJson(strBuilder.append(",\"validFrom\":"));
             validTo.toJson(strBuilder.append(",\"validTo\":"));
                         strBuilder.append(",\"signedCertificateTimestampList\":[");
@@ -1036,23 +1036,23 @@ milliseconds relatively to this requestTime.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             strBuilder.append(",\"status\":").append(status);
-            strBuilder.append(",\"statusText\":").append('"').append(DomainBase.escapeQuote(statusText)).append('"');
+            strBuilder.append(",\"statusText\":").append('"').append(DomainBase.escapeJson(statusText)).append('"');
             headers.toJson(strBuilder.append(",\"headers\":"));
-            if (headersText != null) strBuilder.append(",\"headersText\":").append('"').append(DomainBase.escapeQuote(headersText)).append('"');
-            strBuilder.append(",\"mimeType\":").append('"').append(DomainBase.escapeQuote(mimeType)).append('"');
+            if (headersText != null) strBuilder.append(",\"headersText\":").append('"').append(DomainBase.escapeJson(headersText)).append('"');
+            strBuilder.append(",\"mimeType\":").append('"').append(DomainBase.escapeJson(mimeType)).append('"');
             if (requestHeaders != null) requestHeaders.toJson(strBuilder.append(",\"requestHeaders\":"));
-            if (requestHeadersText != null) strBuilder.append(",\"requestHeadersText\":").append('"').append(DomainBase.escapeQuote(requestHeadersText)).append('"');
+            if (requestHeadersText != null) strBuilder.append(",\"requestHeadersText\":").append('"').append(DomainBase.escapeJson(requestHeadersText)).append('"');
             strBuilder.append(",\"connectionReused\":").append(connectionReused);
             strBuilder.append(",\"connectionId\":").append(connectionId);
-            if (remoteIPAddress != null) strBuilder.append(",\"remoteIPAddress\":").append('"').append(DomainBase.escapeQuote(remoteIPAddress)).append('"');
+            if (remoteIPAddress != null) strBuilder.append(",\"remoteIPAddress\":").append('"').append(DomainBase.escapeJson(remoteIPAddress)).append('"');
             if (remotePort != null) strBuilder.append(",\"remotePort\":").append(remotePort);
             if (fromDiskCache != null) strBuilder.append(",\"fromDiskCache\":").append(fromDiskCache);
             if (fromServiceWorker != null) strBuilder.append(",\"fromServiceWorker\":").append(fromServiceWorker);
             strBuilder.append(",\"encodedDataLength\":").append(encodedDataLength);
             if (timing != null) timing.toJson(strBuilder.append(",\"timing\":"));
-            if (protocol != null) strBuilder.append(",\"protocol\":").append('"').append(DomainBase.escapeQuote(protocol)).append('"');
+            if (protocol != null) strBuilder.append(",\"protocol\":").append('"').append(DomainBase.escapeJson(protocol)).append('"');
             securityState.toJson(strBuilder.append(",\"securityState\":"));
             if (securityDetails != null) securityDetails.toJson(strBuilder.append(",\"securityDetails\":"));
             strBuilder.append('}');
@@ -1186,11 +1186,11 @@ milliseconds relatively to this requestTime.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"status\":").append(status);
-            strBuilder.append(",\"statusText\":").append('"').append(DomainBase.escapeQuote(statusText)).append('"');
+            strBuilder.append(",\"statusText\":").append('"').append(DomainBase.escapeJson(statusText)).append('"');
             headers.toJson(strBuilder.append(",\"headers\":"));
-            if (headersText != null) strBuilder.append(",\"headersText\":").append('"').append(DomainBase.escapeQuote(headersText)).append('"');
+            if (headersText != null) strBuilder.append(",\"headersText\":").append('"').append(DomainBase.escapeJson(headersText)).append('"');
             if (requestHeaders != null) requestHeaders.toJson(strBuilder.append(",\"requestHeaders\":"));
-            if (requestHeadersText != null) strBuilder.append(",\"requestHeadersText\":").append('"').append(DomainBase.escapeQuote(requestHeadersText)).append('"');
+            if (requestHeadersText != null) strBuilder.append(",\"requestHeadersText\":").append('"').append(DomainBase.escapeJson(requestHeadersText)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1246,7 +1246,7 @@ milliseconds relatively to this requestTime.*/
             strBuilder.append('{');
             strBuilder.append("\"opcode\":").append(opcode);
             strBuilder.append(",\"mask\":").append(mask);
-            strBuilder.append(",\"payloadData\":").append('"').append(DomainBase.escapeQuote(payloadData)).append('"');
+            strBuilder.append(",\"payloadData\":").append('"').append(DomainBase.escapeJson(payloadData)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1301,7 +1301,7 @@ milliseconds relatively to this requestTime.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             type.toJson(strBuilder.append(",\"type\":"));
             if (response != null) response.toJson(strBuilder.append(",\"response\":"));
             strBuilder.append(",\"bodySize\":").append(bodySize);
@@ -1384,7 +1384,7 @@ module) (0-based).
             strBuilder.append('{');
             strBuilder.append("\"type\":").append(type);
             if (stack != null) stack.toJson(strBuilder.append(",\"stack\":"));
-            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             if (lineNumber != null) strBuilder.append(",\"lineNumber\":").append(lineNumber);
             strBuilder.append('}');
             return strBuilder;
@@ -1484,10 +1484,10 @@ module) (0-based).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
-            strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeQuote(domain)).append('"');
-            strBuilder.append(",\"path\":").append('"').append(DomainBase.escapeQuote(path)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
+            strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeJson(domain)).append('"');
+            strBuilder.append(",\"path\":").append('"').append(DomainBase.escapeJson(path)).append('"');
             strBuilder.append(",\"expires\":").append(expires);
             strBuilder.append(",\"size\":").append(size);
             strBuilder.append(",\"httpOnly\":").append(httpOnly);
@@ -1598,11 +1598,11 @@ default domain and path values of the created cookie.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
-            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
-            if (domain != null) strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeQuote(domain)).append('"');
-            if (path != null) strBuilder.append(",\"path\":").append('"').append(DomainBase.escapeQuote(path)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
+            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
+            if (domain != null) strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeJson(domain)).append('"');
+            if (path != null) strBuilder.append(",\"path\":").append('"').append(DomainBase.escapeJson(path)).append('"');
             if (secure != null) strBuilder.append(",\"secure\":").append(secure);
             if (httpOnly != null) strBuilder.append(",\"httpOnly\":").append(httpOnly);
             if (sameSite != null) sameSite.toJson(strBuilder.append(",\"sameSite\":"));
@@ -1693,9 +1693,9 @@ default domain and path values of the created cookie.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             if (source != null) strBuilder.append("\"source\":").append(source);
-            strBuilder.append(",\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
-            strBuilder.append(",\"scheme\":").append('"').append(DomainBase.escapeQuote(scheme)).append('"');
-            strBuilder.append(",\"realm\":").append('"').append(DomainBase.escapeQuote(realm)).append('"');
+            strBuilder.append(",\"origin\":").append('"').append(DomainBase.escapeJson(origin)).append('"');
+            strBuilder.append(",\"scheme\":").append('"').append(DomainBase.escapeJson(scheme)).append('"');
+            strBuilder.append(",\"realm\":").append('"').append(DomainBase.escapeJson(realm)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1770,8 +1770,8 @@ ProvideCredentials.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"response\":").append(response);
-            if (username != null) strBuilder.append(",\"username\":").append('"').append(DomainBase.escapeQuote(username)).append('"');
-            if (password != null) strBuilder.append(",\"password\":").append('"').append(DomainBase.escapeQuote(password)).append('"');
+            if (username != null) strBuilder.append(",\"username\":").append('"').append(DomainBase.escapeJson(username)).append('"');
+            if (password != null) strBuilder.append(",\"password\":").append('"').append(DomainBase.escapeJson(password)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1843,7 +1843,7 @@ backslash. Omitting is equivalent to "*".
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            if (urlPattern != null) strBuilder.append("\"urlPattern\":").append('"').append(DomainBase.escapeQuote(urlPattern)).append('"');
+            if (urlPattern != null) strBuilder.append("\"urlPattern\":").append('"').append(DomainBase.escapeJson(urlPattern)).append('"');
             if (resourceType != null) resourceType.toJson(strBuilder.append(",\"resourceType\":"));
             if (interceptionStage != null) interceptionStage.toJson(strBuilder.append(",\"interceptionStage\":"));
             strBuilder.append('}');
@@ -2206,10 +2206,10 @@ authChallenge.
             strBuilder.append('{');
             interceptionId.toJson(strBuilder.append("\"interceptionId\":"));
             if (errorReason != null) errorReason.toJson(strBuilder.append(",\"errorReason\":"));
-            if (rawResponse != null) strBuilder.append(",\"rawResponse\":").append('"').append(DomainBase.escapeQuote(rawResponse)).append('"');
-            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
-            if (method != null) strBuilder.append(",\"method\":").append('"').append(DomainBase.escapeQuote(method)).append('"');
-            if (postData != null) strBuilder.append(",\"postData\":").append('"').append(DomainBase.escapeQuote(postData)).append('"');
+            if (rawResponse != null) strBuilder.append(",\"rawResponse\":").append('"').append(DomainBase.escapeJson(rawResponse)).append('"');
+            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
+            if (method != null) strBuilder.append(",\"method\":").append('"').append(DomainBase.escapeJson(method)).append('"');
+            if (postData != null) strBuilder.append(",\"postData\":").append('"').append(DomainBase.escapeJson(postData)).append('"');
             if (headers != null) headers.toJson(strBuilder.append(",\"headers\":"));
             if (authChallengeResponse != null) authChallengeResponse.toJson(strBuilder.append(",\"authChallengeResponse\":"));
             strBuilder.append('}');
@@ -2307,10 +2307,10 @@ provided URL.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
-            if (domain != null) strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeQuote(domain)).append('"');
-            if (path != null) strBuilder.append(",\"path\":").append('"').append(DomainBase.escapeQuote(path)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
+            if (domain != null) strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeJson(domain)).append('"');
+            if (path != null) strBuilder.append(",\"path\":").append('"').append(DomainBase.escapeJson(path)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2662,7 +2662,7 @@ information in the `cookies` field.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeJson(origin)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2699,9 +2699,9 @@ information in the `cookies` field.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"tableNames\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(tableNames.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(tableNames.get(0))).append('"');
             for (int i = 1; i < tableNames.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(tableNames.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(tableNames.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -2739,9 +2739,9 @@ detailed cookie information in the `cookies` field.*/
             strBuilder.append('{');
             if (urls != null) {
                 strBuilder.append("\"urls\":[");
-                strBuilder.append('"').append(DomainBase.escapeQuote(urls.get(0))).append('"');
+                strBuilder.append('"').append(DomainBase.escapeJson(urls.get(0))).append('"');
                 for (int i = 1; i < urls.size(); ++i)
-                    strBuilder.append(",\"").append(DomainBase.escapeQuote(urls.get(i))).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeJson(urls.get(i))).append('"');
                 strBuilder.append(']');
             }
             strBuilder.append('}');
@@ -2855,7 +2855,7 @@ detailed cookie information in the `cookies` field.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"body\":").append('"').append(DomainBase.escapeQuote(body)).append('"');
+            strBuilder.append("\"body\":").append('"').append(DomainBase.escapeJson(body)).append('"');
             strBuilder.append(",\"base64Encoded\":").append(base64Encoded);
             strBuilder.append('}');
             return strBuilder;
@@ -2928,7 +2928,7 @@ detailed cookie information in the `cookies` field.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"postData\":").append('"').append(DomainBase.escapeQuote(postData)).append('"');
+            strBuilder.append("\"postData\":").append('"').append(DomainBase.escapeJson(postData)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3004,7 +3004,7 @@ detailed cookie information in the `cookies` field.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"body\":").append('"').append(DomainBase.escapeQuote(body)).append('"');
+            strBuilder.append("\"body\":").append('"').append(DomainBase.escapeJson(body)).append('"');
             strBuilder.append(",\"base64Encoded\":").append(base64Encoded);
             strBuilder.append('}');
             return strBuilder;
@@ -3130,7 +3130,7 @@ attribute, user, password.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             requestId.toJson(strBuilder.append("\"requestId\":"));
-            strBuilder.append(",\"query\":").append('"').append(DomainBase.escapeQuote(query)).append('"');
+            strBuilder.append(",\"query\":").append('"').append(DomainBase.escapeJson(query)).append('"');
             if (caseSensitive != null) strBuilder.append(",\"caseSensitive\":").append(caseSensitive);
             if (isRegex != null) strBuilder.append(",\"isRegex\":").append(isRegex);
             strBuilder.append('}');
@@ -3215,9 +3215,9 @@ attribute, user, password.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"urls\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(urls.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(urls.get(0))).append('"');
             for (int i = 1; i < urls.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(urls.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(urls.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -3456,11 +3456,11 @@ default domain and path values of the created cookie.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
-            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
-            if (domain != null) strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeQuote(domain)).append('"');
-            if (path != null) strBuilder.append(",\"path\":").append('"').append(DomainBase.escapeQuote(path)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
+            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
+            if (domain != null) strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeJson(domain)).append('"');
+            if (path != null) strBuilder.append(",\"path\":").append('"').append(DomainBase.escapeJson(path)).append('"');
             if (secure != null) strBuilder.append(",\"secure\":").append(secure);
             if (httpOnly != null) strBuilder.append(",\"httpOnly\":").append(httpOnly);
             if (sameSite != null) sameSite.toJson(strBuilder.append(",\"sameSite\":"));
@@ -3810,7 +3810,7 @@ continueInterceptedRequest call.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"userAgent\":").append('"').append(DomainBase.escapeQuote(userAgent)).append('"');
+            strBuilder.append("\"userAgent\":").append('"').append(DomainBase.escapeJson(userAgent)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3940,9 +3940,9 @@ continueInterceptedRequest call.*/
             strBuilder.append('{');
             requestId.toJson(strBuilder.append("\"requestId\":"));
             timestamp.toJson(strBuilder.append(",\"timestamp\":"));
-            strBuilder.append(",\"eventName\":").append('"').append(DomainBase.escapeQuote(eventName)).append('"');
-            strBuilder.append(",\"eventId\":").append('"').append(DomainBase.escapeQuote(eventId)).append('"');
-            strBuilder.append(",\"data\":").append('"').append(DomainBase.escapeQuote(data)).append('"');
+            strBuilder.append(",\"eventName\":").append('"').append(DomainBase.escapeJson(eventName)).append('"');
+            strBuilder.append(",\"eventId\":").append('"').append(DomainBase.escapeJson(eventId)).append('"');
+            strBuilder.append(",\"data\":").append('"').append(DomainBase.escapeJson(data)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -4011,7 +4011,7 @@ continueInterceptedRequest call.*/
             requestId.toJson(strBuilder.append("\"requestId\":"));
             timestamp.toJson(strBuilder.append(",\"timestamp\":"));
             type.toJson(strBuilder.append(",\"type\":"));
-            strBuilder.append(",\"errorText\":").append('"').append(DomainBase.escapeQuote(errorText)).append('"');
+            strBuilder.append(",\"errorText\":").append('"').append(DomainBase.escapeJson(errorText)).append('"');
             if (canceled != null) strBuilder.append(",\"canceled\":").append(canceled);
             if (blockedReason != null) blockedReason.toJson(strBuilder.append(",\"blockedReason\":"));
             strBuilder.append('}');
@@ -4170,7 +4170,7 @@ intercepting request or auth retry occurred.
             frameId.toJson(strBuilder.append(",\"frameId\":"));
             resourceType.toJson(strBuilder.append(",\"resourceType\":"));
             strBuilder.append(",\"isNavigationRequest\":").append(isNavigationRequest);
-            if (redirectUrl != null) strBuilder.append(",\"redirectUrl\":").append('"').append(DomainBase.escapeQuote(redirectUrl)).append('"');
+            if (redirectUrl != null) strBuilder.append(",\"redirectUrl\":").append('"').append(DomainBase.escapeJson(redirectUrl)).append('"');
             if (authChallenge != null) authChallenge.toJson(strBuilder.append(",\"authChallenge\":"));
             if (responseErrorReason != null) responseErrorReason.toJson(strBuilder.append(",\"responseErrorReason\":"));
             if (responseStatusCode != null) strBuilder.append(",\"responseStatusCode\":").append(responseStatusCode);
@@ -4312,7 +4312,7 @@ mocked.
             strBuilder.append('{');
             requestId.toJson(strBuilder.append("\"requestId\":"));
             loaderId.toJson(strBuilder.append(",\"loaderId\":"));
-            strBuilder.append(",\"documentURL\":").append('"').append(DomainBase.escapeQuote(documentURL)).append('"');
+            strBuilder.append(",\"documentURL\":").append('"').append(DomainBase.escapeJson(documentURL)).append('"');
             request.toJson(strBuilder.append(",\"request\":"));
             timestamp.toJson(strBuilder.append(",\"timestamp\":"));
             wallTime.toJson(strBuilder.append(",\"wallTime\":"));
@@ -4553,7 +4553,7 @@ mocked.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             requestId.toJson(strBuilder.append("\"requestId\":"));
-            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             if (initiator != null) initiator.toJson(strBuilder.append(",\"initiator\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -4604,7 +4604,7 @@ mocked.
             strBuilder.append('{');
             requestId.toJson(strBuilder.append("\"requestId\":"));
             timestamp.toJson(strBuilder.append(",\"timestamp\":"));
-            strBuilder.append(",\"errorMessage\":").append('"').append(DomainBase.escapeQuote(errorMessage)).append('"');
+            strBuilder.append(",\"errorMessage\":").append('"').append(DomainBase.escapeJson(errorMessage)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

@@ -53,7 +53,7 @@ subsequently load the required stylesheet contents using the `getStyleSheet[Text
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -238,7 +238,7 @@ inspector" rules), "regular" for regular stylesheets.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            strBuilder.append("\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             if (range != null) range.toJson(strBuilder.append(",\"range\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -283,7 +283,7 @@ inspector" rules), "regular" for regular stylesheets.*/
             for (int i = 1; i < selectors.size(); ++i)
                 selectors.get(i).toJson(strBuilder.append(','));
             strBuilder.append(']');
-            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -402,10 +402,10 @@ document.written STYLE tags.*/
             strBuilder.append('{');
             styleSheetId.toJson(strBuilder.append("\"styleSheetId\":"));
             frameId.toJson(strBuilder.append(",\"frameId\":"));
-            strBuilder.append(",\"sourceURL\":").append('"').append(DomainBase.escapeQuote(sourceURL)).append('"');
-            if (sourceMapURL != null) strBuilder.append(",\"sourceMapURL\":").append('"').append(DomainBase.escapeQuote(sourceMapURL)).append('"');
+            strBuilder.append(",\"sourceURL\":").append('"').append(DomainBase.escapeJson(sourceURL)).append('"');
+            if (sourceMapURL != null) strBuilder.append(",\"sourceMapURL\":").append('"').append(DomainBase.escapeJson(sourceMapURL)).append('"');
             origin.toJson(strBuilder.append(",\"origin\":"));
-            strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeQuote(title)).append('"');
+            strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeJson(title)).append('"');
             if (ownerNode != null) ownerNode.toJson(strBuilder.append(",\"ownerNode\":"));
             strBuilder.append(",\"disabled\":").append(disabled);
             if (hasSourceURL != null) strBuilder.append(",\"hasSourceURL\":").append(hasSourceURL);
@@ -679,8 +679,8 @@ stylesheet rules) this rule came from.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             if (important != null) strBuilder.append(",\"important\":").append(important);
             strBuilder.append('}');
             return strBuilder;
@@ -722,8 +722,8 @@ stylesheet rules) this rule came from.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -795,7 +795,7 @@ stylesheet rules) this rule came from.
             for (int i = 1; i < shorthandEntries.size(); ++i)
                 shorthandEntries.get(i).toJson(strBuilder.append(','));
             strBuilder.append(']');
-            if (cssText != null) strBuilder.append(",\"cssText\":").append('"').append(DomainBase.escapeQuote(cssText)).append('"');
+            if (cssText != null) strBuilder.append(",\"cssText\":").append('"').append(DomainBase.escapeJson(cssText)).append('"');
             if (range != null) range.toJson(strBuilder.append(",\"range\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -883,11 +883,11 @@ stylesheet rules) this rule came from.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             if (important != null) strBuilder.append(",\"important\":").append(important);
             if (implicit != null) strBuilder.append(",\"implicit\":").append(implicit);
-            if (text != null) strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            if (text != null) strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             if (parsedOk != null) strBuilder.append(",\"parsedOk\":").append(parsedOk);
             if (disabled != null) strBuilder.append(",\"disabled\":").append(disabled);
             if (range != null) range.toJson(strBuilder.append(",\"range\":"));
@@ -993,9 +993,9 @@ available).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            strBuilder.append("\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             strBuilder.append(",\"source\":").append(source);
-            if (sourceURL != null) strBuilder.append(",\"sourceURL\":").append('"').append(DomainBase.escapeQuote(sourceURL)).append('"');
+            if (sourceURL != null) strBuilder.append(",\"sourceURL\":").append('"').append(DomainBase.escapeJson(sourceURL)).append('"');
             if (range != null) range.toJson(strBuilder.append(",\"range\":"));
             if (styleSheetId != null) styleSheetId.toJson(strBuilder.append(",\"styleSheetId\":"));
             if (mediaList != null) {
@@ -1117,8 +1117,8 @@ available).
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"value\":").append(value);
-            strBuilder.append(",\"unit\":").append('"').append(DomainBase.escapeQuote(unit)).append('"');
-            strBuilder.append(",\"feature\":").append('"').append(DomainBase.escapeQuote(feature)).append('"');
+            strBuilder.append(",\"unit\":").append('"').append(DomainBase.escapeJson(unit)).append('"');
+            strBuilder.append(",\"feature\":").append('"').append(DomainBase.escapeJson(feature)).append('"');
             if (valueRange != null) valueRange.toJson(strBuilder.append(",\"valueRange\":"));
             if (computedLength != null) strBuilder.append(",\"computedLength\":").append(computedLength);
             strBuilder.append('}');
@@ -1172,7 +1172,7 @@ available).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"familyName\":").append('"').append(DomainBase.escapeQuote(familyName)).append('"');
+            strBuilder.append("\"familyName\":").append('"').append(DomainBase.escapeJson(familyName)).append('"');
             strBuilder.append(",\"isCustomFont\":").append(isCustomFont);
             strBuilder.append(",\"glyphCount\":").append(glyphCount);
             strBuilder.append('}');
@@ -1257,14 +1257,14 @@ available).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"fontFamily\":").append('"').append(DomainBase.escapeQuote(fontFamily)).append('"');
-            strBuilder.append(",\"fontStyle\":").append('"').append(DomainBase.escapeQuote(fontStyle)).append('"');
-            strBuilder.append(",\"fontVariant\":").append('"').append(DomainBase.escapeQuote(fontVariant)).append('"');
-            strBuilder.append(",\"fontWeight\":").append('"').append(DomainBase.escapeQuote(fontWeight)).append('"');
-            strBuilder.append(",\"fontStretch\":").append('"').append(DomainBase.escapeQuote(fontStretch)).append('"');
-            strBuilder.append(",\"unicodeRange\":").append('"').append(DomainBase.escapeQuote(unicodeRange)).append('"');
-            strBuilder.append(",\"src\":").append('"').append(DomainBase.escapeQuote(src)).append('"');
-            strBuilder.append(",\"platformFontFamily\":").append('"').append(DomainBase.escapeQuote(platformFontFamily)).append('"');
+            strBuilder.append("\"fontFamily\":").append('"').append(DomainBase.escapeJson(fontFamily)).append('"');
+            strBuilder.append(",\"fontStyle\":").append('"').append(DomainBase.escapeJson(fontStyle)).append('"');
+            strBuilder.append(",\"fontVariant\":").append('"').append(DomainBase.escapeJson(fontVariant)).append('"');
+            strBuilder.append(",\"fontWeight\":").append('"').append(DomainBase.escapeJson(fontWeight)).append('"');
+            strBuilder.append(",\"fontStretch\":").append('"').append(DomainBase.escapeJson(fontStretch)).append('"');
+            strBuilder.append(",\"unicodeRange\":").append('"').append(DomainBase.escapeJson(unicodeRange)).append('"');
+            strBuilder.append(",\"src\":").append('"').append(DomainBase.escapeJson(src)).append('"');
+            strBuilder.append(",\"platformFontFamily\":").append('"').append(DomainBase.escapeJson(platformFontFamily)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1429,7 +1429,7 @@ stylesheet rules) this rule came from.
             strBuilder.append('{');
             styleSheetId.toJson(strBuilder.append("\"styleSheetId\":"));
             range.toJson(strBuilder.append(",\"range\":"));
-            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1480,7 +1480,7 @@ position specified by `location`.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             styleSheetId.toJson(strBuilder.append("\"styleSheetId\":"));
-            strBuilder.append(",\"ruleText\":").append('"').append(DomainBase.escapeQuote(ruleText)).append('"');
+            strBuilder.append(",\"ruleText\":").append('"').append(DomainBase.escapeJson(ruleText)).append('"');
             location.toJson(strBuilder.append(",\"location\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -1590,9 +1590,9 @@ position specified by `location`.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"classNames\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(classNames.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(classNames.get(0))).append('"');
             for (int i = 1; i < classNames.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(classNames.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(classNames.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -1797,9 +1797,9 @@ the browser.*/
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
                         strBuilder.append(",\"forcedPseudoClasses\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(forcedPseudoClasses.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(forcedPseudoClasses.get(0))).append('"');
             for (int i = 1; i < forcedPseudoClasses.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(forcedPseudoClasses.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(forcedPseudoClasses.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -1919,14 +1919,14 @@ be ignored (as if the image had failed to load).
             strBuilder.append('{');
             if (backgroundColors != null) {
                 strBuilder.append("\"backgroundColors\":[");
-                strBuilder.append('"').append(DomainBase.escapeQuote(backgroundColors.get(0))).append('"');
+                strBuilder.append('"').append(DomainBase.escapeJson(backgroundColors.get(0))).append('"');
                 for (int i = 1; i < backgroundColors.size(); ++i)
-                    strBuilder.append(",\"").append(DomainBase.escapeQuote(backgroundColors.get(i))).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeJson(backgroundColors.get(i))).append('"');
                 strBuilder.append(']');
             }
-            if (computedFontSize != null) strBuilder.append(",\"computedFontSize\":").append('"').append(DomainBase.escapeQuote(computedFontSize)).append('"');
-            if (computedFontWeight != null) strBuilder.append(",\"computedFontWeight\":").append('"').append(DomainBase.escapeQuote(computedFontWeight)).append('"');
-            if (computedBodyFontSize != null) strBuilder.append(",\"computedBodyFontSize\":").append('"').append(DomainBase.escapeQuote(computedBodyFontSize)).append('"');
+            if (computedFontSize != null) strBuilder.append(",\"computedFontSize\":").append('"').append(DomainBase.escapeJson(computedFontSize)).append('"');
+            if (computedFontWeight != null) strBuilder.append(",\"computedFontWeight\":").append('"').append(DomainBase.escapeJson(computedFontWeight)).append('"');
+            if (computedBodyFontSize != null) strBuilder.append(",\"computedBodyFontSize\":").append('"').append(DomainBase.escapeJson(computedBodyFontSize)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2429,7 +2429,7 @@ node.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            strBuilder.append("\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2479,8 +2479,8 @@ property*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"propertyName\":").append('"').append(DomainBase.escapeQuote(propertyName)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            strBuilder.append(",\"propertyName\":").append('"').append(DomainBase.escapeJson(propertyName)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2559,7 +2559,7 @@ property*/
             strBuilder.append('{');
             styleSheetId.toJson(strBuilder.append("\"styleSheetId\":"));
             range.toJson(strBuilder.append(",\"range\":"));
-            strBuilder.append(",\"keyText\":").append('"').append(DomainBase.escapeQuote(keyText)).append('"');
+            strBuilder.append(",\"keyText\":").append('"').append(DomainBase.escapeJson(keyText)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2648,7 +2648,7 @@ property*/
             strBuilder.append('{');
             styleSheetId.toJson(strBuilder.append("\"styleSheetId\":"));
             range.toJson(strBuilder.append(",\"range\":"));
-            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2737,7 +2737,7 @@ property*/
             strBuilder.append('{');
             styleSheetId.toJson(strBuilder.append("\"styleSheetId\":"));
             range.toJson(strBuilder.append(",\"range\":"));
-            strBuilder.append(",\"selector\":").append('"').append(DomainBase.escapeQuote(selector)).append('"');
+            strBuilder.append(",\"selector\":").append('"').append(DomainBase.escapeJson(selector)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2818,7 +2818,7 @@ property*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             styleSheetId.toJson(strBuilder.append("\"styleSheetId\":"));
-            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2856,7 +2856,7 @@ property*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            if (sourceMapURL != null) strBuilder.append("\"sourceMapURL\":").append('"').append(DomainBase.escapeQuote(sourceMapURL)).append('"');
+            if (sourceMapURL != null) strBuilder.append("\"sourceMapURL\":").append('"').append(DomainBase.escapeJson(sourceMapURL)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -427,7 +427,7 @@ $x functions).*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             objectId.toJson(strBuilder.append("\"objectId\":"));
-            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeQuote(objectGroup)).append('"');
+            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeJson(objectGroup)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -842,7 +842,7 @@ when the tracking is stopped.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"chunk\":").append('"').append(DomainBase.escapeQuote(chunk)).append('"');
+            strBuilder.append("\"chunk\":").append('"').append(DomainBase.escapeJson(chunk)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

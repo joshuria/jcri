@@ -132,7 +132,7 @@ execution will stop on these operations as if there was a regular breakpoint set
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"type\":").append('"').append(DomainBase.escapeQuote(type)).append('"');
+            strBuilder.append("\"type\":").append('"').append(DomainBase.escapeJson(type)).append('"');
             strBuilder.append(",\"useCapture\":").append(useCapture);
             strBuilder.append(",\"passive\":").append(passive);
             strBuilder.append(",\"once\":").append(once);
@@ -362,8 +362,8 @@ entire subtree or provide an integer larger than 0.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"eventName\":").append('"').append(DomainBase.escapeQuote(eventName)).append('"');
-            if (targetName != null) strBuilder.append(",\"targetName\":").append('"').append(DomainBase.escapeQuote(targetName)).append('"');
+            strBuilder.append("\"eventName\":").append('"').append(DomainBase.escapeJson(eventName)).append('"');
+            if (targetName != null) strBuilder.append(",\"targetName\":").append('"').append(DomainBase.escapeJson(targetName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -426,7 +426,7 @@ entire subtree or provide an integer larger than 0.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"eventName\":").append('"').append(DomainBase.escapeQuote(eventName)).append('"');
+            strBuilder.append("\"eventName\":").append('"').append(DomainBase.escapeJson(eventName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -486,7 +486,7 @@ entire subtree or provide an integer larger than 0.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -623,8 +623,8 @@ EventTarget.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"eventName\":").append('"').append(DomainBase.escapeQuote(eventName)).append('"');
-            if (targetName != null) strBuilder.append(",\"targetName\":").append('"').append(DomainBase.escapeQuote(targetName)).append('"');
+            strBuilder.append("\"eventName\":").append('"').append(DomainBase.escapeJson(eventName)).append('"');
+            if (targetName != null) strBuilder.append(",\"targetName\":").append('"').append(DomainBase.escapeJson(targetName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -687,7 +687,7 @@ EventTarget.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"eventName\":").append('"').append(DomainBase.escapeQuote(eventName)).append('"');
+            strBuilder.append("\"eventName\":").append('"').append(DomainBase.escapeJson(eventName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -747,7 +747,7 @@ EventTarget.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

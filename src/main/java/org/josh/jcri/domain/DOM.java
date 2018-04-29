@@ -114,7 +114,7 @@ front-end.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"nodeType\":").append(nodeType);
-            strBuilder.append(",\"nodeName\":").append('"').append(DomainBase.escapeQuote(nodeName)).append('"');
+            strBuilder.append(",\"nodeName\":").append('"').append(DomainBase.escapeJson(nodeName)).append('"');
             backendNodeId.toJson(strBuilder.append(",\"backendNodeId\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -399,9 +399,9 @@ fire DOM events for nodes known to the client.*/
             if (parentId != null) parentId.toJson(strBuilder.append(",\"parentId\":"));
             backendNodeId.toJson(strBuilder.append(",\"backendNodeId\":"));
             strBuilder.append(",\"nodeType\":").append(nodeType);
-            strBuilder.append(",\"nodeName\":").append('"').append(DomainBase.escapeQuote(nodeName)).append('"');
-            strBuilder.append(",\"localName\":").append('"').append(DomainBase.escapeQuote(localName)).append('"');
-            strBuilder.append(",\"nodeValue\":").append('"').append(DomainBase.escapeQuote(nodeValue)).append('"');
+            strBuilder.append(",\"nodeName\":").append('"').append(DomainBase.escapeJson(nodeName)).append('"');
+            strBuilder.append(",\"localName\":").append('"').append(DomainBase.escapeJson(localName)).append('"');
+            strBuilder.append(",\"nodeValue\":").append('"').append(DomainBase.escapeJson(nodeValue)).append('"');
             if (childNodeCount != null) strBuilder.append(",\"childNodeCount\":").append(childNodeCount);
             if (children != null) {
                 strBuilder.append(",\"children\":[");
@@ -412,19 +412,19 @@ fire DOM events for nodes known to the client.*/
             }
             if (attributes != null) {
                 strBuilder.append(",\"attributes\":[");
-                strBuilder.append('"').append(DomainBase.escapeQuote(attributes.get(0))).append('"');
+                strBuilder.append('"').append(DomainBase.escapeJson(attributes.get(0))).append('"');
                 for (int i = 1; i < attributes.size(); ++i)
-                    strBuilder.append(",\"").append(DomainBase.escapeQuote(attributes.get(i))).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeJson(attributes.get(i))).append('"');
                 strBuilder.append(']');
             }
-            if (documentURL != null) strBuilder.append(",\"documentURL\":").append('"').append(DomainBase.escapeQuote(documentURL)).append('"');
-            if (baseURL != null) strBuilder.append(",\"baseURL\":").append('"').append(DomainBase.escapeQuote(baseURL)).append('"');
-            if (publicId != null) strBuilder.append(",\"publicId\":").append('"').append(DomainBase.escapeQuote(publicId)).append('"');
-            if (systemId != null) strBuilder.append(",\"systemId\":").append('"').append(DomainBase.escapeQuote(systemId)).append('"');
-            if (internalSubset != null) strBuilder.append(",\"internalSubset\":").append('"').append(DomainBase.escapeQuote(internalSubset)).append('"');
-            if (xmlVersion != null) strBuilder.append(",\"xmlVersion\":").append('"').append(DomainBase.escapeQuote(xmlVersion)).append('"');
-            if (name != null) strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            if (value != null) strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            if (documentURL != null) strBuilder.append(",\"documentURL\":").append('"').append(DomainBase.escapeJson(documentURL)).append('"');
+            if (baseURL != null) strBuilder.append(",\"baseURL\":").append('"').append(DomainBase.escapeJson(baseURL)).append('"');
+            if (publicId != null) strBuilder.append(",\"publicId\":").append('"').append(DomainBase.escapeJson(publicId)).append('"');
+            if (systemId != null) strBuilder.append(",\"systemId\":").append('"').append(DomainBase.escapeJson(systemId)).append('"');
+            if (internalSubset != null) strBuilder.append(",\"internalSubset\":").append('"').append(DomainBase.escapeJson(internalSubset)).append('"');
+            if (xmlVersion != null) strBuilder.append(",\"xmlVersion\":").append('"').append(DomainBase.escapeJson(xmlVersion)).append('"');
+            if (name != null) strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            if (value != null) strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             if (pseudoType != null) pseudoType.toJson(strBuilder.append(",\"pseudoType\":"));
             if (shadowRootType != null) shadowRootType.toJson(strBuilder.append(",\"shadowRootType\":"));
             if (frameId != null) frameId.toJson(strBuilder.append(",\"frameId\":"));
@@ -866,9 +866,9 @@ fire DOM events for nodes known to the client.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"classNames\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(classNames.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(classNames.get(0))).append('"');
             for (int i = 1; i < classNames.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(classNames.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(classNames.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -1157,7 +1157,7 @@ be called for that search.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"searchId\":").append('"').append(DomainBase.escapeQuote(searchId)).append('"');
+            strBuilder.append("\"searchId\":").append('"').append(DomainBase.escapeJson(searchId)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1377,9 +1377,9 @@ be called for that search.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"attributes\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(attributes.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(attributes.get(0))).append('"');
             for (int i = 1; i < attributes.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(attributes.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(attributes.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -1816,7 +1816,7 @@ entire subtree or provide an integer larger than 0.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"outerHTML\":").append('"').append(DomainBase.escapeQuote(outerHTML)).append('"');
+            strBuilder.append("\"outerHTML\":").append('"').append(DomainBase.escapeJson(outerHTML)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1939,7 +1939,7 @@ identifier.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"searchId\":").append('"').append(DomainBase.escapeQuote(searchId)).append('"');
+            strBuilder.append("\"searchId\":").append('"').append(DomainBase.escapeJson(searchId)).append('"');
             strBuilder.append(",\"fromIndex\":").append(fromIndex);
             strBuilder.append(",\"toIndex\":").append(toIndex);
             strBuilder.append('}');
@@ -2302,7 +2302,7 @@ identifier.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"query\":").append('"').append(DomainBase.escapeQuote(query)).append('"');
+            strBuilder.append("\"query\":").append('"').append(DomainBase.escapeJson(query)).append('"');
             if (includeUserAgentShadowDOM != null) strBuilder.append(",\"includeUserAgentShadowDOM\":").append(includeUserAgentShadowDOM);
             strBuilder.append('}');
             return strBuilder;
@@ -2345,7 +2345,7 @@ identifier.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"searchId\":").append('"').append(DomainBase.escapeQuote(searchId)).append('"');
+            strBuilder.append("\"searchId\":").append('"').append(DomainBase.escapeJson(searchId)).append('"');
             strBuilder.append(",\"resultCount\":").append(resultCount);
             strBuilder.append('}');
             return strBuilder;
@@ -2385,7 +2385,7 @@ identifier.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"path\":").append('"').append(DomainBase.escapeQuote(path)).append('"');
+            strBuilder.append("\"path\":").append('"').append(DomainBase.escapeJson(path)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2544,7 +2544,7 @@ backendNodeIds.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"selector\":").append('"').append(DomainBase.escapeQuote(selector)).append('"');
+            strBuilder.append(",\"selector\":").append('"').append(DomainBase.escapeJson(selector)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2623,7 +2623,7 @@ backendNodeIds.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"selector\":").append('"').append(DomainBase.escapeQuote(selector)).append('"');
+            strBuilder.append(",\"selector\":").append('"').append(DomainBase.escapeJson(selector)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2754,7 +2754,7 @@ backendNodeIds.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3044,7 +3044,7 @@ nodes that form the path from the node to the root are also sent to the client a
             strBuilder.append('{');
             if (nodeId != null) nodeId.toJson(strBuilder.append("\"nodeId\":"));
             if (backendNodeId != null) backendNodeId.toJson(strBuilder.append(",\"backendNodeId\":"));
-            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeQuote(objectGroup)).append('"');
+            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeJson(objectGroup)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3132,8 +3132,8 @@ nodes that form the path from the node to the root are also sent to the client a
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3213,8 +3213,8 @@ successfully.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
-            if (name != null) strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
+            if (name != null) strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3299,9 +3299,9 @@ successfully.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"files\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(files.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(files.get(0))).append('"');
             for (int i = 1; i < files.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(files.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(files.get(i))).append('"');
             strBuilder.append(']');
             if (nodeId != null) nodeId.toJson(strBuilder.append(",\"nodeId\":"));
             if (backendNodeId != null) backendNodeId.toJson(strBuilder.append(",\"backendNodeId\":"));
@@ -3441,7 +3441,7 @@ $x functions).
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3520,7 +3520,7 @@ $x functions).
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3589,7 +3589,7 @@ $x functions).
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"outerHTML\":").append('"').append(DomainBase.escapeQuote(outerHTML)).append('"');
+            strBuilder.append(",\"outerHTML\":").append('"').append(DomainBase.escapeJson(outerHTML)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3775,8 +3775,8 @@ $x functions).
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3821,7 +3821,7 @@ $x functions).
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -3864,7 +3864,7 @@ $x functions).
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             nodeId.toJson(strBuilder.append("\"nodeId\":"));
-            strBuilder.append(",\"characterData\":").append('"').append(DomainBase.escapeQuote(characterData)).append('"');
+            strBuilder.append(",\"characterData\":").append('"').append(DomainBase.escapeJson(characterData)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

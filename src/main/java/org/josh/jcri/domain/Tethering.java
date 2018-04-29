@@ -166,7 +166,7 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"port\":").append(port);
-            strBuilder.append(",\"connectionId\":").append('"').append(DomainBase.escapeQuote(connectionId)).append('"');
+            strBuilder.append(",\"connectionId\":").append('"').append(DomainBase.escapeJson(connectionId)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

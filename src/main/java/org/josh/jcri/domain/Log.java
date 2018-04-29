@@ -161,13 +161,13 @@ import javax.annotation.Nullable;
             strBuilder.append('{');
             strBuilder.append("\"source\":").append(source);
             strBuilder.append(",\"level\":").append(level);
-            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             timestamp.toJson(strBuilder.append(",\"timestamp\":"));
-            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             if (lineNumber != null) strBuilder.append(",\"lineNumber\":").append(lineNumber);
             if (stackTrace != null) stackTrace.toJson(strBuilder.append(",\"stackTrace\":"));
             if (networkRequestId != null) networkRequestId.toJson(strBuilder.append(",\"networkRequestId\":"));
-            if (workerId != null) strBuilder.append(",\"workerId\":").append('"').append(DomainBase.escapeQuote(workerId)).append('"');
+            if (workerId != null) strBuilder.append(",\"workerId\":").append('"').append(DomainBase.escapeJson(workerId)).append('"');
             if (args != null) {
                 strBuilder.append(",\"args\":[");
                 args.get(0).toJson(strBuilder);

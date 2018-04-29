@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"securityOrigin\":").append('"').append(DomainBase.escapeQuote(securityOrigin)).append('"');
+            strBuilder.append("\"securityOrigin\":").append('"').append(DomainBase.escapeJson(securityOrigin)).append('"');
             strBuilder.append(",\"isLocalStorage\":").append(isLocalStorage);
             strBuilder.append('}');
             return strBuilder;
@@ -339,7 +339,7 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeJson(key)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -415,8 +415,8 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
-            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeJson(key)).append('"');
+            strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -484,8 +484,8 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
-            strBuilder.append(",\"newValue\":").append('"').append(DomainBase.escapeQuote(newValue)).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeJson(key)).append('"');
+            strBuilder.append(",\"newValue\":").append('"').append(DomainBase.escapeJson(newValue)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -530,7 +530,7 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeJson(key)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -581,9 +581,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             storageId.toJson(strBuilder.append("\"storageId\":"));
-            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
-            strBuilder.append(",\"oldValue\":").append('"').append(DomainBase.escapeQuote(oldValue)).append('"');
-            strBuilder.append(",\"newValue\":").append('"').append(DomainBase.escapeQuote(newValue)).append('"');
+            strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeJson(key)).append('"');
+            strBuilder.append(",\"oldValue\":").append('"').append(DomainBase.escapeJson(oldValue)).append('"');
+            strBuilder.append(",\"newValue\":").append('"').append(DomainBase.escapeJson(newValue)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

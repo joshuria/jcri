@@ -48,7 +48,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -71,7 +71,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -234,10 +234,10 @@ breakpoints, stepping through execution, exploring stack traces, etc.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             callFrameId.toJson(strBuilder.append("\"callFrameId\":"));
-            strBuilder.append(",\"functionName\":").append('"').append(DomainBase.escapeQuote(functionName)).append('"');
+            strBuilder.append(",\"functionName\":").append('"').append(DomainBase.escapeJson(functionName)).append('"');
             if (functionLocation != null) functionLocation.toJson(strBuilder.append(",\"functionLocation\":"));
             location.toJson(strBuilder.append(",\"location\":"));
-            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
                         strBuilder.append(",\"scopeChain\":[");
             scopeChain.get(0).toJson(strBuilder);
             for (int i = 1; i < scopeChain.size(); ++i)
@@ -345,7 +345,7 @@ variables as its properties.*/
             strBuilder.append('{');
             strBuilder.append("\"type\":").append(type);
             object.toJson(strBuilder.append(",\"object\":"));
-            if (name != null) strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            if (name != null) strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             if (startLocation != null) startLocation.toJson(strBuilder.append(",\"startLocation\":"));
             if (endLocation != null) endLocation.toJson(strBuilder.append(",\"endLocation\":"));
             strBuilder.append('}');
@@ -393,7 +393,7 @@ variables as its properties.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"lineNumber\":").append(lineNumber);
-            strBuilder.append(",\"lineContent\":").append('"').append(DomainBase.escapeQuote(lineContent)).append('"');
+            strBuilder.append(",\"lineContent\":").append('"').append(DomainBase.escapeJson(lineContent)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -748,8 +748,8 @@ execution. Overrides `setPauseOnException` state.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             callFrameId.toJson(strBuilder.append("\"callFrameId\":"));
-            strBuilder.append(",\"expression\":").append('"').append(DomainBase.escapeQuote(expression)).append('"');
-            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeQuote(objectGroup)).append('"');
+            strBuilder.append(",\"expression\":").append('"').append(DomainBase.escapeJson(expression)).append('"');
+            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeJson(objectGroup)).append('"');
             if (includeCommandLineAPI != null) strBuilder.append(",\"includeCommandLineAPI\":").append(includeCommandLineAPI);
             if (silent != null) strBuilder.append(",\"silent\":").append(silent);
             if (returnByValue != null) strBuilder.append(",\"returnByValue\":").append(returnByValue);
@@ -976,7 +976,7 @@ of scripts is used as end of range.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"scriptSource\":").append('"').append(DomainBase.escapeQuote(scriptSource)).append('"');
+            strBuilder.append("\"scriptSource\":").append('"').append(DomainBase.escapeJson(scriptSource)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1458,7 +1458,7 @@ task were scheduled or another scheduleStepIntoAsync was called.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             scriptId.toJson(strBuilder.append("\"scriptId\":"));
-            strBuilder.append(",\"query\":").append('"').append(DomainBase.escapeQuote(query)).append('"');
+            strBuilder.append(",\"query\":").append('"').append(DomainBase.escapeJson(query)).append('"');
             if (caseSensitive != null) strBuilder.append(",\"caseSensitive\":").append(caseSensitive);
             if (isRegex != null) strBuilder.append(",\"isRegex\":").append(isRegex);
             strBuilder.append('}');
@@ -1604,9 +1604,9 @@ performing 'step in' several times, finally resorting to 'step out' if unsuccess
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"patterns\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(patterns.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(patterns.get(0))).append('"');
             for (int i = 1; i < patterns.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(patterns.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(patterns.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -1755,7 +1755,7 @@ breakpoint if this expression evaluates to true.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             location.toJson(strBuilder.append("\"location\":"));
-            if (condition != null) strBuilder.append(",\"condition\":").append('"').append(DomainBase.escapeQuote(condition)).append('"');
+            if (condition != null) strBuilder.append(",\"condition\":").append('"').append(DomainBase.escapeJson(condition)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1875,11 +1875,11 @@ breakpoint if this expression evaluates to true.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"lineNumber\":").append(lineNumber);
-            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
-            if (urlRegex != null) strBuilder.append(",\"urlRegex\":").append('"').append(DomainBase.escapeQuote(urlRegex)).append('"');
-            if (scriptHash != null) strBuilder.append(",\"scriptHash\":").append('"').append(DomainBase.escapeQuote(scriptHash)).append('"');
+            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
+            if (urlRegex != null) strBuilder.append(",\"urlRegex\":").append('"').append(DomainBase.escapeJson(urlRegex)).append('"');
+            if (scriptHash != null) strBuilder.append(",\"scriptHash\":").append('"').append(DomainBase.escapeJson(scriptHash)).append('"');
             if (columnNumber != null) strBuilder.append(",\"columnNumber\":").append(columnNumber);
-            if (condition != null) strBuilder.append(",\"condition\":").append('"').append(DomainBase.escapeQuote(condition)).append('"');
+            if (condition != null) strBuilder.append(",\"condition\":").append('"').append(DomainBase.escapeJson(condition)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2186,7 +2186,7 @@ description without actually modifying the code.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             scriptId.toJson(strBuilder.append("\"scriptId\":"));
-            strBuilder.append(",\"scriptSource\":").append('"').append(DomainBase.escapeQuote(scriptSource)).append('"');
+            strBuilder.append(",\"scriptSource\":").append('"').append(DomainBase.escapeJson(scriptSource)).append('"');
             if (dryRun != null) strBuilder.append(",\"dryRun\":").append(dryRun);
             strBuilder.append('}');
             return strBuilder;
@@ -2387,7 +2387,7 @@ scope types are allowed. Other scopes could be manipulated manually.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"scopeNumber\":").append(scopeNumber);
-            strBuilder.append(",\"variableName\":").append('"').append(DomainBase.escapeQuote(variableName)).append('"');
+            strBuilder.append(",\"variableName\":").append('"').append(DomainBase.escapeJson(variableName)).append('"');
             newValue.toJson(strBuilder.append(",\"newValue\":"));
             callFrameId.toJson(strBuilder.append(",\"callFrameId\":"));
             strBuilder.append('}');
@@ -2711,9 +2711,9 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
             if (data != null) strBuilder.append(",\"data\":").append(data);
             if (hitBreakpoints != null) {
                 strBuilder.append(",\"hitBreakpoints\":[");
-                strBuilder.append('"').append(DomainBase.escapeQuote(hitBreakpoints.get(0))).append('"');
+                strBuilder.append('"').append(DomainBase.escapeJson(hitBreakpoints.get(0))).append('"');
                 for (int i = 1; i < hitBreakpoints.size(); ++i)
-                    strBuilder.append(",\"").append(DomainBase.escapeQuote(hitBreakpoints.get(i))).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeJson(hitBreakpoints.get(i))).append('"');
                 strBuilder.append(']');
             }
             if (asyncStackTrace != null) asyncStackTrace.toJson(strBuilder.append(",\"asyncStackTrace\":"));
@@ -2853,15 +2853,15 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             scriptId.toJson(strBuilder.append("\"scriptId\":"));
-            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             strBuilder.append(",\"startLine\":").append(startLine);
             strBuilder.append(",\"startColumn\":").append(startColumn);
             strBuilder.append(",\"endLine\":").append(endLine);
             strBuilder.append(",\"endColumn\":").append(endColumn);
             executionContextId.toJson(strBuilder.append(",\"executionContextId\":"));
-            strBuilder.append(",\"hash\":").append('"').append(DomainBase.escapeQuote(hash)).append('"');
+            strBuilder.append(",\"hash\":").append('"').append(DomainBase.escapeJson(hash)).append('"');
             if (executionContextAuxData != null) strBuilder.append(",\"executionContextAuxData\":").append(executionContextAuxData);
-            if (sourceMapURL != null) strBuilder.append(",\"sourceMapURL\":").append('"').append(DomainBase.escapeQuote(sourceMapURL)).append('"');
+            if (sourceMapURL != null) strBuilder.append(",\"sourceMapURL\":").append('"').append(DomainBase.escapeJson(sourceMapURL)).append('"');
             if (hasSourceURL != null) strBuilder.append(",\"hasSourceURL\":").append(hasSourceURL);
             if (isModule != null) strBuilder.append(",\"isModule\":").append(isModule);
             if (length != null) strBuilder.append(",\"length\":").append(length);
@@ -2993,16 +2993,16 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             scriptId.toJson(strBuilder.append("\"scriptId\":"));
-            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             strBuilder.append(",\"startLine\":").append(startLine);
             strBuilder.append(",\"startColumn\":").append(startColumn);
             strBuilder.append(",\"endLine\":").append(endLine);
             strBuilder.append(",\"endColumn\":").append(endColumn);
             executionContextId.toJson(strBuilder.append(",\"executionContextId\":"));
-            strBuilder.append(",\"hash\":").append('"').append(DomainBase.escapeQuote(hash)).append('"');
+            strBuilder.append(",\"hash\":").append('"').append(DomainBase.escapeJson(hash)).append('"');
             if (executionContextAuxData != null) strBuilder.append(",\"executionContextAuxData\":").append(executionContextAuxData);
             if (isLiveEdit != null) strBuilder.append(",\"isLiveEdit\":").append(isLiveEdit);
-            if (sourceMapURL != null) strBuilder.append(",\"sourceMapURL\":").append('"').append(DomainBase.escapeQuote(sourceMapURL)).append('"');
+            if (sourceMapURL != null) strBuilder.append(",\"sourceMapURL\":").append('"').append(DomainBase.escapeJson(sourceMapURL)).append('"');
             if (hasSourceURL != null) strBuilder.append(",\"hasSourceURL\":").append(hasSourceURL);
             if (isModule != null) strBuilder.append(",\"isModule\":").append(isModule);
             if (length != null) strBuilder.append(",\"length\":").append(length);

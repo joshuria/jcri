@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -213,13 +213,13 @@ import javax.annotation.Nullable;
             strBuilder.append('{');
             type.toJson(strBuilder.append("\"type\":"));
             if (value != null) value.toJson(strBuilder.append(",\"value\":"));
-            if (attribute != null) strBuilder.append(",\"attribute\":").append('"').append(DomainBase.escapeQuote(attribute)).append('"');
+            if (attribute != null) strBuilder.append(",\"attribute\":").append('"').append(DomainBase.escapeJson(attribute)).append('"');
             if (attributeValue != null) attributeValue.toJson(strBuilder.append(",\"attributeValue\":"));
             if (superseded != null) strBuilder.append(",\"superseded\":").append(superseded);
             if (nativeSource != null) nativeSource.toJson(strBuilder.append(",\"nativeSource\":"));
             if (nativeSourceValue != null) nativeSourceValue.toJson(strBuilder.append(",\"nativeSourceValue\":"));
             if (invalid != null) strBuilder.append(",\"invalid\":").append(invalid);
-            if (invalidReason != null) strBuilder.append(",\"invalidReason\":").append('"').append(DomainBase.escapeQuote(invalidReason)).append('"');
+            if (invalidReason != null) strBuilder.append(",\"invalidReason\":").append('"').append(DomainBase.escapeJson(invalidReason)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -280,8 +280,8 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             backendDOMNodeId.toJson(strBuilder.append("\"backendDOMNodeId\":"));
-            if (idref != null) strBuilder.append(",\"idref\":").append('"').append(DomainBase.escapeQuote(idref)).append('"');
-            if (text != null) strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            if (idref != null) strBuilder.append(",\"idref\":").append('"').append(DomainBase.escapeJson(idref)).append('"');
+            if (text != null) strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

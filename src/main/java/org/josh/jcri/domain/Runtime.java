@@ -50,7 +50,7 @@ other objects in their object group.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -73,7 +73,7 @@ other objects in their object group.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -97,7 +97,7 @@ other objects in their object group.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -235,10 +235,10 @@ property.
             strBuilder.append('{');
             strBuilder.append("\"type\":").append(type);
             if (subtype != null) strBuilder.append(",\"subtype\":").append(subtype);
-            if (className != null) strBuilder.append(",\"className\":").append('"').append(DomainBase.escapeQuote(className)).append('"');
+            if (className != null) strBuilder.append(",\"className\":").append('"').append(DomainBase.escapeJson(className)).append('"');
             if (value != null) strBuilder.append(",\"value\":").append(value);
             if (unserializableValue != null) unserializableValue.toJson(strBuilder.append(",\"unserializableValue\":"));
-            if (description != null) strBuilder.append(",\"description\":").append('"').append(DomainBase.escapeQuote(description)).append('"');
+            if (description != null) strBuilder.append(",\"description\":").append('"').append(DomainBase.escapeJson(description)).append('"');
             if (objectId != null) objectId.toJson(strBuilder.append(",\"objectId\":"));
             if (preview != null) preview.toJson(strBuilder.append(",\"preview\":"));
             if (customPreview != null) customPreview.toJson(strBuilder.append(",\"customPreview\":"));
@@ -316,7 +316,7 @@ property.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"header\":").append('"').append(DomainBase.escapeQuote(header)).append('"');
+            strBuilder.append("\"header\":").append('"').append(DomainBase.escapeJson(header)).append('"');
             strBuilder.append(",\"hasBody\":").append(hasBody);
             formatterObjectId.toJson(strBuilder.append(",\"formatterObjectId\":"));
             bindRemoteObjectFunctionId.toJson(strBuilder.append(",\"bindRemoteObjectFunctionId\":"));
@@ -448,7 +448,7 @@ property.
             strBuilder.append('{');
             strBuilder.append("\"type\":").append(type);
             if (subtype != null) strBuilder.append(",\"subtype\":").append(subtype);
-            if (description != null) strBuilder.append(",\"description\":").append('"').append(DomainBase.escapeQuote(description)).append('"');
+            if (description != null) strBuilder.append(",\"description\":").append('"').append(DomainBase.escapeJson(description)).append('"');
             strBuilder.append(",\"overflow\":").append(overflow);
                         strBuilder.append(",\"properties\":[");
             properties.get(0).toJson(strBuilder);
@@ -583,9 +583,9 @@ property.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             strBuilder.append(",\"type\":").append(type);
-            if (value != null) strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeQuote(value)).append('"');
+            if (value != null) strBuilder.append(",\"value\":").append('"').append(DomainBase.escapeJson(value)).append('"');
             if (valuePreview != null) valuePreview.toJson(strBuilder.append(",\"valuePreview\":"));
             if (subtype != null) strBuilder.append(",\"subtype\":").append(subtype);
             strBuilder.append('}');
@@ -733,7 +733,7 @@ object.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             if (value != null) value.toJson(strBuilder.append(",\"value\":"));
             if (writable != null) strBuilder.append(",\"writable\":").append(writable);
             if (get != null) get.toJson(strBuilder.append(",\"get\":"));
@@ -797,7 +797,7 @@ object.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             if (value != null) value.toJson(strBuilder.append(",\"value\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -927,8 +927,8 @@ script evaluation should be performed.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             id.toJson(strBuilder.append("\"id\":"));
-            strBuilder.append(",\"origin\":").append('"').append(DomainBase.escapeQuote(origin)).append('"');
-            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
+            strBuilder.append(",\"origin\":").append('"').append(DomainBase.escapeJson(origin)).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
             if (auxData != null) strBuilder.append(",\"auxData\":").append(auxData);
             strBuilder.append('}');
             return strBuilder;
@@ -1023,11 +1023,11 @@ execution.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"exceptionId\":").append(exceptionId);
-            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
+            strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
             strBuilder.append(",\"lineNumber\":").append(lineNumber);
             strBuilder.append(",\"columnNumber\":").append(columnNumber);
             if (scriptId != null) scriptId.toJson(strBuilder.append(",\"scriptId\":"));
-            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            if (url != null) strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             if (stackTrace != null) stackTrace.toJson(strBuilder.append(",\"stackTrace\":"));
             if (exception != null) exception.toJson(strBuilder.append(",\"exception\":"));
             if (executionContextId != null) executionContextId.toJson(strBuilder.append(",\"executionContextId\":"));
@@ -1150,9 +1150,9 @@ execution.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"functionName\":").append('"').append(DomainBase.escapeQuote(functionName)).append('"');
+            strBuilder.append("\"functionName\":").append('"').append(DomainBase.escapeJson(functionName)).append('"');
             scriptId.toJson(strBuilder.append(",\"scriptId\":"));
-            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             strBuilder.append(",\"lineNumber\":").append(lineNumber);
             strBuilder.append(",\"columnNumber\":").append(columnNumber);
             strBuilder.append('}');
@@ -1215,7 +1215,7 @@ initiated the async call.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            if (description != null) strBuilder.append("\"description\":").append('"').append(DomainBase.escapeQuote(description)).append('"');
+            if (description != null) strBuilder.append("\"description\":").append('"').append(DomainBase.escapeJson(description)).append('"');
                         strBuilder.append(",\"callFrames\":[");
             callFrames.get(0).toJson(strBuilder);
             for (int i = 1; i < callFrames.size(); ++i)
@@ -1260,7 +1260,7 @@ initiated the async call.
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -1291,7 +1291,7 @@ allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.pau
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeJson(id)).append('"');
             if (debuggerId != null) debuggerId.toJson(strBuilder.append(",\"debuggerId\":"));
             strBuilder.append('}');
             return strBuilder;
@@ -1494,7 +1494,7 @@ specified and objectId is, objectGroup will be inherited from object.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"functionDeclaration\":").append('"').append(DomainBase.escapeQuote(functionDeclaration)).append('"');
+            strBuilder.append("\"functionDeclaration\":").append('"').append(DomainBase.escapeJson(functionDeclaration)).append('"');
             if (objectId != null) objectId.toJson(strBuilder.append(",\"objectId\":"));
             if (arguments != null) {
                 strBuilder.append(",\"arguments\":[");
@@ -1509,7 +1509,7 @@ specified and objectId is, objectGroup will be inherited from object.
             if (userGesture != null) strBuilder.append(",\"userGesture\":").append(userGesture);
             if (awaitPromise != null) strBuilder.append(",\"awaitPromise\":").append(awaitPromise);
             if (executionContextId != null) executionContextId.toJson(strBuilder.append(",\"executionContextId\":"));
-            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeQuote(objectGroup)).append('"');
+            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeJson(objectGroup)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1627,8 +1627,8 @@ evaluation will be performed in the context of the inspected page.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"expression\":").append('"').append(DomainBase.escapeQuote(expression)).append('"');
-            strBuilder.append(",\"sourceURL\":").append('"').append(DomainBase.escapeQuote(sourceURL)).append('"');
+            strBuilder.append("\"expression\":").append('"').append(DomainBase.escapeJson(expression)).append('"');
+            strBuilder.append(",\"sourceURL\":").append('"').append(DomainBase.escapeJson(sourceURL)).append('"');
             strBuilder.append(",\"persistScript\":").append(persistScript);
             if (executionContextId != null) executionContextId.toJson(strBuilder.append(",\"executionContextId\":"));
             strBuilder.append('}');
@@ -1928,8 +1928,8 @@ resolved.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"expression\":").append('"').append(DomainBase.escapeQuote(expression)).append('"');
-            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeQuote(objectGroup)).append('"');
+            strBuilder.append("\"expression\":").append('"').append(DomainBase.escapeJson(expression)).append('"');
+            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeJson(objectGroup)).append('"');
             if (includeCommandLineAPI != null) strBuilder.append(",\"includeCommandLineAPI\":").append(includeCommandLineAPI);
             if (silent != null) strBuilder.append(",\"silent\":").append(silent);
             if (contextId != null) contextId.toJson(strBuilder.append(",\"contextId\":"));
@@ -2060,7 +2060,7 @@ resolved.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeQuote(id)).append('"');
+            strBuilder.append("\"id\":").append('"').append(DomainBase.escapeJson(id)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2329,9 +2329,9 @@ returned either.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"names\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(names.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(names.get(0))).append('"');
             for (int i = 1; i < names.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(names.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(names.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -2374,7 +2374,7 @@ returned either.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             prototypeObjectId.toJson(strBuilder.append("\"prototypeObjectId\":"));
-            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeQuote(objectGroup)).append('"');
+            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeJson(objectGroup)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2504,7 +2504,7 @@ returned either.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"objectGroup\":").append('"').append(DomainBase.escapeQuote(objectGroup)).append('"');
+            strBuilder.append("\"objectGroup\":").append('"').append(DomainBase.escapeJson(objectGroup)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2662,7 +2662,7 @@ resolved.
             strBuilder.append('{');
             scriptId.toJson(strBuilder.append("\"scriptId\":"));
             if (executionContextId != null) executionContextId.toJson(strBuilder.append(",\"executionContextId\":"));
-            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeQuote(objectGroup)).append('"');
+            if (objectGroup != null) strBuilder.append(",\"objectGroup\":").append('"').append(DomainBase.escapeJson(objectGroup)).append('"');
             if (silent != null) strBuilder.append(",\"silent\":").append(silent);
             if (includeCommandLineAPI != null) strBuilder.append(",\"includeCommandLineAPI\":").append(includeCommandLineAPI);
             if (returnByValue != null) strBuilder.append(",\"returnByValue\":").append(returnByValue);
@@ -2934,7 +2934,7 @@ on named context.
             executionContextId.toJson(strBuilder.append(",\"executionContextId\":"));
             timestamp.toJson(strBuilder.append(",\"timestamp\":"));
             if (stackTrace != null) stackTrace.toJson(strBuilder.append(",\"stackTrace\":"));
-            if (context != null) strBuilder.append(",\"context\":").append('"').append(DomainBase.escapeQuote(context)).append('"');
+            if (context != null) strBuilder.append(",\"context\":").append('"').append(DomainBase.escapeJson(context)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -2984,7 +2984,7 @@ on named context.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"reason\":").append('"').append(DomainBase.escapeQuote(reason)).append('"');
+            strBuilder.append("\"reason\":").append('"').append(DomainBase.escapeJson(reason)).append('"');
             strBuilder.append(",\"exceptionId\":").append(exceptionId);
             strBuilder.append('}');
             return strBuilder;

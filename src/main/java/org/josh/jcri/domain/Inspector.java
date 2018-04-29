@@ -133,7 +133,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"reason\":").append('"').append(DomainBase.escapeQuote(reason)).append('"');
+            strBuilder.append("\"reason\":").append('"').append(DomainBase.escapeJson(reason)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

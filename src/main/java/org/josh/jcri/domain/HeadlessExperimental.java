@@ -221,7 +221,7 @@ display. Reported for diagnostic uses, may be removed in the future.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"hasDamage\":").append(hasDamage);
-            if (screenshotData != null) strBuilder.append(",\"screenshotData\":").append('"').append(DomainBase.escapeQuote(screenshotData)).append('"');
+            if (screenshotData != null) strBuilder.append(",\"screenshotData\":").append('"').append(DomainBase.escapeJson(screenshotData)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

@@ -142,7 +142,7 @@ applies to images.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            if (body != null) strBuilder.append("\"body\":").append('"').append(DomainBase.escapeQuote(body)).append('"');
+            if (body != null) strBuilder.append("\"body\":").append('"').append(DomainBase.escapeJson(body)).append('"');
             strBuilder.append(",\"originalSize\":").append(originalSize);
             strBuilder.append(",\"encodedSize\":").append(encodedSize);
             strBuilder.append('}');

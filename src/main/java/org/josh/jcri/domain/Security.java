@@ -149,14 +149,14 @@ https://www.w3.org/TR/mixed-content/#categories*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             securityState.toJson(strBuilder.append("\"securityState\":"));
-            strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeQuote(title)).append('"');
-            strBuilder.append(",\"summary\":").append('"').append(DomainBase.escapeQuote(summary)).append('"');
-            strBuilder.append(",\"description\":").append('"').append(DomainBase.escapeQuote(description)).append('"');
+            strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeJson(title)).append('"');
+            strBuilder.append(",\"summary\":").append('"').append(DomainBase.escapeJson(summary)).append('"');
+            strBuilder.append(",\"description\":").append('"').append(DomainBase.escapeJson(description)).append('"');
             mixedContentType.toJson(strBuilder.append(",\"mixedContentType\":"));
                         strBuilder.append(",\"certificate\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(certificate.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(certificate.get(0))).append('"');
             for (int i = 1; i < certificate.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(certificate.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(certificate.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
@@ -604,8 +604,8 @@ be handled by the DevTools client and should be answered with `handleCertificate
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"eventId\":").append(eventId);
-            strBuilder.append(",\"errorType\":").append('"').append(DomainBase.escapeQuote(errorType)).append('"');
-            strBuilder.append(",\"requestURL\":").append('"').append(DomainBase.escapeQuote(requestURL)).append('"');
+            strBuilder.append(",\"errorType\":").append('"').append(DomainBase.escapeJson(errorType)).append('"');
+            strBuilder.append(",\"requestURL\":").append('"').append(DomainBase.escapeJson(requestURL)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -675,7 +675,7 @@ certificate errors at the same time.
                 explanations.get(i).toJson(strBuilder.append(','));
             strBuilder.append(']');
             insecureContentStatus.toJson(strBuilder.append(",\"insecureContentStatus\":"));
-            if (summary != null) strBuilder.append(",\"summary\":").append('"').append(DomainBase.escapeQuote(summary)).append('"');
+            if (summary != null) strBuilder.append(",\"summary\":").append('"').append(DomainBase.escapeJson(summary)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

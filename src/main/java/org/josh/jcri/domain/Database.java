@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -91,9 +91,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             id.toJson(strBuilder.append("\"id\":"));
-            strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeQuote(domain)).append('"');
-            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"version\":").append('"').append(DomainBase.escapeQuote(version)).append('"');
+            strBuilder.append(",\"domain\":").append('"').append(DomainBase.escapeJson(domain)).append('"');
+            strBuilder.append(",\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"version\":").append('"').append(DomainBase.escapeJson(version)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -136,7 +136,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
+            strBuilder.append("\"message\":").append('"').append(DomainBase.escapeJson(message)).append('"');
             strBuilder.append(",\"code\":").append(code);
             strBuilder.append('}');
             return strBuilder;
@@ -268,7 +268,7 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             databaseId.toJson(strBuilder.append("\"databaseId\":"));
-            strBuilder.append(",\"query\":").append('"').append(DomainBase.escapeQuote(query)).append('"');
+            strBuilder.append(",\"query\":").append('"').append(DomainBase.escapeJson(query)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -318,9 +318,9 @@ import javax.annotation.Nullable;
             strBuilder.append('{');
             if (columnNames != null) {
                 strBuilder.append("\"columnNames\":[");
-                strBuilder.append('"').append(DomainBase.escapeQuote(columnNames.get(0))).append('"');
+                strBuilder.append('"').append(DomainBase.escapeJson(columnNames.get(0))).append('"');
                 for (int i = 1; i < columnNames.size(); ++i)
-                    strBuilder.append(",\"").append(DomainBase.escapeQuote(columnNames.get(i))).append('"');
+                    strBuilder.append(",\"").append(DomainBase.escapeJson(columnNames.get(i))).append('"');
                 strBuilder.append(']');
             }
             if (values != null) {
@@ -406,9 +406,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
                         strBuilder.append("\"tableNames\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(tableNames.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(tableNames.get(0))).append('"');
             for (int i = 1; i < tableNames.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(tableNames.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(tableNames.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;

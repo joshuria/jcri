@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
     /**Close the stream, discard any temporary backing storage.*/
@@ -195,7 +195,7 @@ following the last read).
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             if (base64Encoded != null) strBuilder.append("\"base64Encoded\":").append(base64Encoded);
-            strBuilder.append(",\"data\":").append('"').append(DomainBase.escapeQuote(data)).append('"');
+            strBuilder.append(",\"data\":").append('"').append(DomainBase.escapeJson(data)).append('"');
             strBuilder.append(",\"eof\":").append(eof);
             strBuilder.append('}');
             return strBuilder;
@@ -271,7 +271,7 @@ following the last read).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"uuid\":").append('"').append(DomainBase.escapeQuote(uuid)).append('"');
+            strBuilder.append("\"uuid\":").append('"').append(DomainBase.escapeJson(uuid)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

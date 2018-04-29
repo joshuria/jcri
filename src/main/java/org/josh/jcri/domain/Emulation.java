@@ -720,7 +720,7 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"media\":").append('"').append(DomainBase.escapeQuote(media)).append('"');
+            strBuilder.append("\"media\":").append('"').append(DomainBase.escapeJson(media)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
@@ -861,7 +861,7 @@ unavailable.*/
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"platform\":").append('"').append(DomainBase.escapeQuote(platform)).append('"');
+            strBuilder.append("\"platform\":").append('"').append(DomainBase.escapeJson(platform)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

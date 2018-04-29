@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -93,7 +93,7 @@ import javax.annotation.Nullable;
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
-            return strBuilder.append('"').append(DomainBase.escapeQuote(_value)).append('"');
+            return strBuilder.append('"').append(DomainBase.escapeJson(_value)).append('"');
         }
     }
 
@@ -151,9 +151,9 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             targetId.toJson(strBuilder.append("\"targetId\":"));
-            strBuilder.append(",\"type\":").append('"').append(DomainBase.escapeQuote(type)).append('"');
-            strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeQuote(title)).append('"');
-            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append(",\"type\":").append('"').append(DomainBase.escapeJson(type)).append('"');
+            strBuilder.append(",\"title\":").append('"').append(DomainBase.escapeJson(title)).append('"');
+            strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             strBuilder.append(",\"attached\":").append(attached);
             if (openerId != null) openerId.toJson(strBuilder.append(",\"openerId\":"));
             strBuilder.append('}');
@@ -203,7 +203,7 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"host\":").append('"').append(DomainBase.escapeQuote(host)).append('"');
+            strBuilder.append("\"host\":").append('"').append(DomainBase.escapeJson(host)).append('"');
             strBuilder.append(",\"port\":").append(port);
             strBuilder.append('}');
             return strBuilder;
@@ -523,7 +523,7 @@ not supported on MacOS yet, false by default).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeQuote(url)).append('"');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             if (width != null) strBuilder.append(",\"width\":").append(width);
             if (height != null) strBuilder.append(",\"height\":").append(height);
             if (browserContextId != null) browserContextId.toJson(strBuilder.append(",\"browserContextId\":"));
@@ -892,7 +892,7 @@ not supported on MacOS yet, false by default).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
+            strBuilder.append("\"message\":").append('"').append(DomainBase.escapeJson(message)).append('"');
             if (sessionId != null) sessionId.toJson(strBuilder.append(",\"sessionId\":"));
             if (targetId != null) targetId.toJson(strBuilder.append(",\"targetId\":"));
             strBuilder.append('}');
@@ -1266,7 +1266,7 @@ issued multiple times per target if multiple sessions have been attached to it.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             sessionId.toJson(strBuilder.append("\"sessionId\":"));
-            strBuilder.append(",\"message\":").append('"').append(DomainBase.escapeQuote(message)).append('"');
+            strBuilder.append(",\"message\":").append('"').append(DomainBase.escapeJson(message)).append('"');
             if (targetId != null) targetId.toJson(strBuilder.append(",\"targetId\":"));
             strBuilder.append('}');
             return strBuilder;

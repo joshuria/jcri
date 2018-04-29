@@ -83,9 +83,9 @@ import javax.annotation.Nullable;
             strBuilder.append("\"size\":").append(size);
             strBuilder.append(",\"total\":").append(total);
                         strBuilder.append(",\"stack\":[");
-            strBuilder.append('"').append(DomainBase.escapeQuote(stack.get(0))).append('"');
+            strBuilder.append('"').append(DomainBase.escapeJson(stack.get(0))).append('"');
             for (int i = 1; i < stack.size(); ++i)
-                strBuilder.append(",\"").append(DomainBase.escapeQuote(stack.get(i))).append('"');
+                strBuilder.append(",\"").append(DomainBase.escapeJson(stack.get(i))).append('"');
             strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;

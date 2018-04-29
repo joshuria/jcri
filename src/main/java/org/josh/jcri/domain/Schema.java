@@ -53,8 +53,8 @@ import javax.annotation.Nullable;
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeQuote(name)).append('"');
-            strBuilder.append(",\"version\":").append('"').append(DomainBase.escapeQuote(version)).append('"');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"version\":").append('"').append(DomainBase.escapeJson(version)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }

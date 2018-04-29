@@ -301,11 +301,11 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
             strBuilder.append("\"type\":").append(type);
             if (modifiers != null) strBuilder.append(",\"modifiers\":").append(modifiers);
             if (timestamp != null) timestamp.toJson(strBuilder.append(",\"timestamp\":"));
-            if (text != null) strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeQuote(text)).append('"');
-            if (unmodifiedText != null) strBuilder.append(",\"unmodifiedText\":").append('"').append(DomainBase.escapeQuote(unmodifiedText)).append('"');
-            if (keyIdentifier != null) strBuilder.append(",\"keyIdentifier\":").append('"').append(DomainBase.escapeQuote(keyIdentifier)).append('"');
-            if (code != null) strBuilder.append(",\"code\":").append('"').append(DomainBase.escapeQuote(code)).append('"');
-            if (key != null) strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeQuote(key)).append('"');
+            if (text != null) strBuilder.append(",\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
+            if (unmodifiedText != null) strBuilder.append(",\"unmodifiedText\":").append('"').append(DomainBase.escapeJson(unmodifiedText)).append('"');
+            if (keyIdentifier != null) strBuilder.append(",\"keyIdentifier\":").append('"').append(DomainBase.escapeJson(keyIdentifier)).append('"');
+            if (code != null) strBuilder.append(",\"code\":").append('"').append(DomainBase.escapeJson(code)).append('"');
+            if (key != null) strBuilder.append(",\"key\":").append('"').append(DomainBase.escapeJson(key)).append('"');
             if (windowsVirtualKeyCode != null) strBuilder.append(",\"windowsVirtualKeyCode\":").append(windowsVirtualKeyCode);
             if (nativeVirtualKeyCode != null) strBuilder.append(",\"nativeVirtualKeyCode\":").append(nativeVirtualKeyCode);
             if (autoRepeat != null) strBuilder.append(",\"autoRepeat\":").append(autoRepeat);
@@ -1132,7 +1132,7 @@ for the preferred input type).
             if (gestureSourceType != null) gestureSourceType.toJson(strBuilder.append(",\"gestureSourceType\":"));
             if (repeatCount != null) strBuilder.append(",\"repeatCount\":").append(repeatCount);
             if (repeatDelayMs != null) strBuilder.append(",\"repeatDelayMs\":").append(repeatDelayMs);
-            if (interactionMarkerName != null) strBuilder.append(",\"interactionMarkerName\":").append('"').append(DomainBase.escapeQuote(interactionMarkerName)).append('"');
+            if (interactionMarkerName != null) strBuilder.append(",\"interactionMarkerName\":").append('"').append(DomainBase.escapeJson(interactionMarkerName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
