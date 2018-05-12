@@ -52,20 +52,18 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 /**JCRI main class.
- TODO: provide onError, and onClose handler
- TODO: provide executor for executing event callback
  TODO: provide handy methods by combining a set of debug protocol methods
  @author Joshua */
-@ParametersAreNonnullByDefault
-public class JCRI implements Closeable {
+@ParametersAreNonnullByDefault public class JCRI implements Closeable {
     /**System property name of connection timeout in second.*/
     private static final String DefaultConnectionTimeoutPropertyName = "org.josh.jcri.connectionTimeout";
-    /**Default connection timeout second.*/
-    private static final int DefaultConnectionTimeout = 30;
+    /**Default connection alive timeout second.*/
+    private static final int DefaultConnectionAliveTimeout = 30;
 
     /**Web socket instance.*/
     private final WebSocket _ws;
@@ -158,13 +156,18 @@ public class JCRI implements Closeable {
 
     /**Create new connection to browser with specified URL and connection timeout.
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
-     @param timeout web socket connection timeout in second. Use 0 or negative to indicate never
-        timeout.
+     @param aliveTimeout websocket connection alive timeout in second. Use 0 or negative to indicate
+         never timeout.
+     @param onError callback handler when exception occurred.
+     @param onClose callback handler when connection is closed.
      @param executor executor creates new {@link java.util.concurrent.CompletableFuture} for calling
          domain commands, waiting response, and executing method callbacks. */
-    public JCRI(URI webSocketDebuggerUrl, int timeout, @Nullable ExecutorService executor) {
+    public JCRI(URI webSocketDebuggerUrl, int aliveTimeout,
+        @Nullable Consumer<Exception> onError, @Nullable Consumer<Integer> onClose,
+        @Nullable ExecutorService executor
+    ) {
         _evt = new EventCenter(executor);
-        _ws = new WebSocket(webSocketDebuggerUrl, timeout, _evt::onMessage, this::onError, this::onClose);
+        _ws = new WebSocket(webSocketDebuggerUrl, aliveTimeout, _evt::onMessage, onError, onClose);
         this.Accessibility = new Accessibility(_evt, _ws);
         this.Animation = new Animation(_evt, _ws);
         this.ApplicationCache = new ApplicationCache(_evt, _ws);
@@ -211,22 +214,24 @@ public class JCRI implements Closeable {
      @param executor executor creates new {@link java.util.concurrent.CompletableFuture} for calling
          domain commands, waiting response, and executing method callbacks. */
     public JCRI(URI webSocketDebuggerUrl, @Nullable ExecutorService executor) {
-        this(webSocketDebuggerUrl, DefaultConnectionTimeout, executor);
+        this(webSocketDebuggerUrl, DefaultConnectionAliveTimeout, null, null, executor);
         try {
             final int timeout = Integer.parseInt(System.getProperty(DefaultConnectionTimeoutPropertyName));
-            if (timeout != DefaultConnectionTimeout)    _ws.setConnectionLostTimeout(timeout);
+            if (timeout != DefaultConnectionAliveTimeout)    _ws.setConnectionLostTimeout(timeout);
         }
         catch (NumberFormatException e) {
             // Do nothing, just use default value
         }
     }
     /**Create new connection to browser with specified URL and default connection timeout.
-     @param webSocketDebuggerUrl destination web socket debug url that is provided by browser. */
-    public JCRI(URI webSocketDebuggerUrl) {
-        this(webSocketDebuggerUrl, DefaultConnectionTimeout, null);
+     @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
+     @param onError callback handler when exception occurred.
+     @param onClose callback handler when connection is closed. */
+    public JCRI(URI webSocketDebuggerUrl, @Nullable Consumer<Exception> onError, @Nullable Consumer<Integer> onClose) {
+        this(webSocketDebuggerUrl, DefaultConnectionAliveTimeout, onError, onClose, null);
         try {
             final int timeout = Integer.parseInt(System.getProperty(DefaultConnectionTimeoutPropertyName));
-            if (timeout != DefaultConnectionTimeout)    _ws.setConnectionLostTimeout(timeout);
+            if (timeout != DefaultConnectionAliveTimeout)    _ws.setConnectionLostTimeout(timeout);
         }
         catch (NumberFormatException e) {
             // Do nothing, just use default value
@@ -279,21 +284,5 @@ public class JCRI implements Closeable {
             _evt.getExecutor().shutdownNow();
         }
         _ws.close();
-    }
-
-    /**On web socket error callback method.*/
-    private void onError(Exception exception) {
-        /// TODO: not implemented
-    }
-
-    /**On web socket is closed callback method.
-     @param code web socket close status code. */
-    private void onClose(int code) {
-        /// TODO: not implemented
-    }
-
-    @Override public String toString() {
-        /// TODO: not implemented
-        return "";
     }
 }

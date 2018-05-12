@@ -27,31 +27,31 @@ public class WebSocket extends WebSocketClient {
      @param host host name with protocol such as <pre>"ws://localhost"</pre>.
      @param port TCP port to be used.
      @param path requested path in host.
-     @param timeout connection timeout in second.
+     @param aliveTimeout connection alive timeout in second.
      @param onMessageHandler callback function when message received.
      @param onErrorHandler callback function when web socket exception raised.
      @param onCloseHandler callback function when connection is closed.
      @throws URISyntaxException if given host, port, and path cannot be constructed a valid URI.*/
-    WebSocket(String host, int port, String path, int timeout,
+    WebSocket(String host, int port, String path, int aliveTimeout,
         @Nullable Consumer<String> onMessageHandler, @Nullable Consumer<Exception> onErrorHandler,
         @Nullable Consumer<Integer> onCloseHandler
     ) throws URISyntaxException {
-        this(new URI(String.format("%s:%d%s", host, port, path)), timeout,
+        this(new URI(String.format("%s:%d%s", host, port, path)), aliveTimeout,
             onMessageHandler, onErrorHandler, onCloseHandler);
     }
 
     /**Create web socket instance.
      @param uri destination URI (such as <pre>"ws://localhost:1234/file"</pre>) to connect to.
-     @param timeout connection timeout in second.
+     @param aliveTimeout connection alive timeout in second.
      @param onMessageHandler callback function when message received.
      @param onErrorHandler callback function when web socket exception raised.
      @param onCloseHandler callback function when connection is closed.*/
-    WebSocket(URI uri, int timeout,
+    WebSocket(URI uri, int aliveTimeout,
         @Nullable Consumer<String> onMessageHandler, @Nullable Consumer<Exception> onErrorHandler,
         @Nullable Consumer<Integer> onCloseHandler
     ) {
         super(uri);
-        setConnectionLostTimeout(timeout);
+        setConnectionLostTimeout(aliveTimeout);
         setTcpNoDelay(true);
         _messageHandler = onMessageHandler;
         _errorHandler = onErrorHandler;
