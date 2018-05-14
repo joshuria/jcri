@@ -2,6 +2,10 @@ package org.josh.jcri;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.josh.jcri.domain.Accessibility;
 import org.josh.jcri.domain.Animation;
 import org.josh.jcri.domain.ApplicationCache;
@@ -69,6 +73,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
     private final WebSocket _ws;
     /**Event handler center.*/
     private final EventCenter _evt;
+    /**Logger instance.*/
+    private final Logger _log;
     /**_ioExecutor needs to shutdown when {@link #close()} or {@link #closeAsync()} is called. */
     private boolean _shutdownExecutorWhenClose = true;
 
@@ -161,12 +167,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
      @param onError callback handler when exception occurred.
      @param onClose callback handler when connection is closed.
      @param executor executor creates new {@link java.util.concurrent.CompletableFuture} for calling
-         domain commands, waiting response, and executing method callbacks. */
+         domain commands, waiting response, and executing method callbacks.
+     @param log Log4j2 logger instance. Create new one with all level off if this parameter is null. */
     public JCRI(URI webSocketDebuggerUrl, int aliveTimeout,
         @Nullable Consumer<Exception> onError, @Nullable Consumer<Integer> onClose,
-        @Nullable ExecutorService executor
+        @Nullable ExecutorService executor, @Nullable Logger log
     ) {
-        _evt = new EventCenter(executor);
+        if (log != null)
+            _log = log;
+        else {
+            _log = LogManager.getLogger(getClass().getName());
+            Configurator.setLevel(getClass().getName(), Level.OFF);
+        }
+        _evt = new EventCenter(executor, _log);
         _ws = new WebSocket(webSocketDebuggerUrl, aliveTimeout, _evt::onMessage, onError, onClose);
         this.Accessibility = new Accessibility(_evt, _ws);
         this.Animation = new Animation(_evt, _ws);
@@ -213,8 +226,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
      @param executor executor creates new {@link java.util.concurrent.CompletableFuture} for calling
          domain commands, waiting response, and executing method callbacks. */
-    public JCRI(URI webSocketDebuggerUrl, @Nullable ExecutorService executor) {
-        this(webSocketDebuggerUrl, DefaultConnectionAliveTimeout, null, null, executor);
+    public JCRI(URI webSocketDebuggerUrl, @Nullable ExecutorService executor, @Nullable Logger log) {
+        this(webSocketDebuggerUrl, DefaultConnectionAliveTimeout, null, null, executor, log);
         try {
             final int timeout = Integer.parseInt(System.getProperty(DefaultConnectionTimeoutPropertyName));
             if (timeout != DefaultConnectionAliveTimeout)    _ws.setConnectionLostTimeout(timeout);
@@ -227,8 +240,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
      @param webSocketDebuggerUrl destination web socket debug url that is provided by browser.
      @param onError callback handler when exception occurred.
      @param onClose callback handler when connection is closed. */
-    public JCRI(URI webSocketDebuggerUrl, @Nullable Consumer<Exception> onError, @Nullable Consumer<Integer> onClose) {
-        this(webSocketDebuggerUrl, DefaultConnectionAliveTimeout, onError, onClose, null);
+    public JCRI(URI webSocketDebuggerUrl, @Nullable Consumer<Exception> onError, @Nullable Consumer<Integer> onClose, @Nullable Logger log) {
+        this(webSocketDebuggerUrl, DefaultConnectionAliveTimeout, onError, onClose, null, log);
         try {
             final int timeout = Integer.parseInt(System.getProperty(DefaultConnectionTimeoutPropertyName));
             if (timeout != DefaultConnectionAliveTimeout)    _ws.setConnectionLostTimeout(timeout);

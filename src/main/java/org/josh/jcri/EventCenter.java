@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,11 +35,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
     private final Map<String, Consumer<JsonNode>> _eventHandlerTable = new ConcurrentHashMap<>();
     /**Command and method callback executor.*/
     private final ExecutorService _executor;
+    /**JCRI log instance.*/
+    private final Logger _log;
 
     /**Create new event center instance.
      @param executor executor creates new {@link java.util.concurrent.CompletableFuture} for calling
         domain commands, waiting response, and executing method callbacks. */
-    EventCenter(@Nullable ExecutorService executor) {
+    EventCenter(@Nullable ExecutorService executor, Logger log) {
+        _log = log;
         if (executor == null) {
             int commandThread = DefaultThreadPoolSize;
             try {
@@ -48,6 +52,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
             catch (NullPointerException | NumberFormatException e) {
                 // Do nothing, just use default value
             }
+            _log.debug("Create EventCenter with thread pool size " + commandThread);
             _executor = Executors.newFixedThreadPool(commandThread);
         }
         else
@@ -59,6 +64,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
     /**Get executor for running commands and callbacks.*/
     final ExecutorService getExecutor() { return _executor; }
+
+    /**Get logger instance.*/
+    Logger getLog() { return _log; }
 
     /**Push a method into response waiting queue.
      If given method's Id is already existed in internal waiting queue, the given method will NOT
@@ -118,7 +126,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
     void onMessage(String msg) {
         try {
             final JsonNode node = _om.readTree(msg);
-            //System.out.println("Recv: " + msg);
+            _log.trace("Recv: " + msg);
             //! Check if is response of method
             if (node.has("id")) {
                 final CommandBase method = _methodWaitingTable.remove(node.get("id").asLong());
