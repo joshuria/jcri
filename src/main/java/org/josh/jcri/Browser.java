@@ -44,7 +44,7 @@ public class Browser {
     /**Registry key path of chrome in Windows.*/
     private static final String WindowsChromeRegistryKeyPath = "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\chrome.exe";
     /**Chrome path returned by Windows's reg.*/
-    private static final Pattern WindowsRegPattern = Pattern.compile("\\W+\\(Default\\)\\W+REG_SZ\\W+(.*)");
+    private static final Pattern WindowsRegPattern = Pattern.compile("\\W+[^R]+\\W+REG_SZ\\W+(.*)");
 
     private Process _browser;
     private String _browserPath = null;
