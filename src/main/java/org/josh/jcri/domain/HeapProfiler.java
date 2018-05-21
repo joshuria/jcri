@@ -858,7 +858,7 @@ when the tracking is stopped.
         registerEventCallback("HeapProfiler.addHeapSnapshotChunk", node -> {
             AddHeapSnapshotChunkEventParameter param;
             try { param = EventCenter.deserializeJson(node, AddHeapSnapshotChunkEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -900,7 +900,7 @@ a total size of the objects for the fragment.*/
         registerEventCallback("HeapProfiler.heapStatsUpdate", node -> {
             HeapStatsUpdateEventParameter param;
             try { param = EventCenter.deserializeJson(node, HeapStatsUpdateEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -945,7 +945,7 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
         registerEventCallback("HeapProfiler.lastSeenObjectId", node -> {
             LastSeenObjectIdEventParameter param;
             try { param = EventCenter.deserializeJson(node, LastSeenObjectIdEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -996,7 +996,7 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
         registerEventCallback("HeapProfiler.reportHeapSnapshotProgress", node -> {
             ReportHeapSnapshotProgressEventParameter param;
             try { param = EventCenter.deserializeJson(node, ReportHeapSnapshotProgressEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1023,7 +1023,7 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
         registerEventCallback("HeapProfiler.resetProfiles", node -> {
             ResetProfilesEventParameter param;
             try { param = EventCenter.deserializeJson(node, ResetProfilesEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

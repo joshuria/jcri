@@ -1068,7 +1068,7 @@ For cached script it is the last time the cache entry was validated.
         registerEventCallback("ServiceWorker.workerErrorReported", node -> {
             WorkerErrorReportedEventParameter param;
             try { param = EventCenter.deserializeJson(node, WorkerErrorReportedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1108,7 +1108,7 @@ For cached script it is the last time the cache entry was validated.
         registerEventCallback("ServiceWorker.workerRegistrationUpdated", node -> {
             WorkerRegistrationUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, WorkerRegistrationUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1148,7 +1148,7 @@ For cached script it is the last time the cache entry was validated.
         registerEventCallback("ServiceWorker.workerVersionUpdated", node -> {
             WorkerVersionUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, WorkerVersionUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

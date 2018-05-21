@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
+import org.java_websocket.handshake.ServerHandshake;
 import org.josh.jcri.domain.Accessibility;
 import org.josh.jcri.domain.Animation;
 import org.josh.jcri.domain.ApplicationCache;
@@ -180,7 +181,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
             Configurator.setLevel(getClass().getName(), Level.OFF);
         }
         _evt = new EventCenter(executor, _log);
-        _ws = new WebSocket(webSocketDebuggerUrl, aliveTimeout, _evt::onMessage, onError, onClose);
+        _ws = new WebSocket(webSocketDebuggerUrl, aliveTimeout, _evt::onMessage, onError, this::onOpen, onClose);
         this.Accessibility = new Accessibility(_evt, _ws);
         this.Animation = new Animation(_evt, _ws);
         this.ApplicationCache = new ApplicationCache(_evt, _ws);
@@ -271,6 +272,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
                 return false;
             }
         }, _evt.getExecutor());
+    }
+
+    /**Internal callback to log connection established.*/
+    void onOpen(ServerHandshake handshake) {
+        _log.info("Connection established: " + handshake.getHttpStatusMessage());
     }
 
     /**Close connection.

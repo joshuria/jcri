@@ -117,7 +117,7 @@ import javax.annotation.Nullable;
         /**Handle of the stream to read.*/
         private StreamHandle handle;
         /**Seek to the specified offset before reading (if not specificed, proceed with offset
-following the last read).
+following the last read). Some types of streams may only support sequential reads.
         <em>Optional.</em>*/
         private Integer offset;
         /**Maximum number of bytes to read (left upon the agent discretion if not specified).

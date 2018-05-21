@@ -1235,7 +1235,7 @@ coverage needs to have started.*/
         registerEventCallback("Profiler.consoleProfileFinished", node -> {
             ConsoleProfileFinishedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ConsoleProfileFinishedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1286,7 +1286,7 @@ coverage needs to have started.*/
         registerEventCallback("Profiler.consoleProfileStarted", node -> {
             ConsoleProfileStartedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ConsoleProfileStartedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

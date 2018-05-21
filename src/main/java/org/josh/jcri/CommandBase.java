@@ -85,7 +85,7 @@ public abstract class CommandBase implements CommonDomainType {
                     return result;
                 }
                 catch (IOException e) {
-                    e.printStackTrace();
+                    _evt.getLog().error(e);
                     return null;
                 }
             }

@@ -44,6 +44,7 @@ import javax.annotation.Nullable;
         EventSource("EventSource"),
         WebSocket("WebSocket"),
         Manifest("Manifest"),
+        SignedExchange("SignedExchange"),
         Other("Other");
 
         private final String _value;
@@ -3978,6 +3979,136 @@ unavailable.
             super(e);
         }
     }
+    /**Tries to close page, running its beforeunload hooks, if any.
+    <p><strong>Experimental.</strong></p>*/
+    public CloseParameter close() { final CloseParameter v = new CloseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of close.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class CloseParameter extends CommandBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public CloseParameter() {}
+        public CompletableFuture<CloseResult> call() {
+            return super.call("Page.close", CloseResult.class,
+                (code, msg)->new CloseResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CloseResult> call(Executor exec) {
+            return super.call("Page.close", CloseResult.class,
+                (code, msg)->new CloseResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of close.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class CloseResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public CloseResult() { super(); }
+        public CloseResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Tries to update the web lifecycle state of the page.
+It will transition the page to the given state according to:
+https://github.com/WICG/web-lifecycle/
+    <p><strong>Experimental.</strong></p>*/
+    public SetWebLifecycleStateParameter setWebLifecycleState() { final SetWebLifecycleStateParameter v = new SetWebLifecycleStateParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setWebLifecycleState.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetWebLifecycleStateParameter extends CommandBase {
+        /**Target lifecycle state*/
+        @ParametersAreNonnullByDefault public enum State implements CommonDomainType {
+            Frozen("frozen"),
+            Active("active");
+
+            private final String _value;
+            /**Convert string representation to type.
+             @throws IllegalArgumentException if given value cannot convert to enum type. */
+            @JsonCreator public static State of(String value) {
+                return Enum.valueOf(State.class, value.substring(0, 1).toUpperCase() + value.substring(1));
+            }
+            State(String value) { _value = value; }
+            /**Check if parameter fields of method are all valid. */
+            @Override public void check() throws IllegalArgumentException { /* Need not check */ }
+            /**Convert method parameter object into json string and append into string builder.
+             @return string builder instance that is given in parameter (for chaining coding style use.) */
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
+        }
+        private State state;
+        public final SetWebLifecycleStateParameter state(State state) { this.state = state; return this; }
+        public final SetWebLifecycleStateParameter setState(State state) { return state(state); }
+        public final State state() { return state; }
+        public final State getState() { return state(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (state == null) throw new IllegalArgumentException("Page.SetWebLifecycleStateParameter.state is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"state\":").append(state);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetWebLifecycleStateParameter() {}
+        public SetWebLifecycleStateParameter(
+            @JsonProperty("state")State state
+        ) {
+            this();
+            this.state = state;
+        }
+        public CompletableFuture<SetWebLifecycleStateResult> call() {
+            return super.call("Page.setWebLifecycleState", SetWebLifecycleStateResult.class,
+                (code, msg)->new SetWebLifecycleStateResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetWebLifecycleStateResult> call(Executor exec) {
+            return super.call("Page.setWebLifecycleState", SetWebLifecycleStateResult.class,
+                (code, msg)->new SetWebLifecycleStateResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setWebLifecycleState.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetWebLifecycleStateResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetWebLifecycleStateResult() { super(); }
+        public SetWebLifecycleStateResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
     /**Stops sending each frame in the `screencastFrame`.
     <p><strong>Experimental.</strong></p>*/
     public StopScreencastParameter stopScreencast() { final StopScreencastParameter v = new StopScreencastParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
@@ -4058,7 +4189,7 @@ unavailable.
         registerEventCallback("Page.domContentEventFired", node -> {
             DomContentEventFiredEventParameter param;
             try { param = EventCenter.deserializeJson(node, DomContentEventFiredEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4109,7 +4240,7 @@ unavailable.
         registerEventCallback("Page.frameAttached", node -> {
             FrameAttachedEventParameter param;
             try { param = EventCenter.deserializeJson(node, FrameAttachedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4147,7 +4278,7 @@ unavailable.
         registerEventCallback("Page.frameClearedScheduledNavigation", node -> {
             FrameClearedScheduledNavigationEventParameter param;
             try { param = EventCenter.deserializeJson(node, FrameClearedScheduledNavigationEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4183,7 +4314,7 @@ unavailable.
         registerEventCallback("Page.frameDetached", node -> {
             FrameDetachedEventParameter param;
             try { param = EventCenter.deserializeJson(node, FrameDetachedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4219,7 +4350,7 @@ unavailable.
         registerEventCallback("Page.frameNavigated", node -> {
             FrameNavigatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, FrameNavigatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4248,7 +4379,7 @@ unavailable.
         registerEventCallback("Page.frameResized", node -> {
             FrameResizedEventParameter param;
             try { param = EventCenter.deserializeJson(node, FrameResizedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4331,7 +4462,7 @@ guaranteed to start.*/
         registerEventCallback("Page.frameScheduledNavigation", node -> {
             FrameScheduledNavigationEventParameter param;
             try { param = EventCenter.deserializeJson(node, FrameScheduledNavigationEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4369,7 +4500,7 @@ guaranteed to start.*/
         registerEventCallback("Page.frameStartedLoading", node -> {
             FrameStartedLoadingEventParameter param;
             try { param = EventCenter.deserializeJson(node, FrameStartedLoadingEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4407,7 +4538,7 @@ guaranteed to start.*/
         registerEventCallback("Page.frameStoppedLoading", node -> {
             FrameStoppedLoadingEventParameter param;
             try { param = EventCenter.deserializeJson(node, FrameStoppedLoadingEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4434,7 +4565,7 @@ guaranteed to start.*/
         registerEventCallback("Page.interstitialHidden", node -> {
             InterstitialHiddenEventParameter param;
             try { param = EventCenter.deserializeJson(node, InterstitialHiddenEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4461,7 +4592,7 @@ guaranteed to start.*/
         registerEventCallback("Page.interstitialShown", node -> {
             InterstitialShownEventParameter param;
             try { param = EventCenter.deserializeJson(node, InterstitialShownEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4505,7 +4636,7 @@ closed.
         registerEventCallback("Page.javascriptDialogClosed", node -> {
             JavascriptDialogClosedEventParameter param;
             try { param = EventCenter.deserializeJson(node, JavascriptDialogClosedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4573,7 +4704,7 @@ open.
         registerEventCallback("Page.javascriptDialogOpening", node -> {
             JavascriptDialogOpeningEventParameter param;
             try { param = EventCenter.deserializeJson(node, JavascriptDialogOpeningEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4630,7 +4761,7 @@ open.
         registerEventCallback("Page.lifecycleEvent", node -> {
             LifecycleEventEventParameter param;
             try { param = EventCenter.deserializeJson(node, LifecycleEventEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4666,7 +4797,7 @@ open.
         registerEventCallback("Page.loadEventFired", node -> {
             LoadEventFiredEventParameter param;
             try { param = EventCenter.deserializeJson(node, LoadEventFiredEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4711,7 +4842,7 @@ open.
         registerEventCallback("Page.navigatedWithinDocument", node -> {
             NavigatedWithinDocumentEventParameter param;
             try { param = EventCenter.deserializeJson(node, NavigatedWithinDocumentEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4763,7 +4894,7 @@ open.
         registerEventCallback("Page.screencastFrame", node -> {
             ScreencastFrameEventParameter param;
             try { param = EventCenter.deserializeJson(node, ScreencastFrameEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4801,7 +4932,7 @@ open.
         registerEventCallback("Page.screencastVisibilityChanged", node -> {
             ScreencastVisibilityChangedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ScreencastVisibilityChangedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4863,7 +4994,7 @@ etc.
         registerEventCallback("Page.windowOpen", node -> {
             WindowOpenEventParameter param;
             try { param = EventCenter.deserializeJson(node, WindowOpenEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

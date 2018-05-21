@@ -2960,7 +2960,7 @@ on named context.
         registerEventCallback("Runtime.consoleAPICalled", node -> {
             ConsoleAPICalledEventParameter param;
             try { param = EventCenter.deserializeJson(node, ConsoleAPICalledEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3003,7 +3003,7 @@ on named context.
         registerEventCallback("Runtime.exceptionRevoked", node -> {
             ExceptionRevokedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ExceptionRevokedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3046,7 +3046,7 @@ on named context.
         registerEventCallback("Runtime.exceptionThrown", node -> {
             ExceptionThrownEventParameter param;
             try { param = EventCenter.deserializeJson(node, ExceptionThrownEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3082,7 +3082,7 @@ on named context.
         registerEventCallback("Runtime.executionContextCreated", node -> {
             ExecutionContextCreatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ExecutionContextCreatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3118,7 +3118,7 @@ on named context.
         registerEventCallback("Runtime.executionContextDestroyed", node -> {
             ExecutionContextDestroyedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ExecutionContextDestroyedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3145,7 +3145,7 @@ on named context.
         registerEventCallback("Runtime.executionContextsCleared", node -> {
             ExecutionContextsClearedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ExecutionContextsClearedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3189,7 +3189,7 @@ call).
         registerEventCallback("Runtime.inspectRequested", node -> {
             InspectRequestedEventParameter param;
             try { param = EventCenter.deserializeJson(node, InspectRequestedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

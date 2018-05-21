@@ -491,7 +491,7 @@ associated with some application cache.*/
         registerEventCallback("ApplicationCache.applicationCacheStatusUpdated", node -> {
             ApplicationCacheStatusUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ApplicationCacheStatusUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -527,7 +527,7 @@ associated with some application cache.*/
         registerEventCallback("ApplicationCache.networkStateUpdated", node -> {
             NetworkStateUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, NetworkStateUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

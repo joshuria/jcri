@@ -1136,7 +1136,7 @@ transform/scrolling purposes only.*/
         registerEventCallback("LayerTree.layerPainted", node -> {
             LayerPaintedEventParameter param;
             try { param = EventCenter.deserializeJson(node, LayerPaintedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1179,7 +1179,7 @@ transform/scrolling purposes only.*/
         registerEventCallback("LayerTree.layerTreeDidChange", node -> {
             LayerTreeDidChangeEventParameter param;
             try { param = EventCenter.deserializeJson(node, LayerTreeDidChangeEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

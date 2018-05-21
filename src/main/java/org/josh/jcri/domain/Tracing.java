@@ -617,7 +617,7 @@ total size.
         registerEventCallback("Tracing.bufferUsage", node -> {
             BufferUsageEventParameter param;
             try { param = EventCenter.deserializeJson(node, BufferUsageEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -658,7 +658,7 @@ send as a sequence of dataCollected events followed by tracingComplete event.
         registerEventCallback("Tracing.dataCollected", node -> {
             DataCollectedEventParameter param;
             try { param = EventCenter.deserializeJson(node, DataCollectedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -704,7 +704,7 @@ delivered via dataCollected events.
         registerEventCallback("Tracing.tracingComplete", node -> {
             TracingCompleteEventParameter param;
             try { param = EventCenter.deserializeJson(node, TracingCompleteEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

@@ -1113,6 +1113,9 @@ forwards to prevent deadlock.
 Note any previous deferred policy change is superseded.
         <em>Optional.</em>*/
         private Boolean waitForNavigation;
+        /**If set, base::Time::Now will be overriden to initially return this value.
+        <em>Optional.</em>*/
+        private Network.TimeSinceEpoch initialVirtualTime;
         public final SetVirtualTimePolicyParameter policy(VirtualTimePolicy policy) { this.policy = policy; return this; }
         public final SetVirtualTimePolicyParameter setPolicy(VirtualTimePolicy policy) { return policy(policy); }
         public final VirtualTimePolicy policy() { return policy; }
@@ -1129,6 +1132,10 @@ Note any previous deferred policy change is superseded.
         public final SetVirtualTimePolicyParameter optWaitForNavigation(@Nullable Boolean waitForNavigation) { return waitForNavigation(waitForNavigation); }
         public final Boolean waitForNavigation() { return waitForNavigation; }
         public final Boolean getWaitForNavigation() { return waitForNavigation(); }
+        public final SetVirtualTimePolicyParameter initialVirtualTime(@Nullable Network.TimeSinceEpoch initialVirtualTime) { this.initialVirtualTime = initialVirtualTime; return this; }
+        public final SetVirtualTimePolicyParameter optInitialVirtualTime(@Nullable Network.TimeSinceEpoch initialVirtualTime) { return initialVirtualTime(initialVirtualTime); }
+        public final Network.TimeSinceEpoch initialVirtualTime() { return initialVirtualTime; }
+        public final Network.TimeSinceEpoch getInitialVirtualTime() { return initialVirtualTime(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -1142,6 +1149,7 @@ Note any previous deferred policy change is superseded.
             if (budget != null) strBuilder.append(",\"budget\":").append(budget);
             if (maxVirtualTimeTaskStarvationCount != null) strBuilder.append(",\"maxVirtualTimeTaskStarvationCount\":").append(maxVirtualTimeTaskStarvationCount);
             if (waitForNavigation != null) strBuilder.append(",\"waitForNavigation\":").append(waitForNavigation);
+            if (initialVirtualTime != null) initialVirtualTime.toJson(strBuilder.append(",\"initialVirtualTime\":"));
             strBuilder.append('}');
             return strBuilder;
         }
@@ -1150,13 +1158,15 @@ Note any previous deferred policy change is superseded.
             @JsonProperty("policy")VirtualTimePolicy policy,
             @Nullable @JsonProperty("budget")Double budget,
             @Nullable @JsonProperty("maxVirtualTimeTaskStarvationCount")Integer maxVirtualTimeTaskStarvationCount,
-            @Nullable @JsonProperty("waitForNavigation")Boolean waitForNavigation
+            @Nullable @JsonProperty("waitForNavigation")Boolean waitForNavigation,
+            @Nullable @JsonProperty("initialVirtualTime")Network.TimeSinceEpoch initialVirtualTime
         ) {
             this();
             this.policy = policy;
             this.budget = budget;
             this.maxVirtualTimeTaskStarvationCount = maxVirtualTimeTaskStarvationCount;
             this.waitForNavigation = waitForNavigation;
+            this.initialVirtualTime = initialVirtualTime;
         }
         public CompletableFuture<SetVirtualTimePolicyResult> call() {
             return super.call("Emulation.setVirtualTimePolicy", SetVirtualTimePolicyResult.class,
@@ -1171,12 +1181,8 @@ Note any previous deferred policy change is superseded.
     <p><strong>Experimental.</strong></p>*/
     @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetVirtualTimePolicyResult extends ResultBase {
-        /**Absolute timestamp at which virtual time was first enabled (milliseconds since epoch).*/
-        private final Runtime.Timestamp virtualTimeBase;
         /**Absolute timestamp at which virtual time was first enabled (up time in milliseconds).*/
         private final Double virtualTimeTicksBase;
-        public final Runtime.Timestamp virtualTimeBase() { return virtualTimeBase; }
-        public final Runtime.Timestamp getVirtualTimeBase() { return virtualTimeBase(); }
         public final Double virtualTimeTicksBase() { return virtualTimeTicksBase; }
         public final Double getVirtualTimeTicksBase() { return virtualTimeTicksBase(); }
         /**Check if parameter fields of method are all valid.
@@ -1187,21 +1193,17 @@ Note any previous deferred policy change is superseded.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            virtualTimeBase.toJson(strBuilder.append("\"virtualTimeBase\":"));
-            strBuilder.append(",\"virtualTimeTicksBase\":").append(virtualTimeTicksBase);
+            strBuilder.append("\"virtualTimeTicksBase\":").append(virtualTimeTicksBase);
             strBuilder.append('}');
             return strBuilder;
         }
         public SetVirtualTimePolicyResult(
-            @JsonProperty("virtualTimeBase")Runtime.Timestamp virtualTimeBase,
             @JsonProperty("virtualTimeTicksBase")Double virtualTimeTicksBase
         ) {
-            this.virtualTimeBase = virtualTimeBase;
             this.virtualTimeTicksBase = virtualTimeTicksBase;
         }
         public SetVirtualTimePolicyResult(ResultBase.FailedResult e) {
             super(e);
-            virtualTimeBase = null;
             virtualTimeTicksBase = null;
         }
     }
@@ -1317,7 +1319,7 @@ enabled.*/
         registerEventCallback("Emulation.virtualTimeAdvanced", node -> {
             VirtualTimeAdvancedEventParameter param;
             try { param = EventCenter.deserializeJson(node, VirtualTimeAdvancedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1346,7 +1348,7 @@ enabled.*/
         registerEventCallback("Emulation.virtualTimeBudgetExpired", node -> {
             VirtualTimeBudgetExpiredEventParameter param;
             try { param = EventCenter.deserializeJson(node, VirtualTimeBudgetExpiredEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1385,7 +1387,7 @@ enabled.*/
         registerEventCallback("Emulation.virtualTimePaused", node -> {
             VirtualTimePausedEventParameter param;
             try { param = EventCenter.deserializeJson(node, VirtualTimePausedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

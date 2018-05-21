@@ -1035,7 +1035,7 @@ animation/transition.
         registerEventCallback("Animation.animationCanceled", node -> {
             AnimationCanceledEventParameter param;
             try { param = EventCenter.deserializeJson(node, AnimationCanceledEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1071,7 +1071,7 @@ animation/transition.
         registerEventCallback("Animation.animationCreated", node -> {
             AnimationCreatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, AnimationCreatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1107,7 +1107,7 @@ animation/transition.
         registerEventCallback("Animation.animationStarted", node -> {
             AnimationStartedEventParameter param;
             try { param = EventCenter.deserializeJson(node, AnimationStartedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

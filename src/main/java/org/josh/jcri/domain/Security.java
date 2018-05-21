@@ -629,7 +629,7 @@ certificate errors at the same time.
         registerEventCallback("Security.certificateError", node -> {
             CertificateErrorEventParameter param;
             try { param = EventCenter.deserializeJson(node, CertificateErrorEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -699,7 +699,7 @@ certificate errors at the same time.
         registerEventCallback("Security.securityStateChanged", node -> {
             SecurityStateChangedEventParameter param;
             try { param = EventCenter.deserializeJson(node, SecurityStateChangedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

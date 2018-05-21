@@ -149,7 +149,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Inspector.detached", node -> {
             DetachedEventParameter param;
             try { param = EventCenter.deserializeJson(node, DetachedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -176,7 +176,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Inspector.targetCrashed", node -> {
             TargetCrashedEventParameter param;
             try { param = EventCenter.deserializeJson(node, TargetCrashedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -203,7 +203,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Inspector.targetReloadedAfterCrash", node -> {
             TargetReloadedAfterCrashEventParameter param;
             try { param = EventCenter.deserializeJson(node, TargetReloadedAfterCrashEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

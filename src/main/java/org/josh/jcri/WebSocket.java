@@ -12,8 +12,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
  This class handles network connection and message sending/receiving with single server.
  @author Joshua
  @since 1.0 */
-@ParametersAreNonnullByDefault
-public class WebSocket extends WebSocketClient {
+@ParametersAreNonnullByDefault public class WebSocket extends WebSocketClient {
+    /**Connection open handler.*/
+    private Consumer<ServerHandshake> _connectionOpenHandler;
     /**Message received handler.*/
     private Consumer<String> _messageHandler;
     /**Web socket error handler.*/
@@ -30,14 +31,15 @@ public class WebSocket extends WebSocketClient {
      @param aliveTimeout connection alive timeout in second.
      @param onMessageHandler callback function when message received.
      @param onErrorHandler callback function when web socket exception raised.
+     @param onOpenConnectionHandler callback function when connection has established.
      @param onCloseHandler callback function when connection is closed.
      @throws URISyntaxException if given host, port, and path cannot be constructed a valid URI.*/
     WebSocket(String host, int port, String path, int aliveTimeout,
         @Nullable Consumer<String> onMessageHandler, @Nullable Consumer<Exception> onErrorHandler,
-        @Nullable Consumer<Integer> onCloseHandler
+        @Nullable Consumer<ServerHandshake> onOpenConnectionHandler, @Nullable Consumer<Integer> onCloseHandler
     ) throws URISyntaxException {
         this(new URI(String.format("%s:%d%s", host, port, path)), aliveTimeout,
-            onMessageHandler, onErrorHandler, onCloseHandler);
+            onMessageHandler, onErrorHandler, onOpenConnectionHandler, onCloseHandler);
     }
 
     /**Create web socket instance.
@@ -45,16 +47,18 @@ public class WebSocket extends WebSocketClient {
      @param aliveTimeout connection alive timeout in second.
      @param onMessageHandler callback function when message received.
      @param onErrorHandler callback function when web socket exception raised.
+     @param onOpenConnectionHandler callback function when connection has established.
      @param onCloseHandler callback function when connection is closed.*/
     WebSocket(URI uri, int aliveTimeout,
         @Nullable Consumer<String> onMessageHandler, @Nullable Consumer<Exception> onErrorHandler,
-        @Nullable Consumer<Integer> onCloseHandler
+        @Nullable Consumer<ServerHandshake> onOpenConnectionHandler, @Nullable Consumer<Integer> onCloseHandler
     ) {
         super(uri);
         setConnectionLostTimeout(aliveTimeout);
         setTcpNoDelay(true);
         _messageHandler = onMessageHandler;
         _errorHandler = onErrorHandler;
+        _connectionOpenHandler = onOpenConnectionHandler;
         _closeHandler = onCloseHandler;
     }
 
@@ -74,7 +78,7 @@ public class WebSocket extends WebSocketClient {
 
     /**When connect accepted by server.*/
     @Override public void onOpen(ServerHandshake handshake) {
-        System.out.println("Connection established: " + handshake.toString());
+        if (_connectionOpenHandler != null) _connectionOpenHandler.accept(handshake);
     }
 
     /**When connection is closed by server.*/

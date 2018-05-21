@@ -3796,7 +3796,7 @@ $x functions).
         registerEventCallback("DOM.attributeModified", node -> {
             AttributeModifiedEventParameter param;
             try { param = EventCenter.deserializeJson(node, AttributeModifiedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3839,7 +3839,7 @@ $x functions).
         registerEventCallback("DOM.attributeRemoved", node -> {
             AttributeRemovedEventParameter param;
             try { param = EventCenter.deserializeJson(node, AttributeRemovedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3882,7 +3882,7 @@ $x functions).
         registerEventCallback("DOM.characterDataModified", node -> {
             CharacterDataModifiedEventParameter param;
             try { param = EventCenter.deserializeJson(node, CharacterDataModifiedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3925,7 +3925,7 @@ $x functions).
         registerEventCallback("DOM.childNodeCountUpdated", node -> {
             ChildNodeCountUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ChildNodeCountUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3975,7 +3975,7 @@ $x functions).
         registerEventCallback("DOM.childNodeInserted", node -> {
             ChildNodeInsertedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ChildNodeInsertedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4018,7 +4018,7 @@ $x functions).
         registerEventCallback("DOM.childNodeRemoved", node -> {
             ChildNodeRemovedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ChildNodeRemovedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4067,7 +4067,7 @@ $x functions).
         registerEventCallback("DOM.distributedNodesUpdated", node -> {
             DistributedNodesUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, DistributedNodesUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4094,7 +4094,7 @@ $x functions).
         registerEventCallback("DOM.documentUpdated", node -> {
             DocumentUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, DocumentUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4136,7 +4136,7 @@ $x functions).
         registerEventCallback("DOM.inlineStyleInvalidated", node -> {
             InlineStyleInvalidatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, InlineStyleInvalidatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4181,7 +4181,7 @@ $x functions).
         registerEventCallback("DOM.pseudoElementAdded", node -> {
             PseudoElementAddedEventParameter param;
             try { param = EventCenter.deserializeJson(node, PseudoElementAddedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4226,7 +4226,7 @@ $x functions).
         registerEventCallback("DOM.pseudoElementRemoved", node -> {
             PseudoElementRemovedEventParameter param;
             try { param = EventCenter.deserializeJson(node, PseudoElementRemovedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4274,7 +4274,7 @@ most of the calls requesting node ids.
         registerEventCallback("DOM.setChildNodes", node -> {
             SetChildNodesEventParameter param;
             try { param = EventCenter.deserializeJson(node, SetChildNodesEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4319,7 +4319,7 @@ most of the calls requesting node ids.
         registerEventCallback("DOM.shadowRootPopped", node -> {
             ShadowRootPoppedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ShadowRootPoppedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4364,7 +4364,7 @@ most of the calls requesting node ids.
         registerEventCallback("DOM.shadowRootPushed", node -> {
             ShadowRootPushedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ShadowRootPushedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

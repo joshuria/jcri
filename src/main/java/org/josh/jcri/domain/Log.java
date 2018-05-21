@@ -542,7 +542,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Log.entryAdded", node -> {
             EntryAddedEventParameter param;
             try { param = EventCenter.deserializeJson(node, EntryAddedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

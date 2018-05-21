@@ -705,6 +705,10 @@ execution. Overrides `setPauseOnException` state.
         /**Whether to throw an exception if side effect cannot be ruled out during evaluation.
         <em>Optional.</em>*/
         private Boolean throwOnSideEffect;
+        /**Terminate execution after timing out (number of milliseconds).
+        <em>Optional.</em>
+        <p><strong>Experimental.</strong></p>*/
+        private Runtime.TimeDelta timeout;
         public final EvaluateOnCallFrameParameter callFrameId(CallFrameId callFrameId) { this.callFrameId = callFrameId; return this; }
         public final EvaluateOnCallFrameParameter setCallFrameId(CallFrameId callFrameId) { return callFrameId(callFrameId); }
         public final CallFrameId callFrameId() { return callFrameId; }
@@ -737,6 +741,10 @@ execution. Overrides `setPauseOnException` state.
         public final EvaluateOnCallFrameParameter optThrowOnSideEffect(@Nullable Boolean throwOnSideEffect) { return throwOnSideEffect(throwOnSideEffect); }
         public final Boolean throwOnSideEffect() { return throwOnSideEffect; }
         public final Boolean getThrowOnSideEffect() { return throwOnSideEffect(); }
+        public final EvaluateOnCallFrameParameter timeout(@Nullable Runtime.TimeDelta timeout) { this.timeout = timeout; return this; }
+        public final EvaluateOnCallFrameParameter optTimeout(@Nullable Runtime.TimeDelta timeout) { return timeout(timeout); }
+        public final Runtime.TimeDelta timeout() { return timeout; }
+        public final Runtime.TimeDelta getTimeout() { return timeout(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -755,6 +763,7 @@ execution. Overrides `setPauseOnException` state.
             if (returnByValue != null) strBuilder.append(",\"returnByValue\":").append(returnByValue);
             if (generatePreview != null) strBuilder.append(",\"generatePreview\":").append(generatePreview);
             if (throwOnSideEffect != null) strBuilder.append(",\"throwOnSideEffect\":").append(throwOnSideEffect);
+            if (timeout != null) timeout.toJson(strBuilder.append(",\"timeout\":"));
             strBuilder.append('}');
             return strBuilder;
         }
@@ -767,7 +776,8 @@ execution. Overrides `setPauseOnException` state.
             @Nullable @JsonProperty("silent")Boolean silent,
             @Nullable @JsonProperty("returnByValue")Boolean returnByValue,
             @Nullable @JsonProperty("generatePreview")Boolean generatePreview,
-            @Nullable @JsonProperty("throwOnSideEffect")Boolean throwOnSideEffect
+            @Nullable @JsonProperty("throwOnSideEffect")Boolean throwOnSideEffect,
+            @Nullable @JsonProperty("timeout")Runtime.TimeDelta timeout
         ) {
             this();
             this.callFrameId = callFrameId;
@@ -778,6 +788,7 @@ execution. Overrides `setPauseOnException` state.
             this.returnByValue = returnByValue;
             this.generatePreview = generatePreview;
             this.throwOnSideEffect = throwOnSideEffect;
+            this.timeout = timeout;
         }
         public CompletableFuture<EvaluateOnCallFrameResult> call() {
             return super.call("Debugger.evaluateOnCallFrame", EvaluateOnCallFrameResult.class,
@@ -1950,6 +1961,91 @@ breakpoint if this expression evaluates to true.
             locations = null;
         }
     }
+    /**Sets JavaScript breakpoint before each call to the given function.
+If another function was created from the same source as a given one,
+calling it will also trigger the breakpoint.
+    <p><strong>Experimental.</strong></p>*/
+    public SetBreakpointOnFunctionCallParameter setBreakpointOnFunctionCall() { final SetBreakpointOnFunctionCallParameter v = new SetBreakpointOnFunctionCallParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setBreakpointOnFunctionCall.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetBreakpointOnFunctionCallParameter extends CommandBase {
+        /**Function object id.*/
+        private Runtime.RemoteObjectId objectId;
+        /**Expression to use as a breakpoint condition. When specified, debugger will
+stop on the breakpoint if this expression evaluates to true.
+        <em>Optional.</em>*/
+        private String condition;
+        public final SetBreakpointOnFunctionCallParameter objectId(Runtime.RemoteObjectId objectId) { this.objectId = objectId; return this; }
+        public final SetBreakpointOnFunctionCallParameter setObjectId(Runtime.RemoteObjectId objectId) { return objectId(objectId); }
+        public final Runtime.RemoteObjectId objectId() { return objectId; }
+        public final Runtime.RemoteObjectId getObjectId() { return objectId(); }
+        public final SetBreakpointOnFunctionCallParameter condition(@Nullable String condition) { this.condition = condition; return this; }
+        public final SetBreakpointOnFunctionCallParameter optCondition(@Nullable String condition) { return condition(condition); }
+        public final String condition() { return condition; }
+        public final String getCondition() { return condition(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (objectId == null) throw new IllegalArgumentException("Debugger.SetBreakpointOnFunctionCallParameter.objectId is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            objectId.toJson(strBuilder.append("\"objectId\":"));
+            if (condition != null) strBuilder.append(",\"condition\":").append('"').append(DomainBase.escapeJson(condition)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetBreakpointOnFunctionCallParameter() {}
+        public SetBreakpointOnFunctionCallParameter(
+            @JsonProperty("objectId")Runtime.RemoteObjectId objectId,
+            @Nullable @JsonProperty("condition")String condition
+        ) {
+            this();
+            this.objectId = objectId;
+            this.condition = condition;
+        }
+        public CompletableFuture<SetBreakpointOnFunctionCallResult> call() {
+            return super.call("Debugger.setBreakpointOnFunctionCall", SetBreakpointOnFunctionCallResult.class,
+                (code, msg)->new SetBreakpointOnFunctionCallResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBreakpointOnFunctionCallResult> call(Executor exec) {
+            return super.call("Debugger.setBreakpointOnFunctionCall", SetBreakpointOnFunctionCallResult.class,
+                (code, msg)->new SetBreakpointOnFunctionCallResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setBreakpointOnFunctionCall.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetBreakpointOnFunctionCallResult extends ResultBase {
+        /**Id of the created breakpoint for further reference.*/
+        private final BreakpointId breakpointId;
+        public final BreakpointId breakpointId() { return breakpointId; }
+        public final BreakpointId getBreakpointId() { return breakpointId(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            breakpointId.toJson(strBuilder.append("\"breakpointId\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetBreakpointOnFunctionCallResult(
+            @JsonProperty("breakpointId")BreakpointId breakpointId
+        ) {
+            this.breakpointId = breakpointId;
+        }
+        public SetBreakpointOnFunctionCallResult(ResultBase.FailedResult e) {
+            super(e);
+            breakpointId = null;
+        }
+    }
     /**Activates / deactivates all breakpoints on the page.*/
     public SetBreakpointsActiveParameter setBreakpointsActive() { final SetBreakpointsActiveParameter v = new SetBreakpointsActiveParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setBreakpointsActive.*/
@@ -2624,7 +2720,7 @@ before next pause.
         registerEventCallback("Debugger.breakpointResolved", node -> {
             BreakpointResolvedEventParameter param;
             try { param = EventCenter.deserializeJson(node, BreakpointResolvedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -2746,7 +2842,7 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
         registerEventCallback("Debugger.paused", node -> {
             PausedEventParameter param;
             try { param = EventCenter.deserializeJson(node, PausedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -2773,7 +2869,7 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
         registerEventCallback("Debugger.resumed", node -> {
             ResumedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ResumedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -2907,7 +3003,7 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
         registerEventCallback("Debugger.scriptFailedToParse", node -> {
             ScriptFailedToParseEventParameter param;
             try { param = EventCenter.deserializeJson(node, ScriptFailedToParseEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3051,7 +3147,7 @@ scripts upon enabling debugger.
         registerEventCallback("Debugger.scriptParsed", node -> {
             ScriptParsedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ScriptParsedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

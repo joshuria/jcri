@@ -113,6 +113,10 @@ import javax.annotation.Nullable;
         /**Opener target Id
         <em>Optional.</em>*/
         private TargetID openerId;
+        /**&lt;No document in protocol.&gt;
+        <em>Optional.</em>
+        <p><strong>Experimental.</strong></p>*/
+        private BrowserContextID browserContextId;
         public final TargetInfo targetId(TargetID targetId) { this.targetId = targetId; return this; }
         public final TargetInfo setTargetId(TargetID targetId) { return targetId(targetId); }
         public final TargetID targetId() { return targetId; }
@@ -137,6 +141,10 @@ import javax.annotation.Nullable;
         public final TargetInfo optOpenerId(@Nullable TargetID openerId) { return openerId(openerId); }
         public final TargetID openerId() { return openerId; }
         public final TargetID getOpenerId() { return openerId(); }
+        public final TargetInfo browserContextId(@Nullable BrowserContextID browserContextId) { this.browserContextId = browserContextId; return this; }
+        public final TargetInfo optBrowserContextId(@Nullable BrowserContextID browserContextId) { return browserContextId(browserContextId); }
+        public final BrowserContextID browserContextId() { return browserContextId; }
+        public final BrowserContextID getBrowserContextId() { return browserContextId(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -156,6 +164,7 @@ import javax.annotation.Nullable;
             strBuilder.append(",\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
             strBuilder.append(",\"attached\":").append(attached);
             if (openerId != null) openerId.toJson(strBuilder.append(",\"openerId\":"));
+            if (browserContextId != null) browserContextId.toJson(strBuilder.append(",\"browserContextId\":"));
             strBuilder.append('}');
             return strBuilder;
         }
@@ -166,7 +175,8 @@ import javax.annotation.Nullable;
             @JsonProperty("title")String title,
             @JsonProperty("url")String url,
             @JsonProperty("attached")Boolean attached,
-            @Nullable @JsonProperty("openerId")TargetID openerId
+            @Nullable @JsonProperty("openerId")TargetID openerId,
+            @Nullable @JsonProperty("browserContextId")BrowserContextID browserContextId
         ) {
             this.targetId = targetId;
             this.type = type;
@@ -174,6 +184,7 @@ import javax.annotation.Nullable;
             this.url = url;
             this.attached = attached;
             this.openerId = openerId;
+            this.browserContextId = browserContextId;
         }
     }
 
@@ -473,6 +484,68 @@ one.
             browserContextId = null;
         }
     }
+    /**Returns all browser contexts created with `Target.createBrowserContext` method.
+    <p><strong>Experimental.</strong></p>*/
+    public GetBrowserContextsParameter getBrowserContexts() { final GetBrowserContextsParameter v = new GetBrowserContextsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of getBrowserContexts.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GetBrowserContextsParameter extends CommandBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GetBrowserContextsParameter() {}
+        public CompletableFuture<GetBrowserContextsResult> call() {
+            return super.call("Target.getBrowserContexts", GetBrowserContextsResult.class,
+                (code, msg)->new GetBrowserContextsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetBrowserContextsResult> call(Executor exec) {
+            return super.call("Target.getBrowserContexts", GetBrowserContextsResult.class,
+                (code, msg)->new GetBrowserContextsResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of getBrowserContexts.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GetBrowserContextsResult extends ResultBase {
+        /**An array of browser context ids.*/
+        private final List<BrowserContextID> browserContextIds;
+        public final List<BrowserContextID> browserContextIds() { return browserContextIds; }
+        public final List<BrowserContextID> getBrowserContextIds() { return browserContextIds(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+                        strBuilder.append("\"browserContextIds\":[");
+            browserContextIds.get(0).toJson(strBuilder);
+            for (int i = 1; i < browserContextIds.size(); ++i)
+                browserContextIds.get(i).toJson(strBuilder.append(','));
+            strBuilder.append(']');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GetBrowserContextsResult(
+            @JsonProperty("browserContextIds")List<BrowserContextID> browserContextIds
+        ) {
+            this.browserContextIds = browserContextIds;
+        }
+        public GetBrowserContextsResult(ResultBase.FailedResult e) {
+            super(e);
+            browserContextIds = null;
+        }
+    }
     /**Creates a new page.*/
     public CreateTargetParameter createTarget() { final CreateTargetParameter v = new CreateTargetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of createTarget.*/
@@ -486,7 +559,7 @@ one.
         /**Frame height in DIP (headless chrome only).
         <em>Optional.</em>*/
         private Integer height;
-        /**The browser context to create the page in (headless chrome only).
+        /**The browser context to create the page in.
         <em>Optional.</em>*/
         private BrowserContextID browserContextId;
         /**Whether BeginFrames for this target will be controlled via DevTools (headless chrome only,
@@ -654,7 +727,8 @@ not supported on MacOS yet, false by default).
             super(e);
         }
     }
-    /**Deletes a BrowserContext, will fail of any open page uses it.
+    /**Deletes a BrowserContext. All the belonging pages will be closed without calling their
+beforeunload hooks.
     <p><strong>Experimental.</strong></p>*/
     public DisposeBrowserContextParameter disposeBrowserContext() { final DisposeBrowserContextParameter v = new DisposeBrowserContextParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of disposeBrowserContext.
@@ -700,10 +774,6 @@ not supported on MacOS yet, false by default).
     <p><strong>Experimental.</strong></p>*/
     @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class DisposeBrowserContextResult extends ResultBase {
-        /**&lt;No document in protocol.&gt;*/
-        private final Boolean success;
-        public final Boolean success() { return success; }
-        public final Boolean getSuccess() { return success(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -712,18 +782,12 @@ not supported on MacOS yet, false by default).
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            strBuilder.append("\"success\":").append(success);
             strBuilder.append('}');
             return strBuilder;
         }
-        public DisposeBrowserContextResult(
-            @JsonProperty("success")Boolean success
-        ) {
-            this.success = success;
-        }
+        public DisposeBrowserContextResult() { super(); }
         public DisposeBrowserContextResult(ResultBase.FailedResult e) {
             super(e);
-            success = null;
         }
     }
     /**Returns information about a target.
@@ -1187,7 +1251,7 @@ to run paused targets.*/
         registerEventCallback("Target.attachedToTarget", node -> {
             AttachedToTargetEventParameter param;
             try { param = EventCenter.deserializeJson(node, AttachedToTargetEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1235,7 +1299,7 @@ issued multiple times per target if multiple sessions have been attached to it.
         registerEventCallback("Target.detachedFromTarget", node -> {
             DetachedFromTargetEventParameter param;
             try { param = EventCenter.deserializeJson(node, DetachedFromTargetEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1288,7 +1352,7 @@ issued multiple times per target if multiple sessions have been attached to it.
         registerEventCallback("Target.receivedMessageFromTarget", node -> {
             ReceivedMessageFromTargetEventParameter param;
             try { param = EventCenter.deserializeJson(node, ReceivedMessageFromTargetEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1324,7 +1388,7 @@ issued multiple times per target if multiple sessions have been attached to it.
         registerEventCallback("Target.targetCreated", node -> {
             TargetCreatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, TargetCreatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1360,7 +1424,7 @@ issued multiple times per target if multiple sessions have been attached to it.
         registerEventCallback("Target.targetDestroyed", node -> {
             TargetDestroyedEventParameter param;
             try { param = EventCenter.deserializeJson(node, TargetDestroyedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1397,7 +1461,7 @@ issued multiple times per target if multiple sessions have been attached to it.
         registerEventCallback("Target.targetInfoChanged", node -> {
             TargetInfoChangedEventParameter param;
             try { param = EventCenter.deserializeJson(node, TargetInfoChangedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

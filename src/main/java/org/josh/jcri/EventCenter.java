@@ -66,7 +66,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
     final ExecutorService getExecutor() { return _executor; }
 
     /**Get logger instance.*/
-    Logger getLog() { return _log; }
+    public Logger getLog() { return _log; }
 
     /**Push a method into response waiting queue.
      If given method's Id is already existed in internal waiting queue, the given method will NOT
@@ -143,15 +143,13 @@ import javax.annotation.ParametersAreNonnullByDefault;
                 if (callback != null)
                     _executor.submit(() -> {
                         try { callback.accept(node.get("params")); }
-                        catch (Exception e) { e.printStackTrace(); }
+                        catch (Exception e) { _log.error(e); }
                     });
             }
             else {
                 //! Browser response unexpected message?!
             }
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        catch (IOException e) { _log.error(e); }
     }
 } // ! class EventCenter

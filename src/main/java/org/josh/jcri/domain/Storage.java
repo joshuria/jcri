@@ -529,7 +529,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Storage.cacheStorageContentUpdated", node -> {
             CacheStorageContentUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, CacheStorageContentUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -565,7 +565,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Storage.cacheStorageListUpdated", node -> {
             CacheStorageListUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, CacheStorageListUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -615,7 +615,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Storage.indexedDBContentUpdated", node -> {
             IndexedDBContentUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, IndexedDBContentUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -651,7 +651,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Storage.indexedDBListUpdated", node -> {
             IndexedDBListUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, IndexedDBListUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

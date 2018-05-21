@@ -324,7 +324,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Console.messageAdded", node -> {
             MessageAddedEventParameter param;
             try { param = EventCenter.deserializeJson(node, MessageAddedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

@@ -113,7 +113,9 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
         ConnectionFailed("ConnectionFailed"),
         NameNotResolved("NameNotResolved"),
         InternetDisconnected("InternetDisconnected"),
-        AddressUnreachable("AddressUnreachable");
+        AddressUnreachable("AddressUnreachable"),
+        BlockedByClient("BlockedByClient"),
+        BlockedByResponse("BlockedByResponse");
 
         private final String _value;
         /**Convert string representation to type.
@@ -870,12 +872,13 @@ milliseconds relatively to this requestTime.*/
 
     /**The reason why request was blocked.*/
     @ParametersAreNonnullByDefault public enum BlockedReason implements CommonDomainType {
+        Other("other"),
         Csp("csp"),
         Mixed_content("mixed-content"),
         Origin("origin"),
         Inspector("inspector"),
         Subresource_filter("subresource-filter"),
-        Other("other");
+        Content_type("content-type");
 
         private final String _value;
         /**Convert string representation to type.
@@ -1858,6 +1861,231 @@ backslash. Omitting is equivalent to "*".
             this.urlPattern = urlPattern;
             this.resourceType = resourceType;
             this.interceptionStage = interceptionStage;
+        }
+    }
+
+    /**Information about a signed exchange signature.
+https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#rfc.section.3.1
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SignedExchangeSignature implements CommonDomainType {
+        /**Signed exchange signature label.*/
+        private String label;
+        /**Signed exchange signature integrity.*/
+        private String integrity;
+        /**Signed exchange signature cert Url.*/
+        private String certUrl;
+        /**Signed exchange signature validity Url.*/
+        private String validityUrl;
+        /**Signed exchange signature date.*/
+        private Integer date;
+        /**Signed exchange signature expires.*/
+        private Integer expires;
+        public final SignedExchangeSignature label(String label) { this.label = label; return this; }
+        public final SignedExchangeSignature setLabel(String label) { return label(label); }
+        public final String label() { return label; }
+        public final String getLabel() { return label(); }
+        public final SignedExchangeSignature integrity(String integrity) { this.integrity = integrity; return this; }
+        public final SignedExchangeSignature setIntegrity(String integrity) { return integrity(integrity); }
+        public final String integrity() { return integrity; }
+        public final String getIntegrity() { return integrity(); }
+        public final SignedExchangeSignature certUrl(String certUrl) { this.certUrl = certUrl; return this; }
+        public final SignedExchangeSignature setCertUrl(String certUrl) { return certUrl(certUrl); }
+        public final String certUrl() { return certUrl; }
+        public final String getCertUrl() { return certUrl(); }
+        public final SignedExchangeSignature validityUrl(String validityUrl) { this.validityUrl = validityUrl; return this; }
+        public final SignedExchangeSignature setValidityUrl(String validityUrl) { return validityUrl(validityUrl); }
+        public final String validityUrl() { return validityUrl; }
+        public final String getValidityUrl() { return validityUrl(); }
+        public final SignedExchangeSignature date(Integer date) { this.date = date; return this; }
+        public final SignedExchangeSignature setDate(Integer date) { return date(date); }
+        public final Integer date() { return date; }
+        public final Integer getDate() { return date(); }
+        public final SignedExchangeSignature expires(Integer expires) { this.expires = expires; return this; }
+        public final SignedExchangeSignature setExpires(Integer expires) { return expires(expires); }
+        public final Integer expires() { return expires; }
+        public final Integer getExpires() { return expires(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (label == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.label is necessary field.");
+            if (integrity == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.integrity is necessary field.");
+            if (certUrl == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.certUrl is necessary field.");
+            if (validityUrl == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.validityUrl is necessary field.");
+            if (date == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.date is necessary field.");
+            if (expires == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.expires is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"label\":").append('"').append(DomainBase.escapeJson(label)).append('"');
+            strBuilder.append(",\"integrity\":").append('"').append(DomainBase.escapeJson(integrity)).append('"');
+            strBuilder.append(",\"certUrl\":").append('"').append(DomainBase.escapeJson(certUrl)).append('"');
+            strBuilder.append(",\"validityUrl\":").append('"').append(DomainBase.escapeJson(validityUrl)).append('"');
+            strBuilder.append(",\"date\":").append(date);
+            strBuilder.append(",\"expires\":").append(expires);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SignedExchangeSignature() {}
+        public SignedExchangeSignature(
+            @JsonProperty("label")String label,
+            @JsonProperty("integrity")String integrity,
+            @JsonProperty("certUrl")String certUrl,
+            @JsonProperty("validityUrl")String validityUrl,
+            @JsonProperty("date")Integer date,
+            @JsonProperty("expires")Integer expires
+        ) {
+            this.label = label;
+            this.integrity = integrity;
+            this.certUrl = certUrl;
+            this.validityUrl = validityUrl;
+            this.date = date;
+            this.expires = expires;
+        }
+    }
+
+    /**Information about a signed exchange header.
+https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#cbor-representation
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SignedExchangeHeader implements CommonDomainType {
+        /**Signed exchange request URL.*/
+        private String requestUrl;
+        /**Signed exchange request method.*/
+        private String requestMethod;
+        /**Signed exchange response code.*/
+        private Integer responseCode;
+        /**Signed exchange response headers.*/
+        private Headers responseHeaders;
+        /**Signed exchange response signature.*/
+        private List<SignedExchangeSignature> signatures;
+        public final SignedExchangeHeader requestUrl(String requestUrl) { this.requestUrl = requestUrl; return this; }
+        public final SignedExchangeHeader setRequestUrl(String requestUrl) { return requestUrl(requestUrl); }
+        public final String requestUrl() { return requestUrl; }
+        public final String getRequestUrl() { return requestUrl(); }
+        public final SignedExchangeHeader requestMethod(String requestMethod) { this.requestMethod = requestMethod; return this; }
+        public final SignedExchangeHeader setRequestMethod(String requestMethod) { return requestMethod(requestMethod); }
+        public final String requestMethod() { return requestMethod; }
+        public final String getRequestMethod() { return requestMethod(); }
+        public final SignedExchangeHeader responseCode(Integer responseCode) { this.responseCode = responseCode; return this; }
+        public final SignedExchangeHeader setResponseCode(Integer responseCode) { return responseCode(responseCode); }
+        public final Integer responseCode() { return responseCode; }
+        public final Integer getResponseCode() { return responseCode(); }
+        public final SignedExchangeHeader responseHeaders(Headers responseHeaders) { this.responseHeaders = responseHeaders; return this; }
+        public final SignedExchangeHeader setResponseHeaders(Headers responseHeaders) { return responseHeaders(responseHeaders); }
+        public final Headers responseHeaders() { return responseHeaders; }
+        public final Headers getResponseHeaders() { return responseHeaders(); }
+        public final SignedExchangeHeader signatures(List<SignedExchangeSignature> signatures) { this.signatures = signatures; return this; }
+        public final SignedExchangeHeader setSignatures(List<SignedExchangeSignature> signatures) { return signatures(signatures); }
+        public final List<SignedExchangeSignature> signatures() { return signatures; }
+        public final List<SignedExchangeSignature> getSignatures() { return signatures(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (requestUrl == null) throw new IllegalArgumentException("Network.SignedExchangeHeader.requestUrl is necessary field.");
+            if (requestMethod == null) throw new IllegalArgumentException("Network.SignedExchangeHeader.requestMethod is necessary field.");
+            if (responseCode == null) throw new IllegalArgumentException("Network.SignedExchangeHeader.responseCode is necessary field.");
+            if (responseHeaders == null) throw new IllegalArgumentException("Network.SignedExchangeHeader.responseHeaders is necessary field.");
+            if (signatures == null) throw new IllegalArgumentException("Network.SignedExchangeHeader.signatures is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"requestUrl\":").append('"').append(DomainBase.escapeJson(requestUrl)).append('"');
+            strBuilder.append(",\"requestMethod\":").append('"').append(DomainBase.escapeJson(requestMethod)).append('"');
+            strBuilder.append(",\"responseCode\":").append(responseCode);
+            responseHeaders.toJson(strBuilder.append(",\"responseHeaders\":"));
+                        strBuilder.append(",\"signatures\":[");
+            signatures.get(0).toJson(strBuilder);
+            for (int i = 1; i < signatures.size(); ++i)
+                signatures.get(i).toJson(strBuilder.append(','));
+            strBuilder.append(']');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SignedExchangeHeader() {}
+        public SignedExchangeHeader(
+            @JsonProperty("requestUrl")String requestUrl,
+            @JsonProperty("requestMethod")String requestMethod,
+            @JsonProperty("responseCode")Integer responseCode,
+            @JsonProperty("responseHeaders")Headers responseHeaders,
+            @JsonProperty("signatures")List<SignedExchangeSignature> signatures
+        ) {
+            this.requestUrl = requestUrl;
+            this.requestMethod = requestMethod;
+            this.responseCode = responseCode;
+            this.responseHeaders = responseHeaders;
+            this.signatures = signatures;
+        }
+    }
+
+    /**Information about a signed exchange response.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SignedExchangeInfo implements CommonDomainType {
+        /**The outer response of signed HTTP exchange which was received from network.*/
+        private Response outerResponse;
+        /**Information about the signed exchange header.
+        <em>Optional.</em>*/
+        private SignedExchangeHeader header;
+        /**Security details for the signed exchange header.
+        <em>Optional.</em>*/
+        private SecurityDetails securityDetails;
+        /**Errors occurred while handling the signed exchagne.
+        <em>Optional.</em>*/
+        private List<String> errors;
+        public final SignedExchangeInfo outerResponse(Response outerResponse) { this.outerResponse = outerResponse; return this; }
+        public final SignedExchangeInfo setOuterResponse(Response outerResponse) { return outerResponse(outerResponse); }
+        public final Response outerResponse() { return outerResponse; }
+        public final Response getOuterResponse() { return outerResponse(); }
+        public final SignedExchangeInfo header(@Nullable SignedExchangeHeader header) { this.header = header; return this; }
+        public final SignedExchangeInfo optHeader(@Nullable SignedExchangeHeader header) { return header(header); }
+        public final SignedExchangeHeader header() { return header; }
+        public final SignedExchangeHeader getHeader() { return header(); }
+        public final SignedExchangeInfo securityDetails(@Nullable SecurityDetails securityDetails) { this.securityDetails = securityDetails; return this; }
+        public final SignedExchangeInfo optSecurityDetails(@Nullable SecurityDetails securityDetails) { return securityDetails(securityDetails); }
+        public final SecurityDetails securityDetails() { return securityDetails; }
+        public final SecurityDetails getSecurityDetails() { return securityDetails(); }
+        public final SignedExchangeInfo errors(@Nullable List<String> errors) { this.errors = errors; return this; }
+        public final SignedExchangeInfo optErrors(@Nullable List<String> errors) { return errors(errors); }
+        public final List<String> errors() { return errors; }
+        public final List<String> getErrors() { return errors(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (outerResponse == null) throw new IllegalArgumentException("Network.SignedExchangeInfo.outerResponse is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            outerResponse.toJson(strBuilder.append("\"outerResponse\":"));
+            if (header != null) header.toJson(strBuilder.append(",\"header\":"));
+            if (securityDetails != null) securityDetails.toJson(strBuilder.append(",\"securityDetails\":"));
+            if (errors != null) {
+                strBuilder.append(",\"errors\":[");
+                strBuilder.append('"').append(DomainBase.escapeJson(errors.get(0))).append('"');
+                for (int i = 1; i < errors.size(); ++i)
+                    strBuilder.append(",\"").append(DomainBase.escapeJson(errors.get(i))).append('"');
+                strBuilder.append(']');
+            }
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SignedExchangeInfo() {}
+        public SignedExchangeInfo(
+            @JsonProperty("outerResponse")Response outerResponse,
+            @Nullable @JsonProperty("header")SignedExchangeHeader header,
+            @Nullable @JsonProperty("securityDetails")SecurityDetails securityDetails,
+            @Nullable @JsonProperty("errors")List<String> errors
+        ) {
+            this.outerResponse = outerResponse;
+            this.header = header;
+            this.securityDetails = securityDetails;
+            this.errors = errors;
         }
     }
     /**Tells whether clearing browser cache is supported.
@@ -3022,6 +3250,81 @@ detailed cookie information in the `cookies` field.*/
             base64Encoded = null;
         }
     }
+    /**Returns a handle to the stream representing the response body. Note that after this command,
+the intercepted request can't be continued as is -- you either need to cancel it or to provide
+the response body. The stream only supports sequential read, IO.read will fail if the position
+is specified.
+    <p><strong>Experimental.</strong></p>*/
+    public TakeResponseBodyForInterceptionAsStreamParameter takeResponseBodyForInterceptionAsStream() { final TakeResponseBodyForInterceptionAsStreamParameter v = new TakeResponseBodyForInterceptionAsStreamParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of takeResponseBodyForInterceptionAsStream.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class TakeResponseBodyForInterceptionAsStreamParameter extends CommandBase {
+        /**&lt;No document in protocol.&gt;*/
+        private InterceptionId interceptionId;
+        public final TakeResponseBodyForInterceptionAsStreamParameter interceptionId(InterceptionId interceptionId) { this.interceptionId = interceptionId; return this; }
+        public final TakeResponseBodyForInterceptionAsStreamParameter setInterceptionId(InterceptionId interceptionId) { return interceptionId(interceptionId); }
+        public final InterceptionId interceptionId() { return interceptionId; }
+        public final InterceptionId getInterceptionId() { return interceptionId(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (interceptionId == null) throw new IllegalArgumentException("Network.TakeResponseBodyForInterceptionAsStreamParameter.interceptionId is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            interceptionId.toJson(strBuilder.append("\"interceptionId\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public TakeResponseBodyForInterceptionAsStreamParameter() {}
+        public TakeResponseBodyForInterceptionAsStreamParameter(
+            @JsonProperty("interceptionId")InterceptionId interceptionId
+        ) {
+            this();
+            this.interceptionId = interceptionId;
+        }
+        public CompletableFuture<TakeResponseBodyForInterceptionAsStreamResult> call() {
+            return super.call("Network.takeResponseBodyForInterceptionAsStream", TakeResponseBodyForInterceptionAsStreamResult.class,
+                (code, msg)->new TakeResponseBodyForInterceptionAsStreamResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<TakeResponseBodyForInterceptionAsStreamResult> call(Executor exec) {
+            return super.call("Network.takeResponseBodyForInterceptionAsStream", TakeResponseBodyForInterceptionAsStreamResult.class,
+                (code, msg)->new TakeResponseBodyForInterceptionAsStreamResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of takeResponseBodyForInterceptionAsStream.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class TakeResponseBodyForInterceptionAsStreamResult extends ResultBase {
+        /**&lt;No document in protocol.&gt;*/
+        private final IO.StreamHandle stream;
+        public final IO.StreamHandle stream() { return stream; }
+        public final IO.StreamHandle getStream() { return stream(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            stream.toJson(strBuilder.append("\"stream\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public TakeResponseBodyForInterceptionAsStreamResult(
+            @JsonProperty("stream")IO.StreamHandle stream
+        ) {
+            this.stream = stream;
+        }
+        public TakeResponseBodyForInterceptionAsStreamResult(ResultBase.FailedResult e) {
+            super(e);
+            stream = null;
+        }
+    }
     /**This method sends a new XMLHttpRequest which is identical to the original one. The following
 parameters should be identical: method, url, async, request body, extra headers, withCredentials
 attribute, user, password.
@@ -3902,7 +4205,7 @@ continueInterceptedRequest call.*/
         registerEventCallback("Network.dataReceived", node -> {
             DataReceivedEventParameter param;
             try { param = EventCenter.deserializeJson(node, DataReceivedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3966,7 +4269,7 @@ continueInterceptedRequest call.*/
         registerEventCallback("Network.eventSourceMessageReceived", node -> {
             EventSourceMessageReceivedEventParameter param;
             try { param = EventCenter.deserializeJson(node, EventSourceMessageReceivedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4039,7 +4342,7 @@ continueInterceptedRequest call.*/
         registerEventCallback("Network.loadingFailed", node -> {
             LoadingFailedEventParameter param;
             try { param = EventCenter.deserializeJson(node, LoadingFailedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4097,7 +4400,7 @@ continueInterceptedRequest call.*/
         registerEventCallback("Network.loadingFinished", node -> {
             LoadingFinishedEventParameter param;
             try { param = EventCenter.deserializeJson(node, LoadingFinishedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4118,6 +4421,10 @@ Likewise if HTTP authentication is needed then the same fetch id will be used.*/
         private final Page.ResourceType resourceType;
         /**Whether this is a navigation request, which can abort the navigation completely.*/
         private final Boolean isNavigationRequest;
+        /**Set if the request is a navigation that will result in a download.
+Only present after response is received from the server (i.e. HeadersReceived stage).
+        <em>Optional.</em>*/
+        private final Boolean isDownload;
         /**Redirect location, only sent if a redirect was intercepted.
         <em>Optional.</em>*/
         private final String redirectUrl;
@@ -4147,6 +4454,8 @@ intercepting request or auth retry occurred.
         public final Page.ResourceType getResourceType() { return resourceType(); }
         public final Boolean isNavigationRequest() { return isNavigationRequest; }
         public final Boolean getIsNavigationRequest() { return isNavigationRequest(); }
+        public final Boolean isDownload() { return isDownload; }
+        public final Boolean getIsDownload() { return isDownload(); }
         public final String redirectUrl() { return redirectUrl; }
         public final String getRedirectUrl() { return redirectUrl(); }
         public final AuthChallenge authChallenge() { return authChallenge; }
@@ -4170,6 +4479,7 @@ intercepting request or auth retry occurred.
             frameId.toJson(strBuilder.append(",\"frameId\":"));
             resourceType.toJson(strBuilder.append(",\"resourceType\":"));
             strBuilder.append(",\"isNavigationRequest\":").append(isNavigationRequest);
+            if (isDownload != null) strBuilder.append(",\"isDownload\":").append(isDownload);
             if (redirectUrl != null) strBuilder.append(",\"redirectUrl\":").append('"').append(DomainBase.escapeJson(redirectUrl)).append('"');
             if (authChallenge != null) authChallenge.toJson(strBuilder.append(",\"authChallenge\":"));
             if (responseErrorReason != null) responseErrorReason.toJson(strBuilder.append(",\"responseErrorReason\":"));
@@ -4184,6 +4494,7 @@ intercepting request or auth retry occurred.
             @JsonProperty("frameId")Page.FrameId frameId,
             @JsonProperty("resourceType")Page.ResourceType resourceType,
             @JsonProperty("isNavigationRequest")Boolean isNavigationRequest,
+            @Nullable @JsonProperty("isDownload")Boolean isDownload,
             @Nullable @JsonProperty("redirectUrl")String redirectUrl,
             @Nullable @JsonProperty("authChallenge")AuthChallenge authChallenge,
             @Nullable @JsonProperty("responseErrorReason")ErrorReason responseErrorReason,
@@ -4195,6 +4506,7 @@ intercepting request or auth retry occurred.
             this.frameId = frameId;
             this.resourceType = resourceType;
             this.isNavigationRequest = isNavigationRequest;
+            this.isDownload = isDownload;
             this.redirectUrl = redirectUrl;
             this.authChallenge = authChallenge;
             this.responseErrorReason = responseErrorReason;
@@ -4210,7 +4522,7 @@ mocked.
         registerEventCallback("Network.requestIntercepted", node -> {
             RequestInterceptedEventParameter param;
             try { param = EventCenter.deserializeJson(node, RequestInterceptedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4246,7 +4558,7 @@ mocked.
         registerEventCallback("Network.requestServedFromCache", node -> {
             RequestServedFromCacheEventParameter param;
             try { param = EventCenter.deserializeJson(node, RequestServedFromCacheEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4356,7 +4668,7 @@ mocked.
         registerEventCallback("Network.requestWillBeSent", node -> {
             RequestWillBeSentEventParameter param;
             try { param = EventCenter.deserializeJson(node, RequestWillBeSentEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4408,7 +4720,52 @@ mocked.
         registerEventCallback("Network.resourceChangedPriority", node -> {
             ResourceChangedPriorityEventParameter param;
             try { param = EventCenter.deserializeJson(node, ResourceChangedPriorityEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
+            callback.accept(param);
+        });
+    }
+    /**Event parameter of Network.signedExchangeReceived.
+    <p><strong>Experimental.</strong></p>
+     @see #onSignedExchangeReceived*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SignedExchangeReceivedEventParameter implements CommonDomainType {
+        /**Request identifier.*/
+        private final RequestId requestId;
+        /**Information about the signed exchange response.*/
+        private final SignedExchangeInfo info;
+        public final RequestId requestId() { return requestId; }
+        public final RequestId getRequestId() { return requestId(); }
+        public final SignedExchangeInfo info() { return info; }
+        public final SignedExchangeInfo getInfo() { return info(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            requestId.toJson(strBuilder.append("\"requestId\":"));
+            info.toJson(strBuilder.append(",\"info\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        SignedExchangeReceivedEventParameter(
+            @JsonProperty("requestId")RequestId requestId,
+            @JsonProperty("info")SignedExchangeInfo info
+        ) {
+            this.requestId = requestId;
+            this.info = info;
+        }
+    }
+    /**Fired when a signed exchange was received over the network
+    <p><strong>Experimental.</strong></p>
+     @see SignedExchangeReceivedEventParameter*/
+    public void onSignedExchangeReceived(Consumer<SignedExchangeReceivedEventParameter> callback) {
+        registerEventCallback("Network.signedExchangeReceived", node -> {
+            SignedExchangeReceivedEventParameter param;
+            try { param = EventCenter.deserializeJson(node, SignedExchangeReceivedEventParameter.class); }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4480,7 +4837,7 @@ mocked.
         registerEventCallback("Network.responseReceived", node -> {
             ResponseReceivedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ResponseReceivedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4523,7 +4880,7 @@ mocked.
         registerEventCallback("Network.webSocketClosed", node -> {
             WebSocketClosedEventParameter param;
             try { param = EventCenter.deserializeJson(node, WebSocketClosedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4574,7 +4931,7 @@ mocked.
         registerEventCallback("Network.webSocketCreated", node -> {
             WebSocketCreatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, WebSocketCreatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4624,7 +4981,7 @@ mocked.
         registerEventCallback("Network.webSocketFrameError", node -> {
             WebSocketFrameErrorEventParameter param;
             try { param = EventCenter.deserializeJson(node, WebSocketFrameErrorEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4674,7 +5031,7 @@ mocked.
         registerEventCallback("Network.webSocketFrameReceived", node -> {
             WebSocketFrameReceivedEventParameter param;
             try { param = EventCenter.deserializeJson(node, WebSocketFrameReceivedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4724,7 +5081,7 @@ mocked.
         registerEventCallback("Network.webSocketFrameSent", node -> {
             WebSocketFrameSentEventParameter param;
             try { param = EventCenter.deserializeJson(node, WebSocketFrameSentEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4774,7 +5131,7 @@ mocked.
         registerEventCallback("Network.webSocketHandshakeResponseReceived", node -> {
             WebSocketHandshakeResponseReceivedEventParameter param;
             try { param = EventCenter.deserializeJson(node, WebSocketHandshakeResponseReceivedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -4831,7 +5188,7 @@ mocked.
         registerEventCallback("Network.webSocketWillSendHandshakeRequest", node -> {
             WebSocketWillSendHandshakeRequestEventParameter param;
             try { param = EventCenter.deserializeJson(node, WebSocketWillSendHandshakeRequestEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

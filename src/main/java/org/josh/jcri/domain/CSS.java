@@ -3146,7 +3146,7 @@ web font
         registerEventCallback("CSS.fontsUpdated", node -> {
             FontsUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, FontsUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3174,7 +3174,7 @@ resized.) The current implementation considers only viewport-dependent media fea
         registerEventCallback("CSS.mediaQueryResultChanged", node -> {
             MediaQueryResultChangedEventParameter param;
             try { param = EventCenter.deserializeJson(node, MediaQueryResultChangedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3210,7 +3210,7 @@ resized.) The current implementation considers only viewport-dependent media fea
         registerEventCallback("CSS.styleSheetAdded", node -> {
             StyleSheetAddedEventParameter param;
             try { param = EventCenter.deserializeJson(node, StyleSheetAddedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3246,7 +3246,7 @@ resized.) The current implementation considers only viewport-dependent media fea
         registerEventCallback("CSS.styleSheetChanged", node -> {
             StyleSheetChangedEventParameter param;
             try { param = EventCenter.deserializeJson(node, StyleSheetChangedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -3282,7 +3282,7 @@ resized.) The current implementation considers only viewport-dependent media fea
         registerEventCallback("CSS.styleSheetRemoved", node -> {
             StyleSheetRemovedEventParameter param;
             try { param = EventCenter.deserializeJson(node, StyleSheetRemovedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

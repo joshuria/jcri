@@ -184,7 +184,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Tethering.accepted", node -> {
             AcceptedEventParameter param;
             try { param = EventCenter.deserializeJson(node, AcceptedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

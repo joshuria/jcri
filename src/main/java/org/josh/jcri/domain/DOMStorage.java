@@ -505,7 +505,7 @@ import javax.annotation.Nullable;
         registerEventCallback("DOMStorage.domStorageItemAdded", node -> {
             DomStorageItemAddedEventParameter param;
             try { param = EventCenter.deserializeJson(node, DomStorageItemAddedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -548,7 +548,7 @@ import javax.annotation.Nullable;
         registerEventCallback("DOMStorage.domStorageItemRemoved", node -> {
             DomStorageItemRemovedEventParameter param;
             try { param = EventCenter.deserializeJson(node, DomStorageItemRemovedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -605,7 +605,7 @@ import javax.annotation.Nullable;
         registerEventCallback("DOMStorage.domStorageItemUpdated", node -> {
             DomStorageItemUpdatedEventParameter param;
             try { param = EventCenter.deserializeJson(node, DomStorageItemUpdatedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -641,7 +641,7 @@ import javax.annotation.Nullable;
         registerEventCallback("DOMStorage.domStorageItemsCleared", node -> {
             DomStorageItemsClearedEventParameter param;
             try { param = EventCenter.deserializeJson(node, DomStorageItemsClearedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

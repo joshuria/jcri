@@ -1279,7 +1279,7 @@ user manually inspects an element.
         registerEventCallback("Overlay.inspectNodeRequested", node -> {
             InspectNodeRequestedEventParameter param;
             try { param = EventCenter.deserializeJson(node, InspectNodeRequestedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1315,7 +1315,7 @@ user manually inspects an element.
         registerEventCallback("Overlay.nodeHighlightRequested", node -> {
             NodeHighlightRequestedEventParameter param;
             try { param = EventCenter.deserializeJson(node, NodeHighlightRequestedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
@@ -1351,7 +1351,7 @@ user manually inspects an element.
         registerEventCallback("Overlay.screenshotRequested", node -> {
             ScreenshotRequestedEventParameter param;
             try { param = EventCenter.deserializeJson(node, ScreenshotRequestedEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }

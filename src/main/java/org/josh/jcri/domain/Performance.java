@@ -258,7 +258,7 @@ import javax.annotation.Nullable;
         registerEventCallback("Performance.metrics", node -> {
             MetricsEventParameter param;
             try { param = EventCenter.deserializeJson(node, MetricsEventParameter.class); }
-            catch (IOException e) { e.printStackTrace(); return; }
+            catch (IOException e) { _evt.getLog().error(e); return; }
             callback.accept(param);
         });
     }
