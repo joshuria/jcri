@@ -88,9 +88,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
     final CommandBase popMethod(long id) { return _methodWaitingTable.remove(id); }
 
     /**Register domain's event callback handler.
+     @param callbackWrap callback method wrapped by json converting. Null to clear.
      @see DomainBase#registerEventCallback(String, Consumer) */
-    final void registerEventCallback(String eventName, Consumer<JsonNode> callbackWrap) {
-        _eventHandlerTable.put(eventName, callbackWrap);
+    final void registerEventCallback(String eventName, @Nullable Consumer<JsonNode> callbackWrap) {
+        if (callbackWrap != null)   _eventHandlerTable.put(eventName, callbackWrap);
+        else                        _eventHandlerTable.remove(eventName);
     }
 
     /**Get execution context of given frame by name.

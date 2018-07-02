@@ -1231,13 +1231,15 @@ coverage needs to have started.*/
     }
     /**&lt;No document in protocol.&gt;
      @see ConsoleProfileFinishedEventParameter*/
-    public void onConsoleProfileFinished(Consumer<ConsoleProfileFinishedEventParameter> callback) {
-        registerEventCallback("Profiler.consoleProfileFinished", node -> {
-            ConsoleProfileFinishedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ConsoleProfileFinishedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onConsoleProfileFinished(@Nullable Consumer<ConsoleProfileFinishedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Profiler.consoleProfileFinished", node -> {
+                ConsoleProfileFinishedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ConsoleProfileFinishedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Profiler.consoleProfileFinished", null);
     }
     /**Event parameter of Profiler.consoleProfileStarted.
      @see #onConsoleProfileStarted*/
@@ -1282,12 +1284,14 @@ coverage needs to have started.*/
     }
     /**Sent when new profile recording is started using console.profile() call.
      @see ConsoleProfileStartedEventParameter*/
-    public void onConsoleProfileStarted(Consumer<ConsoleProfileStartedEventParameter> callback) {
-        registerEventCallback("Profiler.consoleProfileStarted", node -> {
-            ConsoleProfileStartedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ConsoleProfileStartedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onConsoleProfileStarted(@Nullable Consumer<ConsoleProfileStartedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Profiler.consoleProfileStarted", node -> {
+                ConsoleProfileStartedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ConsoleProfileStartedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Profiler.consoleProfileStarted", null);
     }
 }

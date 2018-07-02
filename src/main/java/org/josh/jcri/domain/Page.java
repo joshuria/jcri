@@ -4185,13 +4185,15 @@ https://github.com/WICG/web-lifecycle/
     }
     /**&lt;No document in protocol.&gt;
      @see DomContentEventFiredEventParameter*/
-    public void onDomContentEventFired(Consumer<DomContentEventFiredEventParameter> callback) {
-        registerEventCallback("Page.domContentEventFired", node -> {
-            DomContentEventFiredEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DomContentEventFiredEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDomContentEventFired(@Nullable Consumer<DomContentEventFiredEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.domContentEventFired", node -> {
+                DomContentEventFiredEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DomContentEventFiredEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.domContentEventFired", null);
     }
     /**Event parameter of Page.frameAttached.
      @see #onFrameAttached*/
@@ -4236,13 +4238,15 @@ https://github.com/WICG/web-lifecycle/
     }
     /**Fired when frame has been attached to its parent.
      @see FrameAttachedEventParameter*/
-    public void onFrameAttached(Consumer<FrameAttachedEventParameter> callback) {
-        registerEventCallback("Page.frameAttached", node -> {
-            FrameAttachedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, FrameAttachedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onFrameAttached(@Nullable Consumer<FrameAttachedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.frameAttached", node -> {
+                FrameAttachedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, FrameAttachedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.frameAttached", null);
     }
     /**Event parameter of Page.frameClearedScheduledNavigation.
     <p><strong>Experimental.</strong></p>
@@ -4274,13 +4278,15 @@ https://github.com/WICG/web-lifecycle/
     /**Fired when frame no longer has a scheduled navigation.
     <p><strong>Experimental.</strong></p>
      @see FrameClearedScheduledNavigationEventParameter*/
-    public void onFrameClearedScheduledNavigation(Consumer<FrameClearedScheduledNavigationEventParameter> callback) {
-        registerEventCallback("Page.frameClearedScheduledNavigation", node -> {
-            FrameClearedScheduledNavigationEventParameter param;
-            try { param = EventCenter.deserializeJson(node, FrameClearedScheduledNavigationEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onFrameClearedScheduledNavigation(@Nullable Consumer<FrameClearedScheduledNavigationEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.frameClearedScheduledNavigation", node -> {
+                FrameClearedScheduledNavigationEventParameter param;
+                try { param = EventCenter.deserializeJson(node, FrameClearedScheduledNavigationEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.frameClearedScheduledNavigation", null);
     }
     /**Event parameter of Page.frameDetached.
      @see #onFrameDetached*/
@@ -4310,13 +4316,15 @@ https://github.com/WICG/web-lifecycle/
     }
     /**Fired when frame has been detached from its parent.
      @see FrameDetachedEventParameter*/
-    public void onFrameDetached(Consumer<FrameDetachedEventParameter> callback) {
-        registerEventCallback("Page.frameDetached", node -> {
-            FrameDetachedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, FrameDetachedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onFrameDetached(@Nullable Consumer<FrameDetachedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.frameDetached", node -> {
+                FrameDetachedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, FrameDetachedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.frameDetached", null);
     }
     /**Event parameter of Page.frameNavigated.
      @see #onFrameNavigated*/
@@ -4346,13 +4354,15 @@ https://github.com/WICG/web-lifecycle/
     }
     /**Fired once navigation of the frame has completed. Frame is now associated with the new loader.
      @see FrameNavigatedEventParameter*/
-    public void onFrameNavigated(Consumer<FrameNavigatedEventParameter> callback) {
-        registerEventCallback("Page.frameNavigated", node -> {
-            FrameNavigatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, FrameNavigatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onFrameNavigated(@Nullable Consumer<FrameNavigatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.frameNavigated", node -> {
+                FrameNavigatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, FrameNavigatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.frameNavigated", null);
     }
     /**Event parameter of Page.frameResized.
     <p><strong>Experimental.</strong></p>
@@ -4375,13 +4385,15 @@ https://github.com/WICG/web-lifecycle/
     /**&lt;No document in protocol.&gt;
     <p><strong>Experimental.</strong></p>
      @see FrameResizedEventParameter*/
-    public void onFrameResized(Consumer<FrameResizedEventParameter> callback) {
-        registerEventCallback("Page.frameResized", node -> {
-            FrameResizedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, FrameResizedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onFrameResized(@Nullable Consumer<FrameResizedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.frameResized", node -> {
+                FrameResizedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, FrameResizedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.frameResized", null);
     }
     /**Event parameter of Page.frameScheduledNavigation.
     <p><strong>Experimental.</strong></p>
@@ -4458,13 +4470,15 @@ guaranteed to start.*/
     /**Fired when frame schedules a potential navigation.
     <p><strong>Experimental.</strong></p>
      @see FrameScheduledNavigationEventParameter*/
-    public void onFrameScheduledNavigation(Consumer<FrameScheduledNavigationEventParameter> callback) {
-        registerEventCallback("Page.frameScheduledNavigation", node -> {
-            FrameScheduledNavigationEventParameter param;
-            try { param = EventCenter.deserializeJson(node, FrameScheduledNavigationEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onFrameScheduledNavigation(@Nullable Consumer<FrameScheduledNavigationEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.frameScheduledNavigation", node -> {
+                FrameScheduledNavigationEventParameter param;
+                try { param = EventCenter.deserializeJson(node, FrameScheduledNavigationEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.frameScheduledNavigation", null);
     }
     /**Event parameter of Page.frameStartedLoading.
     <p><strong>Experimental.</strong></p>
@@ -4496,13 +4510,15 @@ guaranteed to start.*/
     /**Fired when frame has started loading.
     <p><strong>Experimental.</strong></p>
      @see FrameStartedLoadingEventParameter*/
-    public void onFrameStartedLoading(Consumer<FrameStartedLoadingEventParameter> callback) {
-        registerEventCallback("Page.frameStartedLoading", node -> {
-            FrameStartedLoadingEventParameter param;
-            try { param = EventCenter.deserializeJson(node, FrameStartedLoadingEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onFrameStartedLoading(@Nullable Consumer<FrameStartedLoadingEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.frameStartedLoading", node -> {
+                FrameStartedLoadingEventParameter param;
+                try { param = EventCenter.deserializeJson(node, FrameStartedLoadingEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.frameStartedLoading", null);
     }
     /**Event parameter of Page.frameStoppedLoading.
     <p><strong>Experimental.</strong></p>
@@ -4534,13 +4550,15 @@ guaranteed to start.*/
     /**Fired when frame has stopped loading.
     <p><strong>Experimental.</strong></p>
      @see FrameStoppedLoadingEventParameter*/
-    public void onFrameStoppedLoading(Consumer<FrameStoppedLoadingEventParameter> callback) {
-        registerEventCallback("Page.frameStoppedLoading", node -> {
-            FrameStoppedLoadingEventParameter param;
-            try { param = EventCenter.deserializeJson(node, FrameStoppedLoadingEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onFrameStoppedLoading(@Nullable Consumer<FrameStoppedLoadingEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.frameStoppedLoading", node -> {
+                FrameStoppedLoadingEventParameter param;
+                try { param = EventCenter.deserializeJson(node, FrameStoppedLoadingEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.frameStoppedLoading", null);
     }
     /**Event parameter of Page.interstitialHidden.
      @see #onInterstitialHidden*/
@@ -4561,13 +4579,15 @@ guaranteed to start.*/
     }
     /**Fired when interstitial page was hidden
      @see InterstitialHiddenEventParameter*/
-    public void onInterstitialHidden(Consumer<InterstitialHiddenEventParameter> callback) {
-        registerEventCallback("Page.interstitialHidden", node -> {
-            InterstitialHiddenEventParameter param;
-            try { param = EventCenter.deserializeJson(node, InterstitialHiddenEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onInterstitialHidden(@Nullable Consumer<InterstitialHiddenEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.interstitialHidden", node -> {
+                InterstitialHiddenEventParameter param;
+                try { param = EventCenter.deserializeJson(node, InterstitialHiddenEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.interstitialHidden", null);
     }
     /**Event parameter of Page.interstitialShown.
      @see #onInterstitialShown*/
@@ -4588,13 +4608,15 @@ guaranteed to start.*/
     }
     /**Fired when interstitial page was shown
      @see InterstitialShownEventParameter*/
-    public void onInterstitialShown(Consumer<InterstitialShownEventParameter> callback) {
-        registerEventCallback("Page.interstitialShown", node -> {
-            InterstitialShownEventParameter param;
-            try { param = EventCenter.deserializeJson(node, InterstitialShownEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onInterstitialShown(@Nullable Consumer<InterstitialShownEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.interstitialShown", node -> {
+                InterstitialShownEventParameter param;
+                try { param = EventCenter.deserializeJson(node, InterstitialShownEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.interstitialShown", null);
     }
     /**Event parameter of Page.javascriptDialogClosed.
      @see #onJavascriptDialogClosed*/
@@ -4632,13 +4654,15 @@ guaranteed to start.*/
     /**Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
 closed.
      @see JavascriptDialogClosedEventParameter*/
-    public void onJavascriptDialogClosed(Consumer<JavascriptDialogClosedEventParameter> callback) {
-        registerEventCallback("Page.javascriptDialogClosed", node -> {
-            JavascriptDialogClosedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, JavascriptDialogClosedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onJavascriptDialogClosed(@Nullable Consumer<JavascriptDialogClosedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.javascriptDialogClosed", node -> {
+                JavascriptDialogClosedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, JavascriptDialogClosedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.javascriptDialogClosed", null);
     }
     /**Event parameter of Page.javascriptDialogOpening.
      @see #onJavascriptDialogOpening*/
@@ -4700,13 +4724,15 @@ the page execution. Execution can be resumed via calling Page.handleJavaScriptDi
     /**Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to
 open.
      @see JavascriptDialogOpeningEventParameter*/
-    public void onJavascriptDialogOpening(Consumer<JavascriptDialogOpeningEventParameter> callback) {
-        registerEventCallback("Page.javascriptDialogOpening", node -> {
-            JavascriptDialogOpeningEventParameter param;
-            try { param = EventCenter.deserializeJson(node, JavascriptDialogOpeningEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onJavascriptDialogOpening(@Nullable Consumer<JavascriptDialogOpeningEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.javascriptDialogOpening", node -> {
+                JavascriptDialogOpeningEventParameter param;
+                try { param = EventCenter.deserializeJson(node, JavascriptDialogOpeningEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.javascriptDialogOpening", null);
     }
     /**Event parameter of Page.lifecycleEvent.
      @see #onLifecycleEvent*/
@@ -4757,13 +4783,15 @@ open.
     }
     /**Fired for top level page lifecycle events such as navigation, load, paint, etc.
      @see LifecycleEventEventParameter*/
-    public void onLifecycleEvent(Consumer<LifecycleEventEventParameter> callback) {
-        registerEventCallback("Page.lifecycleEvent", node -> {
-            LifecycleEventEventParameter param;
-            try { param = EventCenter.deserializeJson(node, LifecycleEventEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onLifecycleEvent(@Nullable Consumer<LifecycleEventEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.lifecycleEvent", node -> {
+                LifecycleEventEventParameter param;
+                try { param = EventCenter.deserializeJson(node, LifecycleEventEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.lifecycleEvent", null);
     }
     /**Event parameter of Page.loadEventFired.
      @see #onLoadEventFired*/
@@ -4793,13 +4821,15 @@ open.
     }
     /**&lt;No document in protocol.&gt;
      @see LoadEventFiredEventParameter*/
-    public void onLoadEventFired(Consumer<LoadEventFiredEventParameter> callback) {
-        registerEventCallback("Page.loadEventFired", node -> {
-            LoadEventFiredEventParameter param;
-            try { param = EventCenter.deserializeJson(node, LoadEventFiredEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onLoadEventFired(@Nullable Consumer<LoadEventFiredEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.loadEventFired", node -> {
+                LoadEventFiredEventParameter param;
+                try { param = EventCenter.deserializeJson(node, LoadEventFiredEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.loadEventFired", null);
     }
     /**Event parameter of Page.navigatedWithinDocument.
     <p><strong>Experimental.</strong></p>
@@ -4838,13 +4868,15 @@ open.
     /**Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation.
     <p><strong>Experimental.</strong></p>
      @see NavigatedWithinDocumentEventParameter*/
-    public void onNavigatedWithinDocument(Consumer<NavigatedWithinDocumentEventParameter> callback) {
-        registerEventCallback("Page.navigatedWithinDocument", node -> {
-            NavigatedWithinDocumentEventParameter param;
-            try { param = EventCenter.deserializeJson(node, NavigatedWithinDocumentEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onNavigatedWithinDocument(@Nullable Consumer<NavigatedWithinDocumentEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.navigatedWithinDocument", node -> {
+                NavigatedWithinDocumentEventParameter param;
+                try { param = EventCenter.deserializeJson(node, NavigatedWithinDocumentEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.navigatedWithinDocument", null);
     }
     /**Event parameter of Page.screencastFrame.
     <p><strong>Experimental.</strong></p>
@@ -4890,13 +4922,15 @@ open.
     /**Compressed image data requested by the `startScreencast`.
     <p><strong>Experimental.</strong></p>
      @see ScreencastFrameEventParameter*/
-    public void onScreencastFrame(Consumer<ScreencastFrameEventParameter> callback) {
-        registerEventCallback("Page.screencastFrame", node -> {
-            ScreencastFrameEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ScreencastFrameEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onScreencastFrame(@Nullable Consumer<ScreencastFrameEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.screencastFrame", node -> {
+                ScreencastFrameEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ScreencastFrameEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.screencastFrame", null);
     }
     /**Event parameter of Page.screencastVisibilityChanged.
     <p><strong>Experimental.</strong></p>
@@ -4928,13 +4962,15 @@ open.
     /**Fired when the page with currently enabled screencast was shown or hidden `.
     <p><strong>Experimental.</strong></p>
      @see ScreencastVisibilityChangedEventParameter*/
-    public void onScreencastVisibilityChanged(Consumer<ScreencastVisibilityChangedEventParameter> callback) {
-        registerEventCallback("Page.screencastVisibilityChanged", node -> {
-            ScreencastVisibilityChangedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ScreencastVisibilityChangedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onScreencastVisibilityChanged(@Nullable Consumer<ScreencastVisibilityChangedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.screencastVisibilityChanged", node -> {
+                ScreencastVisibilityChangedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ScreencastVisibilityChangedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.screencastVisibilityChanged", null);
     }
     /**Event parameter of Page.windowOpen.
      @see #onWindowOpen*/
@@ -4990,12 +5026,14 @@ open.
     /**Fired when a new window is going to be opened, via window.open(), link click, form submission,
 etc.
      @see WindowOpenEventParameter*/
-    public void onWindowOpen(Consumer<WindowOpenEventParameter> callback) {
-        registerEventCallback("Page.windowOpen", node -> {
-            WindowOpenEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WindowOpenEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWindowOpen(@Nullable Consumer<WindowOpenEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.windowOpen", node -> {
+                WindowOpenEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WindowOpenEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.windowOpen", null);
     }
 }

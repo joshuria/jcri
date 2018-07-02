@@ -3792,13 +3792,15 @@ $x functions).
     }
     /**Fired when `Element`'s attribute is modified.
      @see AttributeModifiedEventParameter*/
-    public void onAttributeModified(Consumer<AttributeModifiedEventParameter> callback) {
-        registerEventCallback("DOM.attributeModified", node -> {
-            AttributeModifiedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, AttributeModifiedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onAttributeModified(@Nullable Consumer<AttributeModifiedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.attributeModified", node -> {
+                AttributeModifiedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, AttributeModifiedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.attributeModified", null);
     }
     /**Event parameter of DOM.attributeRemoved.
      @see #onAttributeRemoved*/
@@ -3835,13 +3837,15 @@ $x functions).
     }
     /**Fired when `Element`'s attribute is removed.
      @see AttributeRemovedEventParameter*/
-    public void onAttributeRemoved(Consumer<AttributeRemovedEventParameter> callback) {
-        registerEventCallback("DOM.attributeRemoved", node -> {
-            AttributeRemovedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, AttributeRemovedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onAttributeRemoved(@Nullable Consumer<AttributeRemovedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.attributeRemoved", node -> {
+                AttributeRemovedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, AttributeRemovedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.attributeRemoved", null);
     }
     /**Event parameter of DOM.characterDataModified.
      @see #onCharacterDataModified*/
@@ -3878,13 +3882,15 @@ $x functions).
     }
     /**Mirrors `DOMCharacterDataModified` event.
      @see CharacterDataModifiedEventParameter*/
-    public void onCharacterDataModified(Consumer<CharacterDataModifiedEventParameter> callback) {
-        registerEventCallback("DOM.characterDataModified", node -> {
-            CharacterDataModifiedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, CharacterDataModifiedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onCharacterDataModified(@Nullable Consumer<CharacterDataModifiedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.characterDataModified", node -> {
+                CharacterDataModifiedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, CharacterDataModifiedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.characterDataModified", null);
     }
     /**Event parameter of DOM.childNodeCountUpdated.
      @see #onChildNodeCountUpdated*/
@@ -3921,13 +3927,15 @@ $x functions).
     }
     /**Fired when `Container`'s child node count has changed.
      @see ChildNodeCountUpdatedEventParameter*/
-    public void onChildNodeCountUpdated(Consumer<ChildNodeCountUpdatedEventParameter> callback) {
-        registerEventCallback("DOM.childNodeCountUpdated", node -> {
-            ChildNodeCountUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ChildNodeCountUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onChildNodeCountUpdated(@Nullable Consumer<ChildNodeCountUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.childNodeCountUpdated", node -> {
+                ChildNodeCountUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ChildNodeCountUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.childNodeCountUpdated", null);
     }
     /**Event parameter of DOM.childNodeInserted.
      @see #onChildNodeInserted*/
@@ -3971,13 +3979,15 @@ $x functions).
     }
     /**Mirrors `DOMNodeInserted` event.
      @see ChildNodeInsertedEventParameter*/
-    public void onChildNodeInserted(Consumer<ChildNodeInsertedEventParameter> callback) {
-        registerEventCallback("DOM.childNodeInserted", node -> {
-            ChildNodeInsertedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ChildNodeInsertedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onChildNodeInserted(@Nullable Consumer<ChildNodeInsertedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.childNodeInserted", node -> {
+                ChildNodeInsertedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ChildNodeInsertedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.childNodeInserted", null);
     }
     /**Event parameter of DOM.childNodeRemoved.
      @see #onChildNodeRemoved*/
@@ -4014,13 +4024,15 @@ $x functions).
     }
     /**Mirrors `DOMNodeRemoved` event.
      @see ChildNodeRemovedEventParameter*/
-    public void onChildNodeRemoved(Consumer<ChildNodeRemovedEventParameter> callback) {
-        registerEventCallback("DOM.childNodeRemoved", node -> {
-            ChildNodeRemovedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ChildNodeRemovedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onChildNodeRemoved(@Nullable Consumer<ChildNodeRemovedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.childNodeRemoved", node -> {
+                ChildNodeRemovedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ChildNodeRemovedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.childNodeRemoved", null);
     }
     /**Event parameter of DOM.distributedNodesUpdated.
     <p><strong>Experimental.</strong></p>
@@ -4063,13 +4075,15 @@ $x functions).
     /**Called when distrubution is changed.
     <p><strong>Experimental.</strong></p>
      @see DistributedNodesUpdatedEventParameter*/
-    public void onDistributedNodesUpdated(Consumer<DistributedNodesUpdatedEventParameter> callback) {
-        registerEventCallback("DOM.distributedNodesUpdated", node -> {
-            DistributedNodesUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DistributedNodesUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDistributedNodesUpdated(@Nullable Consumer<DistributedNodesUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.distributedNodesUpdated", node -> {
+                DistributedNodesUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DistributedNodesUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.distributedNodesUpdated", null);
     }
     /**Event parameter of DOM.documentUpdated.
      @see #onDocumentUpdated*/
@@ -4090,13 +4104,15 @@ $x functions).
     }
     /**Fired when `Document` has been totally updated. Node ids are no longer valid.
      @see DocumentUpdatedEventParameter*/
-    public void onDocumentUpdated(Consumer<DocumentUpdatedEventParameter> callback) {
-        registerEventCallback("DOM.documentUpdated", node -> {
-            DocumentUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DocumentUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDocumentUpdated(@Nullable Consumer<DocumentUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.documentUpdated", node -> {
+                DocumentUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DocumentUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.documentUpdated", null);
     }
     /**Event parameter of DOM.inlineStyleInvalidated.
     <p><strong>Experimental.</strong></p>
@@ -4132,13 +4148,15 @@ $x functions).
     /**Fired when `Element`'s inline style is modified via a CSS property modification.
     <p><strong>Experimental.</strong></p>
      @see InlineStyleInvalidatedEventParameter*/
-    public void onInlineStyleInvalidated(Consumer<InlineStyleInvalidatedEventParameter> callback) {
-        registerEventCallback("DOM.inlineStyleInvalidated", node -> {
-            InlineStyleInvalidatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, InlineStyleInvalidatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onInlineStyleInvalidated(@Nullable Consumer<InlineStyleInvalidatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.inlineStyleInvalidated", node -> {
+                InlineStyleInvalidatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, InlineStyleInvalidatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.inlineStyleInvalidated", null);
     }
     /**Event parameter of DOM.pseudoElementAdded.
     <p><strong>Experimental.</strong></p>
@@ -4177,13 +4195,15 @@ $x functions).
     /**Called when a pseudo element is added to an element.
     <p><strong>Experimental.</strong></p>
      @see PseudoElementAddedEventParameter*/
-    public void onPseudoElementAdded(Consumer<PseudoElementAddedEventParameter> callback) {
-        registerEventCallback("DOM.pseudoElementAdded", node -> {
-            PseudoElementAddedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, PseudoElementAddedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onPseudoElementAdded(@Nullable Consumer<PseudoElementAddedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.pseudoElementAdded", node -> {
+                PseudoElementAddedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, PseudoElementAddedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.pseudoElementAdded", null);
     }
     /**Event parameter of DOM.pseudoElementRemoved.
     <p><strong>Experimental.</strong></p>
@@ -4222,13 +4242,15 @@ $x functions).
     /**Called when a pseudo element is removed from an element.
     <p><strong>Experimental.</strong></p>
      @see PseudoElementRemovedEventParameter*/
-    public void onPseudoElementRemoved(Consumer<PseudoElementRemovedEventParameter> callback) {
-        registerEventCallback("DOM.pseudoElementRemoved", node -> {
-            PseudoElementRemovedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, PseudoElementRemovedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onPseudoElementRemoved(@Nullable Consumer<PseudoElementRemovedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.pseudoElementRemoved", node -> {
+                PseudoElementRemovedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, PseudoElementRemovedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.pseudoElementRemoved", null);
     }
     /**Event parameter of DOM.setChildNodes.
      @see #onSetChildNodes*/
@@ -4270,13 +4292,15 @@ $x functions).
     /**Fired when backend wants to provide client with the missing DOM structure. This happens upon
 most of the calls requesting node ids.
      @see SetChildNodesEventParameter*/
-    public void onSetChildNodes(Consumer<SetChildNodesEventParameter> callback) {
-        registerEventCallback("DOM.setChildNodes", node -> {
-            SetChildNodesEventParameter param;
-            try { param = EventCenter.deserializeJson(node, SetChildNodesEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onSetChildNodes(@Nullable Consumer<SetChildNodesEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.setChildNodes", node -> {
+                SetChildNodesEventParameter param;
+                try { param = EventCenter.deserializeJson(node, SetChildNodesEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.setChildNodes", null);
     }
     /**Event parameter of DOM.shadowRootPopped.
     <p><strong>Experimental.</strong></p>
@@ -4315,13 +4339,15 @@ most of the calls requesting node ids.
     /**Called when shadow root is popped from the element.
     <p><strong>Experimental.</strong></p>
      @see ShadowRootPoppedEventParameter*/
-    public void onShadowRootPopped(Consumer<ShadowRootPoppedEventParameter> callback) {
-        registerEventCallback("DOM.shadowRootPopped", node -> {
-            ShadowRootPoppedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ShadowRootPoppedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onShadowRootPopped(@Nullable Consumer<ShadowRootPoppedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.shadowRootPopped", node -> {
+                ShadowRootPoppedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ShadowRootPoppedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.shadowRootPopped", null);
     }
     /**Event parameter of DOM.shadowRootPushed.
     <p><strong>Experimental.</strong></p>
@@ -4360,12 +4386,14 @@ most of the calls requesting node ids.
     /**Called when shadow root is pushed into the element.
     <p><strong>Experimental.</strong></p>
      @see ShadowRootPushedEventParameter*/
-    public void onShadowRootPushed(Consumer<ShadowRootPushedEventParameter> callback) {
-        registerEventCallback("DOM.shadowRootPushed", node -> {
-            ShadowRootPushedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ShadowRootPushedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onShadowRootPushed(@Nullable Consumer<ShadowRootPushedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOM.shadowRootPushed", node -> {
+                ShadowRootPushedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ShadowRootPushedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOM.shadowRootPushed", null);
     }
 }

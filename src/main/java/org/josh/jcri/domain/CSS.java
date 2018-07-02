@@ -3142,13 +3142,15 @@ instrumentation)*/
     /**Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
 web font
      @see FontsUpdatedEventParameter*/
-    public void onFontsUpdated(Consumer<FontsUpdatedEventParameter> callback) {
-        registerEventCallback("CSS.fontsUpdated", node -> {
-            FontsUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, FontsUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onFontsUpdated(@Nullable Consumer<FontsUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("CSS.fontsUpdated", node -> {
+                FontsUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, FontsUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("CSS.fontsUpdated", null);
     }
     /**Event parameter of CSS.mediaQueryResultChanged.
      @see #onMediaQueryResultChanged*/
@@ -3170,13 +3172,15 @@ web font
     /**Fires whenever a MediaQuery result changes (for example, after a browser window has been
 resized.) The current implementation considers only viewport-dependent media features.
      @see MediaQueryResultChangedEventParameter*/
-    public void onMediaQueryResultChanged(Consumer<MediaQueryResultChangedEventParameter> callback) {
-        registerEventCallback("CSS.mediaQueryResultChanged", node -> {
-            MediaQueryResultChangedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, MediaQueryResultChangedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onMediaQueryResultChanged(@Nullable Consumer<MediaQueryResultChangedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("CSS.mediaQueryResultChanged", node -> {
+                MediaQueryResultChangedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, MediaQueryResultChangedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("CSS.mediaQueryResultChanged", null);
     }
     /**Event parameter of CSS.styleSheetAdded.
      @see #onStyleSheetAdded*/
@@ -3206,13 +3210,15 @@ resized.) The current implementation considers only viewport-dependent media fea
     }
     /**Fired whenever an active document stylesheet is added.
      @see StyleSheetAddedEventParameter*/
-    public void onStyleSheetAdded(Consumer<StyleSheetAddedEventParameter> callback) {
-        registerEventCallback("CSS.styleSheetAdded", node -> {
-            StyleSheetAddedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, StyleSheetAddedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onStyleSheetAdded(@Nullable Consumer<StyleSheetAddedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("CSS.styleSheetAdded", node -> {
+                StyleSheetAddedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, StyleSheetAddedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("CSS.styleSheetAdded", null);
     }
     /**Event parameter of CSS.styleSheetChanged.
      @see #onStyleSheetChanged*/
@@ -3242,13 +3248,15 @@ resized.) The current implementation considers only viewport-dependent media fea
     }
     /**Fired whenever a stylesheet is changed as a result of the client operation.
      @see StyleSheetChangedEventParameter*/
-    public void onStyleSheetChanged(Consumer<StyleSheetChangedEventParameter> callback) {
-        registerEventCallback("CSS.styleSheetChanged", node -> {
-            StyleSheetChangedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, StyleSheetChangedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onStyleSheetChanged(@Nullable Consumer<StyleSheetChangedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("CSS.styleSheetChanged", node -> {
+                StyleSheetChangedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, StyleSheetChangedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("CSS.styleSheetChanged", null);
     }
     /**Event parameter of CSS.styleSheetRemoved.
      @see #onStyleSheetRemoved*/
@@ -3278,12 +3286,14 @@ resized.) The current implementation considers only viewport-dependent media fea
     }
     /**Fired whenever an active document stylesheet is removed.
      @see StyleSheetRemovedEventParameter*/
-    public void onStyleSheetRemoved(Consumer<StyleSheetRemovedEventParameter> callback) {
-        registerEventCallback("CSS.styleSheetRemoved", node -> {
-            StyleSheetRemovedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, StyleSheetRemovedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onStyleSheetRemoved(@Nullable Consumer<StyleSheetRemovedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("CSS.styleSheetRemoved", node -> {
+                StyleSheetRemovedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, StyleSheetRemovedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("CSS.styleSheetRemoved", null);
     }
 }

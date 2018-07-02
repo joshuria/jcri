@@ -625,13 +625,15 @@ certificate error has been allowed internally. Only one client per target should
 certificate errors at the same time.
      @see CertificateErrorEventParameter
     @Deprecated*/
-    public void onCertificateError(Consumer<CertificateErrorEventParameter> callback) {
-        registerEventCallback("Security.certificateError", node -> {
-            CertificateErrorEventParameter param;
-            try { param = EventCenter.deserializeJson(node, CertificateErrorEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onCertificateError(@Nullable Consumer<CertificateErrorEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Security.certificateError", node -> {
+                CertificateErrorEventParameter param;
+                try { param = EventCenter.deserializeJson(node, CertificateErrorEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Security.certificateError", null);
     }
     /**Event parameter of Security.securityStateChanged.
      @see #onSecurityStateChanged*/
@@ -695,12 +697,14 @@ certificate errors at the same time.
     }
     /**The security state of the page changed.
      @see SecurityStateChangedEventParameter*/
-    public void onSecurityStateChanged(Consumer<SecurityStateChangedEventParameter> callback) {
-        registerEventCallback("Security.securityStateChanged", node -> {
-            SecurityStateChangedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, SecurityStateChangedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onSecurityStateChanged(@Nullable Consumer<SecurityStateChangedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Security.securityStateChanged", node -> {
+                SecurityStateChangedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, SecurityStateChangedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Security.securityStateChanged", null);
     }
 }

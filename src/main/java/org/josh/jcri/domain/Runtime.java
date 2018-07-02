@@ -2958,13 +2958,15 @@ on named context.
     }
     /**Issued when console API was called.
      @see ConsoleAPICalledEventParameter*/
-    public void onConsoleAPICalled(Consumer<ConsoleAPICalledEventParameter> callback) {
-        registerEventCallback("Runtime.consoleAPICalled", node -> {
-            ConsoleAPICalledEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ConsoleAPICalledEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onConsoleAPICalled(@Nullable Consumer<ConsoleAPICalledEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Runtime.consoleAPICalled", node -> {
+                ConsoleAPICalledEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ConsoleAPICalledEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Runtime.consoleAPICalled", null);
     }
     /**Event parameter of Runtime.exceptionRevoked.
      @see #onExceptionRevoked*/
@@ -3001,13 +3003,15 @@ on named context.
     }
     /**Issued when unhandled exception was revoked.
      @see ExceptionRevokedEventParameter*/
-    public void onExceptionRevoked(Consumer<ExceptionRevokedEventParameter> callback) {
-        registerEventCallback("Runtime.exceptionRevoked", node -> {
-            ExceptionRevokedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ExceptionRevokedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onExceptionRevoked(@Nullable Consumer<ExceptionRevokedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Runtime.exceptionRevoked", node -> {
+                ExceptionRevokedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ExceptionRevokedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Runtime.exceptionRevoked", null);
     }
     /**Event parameter of Runtime.exceptionThrown.
      @see #onExceptionThrown*/
@@ -3044,13 +3048,15 @@ on named context.
     }
     /**Issued when exception was thrown and unhandled.
      @see ExceptionThrownEventParameter*/
-    public void onExceptionThrown(Consumer<ExceptionThrownEventParameter> callback) {
-        registerEventCallback("Runtime.exceptionThrown", node -> {
-            ExceptionThrownEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ExceptionThrownEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onExceptionThrown(@Nullable Consumer<ExceptionThrownEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Runtime.exceptionThrown", node -> {
+                ExceptionThrownEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ExceptionThrownEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Runtime.exceptionThrown", null);
     }
     /**Event parameter of Runtime.executionContextCreated.
      @see #onExecutionContextCreated*/
@@ -3080,13 +3086,15 @@ on named context.
     }
     /**Issued when new execution context is created.
      @see ExecutionContextCreatedEventParameter*/
-    public void onExecutionContextCreated(Consumer<ExecutionContextCreatedEventParameter> callback) {
-        registerEventCallback("Runtime.executionContextCreated", node -> {
-            ExecutionContextCreatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ExecutionContextCreatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onExecutionContextCreated(@Nullable Consumer<ExecutionContextCreatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Runtime.executionContextCreated", node -> {
+                ExecutionContextCreatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ExecutionContextCreatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Runtime.executionContextCreated", null);
     }
     /**Event parameter of Runtime.executionContextDestroyed.
      @see #onExecutionContextDestroyed*/
@@ -3116,13 +3124,15 @@ on named context.
     }
     /**Issued when execution context is destroyed.
      @see ExecutionContextDestroyedEventParameter*/
-    public void onExecutionContextDestroyed(Consumer<ExecutionContextDestroyedEventParameter> callback) {
-        registerEventCallback("Runtime.executionContextDestroyed", node -> {
-            ExecutionContextDestroyedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ExecutionContextDestroyedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onExecutionContextDestroyed(@Nullable Consumer<ExecutionContextDestroyedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Runtime.executionContextDestroyed", node -> {
+                ExecutionContextDestroyedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ExecutionContextDestroyedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Runtime.executionContextDestroyed", null);
     }
     /**Event parameter of Runtime.executionContextsCleared.
      @see #onExecutionContextsCleared*/
@@ -3143,13 +3153,15 @@ on named context.
     }
     /**Issued when all executionContexts were cleared in browser
      @see ExecutionContextsClearedEventParameter*/
-    public void onExecutionContextsCleared(Consumer<ExecutionContextsClearedEventParameter> callback) {
-        registerEventCallback("Runtime.executionContextsCleared", node -> {
-            ExecutionContextsClearedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ExecutionContextsClearedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onExecutionContextsCleared(@Nullable Consumer<ExecutionContextsClearedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Runtime.executionContextsCleared", node -> {
+                ExecutionContextsClearedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ExecutionContextsClearedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Runtime.executionContextsCleared", null);
     }
     /**Event parameter of Runtime.inspectRequested.
      @see #onInspectRequested*/
@@ -3187,12 +3199,14 @@ on named context.
     /**Issued when object should be inspected (for example, as a result of inspect() command line API
 call).
      @see InspectRequestedEventParameter*/
-    public void onInspectRequested(Consumer<InspectRequestedEventParameter> callback) {
-        registerEventCallback("Runtime.inspectRequested", node -> {
-            InspectRequestedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, InspectRequestedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onInspectRequested(@Nullable Consumer<InspectRequestedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Runtime.inspectRequested", node -> {
+                InspectRequestedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, InspectRequestedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Runtime.inspectRequested", null);
     }
 }

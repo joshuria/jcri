@@ -501,13 +501,15 @@ import javax.annotation.Nullable;
     }
     /**&lt;No document in protocol.&gt;
      @see DomStorageItemAddedEventParameter*/
-    public void onDomStorageItemAdded(Consumer<DomStorageItemAddedEventParameter> callback) {
-        registerEventCallback("DOMStorage.domStorageItemAdded", node -> {
-            DomStorageItemAddedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DomStorageItemAddedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDomStorageItemAdded(@Nullable Consumer<DomStorageItemAddedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOMStorage.domStorageItemAdded", node -> {
+                DomStorageItemAddedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DomStorageItemAddedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOMStorage.domStorageItemAdded", null);
     }
     /**Event parameter of DOMStorage.domStorageItemRemoved.
      @see #onDomStorageItemRemoved*/
@@ -544,13 +546,15 @@ import javax.annotation.Nullable;
     }
     /**&lt;No document in protocol.&gt;
      @see DomStorageItemRemovedEventParameter*/
-    public void onDomStorageItemRemoved(Consumer<DomStorageItemRemovedEventParameter> callback) {
-        registerEventCallback("DOMStorage.domStorageItemRemoved", node -> {
-            DomStorageItemRemovedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DomStorageItemRemovedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDomStorageItemRemoved(@Nullable Consumer<DomStorageItemRemovedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOMStorage.domStorageItemRemoved", node -> {
+                DomStorageItemRemovedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DomStorageItemRemovedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOMStorage.domStorageItemRemoved", null);
     }
     /**Event parameter of DOMStorage.domStorageItemUpdated.
      @see #onDomStorageItemUpdated*/
@@ -601,13 +605,15 @@ import javax.annotation.Nullable;
     }
     /**&lt;No document in protocol.&gt;
      @see DomStorageItemUpdatedEventParameter*/
-    public void onDomStorageItemUpdated(Consumer<DomStorageItemUpdatedEventParameter> callback) {
-        registerEventCallback("DOMStorage.domStorageItemUpdated", node -> {
-            DomStorageItemUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DomStorageItemUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDomStorageItemUpdated(@Nullable Consumer<DomStorageItemUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOMStorage.domStorageItemUpdated", node -> {
+                DomStorageItemUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DomStorageItemUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOMStorage.domStorageItemUpdated", null);
     }
     /**Event parameter of DOMStorage.domStorageItemsCleared.
      @see #onDomStorageItemsCleared*/
@@ -637,12 +643,14 @@ import javax.annotation.Nullable;
     }
     /**&lt;No document in protocol.&gt;
      @see DomStorageItemsClearedEventParameter*/
-    public void onDomStorageItemsCleared(Consumer<DomStorageItemsClearedEventParameter> callback) {
-        registerEventCallback("DOMStorage.domStorageItemsCleared", node -> {
-            DomStorageItemsClearedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DomStorageItemsClearedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDomStorageItemsCleared(@Nullable Consumer<DomStorageItemsClearedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("DOMStorage.domStorageItemsCleared", node -> {
+                DomStorageItemsClearedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DomStorageItemsClearedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("DOMStorage.domStorageItemsCleared", null);
     }
 }

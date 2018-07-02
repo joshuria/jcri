@@ -1247,13 +1247,15 @@ to run paused targets.*/
     /**Issued when attached to target because of auto-attach or `attachToTarget` command.
     <p><strong>Experimental.</strong></p>
      @see AttachedToTargetEventParameter*/
-    public void onAttachedToTarget(Consumer<AttachedToTargetEventParameter> callback) {
-        registerEventCallback("Target.attachedToTarget", node -> {
-            AttachedToTargetEventParameter param;
-            try { param = EventCenter.deserializeJson(node, AttachedToTargetEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onAttachedToTarget(@Nullable Consumer<AttachedToTargetEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Target.attachedToTarget", node -> {
+                AttachedToTargetEventParameter param;
+                try { param = EventCenter.deserializeJson(node, AttachedToTargetEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Target.attachedToTarget", null);
     }
     /**Event parameter of Target.detachedFromTarget.
     <p><strong>Experimental.</strong></p>
@@ -1295,13 +1297,15 @@ to run paused targets.*/
 issued multiple times per target if multiple sessions have been attached to it.
     <p><strong>Experimental.</strong></p>
      @see DetachedFromTargetEventParameter*/
-    public void onDetachedFromTarget(Consumer<DetachedFromTargetEventParameter> callback) {
-        registerEventCallback("Target.detachedFromTarget", node -> {
-            DetachedFromTargetEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DetachedFromTargetEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDetachedFromTarget(@Nullable Consumer<DetachedFromTargetEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Target.detachedFromTarget", node -> {
+                DetachedFromTargetEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DetachedFromTargetEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Target.detachedFromTarget", null);
     }
     /**Event parameter of Target.receivedMessageFromTarget.
      @see #onReceivedMessageFromTarget*/
@@ -1348,13 +1352,15 @@ issued multiple times per target if multiple sessions have been attached to it.
     /**Notifies about a new protocol message received from the session (as reported in
 `attachedToTarget` event).
      @see ReceivedMessageFromTargetEventParameter*/
-    public void onReceivedMessageFromTarget(Consumer<ReceivedMessageFromTargetEventParameter> callback) {
-        registerEventCallback("Target.receivedMessageFromTarget", node -> {
-            ReceivedMessageFromTargetEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ReceivedMessageFromTargetEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onReceivedMessageFromTarget(@Nullable Consumer<ReceivedMessageFromTargetEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Target.receivedMessageFromTarget", node -> {
+                ReceivedMessageFromTargetEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ReceivedMessageFromTargetEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Target.receivedMessageFromTarget", null);
     }
     /**Event parameter of Target.targetCreated.
      @see #onTargetCreated*/
@@ -1384,13 +1390,15 @@ issued multiple times per target if multiple sessions have been attached to it.
     }
     /**Issued when a possible inspection target is created.
      @see TargetCreatedEventParameter*/
-    public void onTargetCreated(Consumer<TargetCreatedEventParameter> callback) {
-        registerEventCallback("Target.targetCreated", node -> {
-            TargetCreatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, TargetCreatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onTargetCreated(@Nullable Consumer<TargetCreatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Target.targetCreated", node -> {
+                TargetCreatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, TargetCreatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Target.targetCreated", null);
     }
     /**Event parameter of Target.targetDestroyed.
      @see #onTargetDestroyed*/
@@ -1420,13 +1428,15 @@ issued multiple times per target if multiple sessions have been attached to it.
     }
     /**Issued when a target is destroyed.
      @see TargetDestroyedEventParameter*/
-    public void onTargetDestroyed(Consumer<TargetDestroyedEventParameter> callback) {
-        registerEventCallback("Target.targetDestroyed", node -> {
-            TargetDestroyedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, TargetDestroyedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onTargetDestroyed(@Nullable Consumer<TargetDestroyedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Target.targetDestroyed", node -> {
+                TargetDestroyedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, TargetDestroyedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Target.targetDestroyed", null);
     }
     /**Event parameter of Target.targetInfoChanged.
      @see #onTargetInfoChanged*/
@@ -1457,12 +1467,14 @@ issued multiple times per target if multiple sessions have been attached to it.
     /**Issued when some information about a target has changed. This only happens between
 `targetCreated` and `targetDestroyed`.
      @see TargetInfoChangedEventParameter*/
-    public void onTargetInfoChanged(Consumer<TargetInfoChangedEventParameter> callback) {
-        registerEventCallback("Target.targetInfoChanged", node -> {
-            TargetInfoChangedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, TargetInfoChangedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onTargetInfoChanged(@Nullable Consumer<TargetInfoChangedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Target.targetInfoChanged", node -> {
+                TargetInfoChangedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, TargetInfoChangedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Target.targetInfoChanged", null);
     }
 }

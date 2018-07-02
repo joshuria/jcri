@@ -538,12 +538,14 @@ import javax.annotation.Nullable;
     }
     /**Issued when new message was logged.
      @see EntryAddedEventParameter*/
-    public void onEntryAdded(Consumer<EntryAddedEventParameter> callback) {
-        registerEventCallback("Log.entryAdded", node -> {
-            EntryAddedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, EntryAddedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onEntryAdded(@Nullable Consumer<EntryAddedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Log.entryAdded", node -> {
+                EntryAddedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, EntryAddedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Log.entryAdded", null);
     }
 }

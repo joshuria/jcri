@@ -854,13 +854,15 @@ when the tracking is stopped.
     }
     /**&lt;No document in protocol.&gt;
      @see AddHeapSnapshotChunkEventParameter*/
-    public void onAddHeapSnapshotChunk(Consumer<AddHeapSnapshotChunkEventParameter> callback) {
-        registerEventCallback("HeapProfiler.addHeapSnapshotChunk", node -> {
-            AddHeapSnapshotChunkEventParameter param;
-            try { param = EventCenter.deserializeJson(node, AddHeapSnapshotChunkEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onAddHeapSnapshotChunk(@Nullable Consumer<AddHeapSnapshotChunkEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("HeapProfiler.addHeapSnapshotChunk", node -> {
+                AddHeapSnapshotChunkEventParameter param;
+                try { param = EventCenter.deserializeJson(node, AddHeapSnapshotChunkEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("HeapProfiler.addHeapSnapshotChunk", null);
     }
     /**Event parameter of HeapProfiler.heapStatsUpdate.
      @see #onHeapStatsUpdate*/
@@ -896,13 +898,15 @@ a total size of the objects for the fragment.*/
     }
     /**If heap objects tracking has been started then backend may send update for one or more fragments
      @see HeapStatsUpdateEventParameter*/
-    public void onHeapStatsUpdate(Consumer<HeapStatsUpdateEventParameter> callback) {
-        registerEventCallback("HeapProfiler.heapStatsUpdate", node -> {
-            HeapStatsUpdateEventParameter param;
-            try { param = EventCenter.deserializeJson(node, HeapStatsUpdateEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onHeapStatsUpdate(@Nullable Consumer<HeapStatsUpdateEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("HeapProfiler.heapStatsUpdate", node -> {
+                HeapStatsUpdateEventParameter param;
+                try { param = EventCenter.deserializeJson(node, HeapStatsUpdateEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("HeapProfiler.heapStatsUpdate", null);
     }
     /**Event parameter of HeapProfiler.lastSeenObjectId.
      @see #onLastSeenObjectId*/
@@ -941,13 +945,15 @@ a total size of the objects for the fragment.*/
 seen object id and corresponding timestamp. If the were changes in the heap since last event
 then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
      @see LastSeenObjectIdEventParameter*/
-    public void onLastSeenObjectId(Consumer<LastSeenObjectIdEventParameter> callback) {
-        registerEventCallback("HeapProfiler.lastSeenObjectId", node -> {
-            LastSeenObjectIdEventParameter param;
-            try { param = EventCenter.deserializeJson(node, LastSeenObjectIdEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onLastSeenObjectId(@Nullable Consumer<LastSeenObjectIdEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("HeapProfiler.lastSeenObjectId", node -> {
+                LastSeenObjectIdEventParameter param;
+                try { param = EventCenter.deserializeJson(node, LastSeenObjectIdEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("HeapProfiler.lastSeenObjectId", null);
     }
     /**Event parameter of HeapProfiler.reportHeapSnapshotProgress.
      @see #onReportHeapSnapshotProgress*/
@@ -992,13 +998,15 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
     }
     /**&lt;No document in protocol.&gt;
      @see ReportHeapSnapshotProgressEventParameter*/
-    public void onReportHeapSnapshotProgress(Consumer<ReportHeapSnapshotProgressEventParameter> callback) {
-        registerEventCallback("HeapProfiler.reportHeapSnapshotProgress", node -> {
-            ReportHeapSnapshotProgressEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ReportHeapSnapshotProgressEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onReportHeapSnapshotProgress(@Nullable Consumer<ReportHeapSnapshotProgressEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("HeapProfiler.reportHeapSnapshotProgress", node -> {
+                ReportHeapSnapshotProgressEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ReportHeapSnapshotProgressEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("HeapProfiler.reportHeapSnapshotProgress", null);
     }
     /**Event parameter of HeapProfiler.resetProfiles.
      @see #onResetProfiles*/
@@ -1019,12 +1027,14 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
     }
     /**&lt;No document in protocol.&gt;
      @see ResetProfilesEventParameter*/
-    public void onResetProfiles(Consumer<ResetProfilesEventParameter> callback) {
-        registerEventCallback("HeapProfiler.resetProfiles", node -> {
-            ResetProfilesEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ResetProfilesEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onResetProfiles(@Nullable Consumer<ResetProfilesEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("HeapProfiler.resetProfiles", node -> {
+                ResetProfilesEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ResetProfilesEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("HeapProfiler.resetProfiles", null);
     }
 }

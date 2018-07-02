@@ -613,13 +613,15 @@ total size.
     }
     /**&lt;No document in protocol.&gt;
      @see BufferUsageEventParameter*/
-    public void onBufferUsage(Consumer<BufferUsageEventParameter> callback) {
-        registerEventCallback("Tracing.bufferUsage", node -> {
-            BufferUsageEventParameter param;
-            try { param = EventCenter.deserializeJson(node, BufferUsageEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onBufferUsage(@Nullable Consumer<BufferUsageEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Tracing.bufferUsage", node -> {
+                BufferUsageEventParameter param;
+                try { param = EventCenter.deserializeJson(node, BufferUsageEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Tracing.bufferUsage", null);
     }
     /**Event parameter of Tracing.dataCollected.
      @see #onDataCollected*/
@@ -654,13 +656,15 @@ total size.
     /**Contains an bucket of collected trace events. When tracing is stopped collected events will be
 send as a sequence of dataCollected events followed by tracingComplete event.
      @see DataCollectedEventParameter*/
-    public void onDataCollected(Consumer<DataCollectedEventParameter> callback) {
-        registerEventCallback("Tracing.dataCollected", node -> {
-            DataCollectedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DataCollectedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDataCollected(@Nullable Consumer<DataCollectedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Tracing.dataCollected", node -> {
+                DataCollectedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DataCollectedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Tracing.dataCollected", null);
     }
     /**Event parameter of Tracing.tracingComplete.
      @see #onTracingComplete*/
@@ -700,12 +704,14 @@ send as a sequence of dataCollected events followed by tracingComplete event.
     /**Signals that tracing is stopped and there is no trace buffers pending flush, all data were
 delivered via dataCollected events.
      @see TracingCompleteEventParameter*/
-    public void onTracingComplete(Consumer<TracingCompleteEventParameter> callback) {
-        registerEventCallback("Tracing.tracingComplete", node -> {
-            TracingCompleteEventParameter param;
-            try { param = EventCenter.deserializeJson(node, TracingCompleteEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onTracingComplete(@Nullable Consumer<TracingCompleteEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Tracing.tracingComplete", node -> {
+                TracingCompleteEventParameter param;
+                try { param = EventCenter.deserializeJson(node, TracingCompleteEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Tracing.tracingComplete", null);
     }
 }

@@ -320,12 +320,14 @@ import javax.annotation.Nullable;
     }
     /**Issued when new console message is added.
      @see MessageAddedEventParameter*/
-    public void onMessageAdded(Consumer<MessageAddedEventParameter> callback) {
-        registerEventCallback("Console.messageAdded", node -> {
-            MessageAddedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, MessageAddedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onMessageAdded(@Nullable Consumer<MessageAddedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Console.messageAdded", node -> {
+                MessageAddedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, MessageAddedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Console.messageAdded", null);
     }
 }

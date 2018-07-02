@@ -4203,13 +4203,15 @@ continueInterceptedRequest call.*/
     }
     /**Fired when data chunk was received over the network.
      @see DataReceivedEventParameter*/
-    public void onDataReceived(Consumer<DataReceivedEventParameter> callback) {
-        registerEventCallback("Network.dataReceived", node -> {
-            DataReceivedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DataReceivedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDataReceived(@Nullable Consumer<DataReceivedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.dataReceived", node -> {
+                DataReceivedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DataReceivedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.dataReceived", null);
     }
     /**Event parameter of Network.eventSourceMessageReceived.
      @see #onEventSourceMessageReceived*/
@@ -4267,13 +4269,15 @@ continueInterceptedRequest call.*/
     }
     /**Fired when EventSource message is received.
      @see EventSourceMessageReceivedEventParameter*/
-    public void onEventSourceMessageReceived(Consumer<EventSourceMessageReceivedEventParameter> callback) {
-        registerEventCallback("Network.eventSourceMessageReceived", node -> {
-            EventSourceMessageReceivedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, EventSourceMessageReceivedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onEventSourceMessageReceived(@Nullable Consumer<EventSourceMessageReceivedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.eventSourceMessageReceived", node -> {
+                EventSourceMessageReceivedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, EventSourceMessageReceivedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.eventSourceMessageReceived", null);
     }
     /**Event parameter of Network.loadingFailed.
      @see #onLoadingFailed*/
@@ -4340,13 +4344,15 @@ continueInterceptedRequest call.*/
     }
     /**Fired when HTTP request has failed to load.
      @see LoadingFailedEventParameter*/
-    public void onLoadingFailed(Consumer<LoadingFailedEventParameter> callback) {
-        registerEventCallback("Network.loadingFailed", node -> {
-            LoadingFailedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, LoadingFailedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onLoadingFailed(@Nullable Consumer<LoadingFailedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.loadingFailed", node -> {
+                LoadingFailedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, LoadingFailedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.loadingFailed", null);
     }
     /**Event parameter of Network.loadingFinished.
      @see #onLoadingFinished*/
@@ -4398,13 +4404,15 @@ continueInterceptedRequest call.*/
     }
     /**Fired when HTTP request has finished loading.
      @see LoadingFinishedEventParameter*/
-    public void onLoadingFinished(Consumer<LoadingFinishedEventParameter> callback) {
-        registerEventCallback("Network.loadingFinished", node -> {
-            LoadingFinishedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, LoadingFinishedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onLoadingFinished(@Nullable Consumer<LoadingFinishedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.loadingFinished", node -> {
+                LoadingFinishedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, LoadingFinishedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.loadingFinished", null);
     }
     /**Event parameter of Network.requestIntercepted.
     <p><strong>Experimental.</strong></p>
@@ -4520,13 +4528,15 @@ intercepting request or auth retry occurred.
 mocked.
     <p><strong>Experimental.</strong></p>
      @see RequestInterceptedEventParameter*/
-    public void onRequestIntercepted(Consumer<RequestInterceptedEventParameter> callback) {
-        registerEventCallback("Network.requestIntercepted", node -> {
-            RequestInterceptedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, RequestInterceptedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onRequestIntercepted(@Nullable Consumer<RequestInterceptedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.requestIntercepted", node -> {
+                RequestInterceptedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, RequestInterceptedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.requestIntercepted", null);
     }
     /**Event parameter of Network.requestServedFromCache.
      @see #onRequestServedFromCache*/
@@ -4556,13 +4566,15 @@ mocked.
     }
     /**Fired if request ended up loading from cache.
      @see RequestServedFromCacheEventParameter*/
-    public void onRequestServedFromCache(Consumer<RequestServedFromCacheEventParameter> callback) {
-        registerEventCallback("Network.requestServedFromCache", node -> {
-            RequestServedFromCacheEventParameter param;
-            try { param = EventCenter.deserializeJson(node, RequestServedFromCacheEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onRequestServedFromCache(@Nullable Consumer<RequestServedFromCacheEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.requestServedFromCache", node -> {
+                RequestServedFromCacheEventParameter param;
+                try { param = EventCenter.deserializeJson(node, RequestServedFromCacheEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.requestServedFromCache", null);
     }
     /**Event parameter of Network.requestWillBeSent.
      @see #onRequestWillBeSent*/
@@ -4666,13 +4678,15 @@ mocked.
     }
     /**Fired when page is about to send HTTP request.
      @see RequestWillBeSentEventParameter*/
-    public void onRequestWillBeSent(Consumer<RequestWillBeSentEventParameter> callback) {
-        registerEventCallback("Network.requestWillBeSent", node -> {
-            RequestWillBeSentEventParameter param;
-            try { param = EventCenter.deserializeJson(node, RequestWillBeSentEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onRequestWillBeSent(@Nullable Consumer<RequestWillBeSentEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.requestWillBeSent", node -> {
+                RequestWillBeSentEventParameter param;
+                try { param = EventCenter.deserializeJson(node, RequestWillBeSentEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.requestWillBeSent", null);
     }
     /**Event parameter of Network.resourceChangedPriority.
     <p><strong>Experimental.</strong></p>
@@ -4718,13 +4732,15 @@ mocked.
     /**Fired when resource loading priority is changed
     <p><strong>Experimental.</strong></p>
      @see ResourceChangedPriorityEventParameter*/
-    public void onResourceChangedPriority(Consumer<ResourceChangedPriorityEventParameter> callback) {
-        registerEventCallback("Network.resourceChangedPriority", node -> {
-            ResourceChangedPriorityEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ResourceChangedPriorityEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onResourceChangedPriority(@Nullable Consumer<ResourceChangedPriorityEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.resourceChangedPriority", node -> {
+                ResourceChangedPriorityEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ResourceChangedPriorityEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.resourceChangedPriority", null);
     }
     /**Event parameter of Network.signedExchangeReceived.
     <p><strong>Experimental.</strong></p>
@@ -4763,13 +4779,15 @@ mocked.
     /**Fired when a signed exchange was received over the network
     <p><strong>Experimental.</strong></p>
      @see SignedExchangeReceivedEventParameter*/
-    public void onSignedExchangeReceived(Consumer<SignedExchangeReceivedEventParameter> callback) {
-        registerEventCallback("Network.signedExchangeReceived", node -> {
-            SignedExchangeReceivedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, SignedExchangeReceivedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onSignedExchangeReceived(@Nullable Consumer<SignedExchangeReceivedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.signedExchangeReceived", node -> {
+                SignedExchangeReceivedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, SignedExchangeReceivedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.signedExchangeReceived", null);
     }
     /**Event parameter of Network.responseReceived.
      @see #onResponseReceived*/
@@ -4835,13 +4853,15 @@ mocked.
     }
     /**Fired when HTTP response is available.
      @see ResponseReceivedEventParameter*/
-    public void onResponseReceived(Consumer<ResponseReceivedEventParameter> callback) {
-        registerEventCallback("Network.responseReceived", node -> {
-            ResponseReceivedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ResponseReceivedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onResponseReceived(@Nullable Consumer<ResponseReceivedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.responseReceived", node -> {
+                ResponseReceivedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ResponseReceivedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.responseReceived", null);
     }
     /**Event parameter of Network.webSocketClosed.
      @see #onWebSocketClosed*/
@@ -4878,13 +4898,15 @@ mocked.
     }
     /**Fired when WebSocket is closed.
      @see WebSocketClosedEventParameter*/
-    public void onWebSocketClosed(Consumer<WebSocketClosedEventParameter> callback) {
-        registerEventCallback("Network.webSocketClosed", node -> {
-            WebSocketClosedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WebSocketClosedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWebSocketClosed(@Nullable Consumer<WebSocketClosedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.webSocketClosed", node -> {
+                WebSocketClosedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WebSocketClosedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.webSocketClosed", null);
     }
     /**Event parameter of Network.webSocketCreated.
      @see #onWebSocketCreated*/
@@ -4929,13 +4951,15 @@ mocked.
     }
     /**Fired upon WebSocket creation.
      @see WebSocketCreatedEventParameter*/
-    public void onWebSocketCreated(Consumer<WebSocketCreatedEventParameter> callback) {
-        registerEventCallback("Network.webSocketCreated", node -> {
-            WebSocketCreatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WebSocketCreatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWebSocketCreated(@Nullable Consumer<WebSocketCreatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.webSocketCreated", node -> {
+                WebSocketCreatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WebSocketCreatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.webSocketCreated", null);
     }
     /**Event parameter of Network.webSocketFrameError.
      @see #onWebSocketFrameError*/
@@ -4979,13 +5003,15 @@ mocked.
     }
     /**Fired when WebSocket frame error occurs.
      @see WebSocketFrameErrorEventParameter*/
-    public void onWebSocketFrameError(Consumer<WebSocketFrameErrorEventParameter> callback) {
-        registerEventCallback("Network.webSocketFrameError", node -> {
-            WebSocketFrameErrorEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WebSocketFrameErrorEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWebSocketFrameError(@Nullable Consumer<WebSocketFrameErrorEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.webSocketFrameError", node -> {
+                WebSocketFrameErrorEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WebSocketFrameErrorEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.webSocketFrameError", null);
     }
     /**Event parameter of Network.webSocketFrameReceived.
      @see #onWebSocketFrameReceived*/
@@ -5029,13 +5055,15 @@ mocked.
     }
     /**Fired when WebSocket frame is received.
      @see WebSocketFrameReceivedEventParameter*/
-    public void onWebSocketFrameReceived(Consumer<WebSocketFrameReceivedEventParameter> callback) {
-        registerEventCallback("Network.webSocketFrameReceived", node -> {
-            WebSocketFrameReceivedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WebSocketFrameReceivedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWebSocketFrameReceived(@Nullable Consumer<WebSocketFrameReceivedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.webSocketFrameReceived", node -> {
+                WebSocketFrameReceivedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WebSocketFrameReceivedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.webSocketFrameReceived", null);
     }
     /**Event parameter of Network.webSocketFrameSent.
      @see #onWebSocketFrameSent*/
@@ -5079,13 +5107,15 @@ mocked.
     }
     /**Fired when WebSocket frame is sent.
      @see WebSocketFrameSentEventParameter*/
-    public void onWebSocketFrameSent(Consumer<WebSocketFrameSentEventParameter> callback) {
-        registerEventCallback("Network.webSocketFrameSent", node -> {
-            WebSocketFrameSentEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WebSocketFrameSentEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWebSocketFrameSent(@Nullable Consumer<WebSocketFrameSentEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.webSocketFrameSent", node -> {
+                WebSocketFrameSentEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WebSocketFrameSentEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.webSocketFrameSent", null);
     }
     /**Event parameter of Network.webSocketHandshakeResponseReceived.
      @see #onWebSocketHandshakeResponseReceived*/
@@ -5129,13 +5159,15 @@ mocked.
     }
     /**Fired when WebSocket handshake response becomes available.
      @see WebSocketHandshakeResponseReceivedEventParameter*/
-    public void onWebSocketHandshakeResponseReceived(Consumer<WebSocketHandshakeResponseReceivedEventParameter> callback) {
-        registerEventCallback("Network.webSocketHandshakeResponseReceived", node -> {
-            WebSocketHandshakeResponseReceivedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WebSocketHandshakeResponseReceivedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWebSocketHandshakeResponseReceived(@Nullable Consumer<WebSocketHandshakeResponseReceivedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.webSocketHandshakeResponseReceived", node -> {
+                WebSocketHandshakeResponseReceivedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WebSocketHandshakeResponseReceivedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.webSocketHandshakeResponseReceived", null);
     }
     /**Event parameter of Network.webSocketWillSendHandshakeRequest.
      @see #onWebSocketWillSendHandshakeRequest*/
@@ -5186,12 +5218,14 @@ mocked.
     }
     /**Fired when WebSocket is about to initiate handshake.
      @see WebSocketWillSendHandshakeRequestEventParameter*/
-    public void onWebSocketWillSendHandshakeRequest(Consumer<WebSocketWillSendHandshakeRequestEventParameter> callback) {
-        registerEventCallback("Network.webSocketWillSendHandshakeRequest", node -> {
-            WebSocketWillSendHandshakeRequestEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WebSocketWillSendHandshakeRequestEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWebSocketWillSendHandshakeRequest(@Nullable Consumer<WebSocketWillSendHandshakeRequestEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Network.webSocketWillSendHandshakeRequest", node -> {
+                WebSocketWillSendHandshakeRequestEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WebSocketWillSendHandshakeRequestEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Network.webSocketWillSendHandshakeRequest", null);
     }
 }

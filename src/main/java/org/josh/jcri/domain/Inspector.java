@@ -145,13 +145,15 @@ import javax.annotation.Nullable;
     }
     /**Fired when remote debugging connection is about to be terminated. Contains detach reason.
      @see DetachedEventParameter*/
-    public void onDetached(Consumer<DetachedEventParameter> callback) {
-        registerEventCallback("Inspector.detached", node -> {
-            DetachedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, DetachedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onDetached(@Nullable Consumer<DetachedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Inspector.detached", node -> {
+                DetachedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, DetachedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Inspector.detached", null);
     }
     /**Event parameter of Inspector.targetCrashed.
      @see #onTargetCrashed*/
@@ -172,13 +174,15 @@ import javax.annotation.Nullable;
     }
     /**Fired when debugging target has crashed
      @see TargetCrashedEventParameter*/
-    public void onTargetCrashed(Consumer<TargetCrashedEventParameter> callback) {
-        registerEventCallback("Inspector.targetCrashed", node -> {
-            TargetCrashedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, TargetCrashedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onTargetCrashed(@Nullable Consumer<TargetCrashedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Inspector.targetCrashed", node -> {
+                TargetCrashedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, TargetCrashedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Inspector.targetCrashed", null);
     }
     /**Event parameter of Inspector.targetReloadedAfterCrash.
      @see #onTargetReloadedAfterCrash*/
@@ -199,12 +203,14 @@ import javax.annotation.Nullable;
     }
     /**Fired when debugging target has reloaded after crash
      @see TargetReloadedAfterCrashEventParameter*/
-    public void onTargetReloadedAfterCrash(Consumer<TargetReloadedAfterCrashEventParameter> callback) {
-        registerEventCallback("Inspector.targetReloadedAfterCrash", node -> {
-            TargetReloadedAfterCrashEventParameter param;
-            try { param = EventCenter.deserializeJson(node, TargetReloadedAfterCrashEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onTargetReloadedAfterCrash(@Nullable Consumer<TargetReloadedAfterCrashEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Inspector.targetReloadedAfterCrash", node -> {
+                TargetReloadedAfterCrashEventParameter param;
+                try { param = EventCenter.deserializeJson(node, TargetReloadedAfterCrashEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Inspector.targetReloadedAfterCrash", null);
     }
 }

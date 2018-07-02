@@ -1031,13 +1031,15 @@ animation/transition.
     }
     /**Event for when an animation has been cancelled.
      @see AnimationCanceledEventParameter*/
-    public void onAnimationCanceled(Consumer<AnimationCanceledEventParameter> callback) {
-        registerEventCallback("Animation.animationCanceled", node -> {
-            AnimationCanceledEventParameter param;
-            try { param = EventCenter.deserializeJson(node, AnimationCanceledEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onAnimationCanceled(@Nullable Consumer<AnimationCanceledEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Animation.animationCanceled", node -> {
+                AnimationCanceledEventParameter param;
+                try { param = EventCenter.deserializeJson(node, AnimationCanceledEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Animation.animationCanceled", null);
     }
     /**Event parameter of Animation.animationCreated.
      @see #onAnimationCreated*/
@@ -1067,13 +1069,15 @@ animation/transition.
     }
     /**Event for each animation that has been created.
      @see AnimationCreatedEventParameter*/
-    public void onAnimationCreated(Consumer<AnimationCreatedEventParameter> callback) {
-        registerEventCallback("Animation.animationCreated", node -> {
-            AnimationCreatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, AnimationCreatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onAnimationCreated(@Nullable Consumer<AnimationCreatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Animation.animationCreated", node -> {
+                AnimationCreatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, AnimationCreatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Animation.animationCreated", null);
     }
     /**Event parameter of Animation.animationStarted.
      @see #onAnimationStarted*/
@@ -1103,12 +1107,14 @@ animation/transition.
     }
     /**Event for animation that has been started.
      @see AnimationStartedEventParameter*/
-    public void onAnimationStarted(Consumer<AnimationStartedEventParameter> callback) {
-        registerEventCallback("Animation.animationStarted", node -> {
-            AnimationStartedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, AnimationStartedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onAnimationStarted(@Nullable Consumer<AnimationStartedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Animation.animationStarted", node -> {
+                AnimationStartedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, AnimationStartedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Animation.animationStarted", null);
     }
 }

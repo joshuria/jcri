@@ -2,6 +2,7 @@ package org.josh.jcri;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.function.Consumer;
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 /**Base class of all domains.
@@ -51,8 +52,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
     }
 
     /**Register event callback function.
+     @param callbackWrap callback method wrapped by json converting. Null to clear.
      This method is for preventing public {@link EventCenter#registerEventCallback(String, Consumer)}*/
-    protected void registerEventCallback(String eventName, Consumer<JsonNode> callbackWrap) {
+    protected void registerEventCallback(String eventName, @Nullable Consumer<JsonNode> callbackWrap) {
         _evt.registerEventCallback(eventName, callbackWrap);
     }
 }

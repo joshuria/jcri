@@ -323,12 +323,14 @@ display. Reported for diagnostic uses, may be removed in the future.*/
     }
     /**Issued when the target starts or stops needing BeginFrames.
      @see NeedsBeginFramesChangedEventParameter*/
-    public void onNeedsBeginFramesChanged(Consumer<NeedsBeginFramesChangedEventParameter> callback) {
-        registerEventCallback("HeadlessExperimental.needsBeginFramesChanged", node -> {
-            NeedsBeginFramesChangedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, NeedsBeginFramesChangedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onNeedsBeginFramesChanged(@Nullable Consumer<NeedsBeginFramesChangedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("HeadlessExperimental.needsBeginFramesChanged", node -> {
+                NeedsBeginFramesChangedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, NeedsBeginFramesChangedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("HeadlessExperimental.needsBeginFramesChanged", null);
     }
 }

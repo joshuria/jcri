@@ -1064,13 +1064,15 @@ For cached script it is the last time the cache entry was validated.
     }
     /**&lt;No document in protocol.&gt;
      @see WorkerErrorReportedEventParameter*/
-    public void onWorkerErrorReported(Consumer<WorkerErrorReportedEventParameter> callback) {
-        registerEventCallback("ServiceWorker.workerErrorReported", node -> {
-            WorkerErrorReportedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WorkerErrorReportedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWorkerErrorReported(@Nullable Consumer<WorkerErrorReportedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("ServiceWorker.workerErrorReported", node -> {
+                WorkerErrorReportedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WorkerErrorReportedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("ServiceWorker.workerErrorReported", null);
     }
     /**Event parameter of ServiceWorker.workerRegistrationUpdated.
      @see #onWorkerRegistrationUpdated*/
@@ -1104,13 +1106,15 @@ For cached script it is the last time the cache entry was validated.
     }
     /**&lt;No document in protocol.&gt;
      @see WorkerRegistrationUpdatedEventParameter*/
-    public void onWorkerRegistrationUpdated(Consumer<WorkerRegistrationUpdatedEventParameter> callback) {
-        registerEventCallback("ServiceWorker.workerRegistrationUpdated", node -> {
-            WorkerRegistrationUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WorkerRegistrationUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWorkerRegistrationUpdated(@Nullable Consumer<WorkerRegistrationUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("ServiceWorker.workerRegistrationUpdated", node -> {
+                WorkerRegistrationUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WorkerRegistrationUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("ServiceWorker.workerRegistrationUpdated", null);
     }
     /**Event parameter of ServiceWorker.workerVersionUpdated.
      @see #onWorkerVersionUpdated*/
@@ -1144,12 +1148,14 @@ For cached script it is the last time the cache entry was validated.
     }
     /**&lt;No document in protocol.&gt;
      @see WorkerVersionUpdatedEventParameter*/
-    public void onWorkerVersionUpdated(Consumer<WorkerVersionUpdatedEventParameter> callback) {
-        registerEventCallback("ServiceWorker.workerVersionUpdated", node -> {
-            WorkerVersionUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, WorkerVersionUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onWorkerVersionUpdated(@Nullable Consumer<WorkerVersionUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("ServiceWorker.workerVersionUpdated", node -> {
+                WorkerVersionUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, WorkerVersionUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("ServiceWorker.workerVersionUpdated", null);
     }
 }

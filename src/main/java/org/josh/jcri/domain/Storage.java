@@ -525,13 +525,15 @@ import javax.annotation.Nullable;
     }
     /**A cache's contents have been modified.
      @see CacheStorageContentUpdatedEventParameter*/
-    public void onCacheStorageContentUpdated(Consumer<CacheStorageContentUpdatedEventParameter> callback) {
-        registerEventCallback("Storage.cacheStorageContentUpdated", node -> {
-            CacheStorageContentUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, CacheStorageContentUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onCacheStorageContentUpdated(@Nullable Consumer<CacheStorageContentUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Storage.cacheStorageContentUpdated", node -> {
+                CacheStorageContentUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, CacheStorageContentUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Storage.cacheStorageContentUpdated", null);
     }
     /**Event parameter of Storage.cacheStorageListUpdated.
      @see #onCacheStorageListUpdated*/
@@ -561,13 +563,15 @@ import javax.annotation.Nullable;
     }
     /**A cache has been added/deleted.
      @see CacheStorageListUpdatedEventParameter*/
-    public void onCacheStorageListUpdated(Consumer<CacheStorageListUpdatedEventParameter> callback) {
-        registerEventCallback("Storage.cacheStorageListUpdated", node -> {
-            CacheStorageListUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, CacheStorageListUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onCacheStorageListUpdated(@Nullable Consumer<CacheStorageListUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Storage.cacheStorageListUpdated", node -> {
+                CacheStorageListUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, CacheStorageListUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Storage.cacheStorageListUpdated", null);
     }
     /**Event parameter of Storage.indexedDBContentUpdated.
      @see #onIndexedDBContentUpdated*/
@@ -611,13 +615,15 @@ import javax.annotation.Nullable;
     }
     /**The origin's IndexedDB object store has been modified.
      @see IndexedDBContentUpdatedEventParameter*/
-    public void onIndexedDBContentUpdated(Consumer<IndexedDBContentUpdatedEventParameter> callback) {
-        registerEventCallback("Storage.indexedDBContentUpdated", node -> {
-            IndexedDBContentUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, IndexedDBContentUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onIndexedDBContentUpdated(@Nullable Consumer<IndexedDBContentUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Storage.indexedDBContentUpdated", node -> {
+                IndexedDBContentUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, IndexedDBContentUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Storage.indexedDBContentUpdated", null);
     }
     /**Event parameter of Storage.indexedDBListUpdated.
      @see #onIndexedDBListUpdated*/
@@ -647,12 +653,14 @@ import javax.annotation.Nullable;
     }
     /**The origin's IndexedDB database list has been modified.
      @see IndexedDBListUpdatedEventParameter*/
-    public void onIndexedDBListUpdated(Consumer<IndexedDBListUpdatedEventParameter> callback) {
-        registerEventCallback("Storage.indexedDBListUpdated", node -> {
-            IndexedDBListUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, IndexedDBListUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onIndexedDBListUpdated(@Nullable Consumer<IndexedDBListUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Storage.indexedDBListUpdated", node -> {
+                IndexedDBListUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, IndexedDBListUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Storage.indexedDBListUpdated", null);
     }
 }

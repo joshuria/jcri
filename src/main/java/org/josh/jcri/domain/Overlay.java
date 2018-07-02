@@ -1275,13 +1275,15 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
     /**Fired when the node should be inspected. This happens after call to `setInspectMode` or when
 user manually inspects an element.
      @see InspectNodeRequestedEventParameter*/
-    public void onInspectNodeRequested(Consumer<InspectNodeRequestedEventParameter> callback) {
-        registerEventCallback("Overlay.inspectNodeRequested", node -> {
-            InspectNodeRequestedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, InspectNodeRequestedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onInspectNodeRequested(@Nullable Consumer<InspectNodeRequestedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Overlay.inspectNodeRequested", node -> {
+                InspectNodeRequestedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, InspectNodeRequestedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Overlay.inspectNodeRequested", null);
     }
     /**Event parameter of Overlay.nodeHighlightRequested.
      @see #onNodeHighlightRequested*/
@@ -1311,13 +1313,15 @@ user manually inspects an element.
     }
     /**Fired when the node should be highlighted. This happens after call to `setInspectMode`.
      @see NodeHighlightRequestedEventParameter*/
-    public void onNodeHighlightRequested(Consumer<NodeHighlightRequestedEventParameter> callback) {
-        registerEventCallback("Overlay.nodeHighlightRequested", node -> {
-            NodeHighlightRequestedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, NodeHighlightRequestedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onNodeHighlightRequested(@Nullable Consumer<NodeHighlightRequestedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Overlay.nodeHighlightRequested", node -> {
+                NodeHighlightRequestedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, NodeHighlightRequestedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Overlay.nodeHighlightRequested", null);
     }
     /**Event parameter of Overlay.screenshotRequested.
      @see #onScreenshotRequested*/
@@ -1347,12 +1351,14 @@ user manually inspects an element.
     }
     /**Fired when user asks to capture screenshot of some area on the page.
      @see ScreenshotRequestedEventParameter*/
-    public void onScreenshotRequested(Consumer<ScreenshotRequestedEventParameter> callback) {
-        registerEventCallback("Overlay.screenshotRequested", node -> {
-            ScreenshotRequestedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ScreenshotRequestedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onScreenshotRequested(@Nullable Consumer<ScreenshotRequestedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Overlay.screenshotRequested", node -> {
+                ScreenshotRequestedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ScreenshotRequestedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Overlay.screenshotRequested", null);
     }
 }

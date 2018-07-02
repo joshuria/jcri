@@ -1132,13 +1132,15 @@ transform/scrolling purposes only.*/
     }
     /**&lt;No document in protocol.&gt;
      @see LayerPaintedEventParameter*/
-    public void onLayerPainted(Consumer<LayerPaintedEventParameter> callback) {
-        registerEventCallback("LayerTree.layerPainted", node -> {
-            LayerPaintedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, LayerPaintedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onLayerPainted(@Nullable Consumer<LayerPaintedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("LayerTree.layerPainted", node -> {
+                LayerPaintedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, LayerPaintedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("LayerTree.layerPainted", null);
     }
     /**Event parameter of LayerTree.layerTreeDidChange.
      @see #onLayerTreeDidChange*/
@@ -1175,12 +1177,14 @@ transform/scrolling purposes only.*/
     }
     /**&lt;No document in protocol.&gt;
      @see LayerTreeDidChangeEventParameter*/
-    public void onLayerTreeDidChange(Consumer<LayerTreeDidChangeEventParameter> callback) {
-        registerEventCallback("LayerTree.layerTreeDidChange", node -> {
-            LayerTreeDidChangeEventParameter param;
-            try { param = EventCenter.deserializeJson(node, LayerTreeDidChangeEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onLayerTreeDidChange(@Nullable Consumer<LayerTreeDidChangeEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("LayerTree.layerTreeDidChange", node -> {
+                LayerTreeDidChangeEventParameter param;
+                try { param = EventCenter.deserializeJson(node, LayerTreeDidChangeEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("LayerTree.layerTreeDidChange", null);
     }
 }

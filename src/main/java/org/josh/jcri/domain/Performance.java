@@ -254,12 +254,14 @@ import javax.annotation.Nullable;
     }
     /**Current values of the metrics.
      @see MetricsEventParameter*/
-    public void onMetrics(Consumer<MetricsEventParameter> callback) {
-        registerEventCallback("Performance.metrics", node -> {
-            MetricsEventParameter param;
-            try { param = EventCenter.deserializeJson(node, MetricsEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onMetrics(@Nullable Consumer<MetricsEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Performance.metrics", node -> {
+                MetricsEventParameter param;
+                try { param = EventCenter.deserializeJson(node, MetricsEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Performance.metrics", null);
     }
 }

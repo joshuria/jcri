@@ -2716,13 +2716,15 @@ before next pause.
     }
     /**Fired when breakpoint is resolved to an actual script and location.
      @see BreakpointResolvedEventParameter*/
-    public void onBreakpointResolved(Consumer<BreakpointResolvedEventParameter> callback) {
-        registerEventCallback("Debugger.breakpointResolved", node -> {
-            BreakpointResolvedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, BreakpointResolvedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onBreakpointResolved(@Nullable Consumer<BreakpointResolvedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Debugger.breakpointResolved", node -> {
+                BreakpointResolvedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, BreakpointResolvedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Debugger.breakpointResolved", null);
     }
     /**Event parameter of Debugger.paused.
      @see #onPaused*/
@@ -2838,13 +2840,15 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
     }
     /**Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
      @see PausedEventParameter*/
-    public void onPaused(Consumer<PausedEventParameter> callback) {
-        registerEventCallback("Debugger.paused", node -> {
-            PausedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, PausedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onPaused(@Nullable Consumer<PausedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Debugger.paused", node -> {
+                PausedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, PausedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Debugger.paused", null);
     }
     /**Event parameter of Debugger.resumed.
      @see #onResumed*/
@@ -2865,13 +2869,15 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
     }
     /**Fired when the virtual machine resumed execution.
      @see ResumedEventParameter*/
-    public void onResumed(Consumer<ResumedEventParameter> callback) {
-        registerEventCallback("Debugger.resumed", node -> {
-            ResumedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ResumedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onResumed(@Nullable Consumer<ResumedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Debugger.resumed", node -> {
+                ResumedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ResumedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Debugger.resumed", null);
     }
     /**Event parameter of Debugger.scriptFailedToParse.
      @see #onScriptFailedToParse*/
@@ -2999,13 +3005,15 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
     }
     /**Fired when virtual machine fails to parse the script.
      @see ScriptFailedToParseEventParameter*/
-    public void onScriptFailedToParse(Consumer<ScriptFailedToParseEventParameter> callback) {
-        registerEventCallback("Debugger.scriptFailedToParse", node -> {
-            ScriptFailedToParseEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ScriptFailedToParseEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onScriptFailedToParse(@Nullable Consumer<ScriptFailedToParseEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Debugger.scriptFailedToParse", node -> {
+                ScriptFailedToParseEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ScriptFailedToParseEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Debugger.scriptFailedToParse", null);
     }
     /**Event parameter of Debugger.scriptParsed.
      @see #onScriptParsed*/
@@ -3143,12 +3151,14 @@ This field is available only after `Debugger.stepInto` call with `breakOnAsynCal
     /**Fired when virtual machine parses script. This event is also fired for all known and uncollected
 scripts upon enabling debugger.
      @see ScriptParsedEventParameter*/
-    public void onScriptParsed(Consumer<ScriptParsedEventParameter> callback) {
-        registerEventCallback("Debugger.scriptParsed", node -> {
-            ScriptParsedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ScriptParsedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onScriptParsed(@Nullable Consumer<ScriptParsedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Debugger.scriptParsed", node -> {
+                ScriptParsedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ScriptParsedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Debugger.scriptParsed", null);
     }
 }

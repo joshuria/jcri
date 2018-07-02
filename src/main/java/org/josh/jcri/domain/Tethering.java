@@ -180,12 +180,14 @@ import javax.annotation.Nullable;
     }
     /**Informs that port was successfully bound and got a specified connection id.
      @see AcceptedEventParameter*/
-    public void onAccepted(Consumer<AcceptedEventParameter> callback) {
-        registerEventCallback("Tethering.accepted", node -> {
-            AcceptedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, AcceptedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onAccepted(@Nullable Consumer<AcceptedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Tethering.accepted", node -> {
+                AcceptedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, AcceptedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Tethering.accepted", null);
     }
 }

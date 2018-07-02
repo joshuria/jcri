@@ -451,12 +451,14 @@ import javax.annotation.Nullable;
     }
     /**&lt;No document in protocol.&gt;
      @see AddDatabaseEventParameter*/
-    public void onAddDatabase(Consumer<AddDatabaseEventParameter> callback) {
-        registerEventCallback("Database.addDatabase", node -> {
-            AddDatabaseEventParameter param;
-            try { param = EventCenter.deserializeJson(node, AddDatabaseEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onAddDatabase(@Nullable Consumer<AddDatabaseEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Database.addDatabase", node -> {
+                AddDatabaseEventParameter param;
+                try { param = EventCenter.deserializeJson(node, AddDatabaseEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Database.addDatabase", null);
     }
 }

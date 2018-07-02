@@ -1315,13 +1315,15 @@ enabled.*/
     /**Notification sent after the virtual time has advanced.
     <p><strong>Experimental.</strong></p>
      @see VirtualTimeAdvancedEventParameter*/
-    public void onVirtualTimeAdvanced(Consumer<VirtualTimeAdvancedEventParameter> callback) {
-        registerEventCallback("Emulation.virtualTimeAdvanced", node -> {
-            VirtualTimeAdvancedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, VirtualTimeAdvancedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onVirtualTimeAdvanced(@Nullable Consumer<VirtualTimeAdvancedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Emulation.virtualTimeAdvanced", node -> {
+                VirtualTimeAdvancedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, VirtualTimeAdvancedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Emulation.virtualTimeAdvanced", null);
     }
     /**Event parameter of Emulation.virtualTimeBudgetExpired.
     <p><strong>Experimental.</strong></p>
@@ -1344,13 +1346,15 @@ enabled.*/
     /**Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
     <p><strong>Experimental.</strong></p>
      @see VirtualTimeBudgetExpiredEventParameter*/
-    public void onVirtualTimeBudgetExpired(Consumer<VirtualTimeBudgetExpiredEventParameter> callback) {
-        registerEventCallback("Emulation.virtualTimeBudgetExpired", node -> {
-            VirtualTimeBudgetExpiredEventParameter param;
-            try { param = EventCenter.deserializeJson(node, VirtualTimeBudgetExpiredEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onVirtualTimeBudgetExpired(@Nullable Consumer<VirtualTimeBudgetExpiredEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Emulation.virtualTimeBudgetExpired", node -> {
+                VirtualTimeBudgetExpiredEventParameter param;
+                try { param = EventCenter.deserializeJson(node, VirtualTimeBudgetExpiredEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Emulation.virtualTimeBudgetExpired", null);
     }
     /**Event parameter of Emulation.virtualTimePaused.
     <p><strong>Experimental.</strong></p>
@@ -1383,12 +1387,14 @@ enabled.*/
     /**Notification sent after the virtual time has paused.
     <p><strong>Experimental.</strong></p>
      @see VirtualTimePausedEventParameter*/
-    public void onVirtualTimePaused(Consumer<VirtualTimePausedEventParameter> callback) {
-        registerEventCallback("Emulation.virtualTimePaused", node -> {
-            VirtualTimePausedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, VirtualTimePausedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onVirtualTimePaused(@Nullable Consumer<VirtualTimePausedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Emulation.virtualTimePaused", node -> {
+                VirtualTimePausedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, VirtualTimePausedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Emulation.virtualTimePaused", null);
     }
 }

@@ -487,13 +487,15 @@ associated with some application cache.*/
     }
     /**&lt;No document in protocol.&gt;
      @see ApplicationCacheStatusUpdatedEventParameter*/
-    public void onApplicationCacheStatusUpdated(Consumer<ApplicationCacheStatusUpdatedEventParameter> callback) {
-        registerEventCallback("ApplicationCache.applicationCacheStatusUpdated", node -> {
-            ApplicationCacheStatusUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, ApplicationCacheStatusUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onApplicationCacheStatusUpdated(@Nullable Consumer<ApplicationCacheStatusUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("ApplicationCache.applicationCacheStatusUpdated", node -> {
+                ApplicationCacheStatusUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, ApplicationCacheStatusUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("ApplicationCache.applicationCacheStatusUpdated", null);
     }
     /**Event parameter of ApplicationCache.networkStateUpdated.
      @see #onNetworkStateUpdated*/
@@ -523,12 +525,14 @@ associated with some application cache.*/
     }
     /**&lt;No document in protocol.&gt;
      @see NetworkStateUpdatedEventParameter*/
-    public void onNetworkStateUpdated(Consumer<NetworkStateUpdatedEventParameter> callback) {
-        registerEventCallback("ApplicationCache.networkStateUpdated", node -> {
-            NetworkStateUpdatedEventParameter param;
-            try { param = EventCenter.deserializeJson(node, NetworkStateUpdatedEventParameter.class); }
-            catch (IOException e) { _evt.getLog().error(e); return; }
-            callback.accept(param);
-        });
+    public void onNetworkStateUpdated(@Nullable Consumer<NetworkStateUpdatedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("ApplicationCache.networkStateUpdated", node -> {
+                NetworkStateUpdatedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, NetworkStateUpdatedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("ApplicationCache.networkStateUpdated", null);
     }
 }
