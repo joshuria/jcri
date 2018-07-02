@@ -279,6 +279,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
         _log.info("Connection established: " + handshake.getHttpStatusMessage());
     }
 
+    /**Get execution context of given frame by name.
+     @return Context id if found, null if not.*/
+    public @Nullable Runtime.ExecutionContextId queryFrameExecutionContextId(String frameName) {
+        return _evt.getFrameContextId(frameName);
+    }
+
     /**Close connection.
      Note that calling this method will only close web socket connection, and the browser is still
      running.

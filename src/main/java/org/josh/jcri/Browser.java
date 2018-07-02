@@ -35,8 +35,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
  instance, and {@link #close()} will not work.</p>
  <p>Thread safe: <strong>No.</strong></p>
  @author Joshua */
-@ParametersAreNonnullByDefault
-public class Browser {
+@ParametersAreNonnullByDefault public class Browser {
     /**Browser path property name.*/
     private static final String BrowserPathPropertyName = "org.josh.jcri.BrowserPath";
     /**Guessed default chrome path in MacOS.*/
@@ -160,8 +159,7 @@ public class Browser {
 
     /**Builder class of Browser.
      <p>Thread safe: <strong>no.</strong></p>*/
-    @ParametersAreNonnullByDefault
-    public static class BrowserBuilder {
+    @ParametersAreNonnullByDefault public static class BrowserBuilder {
         private Map<String, Object> _cmdOptions = new HashMap<>();
         private String _browserPath;
 

@@ -7,7 +7,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.apache.logging.log4j.Logger;
+import org.josh.jcri.domain.Page;
+import org.josh.jcri.domain.Runtime;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -33,6 +36,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
     private final Map<Long, CommandBase> _methodWaitingTable = new ConcurrentHashMap<>();
     /**Stores all bound event handlers.*/
     private final Map<String, Consumer<JsonNode>> _eventHandlerTable = new ConcurrentHashMap<>();
+    /**Tracking table frame name -> frame ID.*/
+    private final Map<String, String> _frameNameIdTable = new ConcurrentHashMap<>();
+    /**Tracking table frame ID -> execution context ID.*/
+    private final Map<String, Runtime.ExecutionContextId> _frameConntextIdTable = new ConcurrentHashMap<>();
     /**Command and method callback executor.*/
     private final ExecutorService _executor;
     /**JCRI log instance.*/
@@ -84,6 +91,21 @@ import javax.annotation.ParametersAreNonnullByDefault;
      @see DomainBase#registerEventCallback(String, Consumer) */
     final void registerEventCallback(String eventName, Consumer<JsonNode> callbackWrap) {
         _eventHandlerTable.put(eventName, callbackWrap);
+    }
+
+    /**Get execution context of given frame by name.
+     @return Context id if found, null if not.*/
+    final @Nullable Runtime.ExecutionContextId getFrameContextId(String frameName) {
+        final String frameId = _frameNameIdTable.get(frameName);
+        if (frameId == null)    return null;
+        return _frameConntextIdTable.get(frameId);
+    }
+
+    /**Clear frame name to id and to context table.*/
+    final void clearFrameTable() {
+        _frameNameIdTable.clear();
+        _frameConntextIdTable.clear();
+        _log.trace("Frame table cleared");
     }
 
     /**Deserialize json string to object.
@@ -139,7 +161,34 @@ import javax.annotation.ParametersAreNonnullByDefault;
                 }
             }
             else if (node.has("method")) {
-                final Consumer<JsonNode> callback = _eventHandlerTable.get(node.get("method").asText());
+                final String method = node.get("method").asText();
+                //! Process frame name, id, execution context change
+                if (method.equals("Page.frameNavigated")) {
+                    try {
+                        Page.FrameNavigatedEventParameter param = EventCenter.deserializeJson(
+                            node.get("params"), Page.FrameNavigatedEventParameter.class);
+                        if (param.getFrame().getName() == null) param.getFrame().optName("");
+                        _frameNameIdTable.put(param.getFrame().getName(), param.getFrame().getId());
+                        _log.trace("  Frame name -> id mapping: ``%s'' -> %s", param.getFrame().getName(), param.getFrame().getId());
+                    }
+                    catch (IOException e) { _log.error(e); }
+                }
+                else if (method.equals("Runtime.executionContextCreated")) {
+                    try {
+                        Runtime.ExecutionContextCreatedEventParameter param = EventCenter.deserializeJson(
+                            node.get("params"), Runtime.ExecutionContextCreatedEventParameter.class);
+                        JsonNode auxData = _om.valueToTree(param.getContext().getAuxData());
+                        if (auxData != null) {
+                            final String frameId = auxData.get("frameId").asText();
+                            _frameConntextIdTable.put(frameId, param.getContext().getId());
+                            _log.trace("  Frame id -> context mapping: %s -> %d", frameId, param.getContext().getId().value());
+                        }
+                    }
+                    catch (IOException|IllegalArgumentException e) { _log.error(e); }
+                }
+
+                //! Invoke callback function
+                final Consumer<JsonNode> callback = _eventHandlerTable.get(method);
                 if (callback != null)
                     _executor.submit(() -> {
                         try { callback.accept(node.get("params")); }

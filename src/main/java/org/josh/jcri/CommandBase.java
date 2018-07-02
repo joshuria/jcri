@@ -60,6 +60,10 @@ public abstract class CommandBase implements CommonDomainType {
                 .append(",\"method\":").append('"').append(commandName).append('"')
                 .append(",\"params\":");
             toJson(strBuilder).append('}');
+
+            //! Clear frame name to id and context table in EventCenter
+            if (commandName.equals("Page.navigate"))    _evt.clearFrameTable();
+
             //! Send command
             if (!_evt.enqueueMethod(id, this))
                 throw new IllegalStateException("Command id " + String.valueOf(id) + " already existed in waiting queue");
