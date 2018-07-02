@@ -137,7 +137,8 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     @ParametersAreNonnullByDefault public static class TimeSinceEpoch implements CommonDomainType {
         private Double _value;
         public TimeSinceEpoch() {}
-        public TimeSinceEpoch(Double value) { _value = value; }
+        public TimeSinceEpoch(@Nullable Double value) { _value = value; }
+        public TimeSinceEpoch(Long value) { _value = value.doubleValue(); }
         public final TimeSinceEpoch value(Double value) { _value = value; return this; }
         public final Double value() { return _value; }
         public final TimeSinceEpoch setValue(Double value) { return value(value); }
@@ -160,7 +161,8 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     @ParametersAreNonnullByDefault public static class MonotonicTime implements CommonDomainType {
         private Double _value;
         public MonotonicTime() {}
-        public MonotonicTime(Double value) { _value = value; }
+        public MonotonicTime(@Nullable Double value) { _value = value; }
+        public MonotonicTime(Long value) { _value = value.doubleValue(); }
         public final MonotonicTime value(Double value) { _value = value; return this; }
         public final Double value() { return _value; }
         public final MonotonicTime setValue(Double value) { return value(value); }

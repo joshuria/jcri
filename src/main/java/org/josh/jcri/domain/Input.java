@@ -145,7 +145,8 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
     @ParametersAreNonnullByDefault public static class TimeSinceEpoch implements CommonDomainType {
         private Double _value;
         public TimeSinceEpoch() {}
-        public TimeSinceEpoch(Double value) { _value = value; }
+        public TimeSinceEpoch(@Nullable Double value) { _value = value; }
+        public TimeSinceEpoch(Long value) { _value = value.doubleValue(); }
         public final TimeSinceEpoch value(Double value) { _value = value; return this; }
         public final Double value() { return _value; }
         public final TimeSinceEpoch setValue(Double value) { return value(value); }

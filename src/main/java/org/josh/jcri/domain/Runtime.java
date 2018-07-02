@@ -1063,7 +1063,8 @@ execution.*/
     @ParametersAreNonnullByDefault public static class Timestamp implements CommonDomainType {
         private Double _value;
         public Timestamp() {}
-        public Timestamp(Double value) { _value = value; }
+        public Timestamp(@Nullable Double value) { _value = value; }
+        public Timestamp(Long value) { _value = value.doubleValue(); }
         public final Timestamp value(Double value) { _value = value; return this; }
         public final Double value() { return _value; }
         public final Timestamp setValue(Double value) { return value(value); }
@@ -1086,7 +1087,8 @@ execution.*/
     @ParametersAreNonnullByDefault public static class TimeDelta implements CommonDomainType {
         private Double _value;
         public TimeDelta() {}
-        public TimeDelta(Double value) { _value = value; }
+        public TimeDelta(@Nullable Double value) { _value = value; }
+        public TimeDelta(Long value) { _value = value.doubleValue(); }
         public final TimeDelta value(Double value) { _value = value; return this; }
         public final Double value() { return _value; }
         public final TimeDelta setValue(Double value) { return value(value); }
