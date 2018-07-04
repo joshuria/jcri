@@ -10,8 +10,8 @@ import org.apache.logging.log4j.Logger;
 import org.josh.jcri.domain.Page;
 import org.josh.jcri.domain.Runtime;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -36,10 +36,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
     private final Map<Long, CommandBase> _methodWaitingTable = new ConcurrentHashMap<>();
     /**Stores all bound event handlers.*/
     private final Map<String, Consumer<JsonNode>> _eventHandlerTable = new ConcurrentHashMap<>();
-    /**Tracking table frame name -> frame ID.*/
-    private final Map<String, String> _frameNameIdTable = new ConcurrentHashMap<>();
-    /**Tracking table frame ID -> execution context ID.*/
-    private final Map<String, Runtime.ExecutionContextId> _frameConntextIdTable = new ConcurrentHashMap<>();
+    /**Tracking table frame ID -> frame data (id, parent id, name, execution context id).*/
+    private final Map<String, FrameData> _frameIdTable = new ConcurrentHashMap<>();
     /**Command and method callback executor.*/
     private final ExecutorService _executor;
     /**JCRI log instance.*/
@@ -96,17 +94,30 @@ import javax.annotation.ParametersAreNonnullByDefault;
     }
 
     /**Get execution context of given frame by name.
-     @return Context id if found, null if not.*/
-    final @Nullable Runtime.ExecutionContextId getFrameContextId(String frameName) {
-        final String frameId = _frameNameIdTable.get(frameName);
-        if (frameId == null)    return null;
-        return _frameConntextIdTable.get(frameId);
+     <p>Note that web page can have multiple frames have the same name, so this method should be
+     used only when the given frame name is identical in current web page.</p>
+     @return First present (by time) frame's context id if found, null if not.*/
+    final @Nullable Runtime.ExecutionContextId getFrameContextId(String ... frameName) {
+        //! Query root frame
+        Optional<FrameData> parent = _frameIdTable.values().stream()
+                .filter(f -> f.parentId.equals(f.id)).findFirst();
+        if (!parent.isPresent())     return null;
+
+        //! Query by name
+        for (String name: frameName) {
+            final FrameData frame = parent.get();
+            parent = _frameIdTable.values().stream()
+                .filter(f-> f.name.equals(name) && f.parentId.equals(frame.id))
+                .findFirst();
+            if (!parent.isPresent())     return null;
+        }
+        return parent.get().contextId;
     }
 
     /**Clear frame name to id and to context table.*/
     final void clearFrameTable() {
-        _frameNameIdTable.clear();
-        _frameConntextIdTable.clear();
+        _frameIdTable.clear();
+//        _frameContextIdTable.clear();
         _log.trace("Frame table cleared");
     }
 
@@ -169,9 +180,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
                     try {
                         Page.FrameNavigatedEventParameter param = EventCenter.deserializeJson(
                             node.get("params"), Page.FrameNavigatedEventParameter.class);
-                        if (param.getFrame().getName() == null) param.getFrame().optName("");
-                        _frameNameIdTable.put(param.getFrame().getName(), param.getFrame().getId());
-                        _log.trace("  Frame name -> id mapping: ``%s'' -> %s", param.getFrame().getName(), param.getFrame().getId());
+                        final FrameData frameData = new FrameData(param.getFrame());
+                        _frameIdTable.put(param.getFrame().getId(), frameData);
+                        _log.trace("  Frame name -> id mapping: ``%s'' -> %s, parent: %s",
+                            frameData.name, frameData.id, frameData.parentId);
                     }
                     catch (IOException e) { _log.error(e); }
                 }
@@ -182,8 +194,17 @@ import javax.annotation.ParametersAreNonnullByDefault;
                         JsonNode auxData = _om.valueToTree(param.getContext().getAuxData());
                         if (auxData != null) {
                             final String frameId = auxData.get("frameId").asText();
-                            _frameConntextIdTable.put(frameId, param.getContext().getId());
-                            _log.trace("  Frame id -> context mapping: %s -> %d", frameId, param.getContext().getId().value());
+                            final FrameData frameData = _frameIdTable.get(frameId);
+                            if (frameData != null) {
+                                frameData.setContextId(param.getContext().getId());
+                                _log.trace("  Frame id -> context mapping: ``%s''(%s) -> %d",
+                                    frameData.name, frameData.id, param.getContext().getId().value());
+                            }
+                            else {
+                                //_frameIdTable.put(frameId, new FrameData(frameId, param.getContext().getId()));
+                                _log.warn("  Execution context %d's frame %s not found",
+                                    param.getContext().getId().value(), frameId);
+                            }
                         }
                     }
                     catch (IOException|IllegalArgumentException e) { _log.error(e); }
@@ -202,5 +223,30 @@ import javax.annotation.ParametersAreNonnullByDefault;
             }
         }
         catch (IOException e) { _log.error(e); }
+    } // ! EventCenter.onMessage
+
+
+    /**Internal class for storing frame's id, parent id, and name.*/
+    @ParametersAreNonnullByDefault private static class FrameData {
+        private final String id;
+        private String name;
+        private String parentId;
+        private Runtime.ExecutionContextId contextId;
+
+        private FrameData(Page.Frame frame) {
+            id = frame.getId();
+            name = frame.getName() != null ? frame.getName() : "";
+            parentId = frame.getParentId() != null ? frame.getParentId() : frame.getId();
+        }
+        private FrameData(String id, Runtime.ExecutionContextId cxtId) {
+            this.id = id;
+            name = "";
+            parentId = id;
+            contextId = cxtId;
+        }
+
+        private void setName(String name) { this.name = name; }
+        private void setParentId(String parentId) { this.parentId = parentId; }
+        private void setContextId(Runtime.ExecutionContextId cxtId) { contextId = cxtId; }
     }
 } // ! class EventCenter

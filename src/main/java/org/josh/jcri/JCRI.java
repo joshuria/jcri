@@ -281,7 +281,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
     /**Get execution context of given frame by name.
      @return Context id if found, null if not.*/
-    public @Nullable Runtime.ExecutionContextId queryFrameExecutionContextId(String frameName) {
+    public @Nullable Runtime.ExecutionContextId queryFrameExecutionContextId(String ...frameName) {
         return _evt.getFrameContextId(frameName);
     }
 
