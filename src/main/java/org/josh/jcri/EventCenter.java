@@ -201,13 +201,21 @@ import javax.annotation.ParametersAreNonnullByDefault;
                                     frameData.name, frameData.id, param.getContext().getId().value());
                             }
                             else {
-                                //_frameIdTable.put(frameId, new FrameData(frameId, param.getContext().getId()));
                                 _log.warn("  Execution context %d's frame %s not found",
                                     param.getContext().getId().value(), frameId);
                             }
                         }
                     }
                     catch (IOException|IllegalArgumentException e) { _log.error(e); }
+                }
+                else if (method.equals("Runtime.executionContextDestroyed")) {
+                    final Runtime.ExecutionContextDestroyedEventParameter param = EventCenter.deserializeJson(
+                        node.get("params"), Runtime.ExecutionContextDestroyedEventParameter.class);
+                    if (param.getExecutionContextId() != null) {
+                        //! Removed exist frame with execution context id equals to destroyed
+                        _frameIdTable.entrySet().removeIf(e ->
+                            e.getValue().contextId.value().equals(param.getExecutionContextId().value()));
+                    }
                 }
 
                 //! Invoke callback function
