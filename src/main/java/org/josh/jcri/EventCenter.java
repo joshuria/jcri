@@ -164,13 +164,24 @@ import javax.annotation.ParametersAreNonnullByDefault;
             _log.trace("Recv: " + msg);
             //! Check if is response of method
             if (node.has("id")) {
-                final CommandBase method = _methodWaitingTable.remove(node.get("id").asLong());
+                final long id = node.get("id").asLong();
+                final CommandBase method = _methodWaitingTable.remove(id);
                 if (method != null) {
                     if (node.has("result"))
                         method.setResponse(true, node.get("result"));
                     else
                         method.setResponse(false, node.get("error"));
                     method.getLatch().countDown();
+                    //! Print log if exception raised
+                    if (node.hasNonNull("exceptionDetails")) {
+                        final JsonNode detail = node.get("exceptionDetails");
+                        _log.info("[JCRI] Command %d response with exception:", id);
+                        _log.info("[JCRI]    Script Id: " + detail.get("scriptId").asLong());
+                        _log.info("[JCRI]    Line/Column: L%d, %d", detail.get("lineNumber").asLong(), detail.get("columnNumber").asLong());
+                        _log.info("[JCRI]    Exception Id: " + detail.get("exceptionId").asLong());
+                        _log.info("[JCRI]    text: " + detail.get("text").asText());
+                        logStackTrace(detail.get("stackTrace"));
+                    }
                 }
             }
             else if (node.has("method")) {
@@ -232,6 +243,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
         }
         catch (IOException e) { _log.error(e); }
     } // ! EventCenter.onMessage
+
+    /**Log console log or exception stack trace.*/
+    private void logStackTrace(@Nullable JsonNode stackTrace) {
+        if (stackTrace == null || !stackTrace.hasNonNull("callFrames")) {
+            _log.info("[JCRI]  -- StackTrace Not Available --");
+            return;
+        }
+        _log.info("[JCRI]  -- StackTrace --");
+        for (JsonNode frame: stackTrace.get("callFrames"))
+            _log.info("[JCRI]    <%s> %s: L%d, %d\n%s", frame.get("scriptId").asText(), frame.get("functionName").asText(),
+                frame.get("lineNumber").asLong(), frame.get("columnNumber").asLong(), frame.get("url").asText());
+        _log.info("[JCRI]  -- End of StackTrace --");
+    }
 
 
     /**Internal class for storing frame's id, parent id, and name.*/
