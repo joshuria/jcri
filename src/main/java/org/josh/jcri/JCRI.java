@@ -252,6 +252,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
         }
     }
 
+    /**Get log instance of driver.*/
+    public Logger getLog() { return _log; }
     /**Get if web socket connection is closed.*/
     public boolean isClosed() { return _ws.isClosed(); }
     /**Get if web socket connection is currently closing.*/
