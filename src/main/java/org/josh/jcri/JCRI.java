@@ -177,7 +177,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
         if (log != null)
             _log = log;
         else {
-            _log = LogManager.getLogger(getClass().getName());
+            _log = LogManager.getFormatterLogger(getClass().getName());
             Configurator.setLevel(getClass().getName(), Level.OFF);
         }
         _evt = new EventCenter(executor, _log);
