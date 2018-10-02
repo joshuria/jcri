@@ -68,7 +68,7 @@ public abstract class CommandBase implements CommonDomainType {
             if (!_evt.enqueueMethod(id, this))
                 throw new IllegalStateException("Command id " + String.valueOf(id) + " already existed in waiting queue");
             _ws.send(strBuilder.toString());
-            _evt.getLog().trace(() -> "Send: " + strBuilder.toString());
+            _evt.getLog().log(_evt.getLogLevel(), () -> "Send: " + strBuilder.toString());
 
             /// Wait response
             try {

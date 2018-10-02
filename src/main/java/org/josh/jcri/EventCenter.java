@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 import org.josh.jcri.domain.Page;
 import org.josh.jcri.domain.Runtime;
@@ -42,12 +43,15 @@ import javax.annotation.ParametersAreNonnullByDefault;
     private final ExecutorService _executor;
     /**JCRI log instance.*/
     private final Logger _log;
+    /**JCRI log level.*/
+    private final Level _logLevel;
 
     /**Create new event center instance.
      @param executor executor creates new {@link java.util.concurrent.CompletableFuture} for calling
         domain commands, waiting response, and executing method callbacks. */
-    EventCenter(@Nullable ExecutorService executor, Logger log) {
+    EventCenter(@Nullable ExecutorService executor, Logger log, Level logLevel) {
         _log = log;
+        _logLevel = logLevel;
         if (executor == null) {
             int commandThread = DefaultThreadPoolSize;
             try {
@@ -72,6 +76,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
     /**Get logger instance.*/
     public Logger getLog() { return _log; }
+    /**Get logger level.*/
+    public Level getLogLevel() { return _logLevel; }
 
     /**Push a method into response waiting queue.
      If given method's Id is already existed in internal waiting queue, the given method will NOT
@@ -115,11 +121,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
     }
 
     /**Clear frame name to id and to context table.*/
-    final void clearFrameTable() {
-        _frameIdTable.clear();
-//        _frameContextIdTable.clear();
-        _log.trace("Frame table cleared");
-    }
+    final void clearFrameTable() { _frameIdTable.clear(); }
 
     /**Deserialize json string to object.
      @throws IOException if given json string is invalid. */
@@ -161,7 +163,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
     void onMessage(String msg) {
         try {
             final JsonNode node = _om.readTree(msg);
-            _log.trace("Recv: " + msg);
+            _log.log(_logLevel, "Recv: " + msg);
             //! Check if is response of method
             if (node.has("id")) {
                 final long id = node.get("id").asLong();
@@ -175,11 +177,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
                     //! Print log if exception raised
                     if (node.hasNonNull("exceptionDetails")) {
                         final JsonNode detail = node.get("exceptionDetails");
-                        _log.info("[JCRI] Command %d response with exception:", id);
-                        _log.info("[JCRI]    Script Id: " + detail.get("scriptId").asLong());
-                        _log.info("[JCRI]    Line/Column: L%d, %d", detail.get("lineNumber").asLong(), detail.get("columnNumber").asLong());
-                        _log.info("[JCRI]    Exception Id: " + detail.get("exceptionId").asLong());
-                        _log.info("[JCRI]    text: " + detail.get("text").asText());
+                        _log.debug("[JCRI] Command %d response with exception:", id);
+                        _log.debug("[JCRI]    Script Id: " + detail.get("scriptId").asLong());
+                        _log.debug("[JCRI]    Line/Column: L%d, %d", detail.get("lineNumber").asLong(), detail.get("columnNumber").asLong());
+                        _log.debug("[JCRI]    Exception Id: " + detail.get("exceptionId").asLong());
+                        _log.debug("[JCRI]    text: " + detail.get("text").asText());
                         logStackTrace(detail.get("stackTrace"));
                     }
                 }
@@ -193,7 +195,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
                             node.get("params"), Page.FrameNavigatedEventParameter.class);
                         final FrameData frameData = new FrameData(param.getFrame());
                         _frameIdTable.put(param.getFrame().getId(), frameData);
-                        _log.trace("  Frame name -> id mapping: ``%s'' -> %s, parent: %s",
+                        _log.trace("[JCRI] Frame name -> id mapping: ``%s'' -> %s, parent: %s",
                             frameData.name, frameData.id, frameData.parentId);
                     }
                     catch (IOException e) { _log.error(e); }
@@ -208,11 +210,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
                             final FrameData frameData = _frameIdTable.get(frameId);
                             if (frameData != null) {
                                 frameData.setContextId(param.getContext().getId());
-                                _log.trace("  Frame id -> context mapping: ``%s''(%s) -> %d",
+                                _log.trace("[JCRI] Frame id -> context mapping: ``%s''(%s) -> %d",
                                     frameData.name, frameData.id, param.getContext().getId().value());
                             }
                             else {
-                                _log.warn("  Execution context %d's frame %s not found",
+                                _log.trace("[JCRI] Execution context %d's frame %s not found",
                                     param.getContext().getId().value(), frameId);
                             }
                         }
@@ -247,14 +249,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
     /**Log console log or exception stack trace.*/
     private void logStackTrace(@Nullable JsonNode stackTrace) {
         if (stackTrace == null || !stackTrace.hasNonNull("callFrames")) {
-            _log.info("[JCRI]  -- StackTrace Not Available --");
+            _log.debug("[JCRI]  -- StackTrace Not Available --");
             return;
         }
-        _log.info("[JCRI]  -- StackTrace --");
+        _log.debug("[JCRI]  -- StackTrace --");
         for (JsonNode frame: stackTrace.get("callFrames"))
-            _log.info("[JCRI]    <%s> %s: L%d, %d\n%s", frame.get("scriptId").asText(), frame.get("functionName").asText(),
+            _log.debug("[JCRI]    <%s> %s: L%d, %d\n%s", frame.get("scriptId").asText(), frame.get("functionName").asText(),
                 frame.get("lineNumber").asLong(), frame.get("columnNumber").asLong(), frame.get("url").asText());
-        _log.info("[JCRI]  -- End of StackTrace --");
+        _log.debug("[JCRI]  -- End of StackTrace --");
     }
 
 
