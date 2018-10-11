@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
-import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -41,7 +40,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
      @param failResultFactory factory method that will create a failed result instance with given an
         error message.
      @param exec executor instance to spawn task.
-     @return future instance that waits browser's reply.
+     @return future instance that waits browser's reply. The containing real result object will be
+        null when underlying thread was interrupted or web socket has closed.
      @throws IllegalArgumentException if any of parameter is not valid. */
     protected <T extends ResultBase> CompletableFuture<T> callAsync(
         String commandName, Class<T> resultMetaClass, BiFunction<Integer, String, T> failResultFactory,
@@ -57,8 +57,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
      @param commandName name of this command to be called.
      @param resultMetaClass meta class of method's result type.
      @param failResultFactory factory method that will create a failed result instance with given an
-     error message.
-     @return future instance that waits browser's reply.
+         error message.
+     @return future instance that waits browser's reply. The containing real result object will be
+         null when underlying thread was interrupted or web socket has closed.
      @throws IllegalArgumentException if any of parameter is not valid.
      @see #callAsync(String, Class, BiFunction, Executor) */
     protected <T extends ResultBase> CompletableFuture<T> callAsync(
@@ -71,8 +72,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
      @param commandName name of this command to be called.
      @param resultMetaClass meta class of method's result type.
      @param failResultFactory factory method that will create a failed result instance with given an
-     error message.
-     @return future instance that waits browser's reply.
+         error message.
+     @return future instance that waits browser's reply. The containing real result object will be
+         null when underlying thread was interrupted or web socket has closed.
      @throws IllegalArgumentException if any of parameter is not valid. */
     protected <T extends ResultBase> CompletableFuture<T> call(
         String commandName, Class<T> resultMetaClass, BiFunction<Integer, String, T> failResultFactory
@@ -124,8 +126,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
 //            if (_ws.isClosed())     throw new InterruptedException("Web socket closed.");
 //        }
         try { _latch.await(); }
-        catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-        if (_ws.isClosed()) { Thread.currentThread().interrupt(); }
+        catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return null;
+        }
+        if (_ws.isClosed()) {
+            Thread.currentThread().interrupt();
+            return null;
+        }
 
         /// Check success or fail
         final JsonNode resp = _response;
