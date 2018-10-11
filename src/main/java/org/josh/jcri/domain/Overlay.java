@@ -222,8 +222,12 @@ import javax.annotation.Nullable;
             return super.call("Overlay.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Overlay.disable", DisableResult.class,
+        public CompletableFuture<DisableResult> callAsync() {
+            return super.callAsync("Overlay.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DisableResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -267,8 +271,12 @@ import javax.annotation.Nullable;
             return super.call("Overlay.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Overlay.enable", EnableResult.class,
+        public CompletableFuture<EnableResult> callAsync() {
+            return super.callAsync("Overlay.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EnableResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -326,8 +334,12 @@ import javax.annotation.Nullable;
             return super.call("Overlay.getHighlightObjectForTest", GetHighlightObjectForTestResult.class,
                 (code, msg)->new GetHighlightObjectForTestResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetHighlightObjectForTestResult> call(Executor exec) {
-            return super.call("Overlay.getHighlightObjectForTest", GetHighlightObjectForTestResult.class,
+        public CompletableFuture<GetHighlightObjectForTestResult> callAsync() {
+            return super.callAsync("Overlay.getHighlightObjectForTest", GetHighlightObjectForTestResult.class,
+                (code, msg)->new GetHighlightObjectForTestResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetHighlightObjectForTestResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.getHighlightObjectForTest", GetHighlightObjectForTestResult.class,
                 (code, msg)->new GetHighlightObjectForTestResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -381,8 +393,12 @@ import javax.annotation.Nullable;
             return super.call("Overlay.hideHighlight", HideHighlightResult.class,
                 (code, msg)->new HideHighlightResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<HideHighlightResult> call(Executor exec) {
-            return super.call("Overlay.hideHighlight", HideHighlightResult.class,
+        public CompletableFuture<HideHighlightResult> callAsync() {
+            return super.callAsync("Overlay.hideHighlight", HideHighlightResult.class,
+                (code, msg)->new HideHighlightResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<HideHighlightResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.hideHighlight", HideHighlightResult.class,
                 (code, msg)->new HideHighlightResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -460,8 +476,12 @@ import javax.annotation.Nullable;
             return super.call("Overlay.highlightFrame", HighlightFrameResult.class,
                 (code, msg)->new HighlightFrameResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<HighlightFrameResult> call(Executor exec) {
-            return super.call("Overlay.highlightFrame", HighlightFrameResult.class,
+        public CompletableFuture<HighlightFrameResult> callAsync() {
+            return super.callAsync("Overlay.highlightFrame", HighlightFrameResult.class,
+                (code, msg)->new HighlightFrameResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<HighlightFrameResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.highlightFrame", HighlightFrameResult.class,
                 (code, msg)->new HighlightFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -550,8 +570,12 @@ objectId must be specified.*/
             return super.call("Overlay.highlightNode", HighlightNodeResult.class,
                 (code, msg)->new HighlightNodeResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<HighlightNodeResult> call(Executor exec) {
-            return super.call("Overlay.highlightNode", HighlightNodeResult.class,
+        public CompletableFuture<HighlightNodeResult> callAsync() {
+            return super.callAsync("Overlay.highlightNode", HighlightNodeResult.class,
+                (code, msg)->new HighlightNodeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<HighlightNodeResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.highlightNode", HighlightNodeResult.class,
                 (code, msg)->new HighlightNodeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -629,8 +653,12 @@ objectId must be specified.*/
             return super.call("Overlay.highlightQuad", HighlightQuadResult.class,
                 (code, msg)->new HighlightQuadResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<HighlightQuadResult> call(Executor exec) {
-            return super.call("Overlay.highlightQuad", HighlightQuadResult.class,
+        public CompletableFuture<HighlightQuadResult> callAsync() {
+            return super.callAsync("Overlay.highlightQuad", HighlightQuadResult.class,
+                (code, msg)->new HighlightQuadResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<HighlightQuadResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.highlightQuad", HighlightQuadResult.class,
                 (code, msg)->new HighlightQuadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -738,8 +766,12 @@ objectId must be specified.*/
             return super.call("Overlay.highlightRect", HighlightRectResult.class,
                 (code, msg)->new HighlightRectResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<HighlightRectResult> call(Executor exec) {
-            return super.call("Overlay.highlightRect", HighlightRectResult.class,
+        public CompletableFuture<HighlightRectResult> callAsync() {
+            return super.callAsync("Overlay.highlightRect", HighlightRectResult.class,
+                (code, msg)->new HighlightRectResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<HighlightRectResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.highlightRect", HighlightRectResult.class,
                 (code, msg)->new HighlightRectResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -809,8 +841,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             return super.call("Overlay.setInspectMode", SetInspectModeResult.class,
                 (code, msg)->new SetInspectModeResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetInspectModeResult> call(Executor exec) {
-            return super.call("Overlay.setInspectMode", SetInspectModeResult.class,
+        public CompletableFuture<SetInspectModeResult> callAsync() {
+            return super.callAsync("Overlay.setInspectMode", SetInspectModeResult.class,
+                (code, msg)->new SetInspectModeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetInspectModeResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.setInspectMode", SetInspectModeResult.class,
                 (code, msg)->new SetInspectModeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -868,8 +904,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             return super.call("Overlay.setPausedInDebuggerMessage", SetPausedInDebuggerMessageResult.class,
                 (code, msg)->new SetPausedInDebuggerMessageResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetPausedInDebuggerMessageResult> call(Executor exec) {
-            return super.call("Overlay.setPausedInDebuggerMessage", SetPausedInDebuggerMessageResult.class,
+        public CompletableFuture<SetPausedInDebuggerMessageResult> callAsync() {
+            return super.callAsync("Overlay.setPausedInDebuggerMessage", SetPausedInDebuggerMessageResult.class,
+                (code, msg)->new SetPausedInDebuggerMessageResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetPausedInDebuggerMessageResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.setPausedInDebuggerMessage", SetPausedInDebuggerMessageResult.class,
                 (code, msg)->new SetPausedInDebuggerMessageResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -927,8 +967,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             return super.call("Overlay.setShowDebugBorders", SetShowDebugBordersResult.class,
                 (code, msg)->new SetShowDebugBordersResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetShowDebugBordersResult> call(Executor exec) {
-            return super.call("Overlay.setShowDebugBorders", SetShowDebugBordersResult.class,
+        public CompletableFuture<SetShowDebugBordersResult> callAsync() {
+            return super.callAsync("Overlay.setShowDebugBorders", SetShowDebugBordersResult.class,
+                (code, msg)->new SetShowDebugBordersResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetShowDebugBordersResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.setShowDebugBorders", SetShowDebugBordersResult.class,
                 (code, msg)->new SetShowDebugBordersResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -986,8 +1030,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             return super.call("Overlay.setShowFPSCounter", SetShowFPSCounterResult.class,
                 (code, msg)->new SetShowFPSCounterResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetShowFPSCounterResult> call(Executor exec) {
-            return super.call("Overlay.setShowFPSCounter", SetShowFPSCounterResult.class,
+        public CompletableFuture<SetShowFPSCounterResult> callAsync() {
+            return super.callAsync("Overlay.setShowFPSCounter", SetShowFPSCounterResult.class,
+                (code, msg)->new SetShowFPSCounterResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetShowFPSCounterResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.setShowFPSCounter", SetShowFPSCounterResult.class,
                 (code, msg)->new SetShowFPSCounterResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1045,8 +1093,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             return super.call("Overlay.setShowPaintRects", SetShowPaintRectsResult.class,
                 (code, msg)->new SetShowPaintRectsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetShowPaintRectsResult> call(Executor exec) {
-            return super.call("Overlay.setShowPaintRects", SetShowPaintRectsResult.class,
+        public CompletableFuture<SetShowPaintRectsResult> callAsync() {
+            return super.callAsync("Overlay.setShowPaintRects", SetShowPaintRectsResult.class,
+                (code, msg)->new SetShowPaintRectsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetShowPaintRectsResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.setShowPaintRects", SetShowPaintRectsResult.class,
                 (code, msg)->new SetShowPaintRectsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1104,8 +1156,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             return super.call("Overlay.setShowScrollBottleneckRects", SetShowScrollBottleneckRectsResult.class,
                 (code, msg)->new SetShowScrollBottleneckRectsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetShowScrollBottleneckRectsResult> call(Executor exec) {
-            return super.call("Overlay.setShowScrollBottleneckRects", SetShowScrollBottleneckRectsResult.class,
+        public CompletableFuture<SetShowScrollBottleneckRectsResult> callAsync() {
+            return super.callAsync("Overlay.setShowScrollBottleneckRects", SetShowScrollBottleneckRectsResult.class,
+                (code, msg)->new SetShowScrollBottleneckRectsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetShowScrollBottleneckRectsResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.setShowScrollBottleneckRects", SetShowScrollBottleneckRectsResult.class,
                 (code, msg)->new SetShowScrollBottleneckRectsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1163,8 +1219,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             return super.call("Overlay.setShowViewportSizeOnResize", SetShowViewportSizeOnResizeResult.class,
                 (code, msg)->new SetShowViewportSizeOnResizeResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetShowViewportSizeOnResizeResult> call(Executor exec) {
-            return super.call("Overlay.setShowViewportSizeOnResize", SetShowViewportSizeOnResizeResult.class,
+        public CompletableFuture<SetShowViewportSizeOnResizeResult> callAsync() {
+            return super.callAsync("Overlay.setShowViewportSizeOnResize", SetShowViewportSizeOnResizeResult.class,
+                (code, msg)->new SetShowViewportSizeOnResizeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetShowViewportSizeOnResizeResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.setShowViewportSizeOnResize", SetShowViewportSizeOnResizeResult.class,
                 (code, msg)->new SetShowViewportSizeOnResizeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1222,8 +1282,12 @@ Backend then generates 'inspectNodeRequested' event upon element selection.*/
             return super.call("Overlay.setSuspended", SetSuspendedResult.class,
                 (code, msg)->new SetSuspendedResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetSuspendedResult> call(Executor exec) {
-            return super.call("Overlay.setSuspended", SetSuspendedResult.class,
+        public CompletableFuture<SetSuspendedResult> callAsync() {
+            return super.callAsync("Overlay.setSuspended", SetSuspendedResult.class,
+                (code, msg)->new SetSuspendedResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetSuspendedResult> callAsync(Executor exec) {
+            return super.callAsync("Overlay.setSuspended", SetSuspendedResult.class,
                 (code, msg)->new SetSuspendedResult(ResultBase.ofError(code, msg)), exec);
         }
     }

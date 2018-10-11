@@ -303,8 +303,12 @@ import javax.annotation.Nullable;
             return super.call("CacheStorage.deleteCache", DeleteCacheResult.class,
                 (code, msg)->new DeleteCacheResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DeleteCacheResult> call(Executor exec) {
-            return super.call("CacheStorage.deleteCache", DeleteCacheResult.class,
+        public CompletableFuture<DeleteCacheResult> callAsync() {
+            return super.callAsync("CacheStorage.deleteCache", DeleteCacheResult.class,
+                (code, msg)->new DeleteCacheResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DeleteCacheResult> callAsync(Executor exec) {
+            return super.callAsync("CacheStorage.deleteCache", DeleteCacheResult.class,
                 (code, msg)->new DeleteCacheResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -372,8 +376,12 @@ import javax.annotation.Nullable;
             return super.call("CacheStorage.deleteEntry", DeleteEntryResult.class,
                 (code, msg)->new DeleteEntryResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DeleteEntryResult> call(Executor exec) {
-            return super.call("CacheStorage.deleteEntry", DeleteEntryResult.class,
+        public CompletableFuture<DeleteEntryResult> callAsync() {
+            return super.callAsync("CacheStorage.deleteEntry", DeleteEntryResult.class,
+                (code, msg)->new DeleteEntryResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DeleteEntryResult> callAsync(Executor exec) {
+            return super.callAsync("CacheStorage.deleteEntry", DeleteEntryResult.class,
                 (code, msg)->new DeleteEntryResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -431,8 +439,12 @@ import javax.annotation.Nullable;
             return super.call("CacheStorage.requestCacheNames", RequestCacheNamesResult.class,
                 (code, msg)->new RequestCacheNamesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RequestCacheNamesResult> call(Executor exec) {
-            return super.call("CacheStorage.requestCacheNames", RequestCacheNamesResult.class,
+        public CompletableFuture<RequestCacheNamesResult> callAsync() {
+            return super.callAsync("CacheStorage.requestCacheNames", RequestCacheNamesResult.class,
+                (code, msg)->new RequestCacheNamesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RequestCacheNamesResult> callAsync(Executor exec) {
+            return super.callAsync("CacheStorage.requestCacheNames", RequestCacheNamesResult.class,
                 (code, msg)->new RequestCacheNamesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -514,8 +526,12 @@ import javax.annotation.Nullable;
             return super.call("CacheStorage.requestCachedResponse", RequestCachedResponseResult.class,
                 (code, msg)->new RequestCachedResponseResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RequestCachedResponseResult> call(Executor exec) {
-            return super.call("CacheStorage.requestCachedResponse", RequestCachedResponseResult.class,
+        public CompletableFuture<RequestCachedResponseResult> callAsync() {
+            return super.callAsync("CacheStorage.requestCachedResponse", RequestCachedResponseResult.class,
+                (code, msg)->new RequestCachedResponseResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RequestCachedResponseResult> callAsync(Executor exec) {
+            return super.callAsync("CacheStorage.requestCachedResponse", RequestCachedResponseResult.class,
                 (code, msg)->new RequestCachedResponseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -603,8 +619,12 @@ import javax.annotation.Nullable;
             return super.call("CacheStorage.requestEntries", RequestEntriesResult.class,
                 (code, msg)->new RequestEntriesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RequestEntriesResult> call(Executor exec) {
-            return super.call("CacheStorage.requestEntries", RequestEntriesResult.class,
+        public CompletableFuture<RequestEntriesResult> callAsync() {
+            return super.callAsync("CacheStorage.requestEntries", RequestEntriesResult.class,
+                (code, msg)->new RequestEntriesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RequestEntriesResult> callAsync(Executor exec) {
+            return super.callAsync("CacheStorage.requestEntries", RequestEntriesResult.class,
                 (code, msg)->new RequestEntriesResult(ResultBase.ofError(code, msg)), exec);
         }
     }

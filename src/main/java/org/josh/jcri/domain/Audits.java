@@ -113,8 +113,12 @@ applies to images.*/
             return super.call("Audits.getEncodedResponse", GetEncodedResponseResult.class,
                 (code, msg)->new GetEncodedResponseResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetEncodedResponseResult> call(Executor exec) {
-            return super.call("Audits.getEncodedResponse", GetEncodedResponseResult.class,
+        public CompletableFuture<GetEncodedResponseResult> callAsync() {
+            return super.callAsync("Audits.getEncodedResponse", GetEncodedResponseResult.class,
+                (code, msg)->new GetEncodedResponseResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetEncodedResponseResult> callAsync(Executor exec) {
+            return super.callAsync("Audits.getEncodedResponse", GetEncodedResponseResult.class,
                 (code, msg)->new GetEncodedResponseResult(ResultBase.ofError(code, msg)), exec);
         }
     }

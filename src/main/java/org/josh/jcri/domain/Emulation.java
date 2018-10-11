@@ -135,8 +135,12 @@ resource fetches.
             return super.call("Emulation.canEmulate", CanEmulateResult.class,
                 (code, msg)->new CanEmulateResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CanEmulateResult> call(Executor exec) {
-            return super.call("Emulation.canEmulate", CanEmulateResult.class,
+        public CompletableFuture<CanEmulateResult> callAsync() {
+            return super.callAsync("Emulation.canEmulate", CanEmulateResult.class,
+                (code, msg)->new CanEmulateResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CanEmulateResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.canEmulate", CanEmulateResult.class,
                 (code, msg)->new CanEmulateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -190,8 +194,12 @@ resource fetches.
             return super.call("Emulation.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
                 (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ClearDeviceMetricsOverrideResult> call(Executor exec) {
-            return super.call("Emulation.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
+        public CompletableFuture<ClearDeviceMetricsOverrideResult> callAsync() {
+            return super.callAsync("Emulation.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
+                (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearDeviceMetricsOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
                 (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -235,8 +243,12 @@ resource fetches.
             return super.call("Emulation.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
                 (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ClearGeolocationOverrideResult> call(Executor exec) {
-            return super.call("Emulation.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
+        public CompletableFuture<ClearGeolocationOverrideResult> callAsync() {
+            return super.callAsync("Emulation.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
+                (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearGeolocationOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
                 (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -282,8 +294,12 @@ resource fetches.
             return super.call("Emulation.resetPageScaleFactor", ResetPageScaleFactorResult.class,
                 (code, msg)->new ResetPageScaleFactorResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ResetPageScaleFactorResult> call(Executor exec) {
-            return super.call("Emulation.resetPageScaleFactor", ResetPageScaleFactorResult.class,
+        public CompletableFuture<ResetPageScaleFactorResult> callAsync() {
+            return super.callAsync("Emulation.resetPageScaleFactor", ResetPageScaleFactorResult.class,
+                (code, msg)->new ResetPageScaleFactorResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ResetPageScaleFactorResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.resetPageScaleFactor", ResetPageScaleFactorResult.class,
                 (code, msg)->new ResetPageScaleFactorResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -304,6 +320,72 @@ resource fetches.
         }
         public ResetPageScaleFactorResult() { super(); }
         public ResetPageScaleFactorResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Enables or disables simulating a focused and active page.
+    <p><strong>Experimental.</strong></p>*/
+    public SetFocusEmulationEnabledParameter setFocusEmulationEnabled() { final SetFocusEmulationEnabledParameter v = new SetFocusEmulationEnabledParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setFocusEmulationEnabled.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetFocusEmulationEnabledParameter extends CommandBase {
+        /**Whether to enable to disable focus emulation.*/
+        private Boolean enabled;
+        public final SetFocusEmulationEnabledParameter enabled(Boolean enabled) { this.enabled = enabled; return this; }
+        public final SetFocusEmulationEnabledParameter setEnabled(Boolean enabled) { return enabled(enabled); }
+        public final Boolean enabled() { return enabled; }
+        public final Boolean getEnabled() { return enabled(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (enabled == null) throw new IllegalArgumentException("Emulation.SetFocusEmulationEnabledParameter.enabled is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"enabled\":").append(enabled);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetFocusEmulationEnabledParameter() {}
+        public SetFocusEmulationEnabledParameter(
+            @JsonProperty("enabled")Boolean enabled
+        ) {
+            this();
+            this.enabled = enabled;
+        }
+        public CompletableFuture<SetFocusEmulationEnabledResult> call() {
+            return super.call("Emulation.setFocusEmulationEnabled", SetFocusEmulationEnabledResult.class,
+                (code, msg)->new SetFocusEmulationEnabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetFocusEmulationEnabledResult> callAsync() {
+            return super.callAsync("Emulation.setFocusEmulationEnabled", SetFocusEmulationEnabledResult.class,
+                (code, msg)->new SetFocusEmulationEnabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetFocusEmulationEnabledResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setFocusEmulationEnabled", SetFocusEmulationEnabledResult.class,
+                (code, msg)->new SetFocusEmulationEnabledResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setFocusEmulationEnabled.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetFocusEmulationEnabledResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetFocusEmulationEnabledResult() { super(); }
+        public SetFocusEmulationEnabledResult(ResultBase.FailedResult e) {
             super(e);
         }
     }
@@ -344,8 +426,12 @@ resource fetches.
             return super.call("Emulation.setCPUThrottlingRate", SetCPUThrottlingRateResult.class,
                 (code, msg)->new SetCPUThrottlingRateResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetCPUThrottlingRateResult> call(Executor exec) {
-            return super.call("Emulation.setCPUThrottlingRate", SetCPUThrottlingRateResult.class,
+        public CompletableFuture<SetCPUThrottlingRateResult> callAsync() {
+            return super.callAsync("Emulation.setCPUThrottlingRate", SetCPUThrottlingRateResult.class,
+                (code, msg)->new SetCPUThrottlingRateResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetCPUThrottlingRateResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setCPUThrottlingRate", SetCPUThrottlingRateResult.class,
                 (code, msg)->new SetCPUThrottlingRateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -406,8 +492,12 @@ cleared.
             return super.call("Emulation.setDefaultBackgroundColorOverride", SetDefaultBackgroundColorOverrideResult.class,
                 (code, msg)->new SetDefaultBackgroundColorOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDefaultBackgroundColorOverrideResult> call(Executor exec) {
-            return super.call("Emulation.setDefaultBackgroundColorOverride", SetDefaultBackgroundColorOverrideResult.class,
+        public CompletableFuture<SetDefaultBackgroundColorOverrideResult> callAsync() {
+            return super.callAsync("Emulation.setDefaultBackgroundColorOverride", SetDefaultBackgroundColorOverrideResult.class,
+                (code, msg)->new SetDefaultBackgroundColorOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDefaultBackgroundColorOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setDefaultBackgroundColorOverride", SetDefaultBackgroundColorOverrideResult.class,
                 (code, msg)->new SetDefaultBackgroundColorOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -586,8 +676,12 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
             return super.call("Emulation.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
                 (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDeviceMetricsOverrideResult> call(Executor exec) {
-            return super.call("Emulation.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
+        public CompletableFuture<SetDeviceMetricsOverrideResult> callAsync() {
+            return super.callAsync("Emulation.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
+                (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDeviceMetricsOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
                 (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -607,6 +701,138 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
         }
         public SetDeviceMetricsOverrideResult() { super(); }
         public SetDeviceMetricsOverrideResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**&lt;No document in protocol.&gt;
+    <p><strong>Experimental.</strong></p>*/
+    public SetScrollbarsHiddenParameter setScrollbarsHidden() { final SetScrollbarsHiddenParameter v = new SetScrollbarsHiddenParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setScrollbarsHidden.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetScrollbarsHiddenParameter extends CommandBase {
+        /**Whether scrollbars should be always hidden.*/
+        private Boolean hidden;
+        public final SetScrollbarsHiddenParameter hidden(Boolean hidden) { this.hidden = hidden; return this; }
+        public final SetScrollbarsHiddenParameter setHidden(Boolean hidden) { return hidden(hidden); }
+        public final Boolean hidden() { return hidden; }
+        public final Boolean getHidden() { return hidden(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (hidden == null) throw new IllegalArgumentException("Emulation.SetScrollbarsHiddenParameter.hidden is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"hidden\":").append(hidden);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetScrollbarsHiddenParameter() {}
+        public SetScrollbarsHiddenParameter(
+            @JsonProperty("hidden")Boolean hidden
+        ) {
+            this();
+            this.hidden = hidden;
+        }
+        public CompletableFuture<SetScrollbarsHiddenResult> call() {
+            return super.call("Emulation.setScrollbarsHidden", SetScrollbarsHiddenResult.class,
+                (code, msg)->new SetScrollbarsHiddenResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetScrollbarsHiddenResult> callAsync() {
+            return super.callAsync("Emulation.setScrollbarsHidden", SetScrollbarsHiddenResult.class,
+                (code, msg)->new SetScrollbarsHiddenResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetScrollbarsHiddenResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setScrollbarsHidden", SetScrollbarsHiddenResult.class,
+                (code, msg)->new SetScrollbarsHiddenResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setScrollbarsHidden.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetScrollbarsHiddenResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetScrollbarsHiddenResult() { super(); }
+        public SetScrollbarsHiddenResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**&lt;No document in protocol.&gt;
+    <p><strong>Experimental.</strong></p>*/
+    public SetDocumentCookieDisabledParameter setDocumentCookieDisabled() { final SetDocumentCookieDisabledParameter v = new SetDocumentCookieDisabledParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setDocumentCookieDisabled.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetDocumentCookieDisabledParameter extends CommandBase {
+        /**Whether document.coookie API should be disabled.*/
+        private Boolean disabled;
+        public final SetDocumentCookieDisabledParameter disabled(Boolean disabled) { this.disabled = disabled; return this; }
+        public final SetDocumentCookieDisabledParameter setDisabled(Boolean disabled) { return disabled(disabled); }
+        public final Boolean disabled() { return disabled; }
+        public final Boolean getDisabled() { return disabled(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (disabled == null) throw new IllegalArgumentException("Emulation.SetDocumentCookieDisabledParameter.disabled is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"disabled\":").append(disabled);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetDocumentCookieDisabledParameter() {}
+        public SetDocumentCookieDisabledParameter(
+            @JsonProperty("disabled")Boolean disabled
+        ) {
+            this();
+            this.disabled = disabled;
+        }
+        public CompletableFuture<SetDocumentCookieDisabledResult> call() {
+            return super.call("Emulation.setDocumentCookieDisabled", SetDocumentCookieDisabledResult.class,
+                (code, msg)->new SetDocumentCookieDisabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDocumentCookieDisabledResult> callAsync() {
+            return super.callAsync("Emulation.setDocumentCookieDisabled", SetDocumentCookieDisabledResult.class,
+                (code, msg)->new SetDocumentCookieDisabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDocumentCookieDisabledResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setDocumentCookieDisabled", SetDocumentCookieDisabledResult.class,
+                (code, msg)->new SetDocumentCookieDisabledResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setDocumentCookieDisabled.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetDocumentCookieDisabledResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetDocumentCookieDisabledResult() { super(); }
+        public SetDocumentCookieDisabledResult(ResultBase.FailedResult e) {
             super(e);
         }
     }
@@ -675,8 +901,12 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
             return super.call("Emulation.setEmitTouchEventsForMouse", SetEmitTouchEventsForMouseResult.class,
                 (code, msg)->new SetEmitTouchEventsForMouseResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetEmitTouchEventsForMouseResult> call(Executor exec) {
-            return super.call("Emulation.setEmitTouchEventsForMouse", SetEmitTouchEventsForMouseResult.class,
+        public CompletableFuture<SetEmitTouchEventsForMouseResult> callAsync() {
+            return super.callAsync("Emulation.setEmitTouchEventsForMouse", SetEmitTouchEventsForMouseResult.class,
+                (code, msg)->new SetEmitTouchEventsForMouseResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetEmitTouchEventsForMouseResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setEmitTouchEventsForMouse", SetEmitTouchEventsForMouseResult.class,
                 (code, msg)->new SetEmitTouchEventsForMouseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -735,8 +965,12 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
             return super.call("Emulation.setEmulatedMedia", SetEmulatedMediaResult.class,
                 (code, msg)->new SetEmulatedMediaResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetEmulatedMediaResult> call(Executor exec) {
-            return super.call("Emulation.setEmulatedMedia", SetEmulatedMediaResult.class,
+        public CompletableFuture<SetEmulatedMediaResult> callAsync() {
+            return super.callAsync("Emulation.setEmulatedMedia", SetEmulatedMediaResult.class,
+                (code, msg)->new SetEmulatedMediaResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetEmulatedMediaResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setEmulatedMedia", SetEmulatedMediaResult.class,
                 (code, msg)->new SetEmulatedMediaResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -815,8 +1049,12 @@ unavailable.*/
             return super.call("Emulation.setGeolocationOverride", SetGeolocationOverrideResult.class,
                 (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetGeolocationOverrideResult> call(Executor exec) {
-            return super.call("Emulation.setGeolocationOverride", SetGeolocationOverrideResult.class,
+        public CompletableFuture<SetGeolocationOverrideResult> callAsync() {
+            return super.callAsync("Emulation.setGeolocationOverride", SetGeolocationOverrideResult.class,
+                (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetGeolocationOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setGeolocationOverride", SetGeolocationOverrideResult.class,
                 (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -840,10 +1078,12 @@ unavailable.*/
         }
     }
     /**Overrides value returned by the javascript navigator object.
-    <p><strong>Experimental.</strong></p>*/
+    <p><strong>Experimental.</strong></p>
+    @Deprecated*/
     public SetNavigatorOverridesParameter setNavigatorOverrides() { final SetNavigatorOverridesParameter v = new SetNavigatorOverridesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of setNavigatorOverrides.
-    <p><strong>Experimental.</strong></p>*/
+    <p><strong>Experimental.</strong></p>
+    @Deprecated*/
     @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetNavigatorOverridesParameter extends CommandBase {
         /**The platform navigator.platform should return.*/
@@ -876,13 +1116,18 @@ unavailable.*/
             return super.call("Emulation.setNavigatorOverrides", SetNavigatorOverridesResult.class,
                 (code, msg)->new SetNavigatorOverridesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetNavigatorOverridesResult> call(Executor exec) {
-            return super.call("Emulation.setNavigatorOverrides", SetNavigatorOverridesResult.class,
+        public CompletableFuture<SetNavigatorOverridesResult> callAsync() {
+            return super.callAsync("Emulation.setNavigatorOverrides", SetNavigatorOverridesResult.class,
+                (code, msg)->new SetNavigatorOverridesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetNavigatorOverridesResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setNavigatorOverrides", SetNavigatorOverridesResult.class,
                 (code, msg)->new SetNavigatorOverridesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
     /**Return result class of setNavigatorOverrides.
-    <p><strong>Experimental.</strong></p>*/
+    <p><strong>Experimental.</strong></p>
+    @Deprecated*/
     @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class SetNavigatorOverridesResult extends ResultBase {
         /**Check if parameter fields of method are all valid.
@@ -938,8 +1183,12 @@ unavailable.*/
             return super.call("Emulation.setPageScaleFactor", SetPageScaleFactorResult.class,
                 (code, msg)->new SetPageScaleFactorResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetPageScaleFactorResult> call(Executor exec) {
-            return super.call("Emulation.setPageScaleFactor", SetPageScaleFactorResult.class,
+        public CompletableFuture<SetPageScaleFactorResult> callAsync() {
+            return super.callAsync("Emulation.setPageScaleFactor", SetPageScaleFactorResult.class,
+                (code, msg)->new SetPageScaleFactorResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetPageScaleFactorResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setPageScaleFactor", SetPageScaleFactorResult.class,
                 (code, msg)->new SetPageScaleFactorResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -998,8 +1247,12 @@ unavailable.*/
             return super.call("Emulation.setScriptExecutionDisabled", SetScriptExecutionDisabledResult.class,
                 (code, msg)->new SetScriptExecutionDisabledResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetScriptExecutionDisabledResult> call(Executor exec) {
-            return super.call("Emulation.setScriptExecutionDisabled", SetScriptExecutionDisabledResult.class,
+        public CompletableFuture<SetScriptExecutionDisabledResult> callAsync() {
+            return super.callAsync("Emulation.setScriptExecutionDisabled", SetScriptExecutionDisabledResult.class,
+                (code, msg)->new SetScriptExecutionDisabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetScriptExecutionDisabledResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setScriptExecutionDisabled", SetScriptExecutionDisabledResult.class,
                 (code, msg)->new SetScriptExecutionDisabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1067,8 +1320,12 @@ unavailable.*/
             return super.call("Emulation.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
                 (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetTouchEmulationEnabledResult> call(Executor exec) {
-            return super.call("Emulation.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
+        public CompletableFuture<SetTouchEmulationEnabledResult> callAsync() {
+            return super.callAsync("Emulation.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
+                (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetTouchEmulationEnabledResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
                 (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1172,8 +1429,12 @@ Note any previous deferred policy change is superseded.
             return super.call("Emulation.setVirtualTimePolicy", SetVirtualTimePolicyResult.class,
                 (code, msg)->new SetVirtualTimePolicyResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetVirtualTimePolicyResult> call(Executor exec) {
-            return super.call("Emulation.setVirtualTimePolicy", SetVirtualTimePolicyResult.class,
+        public CompletableFuture<SetVirtualTimePolicyResult> callAsync() {
+            return super.callAsync("Emulation.setVirtualTimePolicy", SetVirtualTimePolicyResult.class,
+                (code, msg)->new SetVirtualTimePolicyResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetVirtualTimePolicyResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setVirtualTimePolicy", SetVirtualTimePolicyResult.class,
                 (code, msg)->new SetVirtualTimePolicyResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1258,8 +1519,12 @@ on Android.
             return super.call("Emulation.setVisibleSize", SetVisibleSizeResult.class,
                 (code, msg)->new SetVisibleSizeResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetVisibleSizeResult> call(Executor exec) {
-            return super.call("Emulation.setVisibleSize", SetVisibleSizeResult.class,
+        public CompletableFuture<SetVisibleSizeResult> callAsync() {
+            return super.callAsync("Emulation.setVisibleSize", SetVisibleSizeResult.class,
+                (code, msg)->new SetVisibleSizeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetVisibleSizeResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setVisibleSize", SetVisibleSizeResult.class,
                 (code, msg)->new SetVisibleSizeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1281,6 +1546,89 @@ on Android.
         }
         public SetVisibleSizeResult() { super(); }
         public SetVisibleSizeResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Allows overriding user agent with the given string.*/
+    public SetUserAgentOverrideParameter setUserAgentOverride() { final SetUserAgentOverrideParameter v = new SetUserAgentOverrideParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setUserAgentOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetUserAgentOverrideParameter extends CommandBase {
+        /**User agent to use.*/
+        private String userAgent;
+        /**Browser langugage to emulate.
+        <em>Optional.</em>*/
+        private String acceptLanguage;
+        /**The platform navigator.platform should return.
+        <em>Optional.</em>*/
+        private String platform;
+        public final SetUserAgentOverrideParameter userAgent(String userAgent) { this.userAgent = userAgent; return this; }
+        public final SetUserAgentOverrideParameter setUserAgent(String userAgent) { return userAgent(userAgent); }
+        public final String userAgent() { return userAgent; }
+        public final String getUserAgent() { return userAgent(); }
+        public final SetUserAgentOverrideParameter acceptLanguage(@Nullable String acceptLanguage) { this.acceptLanguage = acceptLanguage; return this; }
+        public final SetUserAgentOverrideParameter optAcceptLanguage(@Nullable String acceptLanguage) { return acceptLanguage(acceptLanguage); }
+        public final String acceptLanguage() { return acceptLanguage; }
+        public final String getAcceptLanguage() { return acceptLanguage(); }
+        public final SetUserAgentOverrideParameter platform(@Nullable String platform) { this.platform = platform; return this; }
+        public final SetUserAgentOverrideParameter optPlatform(@Nullable String platform) { return platform(platform); }
+        public final String platform() { return platform; }
+        public final String getPlatform() { return platform(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (userAgent == null) throw new IllegalArgumentException("Emulation.SetUserAgentOverrideParameter.userAgent is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"userAgent\":").append('"').append(DomainBase.escapeJson(userAgent)).append('"');
+            if (acceptLanguage != null) strBuilder.append(",\"acceptLanguage\":").append('"').append(DomainBase.escapeJson(acceptLanguage)).append('"');
+            if (platform != null) strBuilder.append(",\"platform\":").append('"').append(DomainBase.escapeJson(platform)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetUserAgentOverrideParameter() {}
+        public SetUserAgentOverrideParameter(
+            @JsonProperty("userAgent")String userAgent,
+            @Nullable @JsonProperty("acceptLanguage")String acceptLanguage,
+            @Nullable @JsonProperty("platform")String platform
+        ) {
+            this();
+            this.userAgent = userAgent;
+            this.acceptLanguage = acceptLanguage;
+            this.platform = platform;
+        }
+        public CompletableFuture<SetUserAgentOverrideResult> call() {
+            return super.call("Emulation.setUserAgentOverride", SetUserAgentOverrideResult.class,
+                (code, msg)->new SetUserAgentOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetUserAgentOverrideResult> callAsync() {
+            return super.callAsync("Emulation.setUserAgentOverride", SetUserAgentOverrideResult.class,
+                (code, msg)->new SetUserAgentOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetUserAgentOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Emulation.setUserAgentOverride", SetUserAgentOverrideResult.class,
+                (code, msg)->new SetUserAgentOverrideResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setUserAgentOverride.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetUserAgentOverrideResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetUserAgentOverrideResult() { super(); }
+        public SetUserAgentOverrideResult(ResultBase.FailedResult e) {
             super(e);
         }
     }

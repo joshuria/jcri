@@ -548,8 +548,12 @@ variables as its properties.*/
             return super.call("Debugger.continueToLocation", ContinueToLocationResult.class,
                 (code, msg)->new ContinueToLocationResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ContinueToLocationResult> call(Executor exec) {
-            return super.call("Debugger.continueToLocation", ContinueToLocationResult.class,
+        public CompletableFuture<ContinueToLocationResult> callAsync() {
+            return super.callAsync("Debugger.continueToLocation", ContinueToLocationResult.class,
+                (code, msg)->new ContinueToLocationResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ContinueToLocationResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.continueToLocation", ContinueToLocationResult.class,
                 (code, msg)->new ContinueToLocationResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -593,8 +597,12 @@ variables as its properties.*/
             return super.call("Debugger.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Debugger.disable", DisableResult.class,
+        public CompletableFuture<DisableResult> callAsync() {
+            return super.callAsync("Debugger.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DisableResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -639,8 +647,12 @@ enabled until the result for this command is received.*/
             return super.call("Debugger.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Debugger.enable", EnableResult.class,
+        public CompletableFuture<EnableResult> callAsync() {
+            return super.callAsync("Debugger.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EnableResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -794,8 +806,12 @@ execution. Overrides `setPauseOnException` state.
             return super.call("Debugger.evaluateOnCallFrame", EvaluateOnCallFrameResult.class,
                 (code, msg)->new EvaluateOnCallFrameResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EvaluateOnCallFrameResult> call(Executor exec) {
-            return super.call("Debugger.evaluateOnCallFrame", EvaluateOnCallFrameResult.class,
+        public CompletableFuture<EvaluateOnCallFrameResult> callAsync() {
+            return super.callAsync("Debugger.evaluateOnCallFrame", EvaluateOnCallFrameResult.class,
+                (code, msg)->new EvaluateOnCallFrameResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EvaluateOnCallFrameResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.evaluateOnCallFrame", EvaluateOnCallFrameResult.class,
                 (code, msg)->new EvaluateOnCallFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -894,8 +910,12 @@ of scripts is used as end of range.
             return super.call("Debugger.getPossibleBreakpoints", GetPossibleBreakpointsResult.class,
                 (code, msg)->new GetPossibleBreakpointsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetPossibleBreakpointsResult> call(Executor exec) {
-            return super.call("Debugger.getPossibleBreakpoints", GetPossibleBreakpointsResult.class,
+        public CompletableFuture<GetPossibleBreakpointsResult> callAsync() {
+            return super.callAsync("Debugger.getPossibleBreakpoints", GetPossibleBreakpointsResult.class,
+                (code, msg)->new GetPossibleBreakpointsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetPossibleBreakpointsResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.getPossibleBreakpoints", GetPossibleBreakpointsResult.class,
                 (code, msg)->new GetPossibleBreakpointsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -967,8 +987,12 @@ of scripts is used as end of range.
             return super.call("Debugger.getScriptSource", GetScriptSourceResult.class,
                 (code, msg)->new GetScriptSourceResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetScriptSourceResult> call(Executor exec) {
-            return super.call("Debugger.getScriptSource", GetScriptSourceResult.class,
+        public CompletableFuture<GetScriptSourceResult> callAsync() {
+            return super.callAsync("Debugger.getScriptSource", GetScriptSourceResult.class,
+                (code, msg)->new GetScriptSourceResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetScriptSourceResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.getScriptSource", GetScriptSourceResult.class,
                 (code, msg)->new GetScriptSourceResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1038,8 +1062,12 @@ of scripts is used as end of range.
             return super.call("Debugger.getStackTrace", GetStackTraceResult.class,
                 (code, msg)->new GetStackTraceResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetStackTraceResult> call(Executor exec) {
-            return super.call("Debugger.getStackTrace", GetStackTraceResult.class,
+        public CompletableFuture<GetStackTraceResult> callAsync() {
+            return super.callAsync("Debugger.getStackTrace", GetStackTraceResult.class,
+                (code, msg)->new GetStackTraceResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetStackTraceResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.getStackTrace", GetStackTraceResult.class,
                 (code, msg)->new GetStackTraceResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1094,8 +1122,12 @@ of scripts is used as end of range.
             return super.call("Debugger.pause", PauseResult.class,
                 (code, msg)->new PauseResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<PauseResult> call(Executor exec) {
-            return super.call("Debugger.pause", PauseResult.class,
+        public CompletableFuture<PauseResult> callAsync() {
+            return super.callAsync("Debugger.pause", PauseResult.class,
+                (code, msg)->new PauseResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<PauseResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.pause", PauseResult.class,
                 (code, msg)->new PauseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1155,8 +1187,12 @@ of scripts is used as end of range.
             return super.call("Debugger.pauseOnAsyncCall", PauseOnAsyncCallResult.class,
                 (code, msg)->new PauseOnAsyncCallResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<PauseOnAsyncCallResult> call(Executor exec) {
-            return super.call("Debugger.pauseOnAsyncCall", PauseOnAsyncCallResult.class,
+        public CompletableFuture<PauseOnAsyncCallResult> callAsync() {
+            return super.callAsync("Debugger.pauseOnAsyncCall", PauseOnAsyncCallResult.class,
+                (code, msg)->new PauseOnAsyncCallResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<PauseOnAsyncCallResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.pauseOnAsyncCall", PauseOnAsyncCallResult.class,
                 (code, msg)->new PauseOnAsyncCallResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1215,8 +1251,12 @@ of scripts is used as end of range.
             return super.call("Debugger.removeBreakpoint", RemoveBreakpointResult.class,
                 (code, msg)->new RemoveBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RemoveBreakpointResult> call(Executor exec) {
-            return super.call("Debugger.removeBreakpoint", RemoveBreakpointResult.class,
+        public CompletableFuture<RemoveBreakpointResult> callAsync() {
+            return super.callAsync("Debugger.removeBreakpoint", RemoveBreakpointResult.class,
+                (code, msg)->new RemoveBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RemoveBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.removeBreakpoint", RemoveBreakpointResult.class,
                 (code, msg)->new RemoveBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1274,8 +1314,12 @@ of scripts is used as end of range.
             return super.call("Debugger.restartFrame", RestartFrameResult.class,
                 (code, msg)->new RestartFrameResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RestartFrameResult> call(Executor exec) {
-            return super.call("Debugger.restartFrame", RestartFrameResult.class,
+        public CompletableFuture<RestartFrameResult> callAsync() {
+            return super.callAsync("Debugger.restartFrame", RestartFrameResult.class,
+                (code, msg)->new RestartFrameResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RestartFrameResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.restartFrame", RestartFrameResult.class,
                 (code, msg)->new RestartFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1352,8 +1396,12 @@ of scripts is used as end of range.
             return super.call("Debugger.resume", ResumeResult.class,
                 (code, msg)->new ResumeResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ResumeResult> call(Executor exec) {
-            return super.call("Debugger.resume", ResumeResult.class,
+        public CompletableFuture<ResumeResult> callAsync() {
+            return super.callAsync("Debugger.resume", ResumeResult.class,
+                (code, msg)->new ResumeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ResumeResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.resume", ResumeResult.class,
                 (code, msg)->new ResumeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1402,8 +1450,12 @@ task were scheduled or another scheduleStepIntoAsync was called.
             return super.call("Debugger.scheduleStepIntoAsync", ScheduleStepIntoAsyncResult.class,
                 (code, msg)->new ScheduleStepIntoAsyncResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ScheduleStepIntoAsyncResult> call(Executor exec) {
-            return super.call("Debugger.scheduleStepIntoAsync", ScheduleStepIntoAsyncResult.class,
+        public CompletableFuture<ScheduleStepIntoAsyncResult> callAsync() {
+            return super.callAsync("Debugger.scheduleStepIntoAsync", ScheduleStepIntoAsyncResult.class,
+                (code, msg)->new ScheduleStepIntoAsyncResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ScheduleStepIntoAsyncResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.scheduleStepIntoAsync", ScheduleStepIntoAsyncResult.class,
                 (code, msg)->new ScheduleStepIntoAsyncResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1492,8 +1544,12 @@ task were scheduled or another scheduleStepIntoAsync was called.
             return super.call("Debugger.searchInContent", SearchInContentResult.class,
                 (code, msg)->new SearchInContentResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SearchInContentResult> call(Executor exec) {
-            return super.call("Debugger.searchInContent", SearchInContentResult.class,
+        public CompletableFuture<SearchInContentResult> callAsync() {
+            return super.callAsync("Debugger.searchInContent", SearchInContentResult.class,
+                (code, msg)->new SearchInContentResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SearchInContentResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.searchInContent", SearchInContentResult.class,
                 (code, msg)->new SearchInContentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1566,8 +1622,12 @@ call stacks (default).*/
             return super.call("Debugger.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class,
                 (code, msg)->new SetAsyncCallStackDepthResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetAsyncCallStackDepthResult> call(Executor exec) {
-            return super.call("Debugger.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class,
+        public CompletableFuture<SetAsyncCallStackDepthResult> callAsync() {
+            return super.callAsync("Debugger.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class,
+                (code, msg)->new SetAsyncCallStackDepthResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetAsyncCallStackDepthResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class,
                 (code, msg)->new SetAsyncCallStackDepthResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1633,8 +1693,12 @@ performing 'step in' several times, finally resorting to 'step out' if unsuccess
             return super.call("Debugger.setBlackboxPatterns", SetBlackboxPatternsResult.class,
                 (code, msg)->new SetBlackboxPatternsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetBlackboxPatternsResult> call(Executor exec) {
-            return super.call("Debugger.setBlackboxPatterns", SetBlackboxPatternsResult.class,
+        public CompletableFuture<SetBlackboxPatternsResult> callAsync() {
+            return super.callAsync("Debugger.setBlackboxPatterns", SetBlackboxPatternsResult.class,
+                (code, msg)->new SetBlackboxPatternsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBlackboxPatternsResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setBlackboxPatterns", SetBlackboxPatternsResult.class,
                 (code, msg)->new SetBlackboxPatternsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1712,8 +1776,12 @@ blackboxed. Array should be sorted.
             return super.call("Debugger.setBlackboxedRanges", SetBlackboxedRangesResult.class,
                 (code, msg)->new SetBlackboxedRangesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetBlackboxedRangesResult> call(Executor exec) {
-            return super.call("Debugger.setBlackboxedRanges", SetBlackboxedRangesResult.class,
+        public CompletableFuture<SetBlackboxedRangesResult> callAsync() {
+            return super.callAsync("Debugger.setBlackboxedRanges", SetBlackboxedRangesResult.class,
+                (code, msg)->new SetBlackboxedRangesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBlackboxedRangesResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setBlackboxedRanges", SetBlackboxedRangesResult.class,
                 (code, msg)->new SetBlackboxedRangesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1783,8 +1851,12 @@ breakpoint if this expression evaluates to true.
             return super.call("Debugger.setBreakpoint", SetBreakpointResult.class,
                 (code, msg)->new SetBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetBreakpointResult> call(Executor exec) {
-            return super.call("Debugger.setBreakpoint", SetBreakpointResult.class,
+        public CompletableFuture<SetBreakpointResult> callAsync() {
+            return super.callAsync("Debugger.setBreakpoint", SetBreakpointResult.class,
+                (code, msg)->new SetBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setBreakpoint", SetBreakpointResult.class,
                 (code, msg)->new SetBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1915,8 +1987,12 @@ breakpoint if this expression evaluates to true.
             return super.call("Debugger.setBreakpointByUrl", SetBreakpointByUrlResult.class,
                 (code, msg)->new SetBreakpointByUrlResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetBreakpointByUrlResult> call(Executor exec) {
-            return super.call("Debugger.setBreakpointByUrl", SetBreakpointByUrlResult.class,
+        public CompletableFuture<SetBreakpointByUrlResult> callAsync() {
+            return super.callAsync("Debugger.setBreakpointByUrl", SetBreakpointByUrlResult.class,
+                (code, msg)->new SetBreakpointByUrlResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBreakpointByUrlResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setBreakpointByUrl", SetBreakpointByUrlResult.class,
                 (code, msg)->new SetBreakpointByUrlResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2011,8 +2087,12 @@ stop on the breakpoint if this expression evaluates to true.
             return super.call("Debugger.setBreakpointOnFunctionCall", SetBreakpointOnFunctionCallResult.class,
                 (code, msg)->new SetBreakpointOnFunctionCallResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetBreakpointOnFunctionCallResult> call(Executor exec) {
-            return super.call("Debugger.setBreakpointOnFunctionCall", SetBreakpointOnFunctionCallResult.class,
+        public CompletableFuture<SetBreakpointOnFunctionCallResult> callAsync() {
+            return super.callAsync("Debugger.setBreakpointOnFunctionCall", SetBreakpointOnFunctionCallResult.class,
+                (code, msg)->new SetBreakpointOnFunctionCallResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBreakpointOnFunctionCallResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setBreakpointOnFunctionCall", SetBreakpointOnFunctionCallResult.class,
                 (code, msg)->new SetBreakpointOnFunctionCallResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2081,8 +2161,12 @@ stop on the breakpoint if this expression evaluates to true.
             return super.call("Debugger.setBreakpointsActive", SetBreakpointsActiveResult.class,
                 (code, msg)->new SetBreakpointsActiveResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetBreakpointsActiveResult> call(Executor exec) {
-            return super.call("Debugger.setBreakpointsActive", SetBreakpointsActiveResult.class,
+        public CompletableFuture<SetBreakpointsActiveResult> callAsync() {
+            return super.callAsync("Debugger.setBreakpointsActive", SetBreakpointsActiveResult.class,
+                (code, msg)->new SetBreakpointsActiveResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBreakpointsActiveResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setBreakpointsActive", SetBreakpointsActiveResult.class,
                 (code, msg)->new SetBreakpointsActiveResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2160,8 +2244,12 @@ no exceptions. Initial pause on exceptions state is `none`.*/
             return super.call("Debugger.setPauseOnExceptions", SetPauseOnExceptionsResult.class,
                 (code, msg)->new SetPauseOnExceptionsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetPauseOnExceptionsResult> call(Executor exec) {
-            return super.call("Debugger.setPauseOnExceptions", SetPauseOnExceptionsResult.class,
+        public CompletableFuture<SetPauseOnExceptionsResult> callAsync() {
+            return super.callAsync("Debugger.setPauseOnExceptions", SetPauseOnExceptionsResult.class,
+                (code, msg)->new SetPauseOnExceptionsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetPauseOnExceptionsResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setPauseOnExceptions", SetPauseOnExceptionsResult.class,
                 (code, msg)->new SetPauseOnExceptionsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2221,8 +2309,12 @@ no exceptions. Initial pause on exceptions state is `none`.*/
             return super.call("Debugger.setReturnValue", SetReturnValueResult.class,
                 (code, msg)->new SetReturnValueResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetReturnValueResult> call(Executor exec) {
-            return super.call("Debugger.setReturnValue", SetReturnValueResult.class,
+        public CompletableFuture<SetReturnValueResult> callAsync() {
+            return super.callAsync("Debugger.setReturnValue", SetReturnValueResult.class,
+                (code, msg)->new SetReturnValueResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetReturnValueResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setReturnValue", SetReturnValueResult.class,
                 (code, msg)->new SetReturnValueResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2302,8 +2394,12 @@ description without actually modifying the code.
             return super.call("Debugger.setScriptSource", SetScriptSourceResult.class,
                 (code, msg)->new SetScriptSourceResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetScriptSourceResult> call(Executor exec) {
-            return super.call("Debugger.setScriptSource", SetScriptSourceResult.class,
+        public CompletableFuture<SetScriptSourceResult> callAsync() {
+            return super.callAsync("Debugger.setScriptSource", SetScriptSourceResult.class,
+                (code, msg)->new SetScriptSourceResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetScriptSourceResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setScriptSource", SetScriptSourceResult.class,
                 (code, msg)->new SetScriptSourceResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2415,8 +2511,12 @@ description without actually modifying the code.
             return super.call("Debugger.setSkipAllPauses", SetSkipAllPausesResult.class,
                 (code, msg)->new SetSkipAllPausesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetSkipAllPausesResult> call(Executor exec) {
-            return super.call("Debugger.setSkipAllPauses", SetSkipAllPausesResult.class,
+        public CompletableFuture<SetSkipAllPausesResult> callAsync() {
+            return super.callAsync("Debugger.setSkipAllPauses", SetSkipAllPausesResult.class,
+                (code, msg)->new SetSkipAllPausesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetSkipAllPausesResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setSkipAllPauses", SetSkipAllPausesResult.class,
                 (code, msg)->new SetSkipAllPausesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2506,8 +2606,12 @@ scope types are allowed. Other scopes could be manipulated manually.*/
             return super.call("Debugger.setVariableValue", SetVariableValueResult.class,
                 (code, msg)->new SetVariableValueResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetVariableValueResult> call(Executor exec) {
-            return super.call("Debugger.setVariableValue", SetVariableValueResult.class,
+        public CompletableFuture<SetVariableValueResult> callAsync() {
+            return super.callAsync("Debugger.setVariableValue", SetVariableValueResult.class,
+                (code, msg)->new SetVariableValueResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetVariableValueResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.setVariableValue", SetVariableValueResult.class,
                 (code, msg)->new SetVariableValueResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2567,8 +2671,12 @@ before next pause.
             return super.call("Debugger.stepInto", StepIntoResult.class,
                 (code, msg)->new StepIntoResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<StepIntoResult> call(Executor exec) {
-            return super.call("Debugger.stepInto", StepIntoResult.class,
+        public CompletableFuture<StepIntoResult> callAsync() {
+            return super.callAsync("Debugger.stepInto", StepIntoResult.class,
+                (code, msg)->new StepIntoResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<StepIntoResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.stepInto", StepIntoResult.class,
                 (code, msg)->new StepIntoResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2612,8 +2720,12 @@ before next pause.
             return super.call("Debugger.stepOut", StepOutResult.class,
                 (code, msg)->new StepOutResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<StepOutResult> call(Executor exec) {
-            return super.call("Debugger.stepOut", StepOutResult.class,
+        public CompletableFuture<StepOutResult> callAsync() {
+            return super.callAsync("Debugger.stepOut", StepOutResult.class,
+                (code, msg)->new StepOutResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<StepOutResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.stepOut", StepOutResult.class,
                 (code, msg)->new StepOutResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2657,8 +2769,12 @@ before next pause.
             return super.call("Debugger.stepOver", StepOverResult.class,
                 (code, msg)->new StepOverResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<StepOverResult> call(Executor exec) {
-            return super.call("Debugger.stepOver", StepOverResult.class,
+        public CompletableFuture<StepOverResult> callAsync() {
+            return super.callAsync("Debugger.stepOver", StepOverResult.class,
+                (code, msg)->new StepOverResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<StepOverResult> callAsync(Executor exec) {
+            return super.callAsync("Debugger.stepOver", StepOverResult.class,
                 (code, msg)->new StepOverResult(ResultBase.ofError(code, msg)), exec);
         }
     }

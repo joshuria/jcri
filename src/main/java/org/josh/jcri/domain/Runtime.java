@@ -1362,8 +1362,12 @@ allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.pau
             return super.call("Runtime.awaitPromise", AwaitPromiseResult.class,
                 (code, msg)->new AwaitPromiseResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<AwaitPromiseResult> call(Executor exec) {
-            return super.call("Runtime.awaitPromise", AwaitPromiseResult.class,
+        public CompletableFuture<AwaitPromiseResult> callAsync() {
+            return super.callAsync("Runtime.awaitPromise", AwaitPromiseResult.class,
+                (code, msg)->new AwaitPromiseResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AwaitPromiseResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.awaitPromise", AwaitPromiseResult.class,
                 (code, msg)->new AwaitPromiseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1544,8 +1548,12 @@ specified and objectId is, objectGroup will be inherited from object.
             return super.call("Runtime.callFunctionOn", CallFunctionOnResult.class,
                 (code, msg)->new CallFunctionOnResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CallFunctionOnResult> call(Executor exec) {
-            return super.call("Runtime.callFunctionOn", CallFunctionOnResult.class,
+        public CompletableFuture<CallFunctionOnResult> callAsync() {
+            return super.callAsync("Runtime.callFunctionOn", CallFunctionOnResult.class,
+                (code, msg)->new CallFunctionOnResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CallFunctionOnResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.callFunctionOn", CallFunctionOnResult.class,
                 (code, msg)->new CallFunctionOnResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1653,8 +1661,12 @@ evaluation will be performed in the context of the inspected page.
             return super.call("Runtime.compileScript", CompileScriptResult.class,
                 (code, msg)->new CompileScriptResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CompileScriptResult> call(Executor exec) {
-            return super.call("Runtime.compileScript", CompileScriptResult.class,
+        public CompletableFuture<CompileScriptResult> callAsync() {
+            return super.callAsync("Runtime.compileScript", CompileScriptResult.class,
+                (code, msg)->new CompileScriptResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CompileScriptResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.compileScript", CompileScriptResult.class,
                 (code, msg)->new CompileScriptResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1718,8 +1730,12 @@ evaluation will be performed in the context of the inspected page.
             return super.call("Runtime.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Runtime.disable", DisableResult.class,
+        public CompletableFuture<DisableResult> callAsync() {
+            return super.callAsync("Runtime.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DisableResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1763,8 +1779,12 @@ evaluation will be performed in the context of the inspected page.
             return super.call("Runtime.discardConsoleEntries", DiscardConsoleEntriesResult.class,
                 (code, msg)->new DiscardConsoleEntriesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DiscardConsoleEntriesResult> call(Executor exec) {
-            return super.call("Runtime.discardConsoleEntries", DiscardConsoleEntriesResult.class,
+        public CompletableFuture<DiscardConsoleEntriesResult> callAsync() {
+            return super.callAsync("Runtime.discardConsoleEntries", DiscardConsoleEntriesResult.class,
+                (code, msg)->new DiscardConsoleEntriesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DiscardConsoleEntriesResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.discardConsoleEntries", DiscardConsoleEntriesResult.class,
                 (code, msg)->new DiscardConsoleEntriesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1810,8 +1830,12 @@ context.*/
             return super.call("Runtime.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Runtime.enable", EnableResult.class,
+        public CompletableFuture<EnableResult> callAsync() {
+            return super.callAsync("Runtime.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EnableResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1975,8 +1999,12 @@ resolved.
             return super.call("Runtime.evaluate", EvaluateResult.class,
                 (code, msg)->new EvaluateResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EvaluateResult> call(Executor exec) {
-            return super.call("Runtime.evaluate", EvaluateResult.class,
+        public CompletableFuture<EvaluateResult> callAsync() {
+            return super.callAsync("Runtime.evaluate", EvaluateResult.class,
+                (code, msg)->new EvaluateResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EvaluateResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.evaluate", EvaluateResult.class,
                 (code, msg)->new EvaluateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2041,8 +2069,12 @@ resolved.
             return super.call("Runtime.getIsolateId", GetIsolateIdResult.class,
                 (code, msg)->new GetIsolateIdResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetIsolateIdResult> call(Executor exec) {
-            return super.call("Runtime.getIsolateId", GetIsolateIdResult.class,
+        public CompletableFuture<GetIsolateIdResult> callAsync() {
+            return super.callAsync("Runtime.getIsolateId", GetIsolateIdResult.class,
+                (code, msg)->new GetIsolateIdResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetIsolateIdResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.getIsolateId", GetIsolateIdResult.class,
                 (code, msg)->new GetIsolateIdResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2100,8 +2132,12 @@ It is the total usage of the corresponding isolate not scoped to a particular Ru
             return super.call("Runtime.getHeapUsage", GetHeapUsageResult.class,
                 (code, msg)->new GetHeapUsageResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetHeapUsageResult> call(Executor exec) {
-            return super.call("Runtime.getHeapUsage", GetHeapUsageResult.class,
+        public CompletableFuture<GetHeapUsageResult> callAsync() {
+            return super.callAsync("Runtime.getHeapUsage", GetHeapUsageResult.class,
+                (code, msg)->new GetHeapUsageResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetHeapUsageResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.getHeapUsage", GetHeapUsageResult.class,
                 (code, msg)->new GetHeapUsageResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2213,8 +2249,12 @@ returned either.
             return super.call("Runtime.getProperties", GetPropertiesResult.class,
                 (code, msg)->new GetPropertiesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetPropertiesResult> call(Executor exec) {
-            return super.call("Runtime.getProperties", GetPropertiesResult.class,
+        public CompletableFuture<GetPropertiesResult> callAsync() {
+            return super.callAsync("Runtime.getProperties", GetPropertiesResult.class,
+                (code, msg)->new GetPropertiesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetPropertiesResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.getProperties", GetPropertiesResult.class,
                 (code, msg)->new GetPropertiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2310,8 +2350,12 @@ returned either.
             return super.call("Runtime.globalLexicalScopeNames", GlobalLexicalScopeNamesResult.class,
                 (code, msg)->new GlobalLexicalScopeNamesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GlobalLexicalScopeNamesResult> call(Executor exec) {
-            return super.call("Runtime.globalLexicalScopeNames", GlobalLexicalScopeNamesResult.class,
+        public CompletableFuture<GlobalLexicalScopeNamesResult> callAsync() {
+            return super.callAsync("Runtime.globalLexicalScopeNames", GlobalLexicalScopeNamesResult.class,
+                (code, msg)->new GlobalLexicalScopeNamesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GlobalLexicalScopeNamesResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.globalLexicalScopeNames", GlobalLexicalScopeNamesResult.class,
                 (code, msg)->new GlobalLexicalScopeNamesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2393,8 +2437,12 @@ returned either.
             return super.call("Runtime.queryObjects", QueryObjectsResult.class,
                 (code, msg)->new QueryObjectsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<QueryObjectsResult> call(Executor exec) {
-            return super.call("Runtime.queryObjects", QueryObjectsResult.class,
+        public CompletableFuture<QueryObjectsResult> callAsync() {
+            return super.callAsync("Runtime.queryObjects", QueryObjectsResult.class,
+                (code, msg)->new QueryObjectsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<QueryObjectsResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.queryObjects", QueryObjectsResult.class,
                 (code, msg)->new QueryObjectsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2462,8 +2510,12 @@ returned either.
             return super.call("Runtime.releaseObject", ReleaseObjectResult.class,
                 (code, msg)->new ReleaseObjectResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ReleaseObjectResult> call(Executor exec) {
-            return super.call("Runtime.releaseObject", ReleaseObjectResult.class,
+        public CompletableFuture<ReleaseObjectResult> callAsync() {
+            return super.callAsync("Runtime.releaseObject", ReleaseObjectResult.class,
+                (code, msg)->new ReleaseObjectResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ReleaseObjectResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.releaseObject", ReleaseObjectResult.class,
                 (code, msg)->new ReleaseObjectResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2521,8 +2573,12 @@ returned either.
             return super.call("Runtime.releaseObjectGroup", ReleaseObjectGroupResult.class,
                 (code, msg)->new ReleaseObjectGroupResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ReleaseObjectGroupResult> call(Executor exec) {
-            return super.call("Runtime.releaseObjectGroup", ReleaseObjectGroupResult.class,
+        public CompletableFuture<ReleaseObjectGroupResult> callAsync() {
+            return super.callAsync("Runtime.releaseObjectGroup", ReleaseObjectGroupResult.class,
+                (code, msg)->new ReleaseObjectGroupResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ReleaseObjectGroupResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.releaseObjectGroup", ReleaseObjectGroupResult.class,
                 (code, msg)->new ReleaseObjectGroupResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2566,8 +2622,12 @@ returned either.
             return super.call("Runtime.runIfWaitingForDebugger", RunIfWaitingForDebuggerResult.class,
                 (code, msg)->new RunIfWaitingForDebuggerResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RunIfWaitingForDebuggerResult> call(Executor exec) {
-            return super.call("Runtime.runIfWaitingForDebugger", RunIfWaitingForDebuggerResult.class,
+        public CompletableFuture<RunIfWaitingForDebuggerResult> callAsync() {
+            return super.callAsync("Runtime.runIfWaitingForDebugger", RunIfWaitingForDebuggerResult.class,
+                (code, msg)->new RunIfWaitingForDebuggerResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RunIfWaitingForDebuggerResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.runIfWaitingForDebugger", RunIfWaitingForDebuggerResult.class,
                 (code, msg)->new RunIfWaitingForDebuggerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2698,8 +2758,12 @@ resolved.
             return super.call("Runtime.runScript", RunScriptResult.class,
                 (code, msg)->new RunScriptResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RunScriptResult> call(Executor exec) {
-            return super.call("Runtime.runScript", RunScriptResult.class,
+        public CompletableFuture<RunScriptResult> callAsync() {
+            return super.callAsync("Runtime.runScript", RunScriptResult.class,
+                (code, msg)->new RunScriptResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RunScriptResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.runScript", RunScriptResult.class,
                 (code, msg)->new RunScriptResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2741,6 +2805,70 @@ resolved.
             exceptionDetails = null;
         }
     }
+    /**Enables or disables async call stacks tracking.*/
+    public SetAsyncCallStackDepthParameter setAsyncCallStackDepth() { final SetAsyncCallStackDepthParameter v = new SetAsyncCallStackDepthParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setAsyncCallStackDepth.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetAsyncCallStackDepthParameter extends CommandBase {
+        /**Maximum depth of async call stacks. Setting to `0` will effectively disable collecting async
+call stacks (default).*/
+        private Integer maxDepth;
+        public final SetAsyncCallStackDepthParameter maxDepth(Integer maxDepth) { this.maxDepth = maxDepth; return this; }
+        public final SetAsyncCallStackDepthParameter setMaxDepth(Integer maxDepth) { return maxDepth(maxDepth); }
+        public final Integer maxDepth() { return maxDepth; }
+        public final Integer getMaxDepth() { return maxDepth(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (maxDepth == null) throw new IllegalArgumentException("Runtime.SetAsyncCallStackDepthParameter.maxDepth is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"maxDepth\":").append(maxDepth);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetAsyncCallStackDepthParameter() {}
+        public SetAsyncCallStackDepthParameter(
+            @JsonProperty("maxDepth")Integer maxDepth
+        ) {
+            this();
+            this.maxDepth = maxDepth;
+        }
+        public CompletableFuture<SetAsyncCallStackDepthResult> call() {
+            return super.call("Runtime.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class,
+                (code, msg)->new SetAsyncCallStackDepthResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetAsyncCallStackDepthResult> callAsync() {
+            return super.callAsync("Runtime.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class,
+                (code, msg)->new SetAsyncCallStackDepthResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetAsyncCallStackDepthResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.setAsyncCallStackDepth", SetAsyncCallStackDepthResult.class,
+                (code, msg)->new SetAsyncCallStackDepthResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setAsyncCallStackDepth.*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetAsyncCallStackDepthResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetAsyncCallStackDepthResult() { super(); }
+        public SetAsyncCallStackDepthResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
     /**&lt;No document in protocol.&gt;
     <p><strong>Experimental.</strong></p>*/
     public SetCustomObjectFormatterEnabledParameter setCustomObjectFormatterEnabled() { final SetCustomObjectFormatterEnabledParameter v = new SetCustomObjectFormatterEnabledParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
@@ -2778,8 +2906,12 @@ resolved.
             return super.call("Runtime.setCustomObjectFormatterEnabled", SetCustomObjectFormatterEnabledResult.class,
                 (code, msg)->new SetCustomObjectFormatterEnabledResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetCustomObjectFormatterEnabledResult> call(Executor exec) {
-            return super.call("Runtime.setCustomObjectFormatterEnabled", SetCustomObjectFormatterEnabledResult.class,
+        public CompletableFuture<SetCustomObjectFormatterEnabledResult> callAsync() {
+            return super.callAsync("Runtime.setCustomObjectFormatterEnabled", SetCustomObjectFormatterEnabledResult.class,
+                (code, msg)->new SetCustomObjectFormatterEnabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetCustomObjectFormatterEnabledResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.setCustomObjectFormatterEnabled", SetCustomObjectFormatterEnabledResult.class,
                 (code, msg)->new SetCustomObjectFormatterEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2800,6 +2932,72 @@ resolved.
         }
         public SetCustomObjectFormatterEnabledResult() { super(); }
         public SetCustomObjectFormatterEnabledResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**&lt;No document in protocol.&gt;
+    <p><strong>Experimental.</strong></p>*/
+    public SetMaxCallStackSizeToCaptureParameter setMaxCallStackSizeToCapture() { final SetMaxCallStackSizeToCaptureParameter v = new SetMaxCallStackSizeToCaptureParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setMaxCallStackSizeToCapture.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetMaxCallStackSizeToCaptureParameter extends CommandBase {
+        /**&lt;No document in protocol.&gt;*/
+        private Integer size;
+        public final SetMaxCallStackSizeToCaptureParameter size(Integer size) { this.size = size; return this; }
+        public final SetMaxCallStackSizeToCaptureParameter setSize(Integer size) { return size(size); }
+        public final Integer size() { return size; }
+        public final Integer getSize() { return size(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (size == null) throw new IllegalArgumentException("Runtime.SetMaxCallStackSizeToCaptureParameter.size is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"size\":").append(size);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetMaxCallStackSizeToCaptureParameter() {}
+        public SetMaxCallStackSizeToCaptureParameter(
+            @JsonProperty("size")Integer size
+        ) {
+            this();
+            this.size = size;
+        }
+        public CompletableFuture<SetMaxCallStackSizeToCaptureResult> call() {
+            return super.call("Runtime.setMaxCallStackSizeToCapture", SetMaxCallStackSizeToCaptureResult.class,
+                (code, msg)->new SetMaxCallStackSizeToCaptureResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetMaxCallStackSizeToCaptureResult> callAsync() {
+            return super.callAsync("Runtime.setMaxCallStackSizeToCapture", SetMaxCallStackSizeToCaptureResult.class,
+                (code, msg)->new SetMaxCallStackSizeToCaptureResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetMaxCallStackSizeToCaptureResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.setMaxCallStackSizeToCapture", SetMaxCallStackSizeToCaptureResult.class,
+                (code, msg)->new SetMaxCallStackSizeToCaptureResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setMaxCallStackSizeToCapture.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetMaxCallStackSizeToCaptureResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetMaxCallStackSizeToCaptureResult() { super(); }
+        public SetMaxCallStackSizeToCaptureResult(ResultBase.FailedResult e) {
             super(e);
         }
     }
@@ -2827,8 +3025,12 @@ Will cancel the termination when the outer-most script execution ends.
             return super.call("Runtime.terminateExecution", TerminateExecutionResult.class,
                 (code, msg)->new TerminateExecutionResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<TerminateExecutionResult> call(Executor exec) {
-            return super.call("Runtime.terminateExecution", TerminateExecutionResult.class,
+        public CompletableFuture<TerminateExecutionResult> callAsync() {
+            return super.callAsync("Runtime.terminateExecution", TerminateExecutionResult.class,
+                (code, msg)->new TerminateExecutionResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<TerminateExecutionResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.terminateExecution", TerminateExecutionResult.class,
                 (code, msg)->new TerminateExecutionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2851,6 +3053,210 @@ Will cancel the termination when the outer-most script execution ends.
         public TerminateExecutionResult(ResultBase.FailedResult e) {
             super(e);
         }
+    }
+    /**If executionContextId is empty, adds binding with the given name on the
+global objects of all inspected contexts, including those created later,
+bindings survive reloads.
+If executionContextId is specified, adds binding only on global object of
+given execution context.
+Binding function takes exactly one argument, this argument should be string,
+in case of any other input, function throws an exception.
+Each binding function call produces Runtime.bindingCalled notification.
+    <p><strong>Experimental.</strong></p>*/
+    public AddBindingParameter addBinding() { final AddBindingParameter v = new AddBindingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of addBinding.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class AddBindingParameter extends CommandBase {
+        /**&lt;No document in protocol.&gt;*/
+        private String name;
+        /**&lt;No document in protocol.&gt;
+        <em>Optional.</em>*/
+        private ExecutionContextId executionContextId;
+        public final AddBindingParameter name(String name) { this.name = name; return this; }
+        public final AddBindingParameter setName(String name) { return name(name); }
+        public final String name() { return name; }
+        public final String getName() { return name(); }
+        public final AddBindingParameter executionContextId(@Nullable ExecutionContextId executionContextId) { this.executionContextId = executionContextId; return this; }
+        public final AddBindingParameter optExecutionContextId(@Nullable ExecutionContextId executionContextId) { return executionContextId(executionContextId); }
+        public final ExecutionContextId executionContextId() { return executionContextId; }
+        public final ExecutionContextId getExecutionContextId() { return executionContextId(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (name == null) throw new IllegalArgumentException("Runtime.AddBindingParameter.name is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            if (executionContextId != null) executionContextId.toJson(strBuilder.append(",\"executionContextId\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public AddBindingParameter() {}
+        public AddBindingParameter(
+            @JsonProperty("name")String name,
+            @Nullable @JsonProperty("executionContextId")ExecutionContextId executionContextId
+        ) {
+            this();
+            this.name = name;
+            this.executionContextId = executionContextId;
+        }
+        public CompletableFuture<AddBindingResult> call() {
+            return super.call("Runtime.addBinding", AddBindingResult.class,
+                (code, msg)->new AddBindingResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AddBindingResult> callAsync() {
+            return super.callAsync("Runtime.addBinding", AddBindingResult.class,
+                (code, msg)->new AddBindingResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AddBindingResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.addBinding", AddBindingResult.class,
+                (code, msg)->new AddBindingResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of addBinding.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class AddBindingResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public AddBindingResult() { super(); }
+        public AddBindingResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**This method does not remove binding function from global object but
+unsubscribes current runtime agent from Runtime.bindingCalled notifications.
+    <p><strong>Experimental.</strong></p>*/
+    public RemoveBindingParameter removeBinding() { final RemoveBindingParameter v = new RemoveBindingParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of removeBinding.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class RemoveBindingParameter extends CommandBase {
+        /**&lt;No document in protocol.&gt;*/
+        private String name;
+        public final RemoveBindingParameter name(String name) { this.name = name; return this; }
+        public final RemoveBindingParameter setName(String name) { return name(name); }
+        public final String name() { return name; }
+        public final String getName() { return name(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (name == null) throw new IllegalArgumentException("Runtime.RemoveBindingParameter.name is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public RemoveBindingParameter() {}
+        public RemoveBindingParameter(
+            @JsonProperty("name")String name
+        ) {
+            this();
+            this.name = name;
+        }
+        public CompletableFuture<RemoveBindingResult> call() {
+            return super.call("Runtime.removeBinding", RemoveBindingResult.class,
+                (code, msg)->new RemoveBindingResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RemoveBindingResult> callAsync() {
+            return super.callAsync("Runtime.removeBinding", RemoveBindingResult.class,
+                (code, msg)->new RemoveBindingResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RemoveBindingResult> callAsync(Executor exec) {
+            return super.callAsync("Runtime.removeBinding", RemoveBindingResult.class,
+                (code, msg)->new RemoveBindingResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of removeBinding.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class RemoveBindingResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public RemoveBindingResult() { super(); }
+        public RemoveBindingResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Event parameter of Runtime.bindingCalled.
+    <p><strong>Experimental.</strong></p>
+     @see #onBindingCalled*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class BindingCalledEventParameter implements CommonDomainType {
+        /**&lt;No document in protocol.&gt;*/
+        private final String name;
+        /**&lt;No document in protocol.&gt;*/
+        private final String payload;
+        /**Identifier of the context where the call was made.*/
+        private final ExecutionContextId executionContextId;
+        public final String name() { return name; }
+        public final String getName() { return name(); }
+        public final String payload() { return payload; }
+        public final String getPayload() { return payload(); }
+        public final ExecutionContextId executionContextId() { return executionContextId; }
+        public final ExecutionContextId getExecutionContextId() { return executionContextId(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"payload\":").append('"').append(DomainBase.escapeJson(payload)).append('"');
+            executionContextId.toJson(strBuilder.append(",\"executionContextId\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        BindingCalledEventParameter(
+            @JsonProperty("name")String name,
+            @JsonProperty("payload")String payload,
+            @JsonProperty("executionContextId")ExecutionContextId executionContextId
+        ) {
+            this.name = name;
+            this.payload = payload;
+            this.executionContextId = executionContextId;
+        }
+    }
+    /**Notification is issued every time when binding is called.
+    <p><strong>Experimental.</strong></p>
+     @see BindingCalledEventParameter*/
+    public void onBindingCalled(@Nullable Consumer<BindingCalledEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Runtime.bindingCalled", node -> {
+                BindingCalledEventParameter param;
+                try { param = EventCenter.deserializeJson(node, BindingCalledEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Runtime.bindingCalled", null);
     }
     /**Event parameter of Runtime.consoleAPICalled.
      @see #onConsoleAPICalled*/

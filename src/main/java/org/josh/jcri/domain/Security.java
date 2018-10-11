@@ -312,8 +312,12 @@ request and cancel will cancel the request.*/
             return super.call("Security.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Security.disable", DisableResult.class,
+        public CompletableFuture<DisableResult> callAsync() {
+            return super.callAsync("Security.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DisableResult> callAsync(Executor exec) {
+            return super.callAsync("Security.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -357,8 +361,12 @@ request and cancel will cancel the request.*/
             return super.call("Security.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Security.enable", EnableResult.class,
+        public CompletableFuture<EnableResult> callAsync() {
+            return super.callAsync("Security.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EnableResult> callAsync(Executor exec) {
+            return super.callAsync("Security.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -418,8 +426,12 @@ request and cancel will cancel the request.*/
             return super.call("Security.setIgnoreCertificateErrors", SetIgnoreCertificateErrorsResult.class,
                 (code, msg)->new SetIgnoreCertificateErrorsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetIgnoreCertificateErrorsResult> call(Executor exec) {
-            return super.call("Security.setIgnoreCertificateErrors", SetIgnoreCertificateErrorsResult.class,
+        public CompletableFuture<SetIgnoreCertificateErrorsResult> callAsync() {
+            return super.callAsync("Security.setIgnoreCertificateErrors", SetIgnoreCertificateErrorsResult.class,
+                (code, msg)->new SetIgnoreCertificateErrorsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetIgnoreCertificateErrorsResult> callAsync(Executor exec) {
+            return super.callAsync("Security.setIgnoreCertificateErrors", SetIgnoreCertificateErrorsResult.class,
                 (code, msg)->new SetIgnoreCertificateErrorsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -490,8 +502,12 @@ request and cancel will cancel the request.*/
             return super.call("Security.handleCertificateError", HandleCertificateErrorResult.class,
                 (code, msg)->new HandleCertificateErrorResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<HandleCertificateErrorResult> call(Executor exec) {
-            return super.call("Security.handleCertificateError", HandleCertificateErrorResult.class,
+        public CompletableFuture<HandleCertificateErrorResult> callAsync() {
+            return super.callAsync("Security.handleCertificateError", HandleCertificateErrorResult.class,
+                (code, msg)->new HandleCertificateErrorResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<HandleCertificateErrorResult> callAsync(Executor exec) {
+            return super.callAsync("Security.handleCertificateError", HandleCertificateErrorResult.class,
                 (code, msg)->new HandleCertificateErrorResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -553,8 +569,12 @@ be handled by the DevTools client and should be answered with `handleCertificate
             return super.call("Security.setOverrideCertificateErrors", SetOverrideCertificateErrorsResult.class,
                 (code, msg)->new SetOverrideCertificateErrorsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetOverrideCertificateErrorsResult> call(Executor exec) {
-            return super.call("Security.setOverrideCertificateErrors", SetOverrideCertificateErrorsResult.class,
+        public CompletableFuture<SetOverrideCertificateErrorsResult> callAsync() {
+            return super.callAsync("Security.setOverrideCertificateErrors", SetOverrideCertificateErrorsResult.class,
+                (code, msg)->new SetOverrideCertificateErrorsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetOverrideCertificateErrorsResult> callAsync(Executor exec) {
+            return super.callAsync("Security.setOverrideCertificateErrors", SetOverrideCertificateErrorsResult.class,
                 (code, msg)->new SetOverrideCertificateErrorsResult(ResultBase.ofError(code, msg)), exec);
         }
     }

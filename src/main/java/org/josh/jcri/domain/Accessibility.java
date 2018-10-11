@@ -670,8 +670,12 @@ elements other than parent/child/sibling.*/
             return super.call("Accessibility.getPartialAXTree", GetPartialAXTreeResult.class,
                 (code, msg)->new GetPartialAXTreeResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetPartialAXTreeResult> call(Executor exec) {
-            return super.call("Accessibility.getPartialAXTree", GetPartialAXTreeResult.class,
+        public CompletableFuture<GetPartialAXTreeResult> callAsync() {
+            return super.callAsync("Accessibility.getPartialAXTree", GetPartialAXTreeResult.class,
+                (code, msg)->new GetPartialAXTreeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetPartialAXTreeResult> callAsync(Executor exec) {
+            return super.callAsync("Accessibility.getPartialAXTree", GetPartialAXTreeResult.class,
                 (code, msg)->new GetPartialAXTreeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -706,6 +710,72 @@ children, if requested.*/
             this.nodes = nodes;
         }
         public GetPartialAXTreeResult(ResultBase.FailedResult e) {
+            super(e);
+            nodes = null;
+        }
+    }
+    /**Fetches the entire accessibility tree
+    <p><strong>Experimental.</strong></p>*/
+    public GetFullAXTreeParameter getFullAXTree() { final GetFullAXTreeParameter v = new GetFullAXTreeParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of getFullAXTree.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GetFullAXTreeParameter extends CommandBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GetFullAXTreeParameter() {}
+        public CompletableFuture<GetFullAXTreeResult> call() {
+            return super.call("Accessibility.getFullAXTree", GetFullAXTreeResult.class,
+                (code, msg)->new GetFullAXTreeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetFullAXTreeResult> callAsync() {
+            return super.callAsync("Accessibility.getFullAXTree", GetFullAXTreeResult.class,
+                (code, msg)->new GetFullAXTreeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetFullAXTreeResult> callAsync(Executor exec) {
+            return super.callAsync("Accessibility.getFullAXTree", GetFullAXTreeResult.class,
+                (code, msg)->new GetFullAXTreeResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of getFullAXTree.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GetFullAXTreeResult extends ResultBase {
+        /**&lt;No document in protocol.&gt;*/
+        private final List<AXNode> nodes;
+        public final List<AXNode> nodes() { return nodes; }
+        public final List<AXNode> getNodes() { return nodes(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+                        strBuilder.append("\"nodes\":[");
+            nodes.get(0).toJson(strBuilder);
+            for (int i = 1; i < nodes.size(); ++i)
+                nodes.get(i).toJson(strBuilder.append(','));
+            strBuilder.append(']');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GetFullAXTreeResult(
+            @JsonProperty("nodes")List<AXNode> nodes
+        ) {
+            this.nodes = nodes;
+        }
+        public GetFullAXTreeResult(ResultBase.FailedResult e) {
             super(e);
             nodes = null;
         }

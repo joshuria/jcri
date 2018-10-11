@@ -145,6 +145,40 @@ import javax.annotation.Nullable;
         }
     }
 
+    /**&lt;No document in protocol.&gt;
+    <p><strong>Experimental.</strong></p>*/
+    @ParametersAreNonnullByDefault public enum PermissionType implements CommonDomainType {
+        AccessibilityEvents("accessibilityEvents"),
+        AudioCapture("audioCapture"),
+        BackgroundSync("backgroundSync"),
+        ClipboardRead("clipboardRead"),
+        ClipboardWrite("clipboardWrite"),
+        DurableStorage("durableStorage"),
+        Flash("flash"),
+        Geolocation("geolocation"),
+        Midi("midi"),
+        MidiSysex("midiSysex"),
+        Notifications("notifications"),
+        PaymentHandler("paymentHandler"),
+        ProtectedMediaIdentifier("protectedMediaIdentifier"),
+        Sensors("sensors"),
+        VideoCapture("videoCapture");
+
+        private final String _value;
+        /**Convert string representation to type.
+         @throws IllegalArgumentException if given value cannot convert to enum type. */
+        @JsonCreator public static PermissionType of(String value) {
+            return Enum.valueOf(PermissionType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
+        }
+        PermissionType(String value) { _value = value; }
+        /**Check if parameter fields of method are all valid. */
+        @Override public void check() throws IllegalArgumentException { /* Need not check */ }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
+    }
+
     /**Chrome histogram bucket.
     <p><strong>Experimental.</strong></p>*/
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -260,6 +294,162 @@ import javax.annotation.Nullable;
             this.buckets = buckets;
         }
     }
+    /**Grant specific permissions to the given origin and reject all others.
+    <p><strong>Experimental.</strong></p>*/
+    public GrantPermissionsParameter grantPermissions() { final GrantPermissionsParameter v = new GrantPermissionsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of grantPermissions.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GrantPermissionsParameter extends CommandBase {
+        /**&lt;No document in protocol.&gt;*/
+        private String origin;
+        /**&lt;No document in protocol.&gt;*/
+        private List<PermissionType> permissions;
+        /**BrowserContext to override permissions. When omitted, default browser context is used.
+        <em>Optional.</em>*/
+        private Target.BrowserContextID browserContextId;
+        public final GrantPermissionsParameter origin(String origin) { this.origin = origin; return this; }
+        public final GrantPermissionsParameter setOrigin(String origin) { return origin(origin); }
+        public final String origin() { return origin; }
+        public final String getOrigin() { return origin(); }
+        public final GrantPermissionsParameter permissions(List<PermissionType> permissions) { this.permissions = permissions; return this; }
+        public final GrantPermissionsParameter setPermissions(List<PermissionType> permissions) { return permissions(permissions); }
+        public final List<PermissionType> permissions() { return permissions; }
+        public final List<PermissionType> getPermissions() { return permissions(); }
+        public final GrantPermissionsParameter browserContextId(@Nullable Target.BrowserContextID browserContextId) { this.browserContextId = browserContextId; return this; }
+        public final GrantPermissionsParameter optBrowserContextId(@Nullable Target.BrowserContextID browserContextId) { return browserContextId(browserContextId); }
+        public final Target.BrowserContextID browserContextId() { return browserContextId; }
+        public final Target.BrowserContextID getBrowserContextId() { return browserContextId(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (origin == null) throw new IllegalArgumentException("Browser.GrantPermissionsParameter.origin is necessary field.");
+            if (permissions == null) throw new IllegalArgumentException("Browser.GrantPermissionsParameter.permissions is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"origin\":").append('"').append(DomainBase.escapeJson(origin)).append('"');
+                        strBuilder.append(",\"permissions\":[");
+            permissions.get(0).toJson(strBuilder);
+            for (int i = 1; i < permissions.size(); ++i)
+                permissions.get(i).toJson(strBuilder.append(','));
+            strBuilder.append(']');
+            if (browserContextId != null) browserContextId.toJson(strBuilder.append(",\"browserContextId\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GrantPermissionsParameter() {}
+        public GrantPermissionsParameter(
+            @JsonProperty("origin")String origin,
+            @JsonProperty("permissions")List<PermissionType> permissions,
+            @Nullable @JsonProperty("browserContextId")Target.BrowserContextID browserContextId
+        ) {
+            this();
+            this.origin = origin;
+            this.permissions = permissions;
+            this.browserContextId = browserContextId;
+        }
+        public CompletableFuture<GrantPermissionsResult> call() {
+            return super.call("Browser.grantPermissions", GrantPermissionsResult.class,
+                (code, msg)->new GrantPermissionsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GrantPermissionsResult> callAsync() {
+            return super.callAsync("Browser.grantPermissions", GrantPermissionsResult.class,
+                (code, msg)->new GrantPermissionsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GrantPermissionsResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.grantPermissions", GrantPermissionsResult.class,
+                (code, msg)->new GrantPermissionsResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of grantPermissions.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GrantPermissionsResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GrantPermissionsResult() { super(); }
+        public GrantPermissionsResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Reset all permission management for all origins.
+    <p><strong>Experimental.</strong></p>*/
+    public ResetPermissionsParameter resetPermissions() { final ResetPermissionsParameter v = new ResetPermissionsParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of resetPermissions.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class ResetPermissionsParameter extends CommandBase {
+        /**BrowserContext to reset permissions. When omitted, default browser context is used.
+        <em>Optional.</em>*/
+        private Target.BrowserContextID browserContextId;
+        public final ResetPermissionsParameter browserContextId(@Nullable Target.BrowserContextID browserContextId) { this.browserContextId = browserContextId; return this; }
+        public final ResetPermissionsParameter optBrowserContextId(@Nullable Target.BrowserContextID browserContextId) { return browserContextId(browserContextId); }
+        public final Target.BrowserContextID browserContextId() { return browserContextId; }
+        public final Target.BrowserContextID getBrowserContextId() { return browserContextId(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            if (browserContextId != null) browserContextId.toJson(strBuilder.append("\"browserContextId\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public ResetPermissionsParameter() {}
+        public ResetPermissionsParameter(
+            @Nullable @JsonProperty("browserContextId")Target.BrowserContextID browserContextId
+        ) {
+            this();
+            this.browserContextId = browserContextId;
+        }
+        public CompletableFuture<ResetPermissionsResult> call() {
+            return super.call("Browser.resetPermissions", ResetPermissionsResult.class,
+                (code, msg)->new ResetPermissionsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ResetPermissionsResult> callAsync() {
+            return super.callAsync("Browser.resetPermissions", ResetPermissionsResult.class,
+                (code, msg)->new ResetPermissionsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ResetPermissionsResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.resetPermissions", ResetPermissionsResult.class,
+                (code, msg)->new ResetPermissionsResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of resetPermissions.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class ResetPermissionsResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public ResetPermissionsResult() { super(); }
+        public ResetPermissionsResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
     /**Close browser gracefully.*/
     public CloseParameter close() { final CloseParameter v = new CloseParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
     /**Parameter class of close.*/
@@ -281,8 +471,12 @@ import javax.annotation.Nullable;
             return super.call("Browser.close", CloseResult.class,
                 (code, msg)->new CloseResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CloseResult> call(Executor exec) {
-            return super.call("Browser.close", CloseResult.class,
+        public CompletableFuture<CloseResult> callAsync() {
+            return super.callAsync("Browser.close", CloseResult.class,
+                (code, msg)->new CloseResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CloseResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.close", CloseResult.class,
                 (code, msg)->new CloseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -302,6 +496,58 @@ import javax.annotation.Nullable;
         }
         public CloseResult() { super(); }
         public CloseResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Crashes browser on the main thread.
+    <p><strong>Experimental.</strong></p>*/
+    public CrashParameter crash() { final CrashParameter v = new CrashParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of crash.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class CrashParameter extends CommandBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public CrashParameter() {}
+        public CompletableFuture<CrashResult> call() {
+            return super.call("Browser.crash", CrashResult.class,
+                (code, msg)->new CrashResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CrashResult> callAsync() {
+            return super.callAsync("Browser.crash", CrashResult.class,
+                (code, msg)->new CrashResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CrashResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.crash", CrashResult.class,
+                (code, msg)->new CrashResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of crash.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class CrashResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public CrashResult() { super(); }
+        public CrashResult(ResultBase.FailedResult e) {
             super(e);
         }
     }
@@ -326,8 +572,12 @@ import javax.annotation.Nullable;
             return super.call("Browser.getVersion", GetVersionResult.class,
                 (code, msg)->new GetVersionResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetVersionResult> call(Executor exec) {
-            return super.call("Browser.getVersion", GetVersionResult.class,
+        public CompletableFuture<GetVersionResult> callAsync() {
+            return super.callAsync("Browser.getVersion", GetVersionResult.class,
+                (code, msg)->new GetVersionResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetVersionResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.getVersion", GetVersionResult.class,
                 (code, msg)->new GetVersionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -416,8 +666,12 @@ import javax.annotation.Nullable;
             return super.call("Browser.getBrowserCommandLine", GetBrowserCommandLineResult.class,
                 (code, msg)->new GetBrowserCommandLineResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetBrowserCommandLineResult> call(Executor exec) {
-            return super.call("Browser.getBrowserCommandLine", GetBrowserCommandLineResult.class,
+        public CompletableFuture<GetBrowserCommandLineResult> callAsync() {
+            return super.callAsync("Browser.getBrowserCommandLine", GetBrowserCommandLineResult.class,
+                (code, msg)->new GetBrowserCommandLineResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetBrowserCommandLineResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.getBrowserCommandLine", GetBrowserCommandLineResult.class,
                 (code, msg)->new GetBrowserCommandLineResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -467,10 +721,17 @@ substring in their name are extracted. An empty or absent query returns
 all histograms.
         <em>Optional.</em>*/
         private String query;
+        /**If true, retrieve delta since last call.
+        <em>Optional.</em>*/
+        private Boolean delta;
         public final GetHistogramsParameter query(@Nullable String query) { this.query = query; return this; }
         public final GetHistogramsParameter optQuery(@Nullable String query) { return query(query); }
         public final String query() { return query; }
         public final String getQuery() { return query(); }
+        public final GetHistogramsParameter delta(@Nullable Boolean delta) { this.delta = delta; return this; }
+        public final GetHistogramsParameter optDelta(@Nullable Boolean delta) { return delta(delta); }
+        public final Boolean delta() { return delta; }
+        public final Boolean getDelta() { return delta(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -480,22 +741,29 @@ all histograms.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             if (query != null) strBuilder.append("\"query\":").append('"').append(DomainBase.escapeJson(query)).append('"');
+            if (delta != null) strBuilder.append(",\"delta\":").append(delta);
             strBuilder.append('}');
             return strBuilder;
         }
         public GetHistogramsParameter() {}
         public GetHistogramsParameter(
-            @Nullable @JsonProperty("query")String query
+            @Nullable @JsonProperty("query")String query,
+            @Nullable @JsonProperty("delta")Boolean delta
         ) {
             this();
             this.query = query;
+            this.delta = delta;
         }
         public CompletableFuture<GetHistogramsResult> call() {
             return super.call("Browser.getHistograms", GetHistogramsResult.class,
                 (code, msg)->new GetHistogramsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetHistogramsResult> call(Executor exec) {
-            return super.call("Browser.getHistograms", GetHistogramsResult.class,
+        public CompletableFuture<GetHistogramsResult> callAsync() {
+            return super.callAsync("Browser.getHistograms", GetHistogramsResult.class,
+                (code, msg)->new GetHistogramsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetHistogramsResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.getHistograms", GetHistogramsResult.class,
                 (code, msg)->new GetHistogramsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -542,10 +810,17 @@ all histograms.
     @ParametersAreNonnullByDefault public static class GetHistogramParameter extends CommandBase {
         /**Requested histogram name.*/
         private String name;
+        /**If true, retrieve delta since last call.
+        <em>Optional.</em>*/
+        private Boolean delta;
         public final GetHistogramParameter name(String name) { this.name = name; return this; }
         public final GetHistogramParameter setName(String name) { return name(name); }
         public final String name() { return name; }
         public final String getName() { return name(); }
+        public final GetHistogramParameter delta(@Nullable Boolean delta) { this.delta = delta; return this; }
+        public final GetHistogramParameter optDelta(@Nullable Boolean delta) { return delta(delta); }
+        public final Boolean delta() { return delta; }
+        public final Boolean getDelta() { return delta(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -556,22 +831,29 @@ all histograms.
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            if (delta != null) strBuilder.append(",\"delta\":").append(delta);
             strBuilder.append('}');
             return strBuilder;
         }
         public GetHistogramParameter() {}
         public GetHistogramParameter(
-            @JsonProperty("name")String name
+            @JsonProperty("name")String name,
+            @Nullable @JsonProperty("delta")Boolean delta
         ) {
             this();
             this.name = name;
+            this.delta = delta;
         }
         public CompletableFuture<GetHistogramResult> call() {
             return super.call("Browser.getHistogram", GetHistogramResult.class,
                 (code, msg)->new GetHistogramResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetHistogramResult> call(Executor exec) {
-            return super.call("Browser.getHistogram", GetHistogramResult.class,
+        public CompletableFuture<GetHistogramResult> callAsync() {
+            return super.callAsync("Browser.getHistogram", GetHistogramResult.class,
+                (code, msg)->new GetHistogramResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetHistogramResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.getHistogram", GetHistogramResult.class,
                 (code, msg)->new GetHistogramResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -642,8 +924,12 @@ all histograms.
             return super.call("Browser.getWindowBounds", GetWindowBoundsResult.class,
                 (code, msg)->new GetWindowBoundsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetWindowBoundsResult> call(Executor exec) {
-            return super.call("Browser.getWindowBounds", GetWindowBoundsResult.class,
+        public CompletableFuture<GetWindowBoundsResult> callAsync() {
+            return super.callAsync("Browser.getWindowBounds", GetWindowBoundsResult.class,
+                (code, msg)->new GetWindowBoundsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetWindowBoundsResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.getWindowBounds", GetWindowBoundsResult.class,
                 (code, msg)->new GetWindowBoundsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -715,8 +1001,12 @@ position and size are returned.*/
             return super.call("Browser.getWindowForTarget", GetWindowForTargetResult.class,
                 (code, msg)->new GetWindowForTargetResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetWindowForTargetResult> call(Executor exec) {
-            return super.call("Browser.getWindowForTarget", GetWindowForTargetResult.class,
+        public CompletableFuture<GetWindowForTargetResult> callAsync() {
+            return super.callAsync("Browser.getWindowForTarget", GetWindowForTargetResult.class,
+                (code, msg)->new GetWindowForTargetResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetWindowForTargetResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.getWindowForTarget", GetWindowForTargetResult.class,
                 (code, msg)->new GetWindowForTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -807,8 +1097,12 @@ with 'left', 'top', 'width' or 'height'. Leaves unspecified fields unchanged.*/
             return super.call("Browser.setWindowBounds", SetWindowBoundsResult.class,
                 (code, msg)->new SetWindowBoundsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetWindowBoundsResult> call(Executor exec) {
-            return super.call("Browser.setWindowBounds", SetWindowBoundsResult.class,
+        public CompletableFuture<SetWindowBoundsResult> callAsync() {
+            return super.callAsync("Browser.setWindowBounds", SetWindowBoundsResult.class,
+                (code, msg)->new SetWindowBoundsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetWindowBoundsResult> callAsync(Executor exec) {
+            return super.callAsync("Browser.setWindowBounds", SetWindowBoundsResult.class,
                 (code, msg)->new SetWindowBoundsResult(ResultBase.ofError(code, msg)), exec);
         }
     }

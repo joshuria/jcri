@@ -353,8 +353,12 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
             return super.call("Input.dispatchKeyEvent", DispatchKeyEventResult.class,
                 (code, msg)->new DispatchKeyEventResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DispatchKeyEventResult> call(Executor exec) {
-            return super.call("Input.dispatchKeyEvent", DispatchKeyEventResult.class,
+        public CompletableFuture<DispatchKeyEventResult> callAsync() {
+            return super.callAsync("Input.dispatchKeyEvent", DispatchKeyEventResult.class,
+                (code, msg)->new DispatchKeyEventResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DispatchKeyEventResult> callAsync(Executor exec) {
+            return super.callAsync("Input.dispatchKeyEvent", DispatchKeyEventResult.class,
                 (code, msg)->new DispatchKeyEventResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -374,6 +378,73 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
         }
         public DispatchKeyEventResult() { super(); }
         public DispatchKeyEventResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**This method emulates inserting text that doesn't come from a key press,
+for example an emoji keyboard or an IME.
+    <p><strong>Experimental.</strong></p>*/
+    public InsertTextParameter insertText() { final InsertTextParameter v = new InsertTextParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of insertText.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class InsertTextParameter extends CommandBase {
+        /**The text to insert.*/
+        private String text;
+        public final InsertTextParameter text(String text) { this.text = text; return this; }
+        public final InsertTextParameter setText(String text) { return text(text); }
+        public final String text() { return text; }
+        public final String getText() { return text(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (text == null) throw new IllegalArgumentException("Input.InsertTextParameter.text is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"text\":").append('"').append(DomainBase.escapeJson(text)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public InsertTextParameter() {}
+        public InsertTextParameter(
+            @JsonProperty("text")String text
+        ) {
+            this();
+            this.text = text;
+        }
+        public CompletableFuture<InsertTextResult> call() {
+            return super.call("Input.insertText", InsertTextResult.class,
+                (code, msg)->new InsertTextResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<InsertTextResult> callAsync() {
+            return super.callAsync("Input.insertText", InsertTextResult.class,
+                (code, msg)->new InsertTextResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<InsertTextResult> callAsync(Executor exec) {
+            return super.callAsync("Input.insertText", InsertTextResult.class,
+                (code, msg)->new InsertTextResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of insertText.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class InsertTextResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public InsertTextResult() { super(); }
+        public InsertTextResult(ResultBase.FailedResult e) {
             super(e);
         }
     }
@@ -534,8 +605,12 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
             return super.call("Input.dispatchMouseEvent", DispatchMouseEventResult.class,
                 (code, msg)->new DispatchMouseEventResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DispatchMouseEventResult> call(Executor exec) {
-            return super.call("Input.dispatchMouseEvent", DispatchMouseEventResult.class,
+        public CompletableFuture<DispatchMouseEventResult> callAsync() {
+            return super.callAsync("Input.dispatchMouseEvent", DispatchMouseEventResult.class,
+                (code, msg)->new DispatchMouseEventResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DispatchMouseEventResult> callAsync(Executor exec) {
+            return super.callAsync("Input.dispatchMouseEvent", DispatchMouseEventResult.class,
                 (code, msg)->new DispatchMouseEventResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -651,8 +726,12 @@ one by one.*/
             return super.call("Input.dispatchTouchEvent", DispatchTouchEventResult.class,
                 (code, msg)->new DispatchTouchEventResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DispatchTouchEventResult> call(Executor exec) {
-            return super.call("Input.dispatchTouchEvent", DispatchTouchEventResult.class,
+        public CompletableFuture<DispatchTouchEventResult> callAsync() {
+            return super.callAsync("Input.dispatchTouchEvent", DispatchTouchEventResult.class,
+                (code, msg)->new DispatchTouchEventResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DispatchTouchEventResult> callAsync(Executor exec) {
+            return super.callAsync("Input.dispatchTouchEvent", DispatchTouchEventResult.class,
                 (code, msg)->new DispatchTouchEventResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -833,8 +912,12 @@ one by one.*/
             return super.call("Input.emulateTouchFromMouseEvent", EmulateTouchFromMouseEventResult.class,
                 (code, msg)->new EmulateTouchFromMouseEventResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EmulateTouchFromMouseEventResult> call(Executor exec) {
-            return super.call("Input.emulateTouchFromMouseEvent", EmulateTouchFromMouseEventResult.class,
+        public CompletableFuture<EmulateTouchFromMouseEventResult> callAsync() {
+            return super.callAsync("Input.emulateTouchFromMouseEvent", EmulateTouchFromMouseEventResult.class,
+                (code, msg)->new EmulateTouchFromMouseEventResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EmulateTouchFromMouseEventResult> callAsync(Executor exec) {
+            return super.callAsync("Input.emulateTouchFromMouseEvent", EmulateTouchFromMouseEventResult.class,
                 (code, msg)->new EmulateTouchFromMouseEventResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -893,8 +976,12 @@ one by one.*/
             return super.call("Input.setIgnoreInputEvents", SetIgnoreInputEventsResult.class,
                 (code, msg)->new SetIgnoreInputEventsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetIgnoreInputEventsResult> call(Executor exec) {
-            return super.call("Input.setIgnoreInputEvents", SetIgnoreInputEventsResult.class,
+        public CompletableFuture<SetIgnoreInputEventsResult> callAsync() {
+            return super.callAsync("Input.setIgnoreInputEvents", SetIgnoreInputEventsResult.class,
+                (code, msg)->new SetIgnoreInputEventsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetIgnoreInputEventsResult> callAsync(Executor exec) {
+            return super.callAsync("Input.setIgnoreInputEvents", SetIgnoreInputEventsResult.class,
                 (code, msg)->new SetIgnoreInputEventsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -995,8 +1082,12 @@ for the preferred input type).
             return super.call("Input.synthesizePinchGesture", SynthesizePinchGestureResult.class,
                 (code, msg)->new SynthesizePinchGestureResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SynthesizePinchGestureResult> call(Executor exec) {
-            return super.call("Input.synthesizePinchGesture", SynthesizePinchGestureResult.class,
+        public CompletableFuture<SynthesizePinchGestureResult> callAsync() {
+            return super.callAsync("Input.synthesizePinchGesture", SynthesizePinchGestureResult.class,
+                (code, msg)->new SynthesizePinchGestureResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SynthesizePinchGestureResult> callAsync(Executor exec) {
+            return super.callAsync("Input.synthesizePinchGesture", SynthesizePinchGestureResult.class,
                 (code, msg)->new SynthesizePinchGestureResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1170,8 +1261,12 @@ for the preferred input type).
             return super.call("Input.synthesizeScrollGesture", SynthesizeScrollGestureResult.class,
                 (code, msg)->new SynthesizeScrollGestureResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SynthesizeScrollGestureResult> call(Executor exec) {
-            return super.call("Input.synthesizeScrollGesture", SynthesizeScrollGestureResult.class,
+        public CompletableFuture<SynthesizeScrollGestureResult> callAsync() {
+            return super.callAsync("Input.synthesizeScrollGesture", SynthesizeScrollGestureResult.class,
+                (code, msg)->new SynthesizeScrollGestureResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SynthesizeScrollGestureResult> callAsync(Executor exec) {
+            return super.callAsync("Input.synthesizeScrollGesture", SynthesizeScrollGestureResult.class,
                 (code, msg)->new SynthesizeScrollGestureResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1273,8 +1368,12 @@ for the preferred input type).
             return super.call("Input.synthesizeTapGesture", SynthesizeTapGestureResult.class,
                 (code, msg)->new SynthesizeTapGestureResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SynthesizeTapGestureResult> call(Executor exec) {
-            return super.call("Input.synthesizeTapGesture", SynthesizeTapGestureResult.class,
+        public CompletableFuture<SynthesizeTapGestureResult> callAsync() {
+            return super.callAsync("Input.synthesizeTapGesture", SynthesizeTapGestureResult.class,
+                (code, msg)->new SynthesizeTapGestureResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SynthesizeTapGestureResult> callAsync(Executor exec) {
+            return super.callAsync("Input.synthesizeTapGesture", SynthesizeTapGestureResult.class,
                 (code, msg)->new SynthesizeTapGestureResult(ResultBase.ofError(code, msg)), exec);
         }
     }

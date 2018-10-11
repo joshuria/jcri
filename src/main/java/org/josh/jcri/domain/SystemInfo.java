@@ -176,8 +176,12 @@ import javax.annotation.Nullable;
             return super.call("SystemInfo.getInfo", GetInfoResult.class,
                 (code, msg)->new GetInfoResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetInfoResult> call(Executor exec) {
-            return super.call("SystemInfo.getInfo", GetInfoResult.class,
+        public CompletableFuture<GetInfoResult> callAsync() {
+            return super.callAsync("SystemInfo.getInfo", GetInfoResult.class,
+                (code, msg)->new GetInfoResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetInfoResult> callAsync(Executor exec) {
+            return super.callAsync("SystemInfo.getInfo", GetInfoResult.class,
                 (code, msg)->new GetInfoResult(ResultBase.ofError(code, msg)), exec);
         }
     }

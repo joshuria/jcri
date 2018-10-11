@@ -107,14 +107,21 @@ import javax.annotation.Nullable;
     @ParametersAreNonnullByDefault public static class SamplingProfile implements CommonDomainType {
         /**&lt;No document in protocol.&gt;*/
         private List<SamplingProfileNode> samples;
+        /**&lt;No document in protocol.&gt;*/
+        private List<Module> modules;
         public final SamplingProfile samples(List<SamplingProfileNode> samples) { this.samples = samples; return this; }
         public final SamplingProfile setSamples(List<SamplingProfileNode> samples) { return samples(samples); }
         public final List<SamplingProfileNode> samples() { return samples; }
         public final List<SamplingProfileNode> getSamples() { return samples(); }
+        public final SamplingProfile modules(List<Module> modules) { this.modules = modules; return this; }
+        public final SamplingProfile setModules(List<Module> modules) { return modules(modules); }
+        public final List<Module> modules() { return modules; }
+        public final List<Module> getModules() { return modules(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
             if (samples == null) throw new IllegalArgumentException("Memory.SamplingProfile.samples is necessary field.");
+            if (modules == null) throw new IllegalArgumentException("Memory.SamplingProfile.modules is necessary field.");
         }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
@@ -125,14 +132,82 @@ import javax.annotation.Nullable;
             for (int i = 1; i < samples.size(); ++i)
                 samples.get(i).toJson(strBuilder.append(','));
             strBuilder.append(']');
+                        strBuilder.append(",\"modules\":[");
+            modules.get(0).toJson(strBuilder);
+            for (int i = 1; i < modules.size(); ++i)
+                modules.get(i).toJson(strBuilder.append(','));
+            strBuilder.append(']');
             strBuilder.append('}');
             return strBuilder;
         }
         public SamplingProfile() {}
         public SamplingProfile(
-            @JsonProperty("samples")List<SamplingProfileNode> samples
+            @JsonProperty("samples")List<SamplingProfileNode> samples,
+            @JsonProperty("modules")List<Module> modules
         ) {
             this.samples = samples;
+            this.modules = modules;
+        }
+    }
+
+    /**Executable module information*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class Module implements CommonDomainType {
+        /**Name of the module.*/
+        private String name;
+        /**UUID of the module.*/
+        private String uuid;
+        /**Base address where the module is loaded into memory. Encoded as a decimal
+or hexadecimal (0x prefixed) string.*/
+        private String baseAddress;
+        /**Size of the module in bytes.*/
+        private Double size;
+        public final Module name(String name) { this.name = name; return this; }
+        public final Module setName(String name) { return name(name); }
+        public final String name() { return name; }
+        public final String getName() { return name(); }
+        public final Module uuid(String uuid) { this.uuid = uuid; return this; }
+        public final Module setUuid(String uuid) { return uuid(uuid); }
+        public final String uuid() { return uuid; }
+        public final String getUuid() { return uuid(); }
+        public final Module baseAddress(String baseAddress) { this.baseAddress = baseAddress; return this; }
+        public final Module setBaseAddress(String baseAddress) { return baseAddress(baseAddress); }
+        public final String baseAddress() { return baseAddress; }
+        public final String getBaseAddress() { return baseAddress(); }
+        public final Module size(Double size) { this.size = size; return this; }
+        public final Module setSize(Double size) { return size(size); }
+        public final Double size() { return size; }
+        public final Double getSize() { return size(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (name == null) throw new IllegalArgumentException("Memory.Module.name is necessary field.");
+            if (uuid == null) throw new IllegalArgumentException("Memory.Module.uuid is necessary field.");
+            if (baseAddress == null) throw new IllegalArgumentException("Memory.Module.baseAddress is necessary field.");
+            if (size == null) throw new IllegalArgumentException("Memory.Module.size is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"name\":").append('"').append(DomainBase.escapeJson(name)).append('"');
+            strBuilder.append(",\"uuid\":").append('"').append(DomainBase.escapeJson(uuid)).append('"');
+            strBuilder.append(",\"baseAddress\":").append('"').append(DomainBase.escapeJson(baseAddress)).append('"');
+            strBuilder.append(",\"size\":").append(size);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public Module() {}
+        public Module(
+            @JsonProperty("name")String name,
+            @JsonProperty("uuid")String uuid,
+            @JsonProperty("baseAddress")String baseAddress,
+            @JsonProperty("size")Double size
+        ) {
+            this.name = name;
+            this.uuid = uuid;
+            this.baseAddress = baseAddress;
+            this.size = size;
         }
     }
     /**&lt;No document in protocol.&gt;*/
@@ -156,8 +231,12 @@ import javax.annotation.Nullable;
             return super.call("Memory.getDOMCounters", GetDOMCountersResult.class,
                 (code, msg)->new GetDOMCountersResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetDOMCountersResult> call(Executor exec) {
-            return super.call("Memory.getDOMCounters", GetDOMCountersResult.class,
+        public CompletableFuture<GetDOMCountersResult> callAsync() {
+            return super.callAsync("Memory.getDOMCounters", GetDOMCountersResult.class,
+                (code, msg)->new GetDOMCountersResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetDOMCountersResult> callAsync(Executor exec) {
+            return super.callAsync("Memory.getDOMCounters", GetDOMCountersResult.class,
                 (code, msg)->new GetDOMCountersResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -227,8 +306,12 @@ import javax.annotation.Nullable;
             return super.call("Memory.prepareForLeakDetection", PrepareForLeakDetectionResult.class,
                 (code, msg)->new PrepareForLeakDetectionResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<PrepareForLeakDetectionResult> call(Executor exec) {
-            return super.call("Memory.prepareForLeakDetection", PrepareForLeakDetectionResult.class,
+        public CompletableFuture<PrepareForLeakDetectionResult> callAsync() {
+            return super.callAsync("Memory.prepareForLeakDetection", PrepareForLeakDetectionResult.class,
+                (code, msg)->new PrepareForLeakDetectionResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<PrepareForLeakDetectionResult> callAsync(Executor exec) {
+            return super.callAsync("Memory.prepareForLeakDetection", PrepareForLeakDetectionResult.class,
                 (code, msg)->new PrepareForLeakDetectionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -286,8 +369,12 @@ import javax.annotation.Nullable;
             return super.call("Memory.setPressureNotificationsSuppressed", SetPressureNotificationsSuppressedResult.class,
                 (code, msg)->new SetPressureNotificationsSuppressedResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetPressureNotificationsSuppressedResult> call(Executor exec) {
-            return super.call("Memory.setPressureNotificationsSuppressed", SetPressureNotificationsSuppressedResult.class,
+        public CompletableFuture<SetPressureNotificationsSuppressedResult> callAsync() {
+            return super.callAsync("Memory.setPressureNotificationsSuppressed", SetPressureNotificationsSuppressedResult.class,
+                (code, msg)->new SetPressureNotificationsSuppressedResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetPressureNotificationsSuppressedResult> callAsync(Executor exec) {
+            return super.callAsync("Memory.setPressureNotificationsSuppressed", SetPressureNotificationsSuppressedResult.class,
                 (code, msg)->new SetPressureNotificationsSuppressedResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -345,8 +432,12 @@ import javax.annotation.Nullable;
             return super.call("Memory.simulatePressureNotification", SimulatePressureNotificationResult.class,
                 (code, msg)->new SimulatePressureNotificationResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SimulatePressureNotificationResult> call(Executor exec) {
-            return super.call("Memory.simulatePressureNotification", SimulatePressureNotificationResult.class,
+        public CompletableFuture<SimulatePressureNotificationResult> callAsync() {
+            return super.callAsync("Memory.simulatePressureNotification", SimulatePressureNotificationResult.class,
+                (code, msg)->new SimulatePressureNotificationResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SimulatePressureNotificationResult> callAsync(Executor exec) {
+            return super.callAsync("Memory.simulatePressureNotification", SimulatePressureNotificationResult.class,
                 (code, msg)->new SimulatePressureNotificationResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -414,8 +505,12 @@ import javax.annotation.Nullable;
             return super.call("Memory.startSampling", StartSamplingResult.class,
                 (code, msg)->new StartSamplingResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<StartSamplingResult> call(Executor exec) {
-            return super.call("Memory.startSampling", StartSamplingResult.class,
+        public CompletableFuture<StartSamplingResult> callAsync() {
+            return super.callAsync("Memory.startSampling", StartSamplingResult.class,
+                (code, msg)->new StartSamplingResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<StartSamplingResult> callAsync(Executor exec) {
+            return super.callAsync("Memory.startSampling", StartSamplingResult.class,
                 (code, msg)->new StartSamplingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -459,8 +554,12 @@ import javax.annotation.Nullable;
             return super.call("Memory.stopSampling", StopSamplingResult.class,
                 (code, msg)->new StopSamplingResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<StopSamplingResult> call(Executor exec) {
-            return super.call("Memory.stopSampling", StopSamplingResult.class,
+        public CompletableFuture<StopSamplingResult> callAsync() {
+            return super.callAsync("Memory.stopSampling", StopSamplingResult.class,
+                (code, msg)->new StopSamplingResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<StopSamplingResult> callAsync(Executor exec) {
+            return super.callAsync("Memory.stopSampling", StopSamplingResult.class,
                 (code, msg)->new StopSamplingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -505,8 +604,12 @@ collected since renderer process startup.*/
             return super.call("Memory.getAllTimeSamplingProfile", GetAllTimeSamplingProfileResult.class,
                 (code, msg)->new GetAllTimeSamplingProfileResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetAllTimeSamplingProfileResult> call(Executor exec) {
-            return super.call("Memory.getAllTimeSamplingProfile", GetAllTimeSamplingProfileResult.class,
+        public CompletableFuture<GetAllTimeSamplingProfileResult> callAsync() {
+            return super.callAsync("Memory.getAllTimeSamplingProfile", GetAllTimeSamplingProfileResult.class,
+                (code, msg)->new GetAllTimeSamplingProfileResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetAllTimeSamplingProfileResult> callAsync(Executor exec) {
+            return super.callAsync("Memory.getAllTimeSamplingProfile", GetAllTimeSamplingProfileResult.class,
                 (code, msg)->new GetAllTimeSamplingProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -561,8 +664,12 @@ collected since browser process startup.*/
             return super.call("Memory.getBrowserSamplingProfile", GetBrowserSamplingProfileResult.class,
                 (code, msg)->new GetBrowserSamplingProfileResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetBrowserSamplingProfileResult> call(Executor exec) {
-            return super.call("Memory.getBrowserSamplingProfile", GetBrowserSamplingProfileResult.class,
+        public CompletableFuture<GetBrowserSamplingProfileResult> callAsync() {
+            return super.callAsync("Memory.getBrowserSamplingProfile", GetBrowserSamplingProfileResult.class,
+                (code, msg)->new GetBrowserSamplingProfileResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetBrowserSamplingProfileResult> callAsync(Executor exec) {
+            return super.callAsync("Memory.getBrowserSamplingProfile", GetBrowserSamplingProfileResult.class,
                 (code, msg)->new GetBrowserSamplingProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -617,8 +724,12 @@ collected since browser process startup.*/
             return super.call("Memory.getSamplingProfile", GetSamplingProfileResult.class,
                 (code, msg)->new GetSamplingProfileResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetSamplingProfileResult> call(Executor exec) {
-            return super.call("Memory.getSamplingProfile", GetSamplingProfileResult.class,
+        public CompletableFuture<GetSamplingProfileResult> callAsync() {
+            return super.callAsync("Memory.getSamplingProfile", GetSamplingProfileResult.class,
+                (code, msg)->new GetSamplingProfileResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetSamplingProfileResult> callAsync(Executor exec) {
+            return super.callAsync("Memory.getSamplingProfile", GetSamplingProfileResult.class,
                 (code, msg)->new GetSamplingProfileResult(ResultBase.ofError(code, msg)), exec);
         }
     }

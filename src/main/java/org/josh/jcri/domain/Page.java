@@ -26,41 +26,10 @@ import javax.annotation.Nullable;
  @see Debugger
  @see DOM
  @see Network
+ @see Runtime
  @author Joshua*/
 @ParametersAreNonnullByDefault public class Page extends DomainBase {
     public Page(EventCenter evt, WebSocket ws) { super(evt, ws); }
-
-    /**Resource type as it was perceived by the rendering engine.*/
-    @ParametersAreNonnullByDefault public enum ResourceType implements CommonDomainType {
-        Document("Document"),
-        Stylesheet("Stylesheet"),
-        Image("Image"),
-        Media("Media"),
-        Font("Font"),
-        Script("Script"),
-        TextTrack("TextTrack"),
-        XHR("XHR"),
-        Fetch("Fetch"),
-        EventSource("EventSource"),
-        WebSocket("WebSocket"),
-        Manifest("Manifest"),
-        SignedExchange("SignedExchange"),
-        Other("Other");
-
-        private final String _value;
-        /**Convert string representation to type.
-         @throws IllegalArgumentException if given value cannot convert to enum type. */
-        @JsonCreator public static ResourceType of(String value) {
-            return Enum.valueOf(ResourceType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
-        }
-        ResourceType(String value) { _value = value; }
-        /**Check if parameter fields of method are all valid. */
-        @Override public void check() throws IllegalArgumentException { /* Need not check */ }
-        /**Convert method parameter object into json string and append into string builder.
-         @return string builder instance that is given in parameter (for chaining coding style use.) */
-        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
-        @Override public String toString() { return "\"" + _value + "\""; }
-    }
 
     /**Unique frame identifier.*/
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -193,7 +162,7 @@ import javax.annotation.Nullable;
         /**Resource URL.*/
         private String url;
         /**Type of this resource.*/
-        private ResourceType type;
+        private Network.ResourceType type;
         /**Resource mimeType as determined by the browser.*/
         private String mimeType;
         /**last-modified timestamp as reported by server.
@@ -212,10 +181,10 @@ import javax.annotation.Nullable;
         public final FrameResource setUrl(String url) { return url(url); }
         public final String url() { return url; }
         public final String getUrl() { return url(); }
-        public final FrameResource type(ResourceType type) { this.type = type; return this; }
-        public final FrameResource setType(ResourceType type) { return type(type); }
-        public final ResourceType type() { return type; }
-        public final ResourceType getType() { return type(); }
+        public final FrameResource type(Network.ResourceType type) { this.type = type; return this; }
+        public final FrameResource setType(Network.ResourceType type) { return type(type); }
+        public final Network.ResourceType type() { return type; }
+        public final Network.ResourceType getType() { return type(); }
         public final FrameResource mimeType(String mimeType) { this.mimeType = mimeType; return this; }
         public final FrameResource setMimeType(String mimeType) { return mimeType(mimeType); }
         public final String mimeType() { return mimeType; }
@@ -260,7 +229,7 @@ import javax.annotation.Nullable;
         public FrameResource() {}
         public FrameResource(
             @JsonProperty("url")String url,
-            @JsonProperty("type")ResourceType type,
+            @JsonProperty("type")Network.ResourceType type,
             @JsonProperty("mimeType")String mimeType,
             @Nullable @JsonProperty("lastModified")Network.TimeSinceEpoch lastModified,
             @Nullable @JsonProperty("contentSize")Double contentSize,
@@ -411,6 +380,7 @@ import javax.annotation.Nullable;
     @ParametersAreNonnullByDefault public enum TransitionType implements CommonDomainType {
         Link("link"),
         Typed("typed"),
+        Address_bar("address_bar"),
         Auto_bookmark("auto_bookmark"),
         Auto_subframe("auto_subframe"),
         Manual_subframe("manual_subframe"),
@@ -899,6 +869,138 @@ import javax.annotation.Nullable;
             this.scale = scale;
         }
     }
+
+    /**Generic font families collection.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class FontFamilies implements CommonDomainType {
+        /**The standard font-family.
+        <em>Optional.</em>*/
+        private String standard;
+        /**The fixed font-family.
+        <em>Optional.</em>*/
+        private String fixed;
+        /**The serif font-family.
+        <em>Optional.</em>*/
+        private String serif;
+        /**The sansSerif font-family.
+        <em>Optional.</em>*/
+        private String sansSerif;
+        /**The cursive font-family.
+        <em>Optional.</em>*/
+        private String cursive;
+        /**The fantasy font-family.
+        <em>Optional.</em>*/
+        private String fantasy;
+        /**The pictograph font-family.
+        <em>Optional.</em>*/
+        private String pictograph;
+        public final FontFamilies standard(@Nullable String standard) { this.standard = standard; return this; }
+        public final FontFamilies optStandard(@Nullable String standard) { return standard(standard); }
+        public final String standard() { return standard; }
+        public final String getStandard() { return standard(); }
+        public final FontFamilies fixed(@Nullable String fixed) { this.fixed = fixed; return this; }
+        public final FontFamilies optFixed(@Nullable String fixed) { return fixed(fixed); }
+        public final String fixed() { return fixed; }
+        public final String getFixed() { return fixed(); }
+        public final FontFamilies serif(@Nullable String serif) { this.serif = serif; return this; }
+        public final FontFamilies optSerif(@Nullable String serif) { return serif(serif); }
+        public final String serif() { return serif; }
+        public final String getSerif() { return serif(); }
+        public final FontFamilies sansSerif(@Nullable String sansSerif) { this.sansSerif = sansSerif; return this; }
+        public final FontFamilies optSansSerif(@Nullable String sansSerif) { return sansSerif(sansSerif); }
+        public final String sansSerif() { return sansSerif; }
+        public final String getSansSerif() { return sansSerif(); }
+        public final FontFamilies cursive(@Nullable String cursive) { this.cursive = cursive; return this; }
+        public final FontFamilies optCursive(@Nullable String cursive) { return cursive(cursive); }
+        public final String cursive() { return cursive; }
+        public final String getCursive() { return cursive(); }
+        public final FontFamilies fantasy(@Nullable String fantasy) { this.fantasy = fantasy; return this; }
+        public final FontFamilies optFantasy(@Nullable String fantasy) { return fantasy(fantasy); }
+        public final String fantasy() { return fantasy; }
+        public final String getFantasy() { return fantasy(); }
+        public final FontFamilies pictograph(@Nullable String pictograph) { this.pictograph = pictograph; return this; }
+        public final FontFamilies optPictograph(@Nullable String pictograph) { return pictograph(pictograph); }
+        public final String pictograph() { return pictograph; }
+        public final String getPictograph() { return pictograph(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            if (standard != null) strBuilder.append("\"standard\":").append('"').append(DomainBase.escapeJson(standard)).append('"');
+            if (fixed != null) strBuilder.append(",\"fixed\":").append('"').append(DomainBase.escapeJson(fixed)).append('"');
+            if (serif != null) strBuilder.append(",\"serif\":").append('"').append(DomainBase.escapeJson(serif)).append('"');
+            if (sansSerif != null) strBuilder.append(",\"sansSerif\":").append('"').append(DomainBase.escapeJson(sansSerif)).append('"');
+            if (cursive != null) strBuilder.append(",\"cursive\":").append('"').append(DomainBase.escapeJson(cursive)).append('"');
+            if (fantasy != null) strBuilder.append(",\"fantasy\":").append('"').append(DomainBase.escapeJson(fantasy)).append('"');
+            if (pictograph != null) strBuilder.append(",\"pictograph\":").append('"').append(DomainBase.escapeJson(pictograph)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public FontFamilies() {}
+        public FontFamilies(
+            @Nullable @JsonProperty("standard")String standard,
+            @Nullable @JsonProperty("fixed")String fixed,
+            @Nullable @JsonProperty("serif")String serif,
+            @Nullable @JsonProperty("sansSerif")String sansSerif,
+            @Nullable @JsonProperty("cursive")String cursive,
+            @Nullable @JsonProperty("fantasy")String fantasy,
+            @Nullable @JsonProperty("pictograph")String pictograph
+        ) {
+            this.standard = standard;
+            this.fixed = fixed;
+            this.serif = serif;
+            this.sansSerif = sansSerif;
+            this.cursive = cursive;
+            this.fantasy = fantasy;
+            this.pictograph = pictograph;
+        }
+    }
+
+    /**Default font sizes.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class FontSizes implements CommonDomainType {
+        /**Default standard font size.
+        <em>Optional.</em>*/
+        private Integer standard;
+        /**Default fixed font size.
+        <em>Optional.</em>*/
+        private Integer fixed;
+        public final FontSizes standard(@Nullable Integer standard) { this.standard = standard; return this; }
+        public final FontSizes optStandard(@Nullable Integer standard) { return standard(standard); }
+        public final Integer standard() { return standard; }
+        public final Integer getStandard() { return standard(); }
+        public final FontSizes fixed(@Nullable Integer fixed) { this.fixed = fixed; return this; }
+        public final FontSizes optFixed(@Nullable Integer fixed) { return fixed(fixed); }
+        public final Integer fixed() { return fixed; }
+        public final Integer getFixed() { return fixed(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            if (standard != null) strBuilder.append("\"standard\":").append(standard);
+            if (fixed != null) strBuilder.append(",\"fixed\":").append(fixed);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public FontSizes() {}
+        public FontSizes(
+            @Nullable @JsonProperty("standard")Integer standard,
+            @Nullable @JsonProperty("fixed")Integer fixed
+        ) {
+            this.standard = standard;
+            this.fixed = fixed;
+        }
+    }
     /**Deprecated, please use addScriptToEvaluateOnNewDocument instead.
     <p><strong>Experimental.</strong></p>
     @Deprecated*/
@@ -938,8 +1040,12 @@ import javax.annotation.Nullable;
             return super.call("Page.addScriptToEvaluateOnLoad", AddScriptToEvaluateOnLoadResult.class,
                 (code, msg)->new AddScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<AddScriptToEvaluateOnLoadResult> call(Executor exec) {
-            return super.call("Page.addScriptToEvaluateOnLoad", AddScriptToEvaluateOnLoadResult.class,
+        public CompletableFuture<AddScriptToEvaluateOnLoadResult> callAsync() {
+            return super.callAsync("Page.addScriptToEvaluateOnLoad", AddScriptToEvaluateOnLoadResult.class,
+                (code, msg)->new AddScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AddScriptToEvaluateOnLoadResult> callAsync(Executor exec) {
+            return super.callAsync("Page.addScriptToEvaluateOnLoad", AddScriptToEvaluateOnLoadResult.class,
                 (code, msg)->new AddScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -981,10 +1087,20 @@ import javax.annotation.Nullable;
     @ParametersAreNonnullByDefault public static class AddScriptToEvaluateOnNewDocumentParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private String source;
+        /**If specified, creates an isolated world with the given name and evaluates given script in it.
+This world name will be used as the ExecutionContextDescription::name when the corresponding
+event is emitted.
+        <em>Optional.</em>
+        <p><strong>Experimental.</strong></p>*/
+        private String worldName;
         public final AddScriptToEvaluateOnNewDocumentParameter source(String source) { this.source = source; return this; }
         public final AddScriptToEvaluateOnNewDocumentParameter setSource(String source) { return source(source); }
         public final String source() { return source; }
         public final String getSource() { return source(); }
+        public final AddScriptToEvaluateOnNewDocumentParameter worldName(@Nullable String worldName) { this.worldName = worldName; return this; }
+        public final AddScriptToEvaluateOnNewDocumentParameter optWorldName(@Nullable String worldName) { return worldName(worldName); }
+        public final String worldName() { return worldName; }
+        public final String getWorldName() { return worldName(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -995,22 +1111,29 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"source\":").append('"').append(DomainBase.escapeJson(source)).append('"');
+            if (worldName != null) strBuilder.append(",\"worldName\":").append('"').append(DomainBase.escapeJson(worldName)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
         public AddScriptToEvaluateOnNewDocumentParameter() {}
         public AddScriptToEvaluateOnNewDocumentParameter(
-            @JsonProperty("source")String source
+            @JsonProperty("source")String source,
+            @Nullable @JsonProperty("worldName")String worldName
         ) {
             this();
             this.source = source;
+            this.worldName = worldName;
         }
         public CompletableFuture<AddScriptToEvaluateOnNewDocumentResult> call() {
             return super.call("Page.addScriptToEvaluateOnNewDocument", AddScriptToEvaluateOnNewDocumentResult.class,
                 (code, msg)->new AddScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<AddScriptToEvaluateOnNewDocumentResult> call(Executor exec) {
-            return super.call("Page.addScriptToEvaluateOnNewDocument", AddScriptToEvaluateOnNewDocumentResult.class,
+        public CompletableFuture<AddScriptToEvaluateOnNewDocumentResult> callAsync() {
+            return super.callAsync("Page.addScriptToEvaluateOnNewDocument", AddScriptToEvaluateOnNewDocumentResult.class,
+                (code, msg)->new AddScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AddScriptToEvaluateOnNewDocumentResult> callAsync(Executor exec) {
+            return super.callAsync("Page.addScriptToEvaluateOnNewDocument", AddScriptToEvaluateOnNewDocumentResult.class,
                 (code, msg)->new AddScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1064,8 +1187,12 @@ import javax.annotation.Nullable;
             return super.call("Page.bringToFront", BringToFrontResult.class,
                 (code, msg)->new BringToFrontResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<BringToFrontResult> call(Executor exec) {
-            return super.call("Page.bringToFront", BringToFrontResult.class,
+        public CompletableFuture<BringToFrontResult> callAsync() {
+            return super.callAsync("Page.bringToFront", BringToFrontResult.class,
+                (code, msg)->new BringToFrontResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<BringToFrontResult> callAsync(Executor exec) {
+            return super.callAsync("Page.bringToFront", BringToFrontResult.class,
                 (code, msg)->new BringToFrontResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1172,8 +1299,12 @@ import javax.annotation.Nullable;
             return super.call("Page.captureScreenshot", CaptureScreenshotResult.class,
                 (code, msg)->new CaptureScreenshotResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CaptureScreenshotResult> call(Executor exec) {
-            return super.call("Page.captureScreenshot", CaptureScreenshotResult.class,
+        public CompletableFuture<CaptureScreenshotResult> callAsync() {
+            return super.callAsync("Page.captureScreenshot", CaptureScreenshotResult.class,
+                (code, msg)->new CaptureScreenshotResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CaptureScreenshotResult> callAsync(Executor exec) {
+            return super.callAsync("Page.captureScreenshot", CaptureScreenshotResult.class,
                 (code, msg)->new CaptureScreenshotResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1231,8 +1362,12 @@ import javax.annotation.Nullable;
             return super.call("Page.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
                 (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ClearDeviceMetricsOverrideResult> call(Executor exec) {
-            return super.call("Page.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
+        public CompletableFuture<ClearDeviceMetricsOverrideResult> callAsync() {
+            return super.callAsync("Page.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
+                (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearDeviceMetricsOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Page.clearDeviceMetricsOverride", ClearDeviceMetricsOverrideResult.class,
                 (code, msg)->new ClearDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1282,8 +1417,12 @@ import javax.annotation.Nullable;
             return super.call("Page.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
                 (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ClearDeviceOrientationOverrideResult> call(Executor exec) {
-            return super.call("Page.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
+        public CompletableFuture<ClearDeviceOrientationOverrideResult> callAsync() {
+            return super.callAsync("Page.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
+                (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearDeviceOrientationOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Page.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
                 (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1331,8 +1470,12 @@ import javax.annotation.Nullable;
             return super.call("Page.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
                 (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ClearGeolocationOverrideResult> call(Executor exec) {
-            return super.call("Page.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
+        public CompletableFuture<ClearGeolocationOverrideResult> callAsync() {
+            return super.callAsync("Page.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
+                (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearGeolocationOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Page.clearGeolocationOverride", ClearGeolocationOverrideResult.class,
                 (code, msg)->new ClearGeolocationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1412,8 +1555,12 @@ option, use with caution.
             return super.call("Page.createIsolatedWorld", CreateIsolatedWorldResult.class,
                 (code, msg)->new CreateIsolatedWorldResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CreateIsolatedWorldResult> call(Executor exec) {
-            return super.call("Page.createIsolatedWorld", CreateIsolatedWorldResult.class,
+        public CompletableFuture<CreateIsolatedWorldResult> callAsync() {
+            return super.callAsync("Page.createIsolatedWorld", CreateIsolatedWorldResult.class,
+                (code, msg)->new CreateIsolatedWorldResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CreateIsolatedWorldResult> callAsync(Executor exec) {
+            return super.callAsync("Page.createIsolatedWorld", CreateIsolatedWorldResult.class,
                 (code, msg)->new CreateIsolatedWorldResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1495,8 +1642,12 @@ option, use with caution.
             return super.call("Page.deleteCookie", DeleteCookieResult.class,
                 (code, msg)->new DeleteCookieResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DeleteCookieResult> call(Executor exec) {
-            return super.call("Page.deleteCookie", DeleteCookieResult.class,
+        public CompletableFuture<DeleteCookieResult> callAsync() {
+            return super.callAsync("Page.deleteCookie", DeleteCookieResult.class,
+                (code, msg)->new DeleteCookieResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DeleteCookieResult> callAsync(Executor exec) {
+            return super.callAsync("Page.deleteCookie", DeleteCookieResult.class,
                 (code, msg)->new DeleteCookieResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1542,8 +1693,12 @@ option, use with caution.
             return super.call("Page.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Page.disable", DisableResult.class,
+        public CompletableFuture<DisableResult> callAsync() {
+            return super.callAsync("Page.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DisableResult> callAsync(Executor exec) {
+            return super.callAsync("Page.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1587,8 +1742,12 @@ option, use with caution.
             return super.call("Page.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Page.enable", EnableResult.class,
+        public CompletableFuture<EnableResult> callAsync() {
+            return super.callAsync("Page.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EnableResult> callAsync(Executor exec) {
+            return super.callAsync("Page.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1632,8 +1791,12 @@ option, use with caution.
             return super.call("Page.getAppManifest", GetAppManifestResult.class,
                 (code, msg)->new GetAppManifestResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetAppManifestResult> call(Executor exec) {
-            return super.call("Page.getAppManifest", GetAppManifestResult.class,
+        public CompletableFuture<GetAppManifestResult> callAsync() {
+            return super.callAsync("Page.getAppManifest", GetAppManifestResult.class,
+                (code, msg)->new GetAppManifestResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetAppManifestResult> callAsync(Executor exec) {
+            return super.callAsync("Page.getAppManifest", GetAppManifestResult.class,
                 (code, msg)->new GetAppManifestResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1713,8 +1876,12 @@ information in the `cookies` field.
             return super.call("Page.getCookies", GetCookiesResult.class,
                 (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetCookiesResult> call(Executor exec) {
-            return super.call("Page.getCookies", GetCookiesResult.class,
+        public CompletableFuture<GetCookiesResult> callAsync() {
+            return super.callAsync("Page.getCookies", GetCookiesResult.class,
+                (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetCookiesResult> callAsync(Executor exec) {
+            return super.callAsync("Page.getCookies", GetCookiesResult.class,
                 (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1774,8 +1941,12 @@ information in the `cookies` field.
             return super.call("Page.getFrameTree", GetFrameTreeResult.class,
                 (code, msg)->new GetFrameTreeResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetFrameTreeResult> call(Executor exec) {
-            return super.call("Page.getFrameTree", GetFrameTreeResult.class,
+        public CompletableFuture<GetFrameTreeResult> callAsync() {
+            return super.callAsync("Page.getFrameTree", GetFrameTreeResult.class,
+                (code, msg)->new GetFrameTreeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetFrameTreeResult> callAsync(Executor exec) {
+            return super.callAsync("Page.getFrameTree", GetFrameTreeResult.class,
                 (code, msg)->new GetFrameTreeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1829,8 +2000,12 @@ information in the `cookies` field.
             return super.call("Page.getLayoutMetrics", GetLayoutMetricsResult.class,
                 (code, msg)->new GetLayoutMetricsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetLayoutMetricsResult> call(Executor exec) {
-            return super.call("Page.getLayoutMetrics", GetLayoutMetricsResult.class,
+        public CompletableFuture<GetLayoutMetricsResult> callAsync() {
+            return super.callAsync("Page.getLayoutMetrics", GetLayoutMetricsResult.class,
+                (code, msg)->new GetLayoutMetricsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetLayoutMetricsResult> callAsync(Executor exec) {
+            return super.callAsync("Page.getLayoutMetrics", GetLayoutMetricsResult.class,
                 (code, msg)->new GetLayoutMetricsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1900,8 +2075,12 @@ information in the `cookies` field.
             return super.call("Page.getNavigationHistory", GetNavigationHistoryResult.class,
                 (code, msg)->new GetNavigationHistoryResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetNavigationHistoryResult> call(Executor exec) {
-            return super.call("Page.getNavigationHistory", GetNavigationHistoryResult.class,
+        public CompletableFuture<GetNavigationHistoryResult> callAsync() {
+            return super.callAsync("Page.getNavigationHistory", GetNavigationHistoryResult.class,
+                (code, msg)->new GetNavigationHistoryResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetNavigationHistoryResult> callAsync(Executor exec) {
+            return super.callAsync("Page.getNavigationHistory", GetNavigationHistoryResult.class,
                 (code, msg)->new GetNavigationHistoryResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1993,8 +2172,12 @@ information in the `cookies` field.
             return super.call("Page.getResourceContent", GetResourceContentResult.class,
                 (code, msg)->new GetResourceContentResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetResourceContentResult> call(Executor exec) {
-            return super.call("Page.getResourceContent", GetResourceContentResult.class,
+        public CompletableFuture<GetResourceContentResult> callAsync() {
+            return super.callAsync("Page.getResourceContent", GetResourceContentResult.class,
+                (code, msg)->new GetResourceContentResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetResourceContentResult> callAsync(Executor exec) {
+            return super.callAsync("Page.getResourceContent", GetResourceContentResult.class,
                 (code, msg)->new GetResourceContentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2059,8 +2242,12 @@ information in the `cookies` field.
             return super.call("Page.getResourceTree", GetResourceTreeResult.class,
                 (code, msg)->new GetResourceTreeResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetResourceTreeResult> call(Executor exec) {
-            return super.call("Page.getResourceTree", GetResourceTreeResult.class,
+        public CompletableFuture<GetResourceTreeResult> callAsync() {
+            return super.callAsync("Page.getResourceTree", GetResourceTreeResult.class,
+                (code, msg)->new GetResourceTreeResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetResourceTreeResult> callAsync(Executor exec) {
+            return super.callAsync("Page.getResourceTree", GetResourceTreeResult.class,
                 (code, msg)->new GetResourceTreeResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2140,8 +2327,12 @@ dialog.
             return super.call("Page.handleJavaScriptDialog", HandleJavaScriptDialogResult.class,
                 (code, msg)->new HandleJavaScriptDialogResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<HandleJavaScriptDialogResult> call(Executor exec) {
-            return super.call("Page.handleJavaScriptDialog", HandleJavaScriptDialogResult.class,
+        public CompletableFuture<HandleJavaScriptDialogResult> callAsync() {
+            return super.callAsync("Page.handleJavaScriptDialog", HandleJavaScriptDialogResult.class,
+                (code, msg)->new HandleJavaScriptDialogResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<HandleJavaScriptDialogResult> callAsync(Executor exec) {
+            return super.callAsync("Page.handleJavaScriptDialog", HandleJavaScriptDialogResult.class,
                 (code, msg)->new HandleJavaScriptDialogResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2229,8 +2420,12 @@ dialog.
             return super.call("Page.navigate", NavigateResult.class,
                 (code, msg)->new NavigateResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<NavigateResult> call(Executor exec) {
-            return super.call("Page.navigate", NavigateResult.class,
+        public CompletableFuture<NavigateResult> callAsync() {
+            return super.callAsync("Page.navigate", NavigateResult.class,
+                (code, msg)->new NavigateResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<NavigateResult> callAsync(Executor exec) {
+            return super.callAsync("Page.navigate", NavigateResult.class,
                 (code, msg)->new NavigateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2316,8 +2511,12 @@ dialog.
             return super.call("Page.navigateToHistoryEntry", NavigateToHistoryEntryResult.class,
                 (code, msg)->new NavigateToHistoryEntryResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<NavigateToHistoryEntryResult> call(Executor exec) {
-            return super.call("Page.navigateToHistoryEntry", NavigateToHistoryEntryResult.class,
+        public CompletableFuture<NavigateToHistoryEntryResult> callAsync() {
+            return super.callAsync("Page.navigateToHistoryEntry", NavigateToHistoryEntryResult.class,
+                (code, msg)->new NavigateToHistoryEntryResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<NavigateToHistoryEntryResult> callAsync(Executor exec) {
+            return super.callAsync("Page.navigateToHistoryEntry", NavigateToHistoryEntryResult.class,
                 (code, msg)->new NavigateToHistoryEntryResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2526,8 +2725,12 @@ in which case the content will be scaled to fit the paper size.
             return super.call("Page.printToPDF", PrintToPDFResult.class,
                 (code, msg)->new PrintToPDFResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<PrintToPDFResult> call(Executor exec) {
-            return super.call("Page.printToPDF", PrintToPDFResult.class,
+        public CompletableFuture<PrintToPDFResult> callAsync() {
+            return super.callAsync("Page.printToPDF", PrintToPDFResult.class,
+                (code, msg)->new PrintToPDFResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<PrintToPDFResult> callAsync(Executor exec) {
+            return super.callAsync("Page.printToPDF", PrintToPDFResult.class,
                 (code, msg)->new PrintToPDFResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2606,8 +2809,12 @@ Argument will be ignored if reloading dataURL origin.
             return super.call("Page.reload", ReloadResult.class,
                 (code, msg)->new ReloadResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ReloadResult> call(Executor exec) {
-            return super.call("Page.reload", ReloadResult.class,
+        public CompletableFuture<ReloadResult> callAsync() {
+            return super.callAsync("Page.reload", ReloadResult.class,
+                (code, msg)->new ReloadResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ReloadResult> callAsync(Executor exec) {
+            return super.callAsync("Page.reload", ReloadResult.class,
                 (code, msg)->new ReloadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2669,8 +2876,12 @@ Argument will be ignored if reloading dataURL origin.
             return super.call("Page.removeScriptToEvaluateOnLoad", RemoveScriptToEvaluateOnLoadResult.class,
                 (code, msg)->new RemoveScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RemoveScriptToEvaluateOnLoadResult> call(Executor exec) {
-            return super.call("Page.removeScriptToEvaluateOnLoad", RemoveScriptToEvaluateOnLoadResult.class,
+        public CompletableFuture<RemoveScriptToEvaluateOnLoadResult> callAsync() {
+            return super.callAsync("Page.removeScriptToEvaluateOnLoad", RemoveScriptToEvaluateOnLoadResult.class,
+                (code, msg)->new RemoveScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RemoveScriptToEvaluateOnLoadResult> callAsync(Executor exec) {
+            return super.callAsync("Page.removeScriptToEvaluateOnLoad", RemoveScriptToEvaluateOnLoadResult.class,
                 (code, msg)->new RemoveScriptToEvaluateOnLoadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2730,8 +2941,12 @@ Argument will be ignored if reloading dataURL origin.
             return super.call("Page.removeScriptToEvaluateOnNewDocument", RemoveScriptToEvaluateOnNewDocumentResult.class,
                 (code, msg)->new RemoveScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RemoveScriptToEvaluateOnNewDocumentResult> call(Executor exec) {
-            return super.call("Page.removeScriptToEvaluateOnNewDocument", RemoveScriptToEvaluateOnNewDocumentResult.class,
+        public CompletableFuture<RemoveScriptToEvaluateOnNewDocumentResult> callAsync() {
+            return super.callAsync("Page.removeScriptToEvaluateOnNewDocument", RemoveScriptToEvaluateOnNewDocumentResult.class,
+                (code, msg)->new RemoveScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RemoveScriptToEvaluateOnNewDocumentResult> callAsync(Executor exec) {
+            return super.callAsync("Page.removeScriptToEvaluateOnNewDocument", RemoveScriptToEvaluateOnNewDocumentResult.class,
                 (code, msg)->new RemoveScriptToEvaluateOnNewDocumentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2777,8 +2992,12 @@ Argument will be ignored if reloading dataURL origin.
             return super.call("Page.requestAppBanner", RequestAppBannerResult.class,
                 (code, msg)->new RequestAppBannerResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RequestAppBannerResult> call(Executor exec) {
-            return super.call("Page.requestAppBanner", RequestAppBannerResult.class,
+        public CompletableFuture<RequestAppBannerResult> callAsync() {
+            return super.callAsync("Page.requestAppBanner", RequestAppBannerResult.class,
+                (code, msg)->new RequestAppBannerResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RequestAppBannerResult> callAsync(Executor exec) {
+            return super.callAsync("Page.requestAppBanner", RequestAppBannerResult.class,
                 (code, msg)->new RequestAppBannerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2839,8 +3058,12 @@ Argument will be ignored if reloading dataURL origin.
             return super.call("Page.screencastFrameAck", ScreencastFrameAckResult.class,
                 (code, msg)->new ScreencastFrameAckResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ScreencastFrameAckResult> call(Executor exec) {
-            return super.call("Page.screencastFrameAck", ScreencastFrameAckResult.class,
+        public CompletableFuture<ScreencastFrameAckResult> callAsync() {
+            return super.callAsync("Page.screencastFrameAck", ScreencastFrameAckResult.class,
+                (code, msg)->new ScreencastFrameAckResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ScreencastFrameAckResult> callAsync(Executor exec) {
+            return super.callAsync("Page.screencastFrameAck", ScreencastFrameAckResult.class,
                 (code, msg)->new ScreencastFrameAckResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2941,8 +3164,12 @@ Argument will be ignored if reloading dataURL origin.
             return super.call("Page.searchInResource", SearchInResourceResult.class,
                 (code, msg)->new SearchInResourceResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SearchInResourceResult> call(Executor exec) {
-            return super.call("Page.searchInResource", SearchInResourceResult.class,
+        public CompletableFuture<SearchInResourceResult> callAsync() {
+            return super.callAsync("Page.searchInResource", SearchInResourceResult.class,
+                (code, msg)->new SearchInResourceResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SearchInResourceResult> callAsync(Executor exec) {
+            return super.callAsync("Page.searchInResource", SearchInResourceResult.class,
                 (code, msg)->new SearchInResourceResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3017,8 +3244,12 @@ Argument will be ignored if reloading dataURL origin.
             return super.call("Page.setAdBlockingEnabled", SetAdBlockingEnabledResult.class,
                 (code, msg)->new SetAdBlockingEnabledResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetAdBlockingEnabledResult> call(Executor exec) {
-            return super.call("Page.setAdBlockingEnabled", SetAdBlockingEnabledResult.class,
+        public CompletableFuture<SetAdBlockingEnabledResult> callAsync() {
+            return super.callAsync("Page.setAdBlockingEnabled", SetAdBlockingEnabledResult.class,
+                (code, msg)->new SetAdBlockingEnabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetAdBlockingEnabledResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setAdBlockingEnabled", SetAdBlockingEnabledResult.class,
                 (code, msg)->new SetAdBlockingEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3079,8 +3310,12 @@ Argument will be ignored if reloading dataURL origin.
             return super.call("Page.setBypassCSP", SetBypassCSPResult.class,
                 (code, msg)->new SetBypassCSPResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetBypassCSPResult> call(Executor exec) {
-            return super.call("Page.setBypassCSP", SetBypassCSPResult.class,
+        public CompletableFuture<SetBypassCSPResult> callAsync() {
+            return super.callAsync("Page.setBypassCSP", SetBypassCSPResult.class,
+                (code, msg)->new SetBypassCSPResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBypassCSPResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setBypassCSP", SetBypassCSPResult.class,
                 (code, msg)->new SetBypassCSPResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3256,8 +3491,12 @@ autosizing and more.*/
             return super.call("Page.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
                 (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDeviceMetricsOverrideResult> call(Executor exec) {
-            return super.call("Page.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
+        public CompletableFuture<SetDeviceMetricsOverrideResult> callAsync() {
+            return super.callAsync("Page.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
+                (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDeviceMetricsOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setDeviceMetricsOverride", SetDeviceMetricsOverrideResult.class,
                 (code, msg)->new SetDeviceMetricsOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3341,8 +3580,12 @@ autosizing and more.*/
             return super.call("Page.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
                 (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDeviceOrientationOverrideResult> call(Executor exec) {
-            return super.call("Page.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
+        public CompletableFuture<SetDeviceOrientationOverrideResult> callAsync() {
+            return super.callAsync("Page.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
+                (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDeviceOrientationOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
                 (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3364,6 +3607,138 @@ autosizing and more.*/
         }
         public SetDeviceOrientationOverrideResult() { super(); }
         public SetDeviceOrientationOverrideResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Set generic font families.
+    <p><strong>Experimental.</strong></p>*/
+    public SetFontFamiliesParameter setFontFamilies() { final SetFontFamiliesParameter v = new SetFontFamiliesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setFontFamilies.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetFontFamiliesParameter extends CommandBase {
+        /**Specifies font families to set. If a font family is not specified, it won't be changed.*/
+        private FontFamilies fontFamilies;
+        public final SetFontFamiliesParameter fontFamilies(FontFamilies fontFamilies) { this.fontFamilies = fontFamilies; return this; }
+        public final SetFontFamiliesParameter setFontFamilies(FontFamilies fontFamilies) { return fontFamilies(fontFamilies); }
+        public final FontFamilies fontFamilies() { return fontFamilies; }
+        public final FontFamilies getFontFamilies() { return fontFamilies(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (fontFamilies == null) throw new IllegalArgumentException("Page.SetFontFamiliesParameter.fontFamilies is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            fontFamilies.toJson(strBuilder.append("\"fontFamilies\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetFontFamiliesParameter() {}
+        public SetFontFamiliesParameter(
+            @JsonProperty("fontFamilies")FontFamilies fontFamilies
+        ) {
+            this();
+            this.fontFamilies = fontFamilies;
+        }
+        public CompletableFuture<SetFontFamiliesResult> call() {
+            return super.call("Page.setFontFamilies", SetFontFamiliesResult.class,
+                (code, msg)->new SetFontFamiliesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetFontFamiliesResult> callAsync() {
+            return super.callAsync("Page.setFontFamilies", SetFontFamiliesResult.class,
+                (code, msg)->new SetFontFamiliesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetFontFamiliesResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setFontFamilies", SetFontFamiliesResult.class,
+                (code, msg)->new SetFontFamiliesResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setFontFamilies.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetFontFamiliesResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetFontFamiliesResult() { super(); }
+        public SetFontFamiliesResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Set default font sizes.
+    <p><strong>Experimental.</strong></p>*/
+    public SetFontSizesParameter setFontSizes() { final SetFontSizesParameter v = new SetFontSizesParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setFontSizes.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetFontSizesParameter extends CommandBase {
+        /**Specifies font sizes to set. If a font size is not specified, it won't be changed.*/
+        private FontSizes fontSizes;
+        public final SetFontSizesParameter fontSizes(FontSizes fontSizes) { this.fontSizes = fontSizes; return this; }
+        public final SetFontSizesParameter setFontSizes(FontSizes fontSizes) { return fontSizes(fontSizes); }
+        public final FontSizes fontSizes() { return fontSizes; }
+        public final FontSizes getFontSizes() { return fontSizes(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (fontSizes == null) throw new IllegalArgumentException("Page.SetFontSizesParameter.fontSizes is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            fontSizes.toJson(strBuilder.append("\"fontSizes\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetFontSizesParameter() {}
+        public SetFontSizesParameter(
+            @JsonProperty("fontSizes")FontSizes fontSizes
+        ) {
+            this();
+            this.fontSizes = fontSizes;
+        }
+        public CompletableFuture<SetFontSizesResult> call() {
+            return super.call("Page.setFontSizes", SetFontSizesResult.class,
+                (code, msg)->new SetFontSizesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetFontSizesResult> callAsync() {
+            return super.callAsync("Page.setFontSizes", SetFontSizesResult.class,
+                (code, msg)->new SetFontSizesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetFontSizesResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setFontSizes", SetFontSizesResult.class,
+                (code, msg)->new SetFontSizesResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setFontSizes.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetFontSizesResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetFontSizesResult() { super(); }
+        public SetFontSizesResult(ResultBase.FailedResult e) {
             super(e);
         }
     }
@@ -3412,8 +3787,12 @@ autosizing and more.*/
             return super.call("Page.setDocumentContent", SetDocumentContentResult.class,
                 (code, msg)->new SetDocumentContentResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDocumentContentResult> call(Executor exec) {
-            return super.call("Page.setDocumentContent", SetDocumentContentResult.class,
+        public CompletableFuture<SetDocumentContentResult> callAsync() {
+            return super.callAsync("Page.setDocumentContent", SetDocumentContentResult.class,
+                (code, msg)->new SetDocumentContentResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDocumentContentResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setDocumentContent", SetDocumentContentResult.class,
                 (code, msg)->new SetDocumentContentResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3503,8 +3882,12 @@ available (otherwise deny).*/
             return super.call("Page.setDownloadBehavior", SetDownloadBehaviorResult.class,
                 (code, msg)->new SetDownloadBehaviorResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDownloadBehaviorResult> call(Executor exec) {
-            return super.call("Page.setDownloadBehavior", SetDownloadBehaviorResult.class,
+        public CompletableFuture<SetDownloadBehaviorResult> callAsync() {
+            return super.callAsync("Page.setDownloadBehavior", SetDownloadBehaviorResult.class,
+                (code, msg)->new SetDownloadBehaviorResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDownloadBehaviorResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setDownloadBehavior", SetDownloadBehaviorResult.class,
                 (code, msg)->new SetDownloadBehaviorResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3586,8 +3969,12 @@ unavailable.
             return super.call("Page.setGeolocationOverride", SetGeolocationOverrideResult.class,
                 (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetGeolocationOverrideResult> call(Executor exec) {
-            return super.call("Page.setGeolocationOverride", SetGeolocationOverrideResult.class,
+        public CompletableFuture<SetGeolocationOverrideResult> callAsync() {
+            return super.callAsync("Page.setGeolocationOverride", SetGeolocationOverrideResult.class,
+                (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetGeolocationOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setGeolocationOverride", SetGeolocationOverrideResult.class,
                 (code, msg)->new SetGeolocationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3648,8 +4035,12 @@ unavailable.
             return super.call("Page.setLifecycleEventsEnabled", SetLifecycleEventsEnabledResult.class,
                 (code, msg)->new SetLifecycleEventsEnabledResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetLifecycleEventsEnabledResult> call(Executor exec) {
-            return super.call("Page.setLifecycleEventsEnabled", SetLifecycleEventsEnabledResult.class,
+        public CompletableFuture<SetLifecycleEventsEnabledResult> callAsync() {
+            return super.callAsync("Page.setLifecycleEventsEnabled", SetLifecycleEventsEnabledResult.class,
+                (code, msg)->new SetLifecycleEventsEnabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetLifecycleEventsEnabledResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setLifecycleEventsEnabled", SetLifecycleEventsEnabledResult.class,
                 (code, msg)->new SetLifecycleEventsEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3740,8 +4131,12 @@ unavailable.
             return super.call("Page.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
                 (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetTouchEmulationEnabledResult> call(Executor exec) {
-            return super.call("Page.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
+        public CompletableFuture<SetTouchEmulationEnabledResult> callAsync() {
+            return super.callAsync("Page.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
+                (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetTouchEmulationEnabledResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setTouchEmulationEnabled", SetTouchEmulationEnabledResult.class,
                 (code, msg)->new SetTouchEmulationEnabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3861,8 +4256,12 @@ unavailable.
             return super.call("Page.startScreencast", StartScreencastResult.class,
                 (code, msg)->new StartScreencastResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<StartScreencastResult> call(Executor exec) {
-            return super.call("Page.startScreencast", StartScreencastResult.class,
+        public CompletableFuture<StartScreencastResult> callAsync() {
+            return super.callAsync("Page.startScreencast", StartScreencastResult.class,
+                (code, msg)->new StartScreencastResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<StartScreencastResult> callAsync(Executor exec) {
+            return super.callAsync("Page.startScreencast", StartScreencastResult.class,
                 (code, msg)->new StartScreencastResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3907,8 +4306,12 @@ unavailable.
             return super.call("Page.stopLoading", StopLoadingResult.class,
                 (code, msg)->new StopLoadingResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<StopLoadingResult> call(Executor exec) {
-            return super.call("Page.stopLoading", StopLoadingResult.class,
+        public CompletableFuture<StopLoadingResult> callAsync() {
+            return super.callAsync("Page.stopLoading", StopLoadingResult.class,
+                (code, msg)->new StopLoadingResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<StopLoadingResult> callAsync(Executor exec) {
+            return super.callAsync("Page.stopLoading", StopLoadingResult.class,
                 (code, msg)->new StopLoadingResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3954,8 +4357,12 @@ unavailable.
             return super.call("Page.crash", CrashResult.class,
                 (code, msg)->new CrashResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CrashResult> call(Executor exec) {
-            return super.call("Page.crash", CrashResult.class,
+        public CompletableFuture<CrashResult> callAsync() {
+            return super.callAsync("Page.crash", CrashResult.class,
+                (code, msg)->new CrashResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CrashResult> callAsync(Executor exec) {
+            return super.callAsync("Page.crash", CrashResult.class,
                 (code, msg)->new CrashResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -4002,8 +4409,12 @@ unavailable.
             return super.call("Page.close", CloseResult.class,
                 (code, msg)->new CloseResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CloseResult> call(Executor exec) {
-            return super.call("Page.close", CloseResult.class,
+        public CompletableFuture<CloseResult> callAsync() {
+            return super.callAsync("Page.close", CloseResult.class,
+                (code, msg)->new CloseResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CloseResult> callAsync(Executor exec) {
+            return super.callAsync("Page.close", CloseResult.class,
                 (code, msg)->new CloseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -4084,8 +4495,12 @@ https://github.com/WICG/web-lifecycle/
             return super.call("Page.setWebLifecycleState", SetWebLifecycleStateResult.class,
                 (code, msg)->new SetWebLifecycleStateResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetWebLifecycleStateResult> call(Executor exec) {
-            return super.call("Page.setWebLifecycleState", SetWebLifecycleStateResult.class,
+        public CompletableFuture<SetWebLifecycleStateResult> callAsync() {
+            return super.callAsync("Page.setWebLifecycleState", SetWebLifecycleStateResult.class,
+                (code, msg)->new SetWebLifecycleStateResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetWebLifecycleStateResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setWebLifecycleState", SetWebLifecycleStateResult.class,
                 (code, msg)->new SetWebLifecycleStateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -4132,8 +4547,12 @@ https://github.com/WICG/web-lifecycle/
             return super.call("Page.stopScreencast", StopScreencastResult.class,
                 (code, msg)->new StopScreencastResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<StopScreencastResult> call(Executor exec) {
-            return super.call("Page.stopScreencast", StopScreencastResult.class,
+        public CompletableFuture<StopScreencastResult> callAsync() {
+            return super.callAsync("Page.stopScreencast", StopScreencastResult.class,
+                (code, msg)->new StopScreencastResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<StopScreencastResult> callAsync(Executor exec) {
+            return super.callAsync("Page.stopScreencast", StopScreencastResult.class,
                 (code, msg)->new StopScreencastResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -4154,6 +4573,277 @@ https://github.com/WICG/web-lifecycle/
         }
         public StopScreencastResult() { super(); }
         public StopScreencastResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Forces compilation cache to be generated for every subresource script.
+    <p><strong>Experimental.</strong></p>*/
+    public SetProduceCompilationCacheParameter setProduceCompilationCache() { final SetProduceCompilationCacheParameter v = new SetProduceCompilationCacheParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setProduceCompilationCache.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetProduceCompilationCacheParameter extends CommandBase {
+        /**&lt;No document in protocol.&gt;*/
+        private Boolean enabled;
+        public final SetProduceCompilationCacheParameter enabled(Boolean enabled) { this.enabled = enabled; return this; }
+        public final SetProduceCompilationCacheParameter setEnabled(Boolean enabled) { return enabled(enabled); }
+        public final Boolean enabled() { return enabled; }
+        public final Boolean getEnabled() { return enabled(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (enabled == null) throw new IllegalArgumentException("Page.SetProduceCompilationCacheParameter.enabled is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"enabled\":").append(enabled);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetProduceCompilationCacheParameter() {}
+        public SetProduceCompilationCacheParameter(
+            @JsonProperty("enabled")Boolean enabled
+        ) {
+            this();
+            this.enabled = enabled;
+        }
+        public CompletableFuture<SetProduceCompilationCacheResult> call() {
+            return super.call("Page.setProduceCompilationCache", SetProduceCompilationCacheResult.class,
+                (code, msg)->new SetProduceCompilationCacheResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetProduceCompilationCacheResult> callAsync() {
+            return super.callAsync("Page.setProduceCompilationCache", SetProduceCompilationCacheResult.class,
+                (code, msg)->new SetProduceCompilationCacheResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetProduceCompilationCacheResult> callAsync(Executor exec) {
+            return super.callAsync("Page.setProduceCompilationCache", SetProduceCompilationCacheResult.class,
+                (code, msg)->new SetProduceCompilationCacheResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setProduceCompilationCache.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetProduceCompilationCacheResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetProduceCompilationCacheResult() { super(); }
+        public SetProduceCompilationCacheResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Seeds compilation cache for given url. Compilation cache does not survive
+cross-process navigation.
+    <p><strong>Experimental.</strong></p>*/
+    public AddCompilationCacheParameter addCompilationCache() { final AddCompilationCacheParameter v = new AddCompilationCacheParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of addCompilationCache.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class AddCompilationCacheParameter extends CommandBase {
+        /**&lt;No document in protocol.&gt;*/
+        private String url;
+        /**Base64-encoded data*/
+        private String data;
+        public final AddCompilationCacheParameter url(String url) { this.url = url; return this; }
+        public final AddCompilationCacheParameter setUrl(String url) { return url(url); }
+        public final String url() { return url; }
+        public final String getUrl() { return url(); }
+        public final AddCompilationCacheParameter data(String data) { this.data = data; return this; }
+        public final AddCompilationCacheParameter setData(String data) { return data(data); }
+        public final String data() { return data; }
+        public final String getData() { return data(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (url == null) throw new IllegalArgumentException("Page.AddCompilationCacheParameter.url is necessary field.");
+            if (data == null) throw new IllegalArgumentException("Page.AddCompilationCacheParameter.data is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
+            strBuilder.append(",\"data\":").append('"').append(DomainBase.escapeJson(data)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public AddCompilationCacheParameter() {}
+        public AddCompilationCacheParameter(
+            @JsonProperty("url")String url,
+            @JsonProperty("data")String data
+        ) {
+            this();
+            this.url = url;
+            this.data = data;
+        }
+        public CompletableFuture<AddCompilationCacheResult> call() {
+            return super.call("Page.addCompilationCache", AddCompilationCacheResult.class,
+                (code, msg)->new AddCompilationCacheResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AddCompilationCacheResult> callAsync() {
+            return super.callAsync("Page.addCompilationCache", AddCompilationCacheResult.class,
+                (code, msg)->new AddCompilationCacheResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AddCompilationCacheResult> callAsync(Executor exec) {
+            return super.callAsync("Page.addCompilationCache", AddCompilationCacheResult.class,
+                (code, msg)->new AddCompilationCacheResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of addCompilationCache.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class AddCompilationCacheResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public AddCompilationCacheResult() { super(); }
+        public AddCompilationCacheResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Clears seeded compilation cache.
+    <p><strong>Experimental.</strong></p>*/
+    public ClearCompilationCacheParameter clearCompilationCache() { final ClearCompilationCacheParameter v = new ClearCompilationCacheParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of clearCompilationCache.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class ClearCompilationCacheParameter extends CommandBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public ClearCompilationCacheParameter() {}
+        public CompletableFuture<ClearCompilationCacheResult> call() {
+            return super.call("Page.clearCompilationCache", ClearCompilationCacheResult.class,
+                (code, msg)->new ClearCompilationCacheResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearCompilationCacheResult> callAsync() {
+            return super.callAsync("Page.clearCompilationCache", ClearCompilationCacheResult.class,
+                (code, msg)->new ClearCompilationCacheResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearCompilationCacheResult> callAsync(Executor exec) {
+            return super.callAsync("Page.clearCompilationCache", ClearCompilationCacheResult.class,
+                (code, msg)->new ClearCompilationCacheResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of clearCompilationCache.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class ClearCompilationCacheResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public ClearCompilationCacheResult() { super(); }
+        public ClearCompilationCacheResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Generates a report for testing.
+    <p><strong>Experimental.</strong></p>*/
+    public GenerateTestReportParameter generateTestReport() { final GenerateTestReportParameter v = new GenerateTestReportParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of generateTestReport.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GenerateTestReportParameter extends CommandBase {
+        /**Message to be displayed in the report.*/
+        private String message;
+        /**Specifies the endpoint group to deliver the report to.
+        <em>Optional.</em>*/
+        private String group;
+        public final GenerateTestReportParameter message(String message) { this.message = message; return this; }
+        public final GenerateTestReportParameter setMessage(String message) { return message(message); }
+        public final String message() { return message; }
+        public final String getMessage() { return message(); }
+        public final GenerateTestReportParameter group(@Nullable String group) { this.group = group; return this; }
+        public final GenerateTestReportParameter optGroup(@Nullable String group) { return group(group); }
+        public final String group() { return group; }
+        public final String getGroup() { return group(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (message == null) throw new IllegalArgumentException("Page.GenerateTestReportParameter.message is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"message\":").append('"').append(DomainBase.escapeJson(message)).append('"');
+            if (group != null) strBuilder.append(",\"group\":").append('"').append(DomainBase.escapeJson(group)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GenerateTestReportParameter() {}
+        public GenerateTestReportParameter(
+            @JsonProperty("message")String message,
+            @Nullable @JsonProperty("group")String group
+        ) {
+            this();
+            this.message = message;
+            this.group = group;
+        }
+        public CompletableFuture<GenerateTestReportResult> call() {
+            return super.call("Page.generateTestReport", GenerateTestReportResult.class,
+                (code, msg)->new GenerateTestReportResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GenerateTestReportResult> callAsync() {
+            return super.callAsync("Page.generateTestReport", GenerateTestReportResult.class,
+                (code, msg)->new GenerateTestReportResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GenerateTestReportResult> callAsync(Executor exec) {
+            return super.callAsync("Page.generateTestReport", GenerateTestReportResult.class,
+                (code, msg)->new GenerateTestReportResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of generateTestReport.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class GenerateTestReportResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public GenerateTestReportResult() { super(); }
+        public GenerateTestReportResult(ResultBase.FailedResult e) {
             super(e);
         }
     }
@@ -5035,5 +5725,53 @@ etc.
                 callback.accept(param);
             });
         else    registerEventCallback("Page.windowOpen", null);
+    }
+    /**Event parameter of Page.compilationCacheProduced.
+    <p><strong>Experimental.</strong></p>
+     @see #onCompilationCacheProduced*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class CompilationCacheProducedEventParameter implements CommonDomainType {
+        /**&lt;No document in protocol.&gt;*/
+        private final String url;
+        /**Base64-encoded data*/
+        private final String data;
+        public final String url() { return url; }
+        public final String getUrl() { return url(); }
+        public final String data() { return data; }
+        public final String getData() { return data(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
+            strBuilder.append(",\"data\":").append('"').append(DomainBase.escapeJson(data)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        CompilationCacheProducedEventParameter(
+            @JsonProperty("url")String url,
+            @JsonProperty("data")String data
+        ) {
+            this.url = url;
+            this.data = data;
+        }
+    }
+    /**Issued for every compilation cache generated. Is only available
+if Page.setGenerateCompilationCache is enabled.
+    <p><strong>Experimental.</strong></p>
+     @see CompilationCacheProducedEventParameter*/
+    public void onCompilationCacheProduced(@Nullable Consumer<CompilationCacheProducedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Page.compilationCacheProduced", node -> {
+                CompilationCacheProducedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, CompilationCacheProducedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Page.compilationCacheProduced", null);
     }
 }

@@ -87,8 +87,12 @@ import javax.annotation.Nullable;
             return super.call("Performance.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Performance.disable", DisableResult.class,
+        public CompletableFuture<DisableResult> callAsync() {
+            return super.callAsync("Performance.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DisableResult> callAsync(Executor exec) {
+            return super.callAsync("Performance.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -132,8 +136,12 @@ import javax.annotation.Nullable;
             return super.call("Performance.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Performance.enable", EnableResult.class,
+        public CompletableFuture<EnableResult> callAsync() {
+            return super.callAsync("Performance.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EnableResult> callAsync(Executor exec) {
+            return super.callAsync("Performance.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -153,6 +161,92 @@ import javax.annotation.Nullable;
         }
         public EnableResult() { super(); }
         public EnableResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
+    /**Sets time domain to use for collecting and reporting duration metrics.
+Note that this must be called before enabling metrics collection. Calling
+this method while metrics collection is enabled returns an error.
+    <p><strong>Experimental.</strong></p>*/
+    public SetTimeDomainParameter setTimeDomain() { final SetTimeDomainParameter v = new SetTimeDomainParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of setTimeDomain.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetTimeDomainParameter extends CommandBase {
+        /**Time domain*/
+        @ParametersAreNonnullByDefault public enum TimeDomain implements CommonDomainType {
+            TimeTicks("timeTicks"),
+            ThreadTicks("threadTicks");
+
+            private final String _value;
+            /**Convert string representation to type.
+             @throws IllegalArgumentException if given value cannot convert to enum type. */
+            @JsonCreator public static TimeDomain of(String value) {
+                return Enum.valueOf(TimeDomain.class, value.substring(0, 1).toUpperCase() + value.substring(1));
+            }
+            TimeDomain(String value) { _value = value; }
+            /**Check if parameter fields of method are all valid. */
+            @Override public void check() throws IllegalArgumentException { /* Need not check */ }
+            /**Convert method parameter object into json string and append into string builder.
+             @return string builder instance that is given in parameter (for chaining coding style use.) */
+            @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+            @Override public String toString() { return "\"" + _value + "\""; }
+        }
+        private TimeDomain timeDomain;
+        public final SetTimeDomainParameter timeDomain(TimeDomain timeDomain) { this.timeDomain = timeDomain; return this; }
+        public final SetTimeDomainParameter setTimeDomain(TimeDomain timeDomain) { return timeDomain(timeDomain); }
+        public final TimeDomain timeDomain() { return timeDomain; }
+        public final TimeDomain getTimeDomain() { return timeDomain(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (timeDomain == null) throw new IllegalArgumentException("Performance.SetTimeDomainParameter.timeDomain is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"timeDomain\":").append(timeDomain);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetTimeDomainParameter() {}
+        public SetTimeDomainParameter(
+            @JsonProperty("timeDomain")TimeDomain timeDomain
+        ) {
+            this();
+            this.timeDomain = timeDomain;
+        }
+        public CompletableFuture<SetTimeDomainResult> call() {
+            return super.call("Performance.setTimeDomain", SetTimeDomainResult.class,
+                (code, msg)->new SetTimeDomainResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetTimeDomainResult> callAsync() {
+            return super.callAsync("Performance.setTimeDomain", SetTimeDomainResult.class,
+                (code, msg)->new SetTimeDomainResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetTimeDomainResult> callAsync(Executor exec) {
+            return super.callAsync("Performance.setTimeDomain", SetTimeDomainResult.class,
+                (code, msg)->new SetTimeDomainResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of setTimeDomain.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SetTimeDomainResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SetTimeDomainResult() { super(); }
+        public SetTimeDomainResult(ResultBase.FailedResult e) {
             super(e);
         }
     }
@@ -177,8 +271,12 @@ import javax.annotation.Nullable;
             return super.call("Performance.getMetrics", GetMetricsResult.class,
                 (code, msg)->new GetMetricsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetMetricsResult> call(Executor exec) {
-            return super.call("Performance.getMetrics", GetMetricsResult.class,
+        public CompletableFuture<GetMetricsResult> callAsync() {
+            return super.callAsync("Performance.getMetrics", GetMetricsResult.class,
+                (code, msg)->new GetMetricsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetMetricsResult> callAsync(Executor exec) {
+            return super.callAsync("Performance.getMetrics", GetMetricsResult.class,
                 (code, msg)->new GetMetricsResult(ResultBase.ofError(code, msg)), exec);
         }
     }

@@ -230,8 +230,12 @@ import javax.annotation.Nullable;
             return super.call("Tracing.end", EndResult.class,
                 (code, msg)->new EndResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EndResult> call(Executor exec) {
-            return super.call("Tracing.end", EndResult.class,
+        public CompletableFuture<EndResult> callAsync() {
+            return super.callAsync("Tracing.end", EndResult.class,
+                (code, msg)->new EndResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EndResult> callAsync(Executor exec) {
+            return super.callAsync("Tracing.end", EndResult.class,
                 (code, msg)->new EndResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -275,8 +279,12 @@ import javax.annotation.Nullable;
             return super.call("Tracing.getCategories", GetCategoriesResult.class,
                 (code, msg)->new GetCategoriesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetCategoriesResult> call(Executor exec) {
-            return super.call("Tracing.getCategories", GetCategoriesResult.class,
+        public CompletableFuture<GetCategoriesResult> callAsync() {
+            return super.callAsync("Tracing.getCategories", GetCategoriesResult.class,
+                (code, msg)->new GetCategoriesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetCategoriesResult> callAsync(Executor exec) {
+            return super.callAsync("Tracing.getCategories", GetCategoriesResult.class,
                 (code, msg)->new GetCategoriesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -348,8 +356,12 @@ import javax.annotation.Nullable;
             return super.call("Tracing.recordClockSyncMarker", RecordClockSyncMarkerResult.class,
                 (code, msg)->new RecordClockSyncMarkerResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RecordClockSyncMarkerResult> call(Executor exec) {
-            return super.call("Tracing.recordClockSyncMarker", RecordClockSyncMarkerResult.class,
+        public CompletableFuture<RecordClockSyncMarkerResult> callAsync() {
+            return super.callAsync("Tracing.recordClockSyncMarker", RecordClockSyncMarkerResult.class,
+                (code, msg)->new RecordClockSyncMarkerResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RecordClockSyncMarkerResult> callAsync(Executor exec) {
+            return super.callAsync("Tracing.recordClockSyncMarker", RecordClockSyncMarkerResult.class,
                 (code, msg)->new RecordClockSyncMarkerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -393,8 +405,12 @@ import javax.annotation.Nullable;
             return super.call("Tracing.requestMemoryDump", RequestMemoryDumpResult.class,
                 (code, msg)->new RequestMemoryDumpResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RequestMemoryDumpResult> call(Executor exec) {
-            return super.call("Tracing.requestMemoryDump", RequestMemoryDumpResult.class,
+        public CompletableFuture<RequestMemoryDumpResult> callAsync() {
+            return super.callAsync("Tracing.requestMemoryDump", RequestMemoryDumpResult.class,
+                (code, msg)->new RequestMemoryDumpResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RequestMemoryDumpResult> callAsync(Executor exec) {
+            return super.callAsync("Tracing.requestMemoryDump", RequestMemoryDumpResult.class,
                 (code, msg)->new RequestMemoryDumpResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -542,8 +558,12 @@ transfer mode (defaults to `none`)
             return super.call("Tracing.start", StartResult.class,
                 (code, msg)->new StartResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<StartResult> call(Executor exec) {
-            return super.call("Tracing.start", StartResult.class,
+        public CompletableFuture<StartResult> callAsync() {
+            return super.callAsync("Tracing.start", StartResult.class,
+                (code, msg)->new StartResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<StartResult> callAsync(Executor exec) {
+            return super.callAsync("Tracing.start", StartResult.class,
                 (code, msg)->new StartResult(ResultBase.ofError(code, msg)), exec);
         }
     }

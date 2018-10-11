@@ -48,8 +48,12 @@ import javax.annotation.Nullable;
             return super.call("DeviceOrientation.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
                 (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ClearDeviceOrientationOverrideResult> call(Executor exec) {
-            return super.call("DeviceOrientation.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
+        public CompletableFuture<ClearDeviceOrientationOverrideResult> callAsync() {
+            return super.callAsync("DeviceOrientation.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
+                (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearDeviceOrientationOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("DeviceOrientation.clearDeviceOrientationOverride", ClearDeviceOrientationOverrideResult.class,
                 (code, msg)->new ClearDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -127,8 +131,12 @@ import javax.annotation.Nullable;
             return super.call("DeviceOrientation.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
                 (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDeviceOrientationOverrideResult> call(Executor exec) {
-            return super.call("DeviceOrientation.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
+        public CompletableFuture<SetDeviceOrientationOverrideResult> callAsync() {
+            return super.callAsync("DeviceOrientation.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
+                (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDeviceOrientationOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("DeviceOrientation.setDeviceOrientationOverride", SetDeviceOrientationOverrideResult.class,
                 (code, msg)->new SetDeviceOrientationOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }

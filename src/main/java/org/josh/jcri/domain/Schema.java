@@ -88,8 +88,12 @@ import javax.annotation.Nullable;
             return super.call("Schema.getDomains", GetDomainsResult.class,
                 (code, msg)->new GetDomainsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetDomainsResult> call(Executor exec) {
-            return super.call("Schema.getDomains", GetDomainsResult.class,
+        public CompletableFuture<GetDomainsResult> callAsync() {
+            return super.callAsync("Schema.getDomains", GetDomainsResult.class,
+                (code, msg)->new GetDomainsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetDomainsResult> callAsync(Executor exec) {
+            return super.callAsync("Schema.getDomains", GetDomainsResult.class,
                 (code, msg)->new GetDomainsResult(ResultBase.ofError(code, msg)), exec);
         }
     }

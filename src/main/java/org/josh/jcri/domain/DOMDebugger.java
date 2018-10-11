@@ -26,6 +26,7 @@ execution will stop on these operations as if there was a regular breakpoint set
 <p>Protocol version: 1.3</p>
  @see DOM
  @see Debugger
+ @see Runtime
  @author Joshua*/
 @ParametersAreNonnullByDefault public class DOMDebugger extends DomainBase {
     public DOMDebugger(EventCenter evt, WebSocket ws) { super(evt, ws); }
@@ -227,8 +228,12 @@ entire subtree or provide an integer larger than 0.
             return super.call("DOMDebugger.getEventListeners", GetEventListenersResult.class,
                 (code, msg)->new GetEventListenersResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetEventListenersResult> call(Executor exec) {
-            return super.call("DOMDebugger.getEventListeners", GetEventListenersResult.class,
+        public CompletableFuture<GetEventListenersResult> callAsync() {
+            return super.callAsync("DOMDebugger.getEventListeners", GetEventListenersResult.class,
+                (code, msg)->new GetEventListenersResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetEventListenersResult> callAsync(Executor exec) {
+            return super.callAsync("DOMDebugger.getEventListeners", GetEventListenersResult.class,
                 (code, msg)->new GetEventListenersResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -310,8 +315,12 @@ entire subtree or provide an integer larger than 0.
             return super.call("DOMDebugger.removeDOMBreakpoint", RemoveDOMBreakpointResult.class,
                 (code, msg)->new RemoveDOMBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RemoveDOMBreakpointResult> call(Executor exec) {
-            return super.call("DOMDebugger.removeDOMBreakpoint", RemoveDOMBreakpointResult.class,
+        public CompletableFuture<RemoveDOMBreakpointResult> callAsync() {
+            return super.callAsync("DOMDebugger.removeDOMBreakpoint", RemoveDOMBreakpointResult.class,
+                (code, msg)->new RemoveDOMBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RemoveDOMBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("DOMDebugger.removeDOMBreakpoint", RemoveDOMBreakpointResult.class,
                 (code, msg)->new RemoveDOMBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -380,8 +389,12 @@ entire subtree or provide an integer larger than 0.
             return super.call("DOMDebugger.removeEventListenerBreakpoint", RemoveEventListenerBreakpointResult.class,
                 (code, msg)->new RemoveEventListenerBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RemoveEventListenerBreakpointResult> call(Executor exec) {
-            return super.call("DOMDebugger.removeEventListenerBreakpoint", RemoveEventListenerBreakpointResult.class,
+        public CompletableFuture<RemoveEventListenerBreakpointResult> callAsync() {
+            return super.callAsync("DOMDebugger.removeEventListenerBreakpoint", RemoveEventListenerBreakpointResult.class,
+                (code, msg)->new RemoveEventListenerBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RemoveEventListenerBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("DOMDebugger.removeEventListenerBreakpoint", RemoveEventListenerBreakpointResult.class,
                 (code, msg)->new RemoveEventListenerBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -441,8 +454,12 @@ entire subtree or provide an integer larger than 0.
             return super.call("DOMDebugger.removeInstrumentationBreakpoint", RemoveInstrumentationBreakpointResult.class,
                 (code, msg)->new RemoveInstrumentationBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RemoveInstrumentationBreakpointResult> call(Executor exec) {
-            return super.call("DOMDebugger.removeInstrumentationBreakpoint", RemoveInstrumentationBreakpointResult.class,
+        public CompletableFuture<RemoveInstrumentationBreakpointResult> callAsync() {
+            return super.callAsync("DOMDebugger.removeInstrumentationBreakpoint", RemoveInstrumentationBreakpointResult.class,
+                (code, msg)->new RemoveInstrumentationBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RemoveInstrumentationBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("DOMDebugger.removeInstrumentationBreakpoint", RemoveInstrumentationBreakpointResult.class,
                 (code, msg)->new RemoveInstrumentationBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -501,8 +518,12 @@ entire subtree or provide an integer larger than 0.
             return super.call("DOMDebugger.removeXHRBreakpoint", RemoveXHRBreakpointResult.class,
                 (code, msg)->new RemoveXHRBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<RemoveXHRBreakpointResult> call(Executor exec) {
-            return super.call("DOMDebugger.removeXHRBreakpoint", RemoveXHRBreakpointResult.class,
+        public CompletableFuture<RemoveXHRBreakpointResult> callAsync() {
+            return super.callAsync("DOMDebugger.removeXHRBreakpoint", RemoveXHRBreakpointResult.class,
+                (code, msg)->new RemoveXHRBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<RemoveXHRBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("DOMDebugger.removeXHRBreakpoint", RemoveXHRBreakpointResult.class,
                 (code, msg)->new RemoveXHRBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -570,8 +591,12 @@ entire subtree or provide an integer larger than 0.
             return super.call("DOMDebugger.setDOMBreakpoint", SetDOMBreakpointResult.class,
                 (code, msg)->new SetDOMBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDOMBreakpointResult> call(Executor exec) {
-            return super.call("DOMDebugger.setDOMBreakpoint", SetDOMBreakpointResult.class,
+        public CompletableFuture<SetDOMBreakpointResult> callAsync() {
+            return super.callAsync("DOMDebugger.setDOMBreakpoint", SetDOMBreakpointResult.class,
+                (code, msg)->new SetDOMBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDOMBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("DOMDebugger.setDOMBreakpoint", SetDOMBreakpointResult.class,
                 (code, msg)->new SetDOMBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -641,8 +666,12 @@ EventTarget.
             return super.call("DOMDebugger.setEventListenerBreakpoint", SetEventListenerBreakpointResult.class,
                 (code, msg)->new SetEventListenerBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetEventListenerBreakpointResult> call(Executor exec) {
-            return super.call("DOMDebugger.setEventListenerBreakpoint", SetEventListenerBreakpointResult.class,
+        public CompletableFuture<SetEventListenerBreakpointResult> callAsync() {
+            return super.callAsync("DOMDebugger.setEventListenerBreakpoint", SetEventListenerBreakpointResult.class,
+                (code, msg)->new SetEventListenerBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetEventListenerBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("DOMDebugger.setEventListenerBreakpoint", SetEventListenerBreakpointResult.class,
                 (code, msg)->new SetEventListenerBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -702,8 +731,12 @@ EventTarget.
             return super.call("DOMDebugger.setInstrumentationBreakpoint", SetInstrumentationBreakpointResult.class,
                 (code, msg)->new SetInstrumentationBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetInstrumentationBreakpointResult> call(Executor exec) {
-            return super.call("DOMDebugger.setInstrumentationBreakpoint", SetInstrumentationBreakpointResult.class,
+        public CompletableFuture<SetInstrumentationBreakpointResult> callAsync() {
+            return super.callAsync("DOMDebugger.setInstrumentationBreakpoint", SetInstrumentationBreakpointResult.class,
+                (code, msg)->new SetInstrumentationBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetInstrumentationBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("DOMDebugger.setInstrumentationBreakpoint", SetInstrumentationBreakpointResult.class,
                 (code, msg)->new SetInstrumentationBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -762,8 +795,12 @@ EventTarget.
             return super.call("DOMDebugger.setXHRBreakpoint", SetXHRBreakpointResult.class,
                 (code, msg)->new SetXHRBreakpointResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetXHRBreakpointResult> call(Executor exec) {
-            return super.call("DOMDebugger.setXHRBreakpoint", SetXHRBreakpointResult.class,
+        public CompletableFuture<SetXHRBreakpointResult> callAsync() {
+            return super.callAsync("DOMDebugger.setXHRBreakpoint", SetXHRBreakpointResult.class,
+                (code, msg)->new SetXHRBreakpointResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetXHRBreakpointResult> callAsync(Executor exec) {
+            return super.callAsync("DOMDebugger.setXHRBreakpoint", SetXHRBreakpointResult.class,
                 (code, msg)->new SetXHRBreakpointResult(ResultBase.ofError(code, msg)), exec);
         }
     }

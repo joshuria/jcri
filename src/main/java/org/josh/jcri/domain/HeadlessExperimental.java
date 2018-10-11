@@ -161,8 +161,12 @@ during renderer initialization. In such a case, no screenshot data will be retur
             return super.call("HeadlessExperimental.beginFrame", BeginFrameResult.class,
                 (code, msg)->new BeginFrameResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<BeginFrameResult> call(Executor exec) {
-            return super.call("HeadlessExperimental.beginFrame", BeginFrameResult.class,
+        public CompletableFuture<BeginFrameResult> callAsync() {
+            return super.callAsync("HeadlessExperimental.beginFrame", BeginFrameResult.class,
+                (code, msg)->new BeginFrameResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<BeginFrameResult> callAsync(Executor exec) {
+            return super.callAsync("HeadlessExperimental.beginFrame", BeginFrameResult.class,
                 (code, msg)->new BeginFrameResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -226,8 +230,12 @@ display. Reported for diagnostic uses, may be removed in the future.*/
             return super.call("HeadlessExperimental.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("HeadlessExperimental.disable", DisableResult.class,
+        public CompletableFuture<DisableResult> callAsync() {
+            return super.callAsync("HeadlessExperimental.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DisableResult> callAsync(Executor exec) {
+            return super.callAsync("HeadlessExperimental.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -271,8 +279,12 @@ display. Reported for diagnostic uses, may be removed in the future.*/
             return super.call("HeadlessExperimental.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("HeadlessExperimental.enable", EnableResult.class,
+        public CompletableFuture<EnableResult> callAsync() {
+            return super.callAsync("HeadlessExperimental.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EnableResult> callAsync(Executor exec) {
+            return super.callAsync("HeadlessExperimental.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }

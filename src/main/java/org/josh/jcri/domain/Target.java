@@ -263,8 +263,12 @@ import javax.annotation.Nullable;
             return super.call("Target.activateTarget", ActivateTargetResult.class,
                 (code, msg)->new ActivateTargetResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ActivateTargetResult> call(Executor exec) {
-            return super.call("Target.activateTarget", ActivateTargetResult.class,
+        public CompletableFuture<ActivateTargetResult> callAsync() {
+            return super.callAsync("Target.activateTarget", ActivateTargetResult.class,
+                (code, msg)->new ActivateTargetResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ActivateTargetResult> callAsync(Executor exec) {
+            return super.callAsync("Target.activateTarget", ActivateTargetResult.class,
                 (code, msg)->new ActivateTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -294,10 +298,18 @@ import javax.annotation.Nullable;
     @ParametersAreNonnullByDefault public static class AttachToTargetParameter extends CommandBase {
         /**&lt;No document in protocol.&gt;*/
         private TargetID targetId;
+        /**Enables "flat" access to the session via specifying sessionId attribute in the commands.
+        <em>Optional.</em>
+        <p><strong>Experimental.</strong></p>*/
+        private Boolean flatten;
         public final AttachToTargetParameter targetId(TargetID targetId) { this.targetId = targetId; return this; }
         public final AttachToTargetParameter setTargetId(TargetID targetId) { return targetId(targetId); }
         public final TargetID targetId() { return targetId; }
         public final TargetID getTargetId() { return targetId(); }
+        public final AttachToTargetParameter flatten(@Nullable Boolean flatten) { this.flatten = flatten; return this; }
+        public final AttachToTargetParameter optFlatten(@Nullable Boolean flatten) { return flatten(flatten); }
+        public final Boolean flatten() { return flatten; }
+        public final Boolean getFlatten() { return flatten(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -308,22 +320,29 @@ import javax.annotation.Nullable;
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             targetId.toJson(strBuilder.append("\"targetId\":"));
+            if (flatten != null) strBuilder.append(",\"flatten\":").append(flatten);
             strBuilder.append('}');
             return strBuilder;
         }
         public AttachToTargetParameter() {}
         public AttachToTargetParameter(
-            @JsonProperty("targetId")TargetID targetId
+            @JsonProperty("targetId")TargetID targetId,
+            @Nullable @JsonProperty("flatten")Boolean flatten
         ) {
             this();
             this.targetId = targetId;
+            this.flatten = flatten;
         }
         public CompletableFuture<AttachToTargetResult> call() {
             return super.call("Target.attachToTarget", AttachToTargetResult.class,
                 (code, msg)->new AttachToTargetResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<AttachToTargetResult> call(Executor exec) {
-            return super.call("Target.attachToTarget", AttachToTargetResult.class,
+        public CompletableFuture<AttachToTargetResult> callAsync() {
+            return super.callAsync("Target.attachToTarget", AttachToTargetResult.class,
+                (code, msg)->new AttachToTargetResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AttachToTargetResult> callAsync(Executor exec) {
+            return super.callAsync("Target.attachToTarget", AttachToTargetResult.class,
                 (code, msg)->new AttachToTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -352,6 +371,68 @@ import javax.annotation.Nullable;
             this.sessionId = sessionId;
         }
         public AttachToTargetResult(ResultBase.FailedResult e) {
+            super(e);
+            sessionId = null;
+        }
+    }
+    /**Attaches to the browser target, only uses flat sessionId mode.
+    <p><strong>Experimental.</strong></p>*/
+    public AttachToBrowserTargetParameter attachToBrowserTarget() { final AttachToBrowserTargetParameter v = new AttachToBrowserTargetParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of attachToBrowserTarget.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class AttachToBrowserTargetParameter extends CommandBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public AttachToBrowserTargetParameter() {}
+        public CompletableFuture<AttachToBrowserTargetResult> call() {
+            return super.call("Target.attachToBrowserTarget", AttachToBrowserTargetResult.class,
+                (code, msg)->new AttachToBrowserTargetResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AttachToBrowserTargetResult> callAsync() {
+            return super.callAsync("Target.attachToBrowserTarget", AttachToBrowserTargetResult.class,
+                (code, msg)->new AttachToBrowserTargetResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<AttachToBrowserTargetResult> callAsync(Executor exec) {
+            return super.callAsync("Target.attachToBrowserTarget", AttachToBrowserTargetResult.class,
+                (code, msg)->new AttachToBrowserTargetResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of attachToBrowserTarget.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class AttachToBrowserTargetResult extends ResultBase {
+        /**Id assigned to the session.*/
+        private final SessionID sessionId;
+        public final SessionID sessionId() { return sessionId; }
+        public final SessionID getSessionId() { return sessionId(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            sessionId.toJson(strBuilder.append("\"sessionId\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public AttachToBrowserTargetResult(
+            @JsonProperty("sessionId")SessionID sessionId
+        ) {
+            this.sessionId = sessionId;
+        }
+        public AttachToBrowserTargetResult(ResultBase.FailedResult e) {
             super(e);
             sessionId = null;
         }
@@ -391,8 +472,12 @@ import javax.annotation.Nullable;
             return super.call("Target.closeTarget", CloseTargetResult.class,
                 (code, msg)->new CloseTargetResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CloseTargetResult> call(Executor exec) {
-            return super.call("Target.closeTarget", CloseTargetResult.class,
+        public CompletableFuture<CloseTargetResult> callAsync() {
+            return super.callAsync("Target.closeTarget", CloseTargetResult.class,
+                (code, msg)->new CloseTargetResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CloseTargetResult> callAsync(Executor exec) {
+            return super.callAsync("Target.closeTarget", CloseTargetResult.class,
                 (code, msg)->new CloseTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -425,6 +510,89 @@ import javax.annotation.Nullable;
             success = null;
         }
     }
+    /**Inject object to the target's main frame that provides a communication
+channel with browser target.
+
+Injected object will be available as `window[bindingName]`.
+
+The object has the follwing API:
+- `binding.send(json)` - a method to send messages over the remote debugging protocol
+- `binding.onmessage = json => handleMessage(json)` - a callback that will be called for the protocol notifications and command responses.
+    <p><strong>Experimental.</strong></p>*/
+    public ExposeDevToolsProtocolParameter exposeDevToolsProtocol() { final ExposeDevToolsProtocolParameter v = new ExposeDevToolsProtocolParameter(); v.setEventCenterAndSocket(_evt, _ws); return v; }
+    /**Parameter class of exposeDevToolsProtocol.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class ExposeDevToolsProtocolParameter extends CommandBase {
+        /**&lt;No document in protocol.&gt;*/
+        private TargetID targetId;
+        /**Binding name, 'cdp' if not specified.
+        <em>Optional.</em>*/
+        private String bindingName;
+        public final ExposeDevToolsProtocolParameter targetId(TargetID targetId) { this.targetId = targetId; return this; }
+        public final ExposeDevToolsProtocolParameter setTargetId(TargetID targetId) { return targetId(targetId); }
+        public final TargetID targetId() { return targetId; }
+        public final TargetID getTargetId() { return targetId(); }
+        public final ExposeDevToolsProtocolParameter bindingName(@Nullable String bindingName) { this.bindingName = bindingName; return this; }
+        public final ExposeDevToolsProtocolParameter optBindingName(@Nullable String bindingName) { return bindingName(bindingName); }
+        public final String bindingName() { return bindingName; }
+        public final String getBindingName() { return bindingName(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (targetId == null) throw new IllegalArgumentException("Target.ExposeDevToolsProtocolParameter.targetId is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            targetId.toJson(strBuilder.append("\"targetId\":"));
+            if (bindingName != null) strBuilder.append(",\"bindingName\":").append('"').append(DomainBase.escapeJson(bindingName)).append('"');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public ExposeDevToolsProtocolParameter() {}
+        public ExposeDevToolsProtocolParameter(
+            @JsonProperty("targetId")TargetID targetId,
+            @Nullable @JsonProperty("bindingName")String bindingName
+        ) {
+            this();
+            this.targetId = targetId;
+            this.bindingName = bindingName;
+        }
+        public CompletableFuture<ExposeDevToolsProtocolResult> call() {
+            return super.call("Target.exposeDevToolsProtocol", ExposeDevToolsProtocolResult.class,
+                (code, msg)->new ExposeDevToolsProtocolResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ExposeDevToolsProtocolResult> callAsync() {
+            return super.callAsync("Target.exposeDevToolsProtocol", ExposeDevToolsProtocolResult.class,
+                (code, msg)->new ExposeDevToolsProtocolResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ExposeDevToolsProtocolResult> callAsync(Executor exec) {
+            return super.callAsync("Target.exposeDevToolsProtocol", ExposeDevToolsProtocolResult.class,
+                (code, msg)->new ExposeDevToolsProtocolResult(ResultBase.ofError(code, msg)), exec);
+        }
+    }
+    /**Return result class of exposeDevToolsProtocol.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class ExposeDevToolsProtocolResult extends ResultBase {
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public ExposeDevToolsProtocolResult() { super(); }
+        public ExposeDevToolsProtocolResult(ResultBase.FailedResult e) {
+            super(e);
+        }
+    }
     /**Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than
 one.
     <p><strong>Experimental.</strong></p>*/
@@ -449,8 +617,12 @@ one.
             return super.call("Target.createBrowserContext", CreateBrowserContextResult.class,
                 (code, msg)->new CreateBrowserContextResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CreateBrowserContextResult> call(Executor exec) {
-            return super.call("Target.createBrowserContext", CreateBrowserContextResult.class,
+        public CompletableFuture<CreateBrowserContextResult> callAsync() {
+            return super.callAsync("Target.createBrowserContext", CreateBrowserContextResult.class,
+                (code, msg)->new CreateBrowserContextResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CreateBrowserContextResult> callAsync(Executor exec) {
+            return super.callAsync("Target.createBrowserContext", CreateBrowserContextResult.class,
                 (code, msg)->new CreateBrowserContextResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -507,8 +679,12 @@ one.
             return super.call("Target.getBrowserContexts", GetBrowserContextsResult.class,
                 (code, msg)->new GetBrowserContextsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetBrowserContextsResult> call(Executor exec) {
-            return super.call("Target.getBrowserContexts", GetBrowserContextsResult.class,
+        public CompletableFuture<GetBrowserContextsResult> callAsync() {
+            return super.callAsync("Target.getBrowserContexts", GetBrowserContextsResult.class,
+                (code, msg)->new GetBrowserContextsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetBrowserContextsResult> callAsync(Executor exec) {
+            return super.callAsync("Target.getBrowserContexts", GetBrowserContextsResult.class,
                 (code, msg)->new GetBrowserContextsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -623,8 +799,12 @@ not supported on MacOS yet, false by default).
             return super.call("Target.createTarget", CreateTargetResult.class,
                 (code, msg)->new CreateTargetResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CreateTargetResult> call(Executor exec) {
-            return super.call("Target.createTarget", CreateTargetResult.class,
+        public CompletableFuture<CreateTargetResult> callAsync() {
+            return super.callAsync("Target.createTarget", CreateTargetResult.class,
+                (code, msg)->new CreateTargetResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CreateTargetResult> callAsync(Executor exec) {
+            return super.callAsync("Target.createTarget", CreateTargetResult.class,
                 (code, msg)->new CreateTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -703,8 +883,12 @@ not supported on MacOS yet, false by default).
             return super.call("Target.detachFromTarget", DetachFromTargetResult.class,
                 (code, msg)->new DetachFromTargetResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DetachFromTargetResult> call(Executor exec) {
-            return super.call("Target.detachFromTarget", DetachFromTargetResult.class,
+        public CompletableFuture<DetachFromTargetResult> callAsync() {
+            return super.callAsync("Target.detachFromTarget", DetachFromTargetResult.class,
+                (code, msg)->new DetachFromTargetResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DetachFromTargetResult> callAsync(Executor exec) {
+            return super.callAsync("Target.detachFromTarget", DetachFromTargetResult.class,
                 (code, msg)->new DetachFromTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -765,8 +949,12 @@ beforeunload hooks.
             return super.call("Target.disposeBrowserContext", DisposeBrowserContextResult.class,
                 (code, msg)->new DisposeBrowserContextResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DisposeBrowserContextResult> call(Executor exec) {
-            return super.call("Target.disposeBrowserContext", DisposeBrowserContextResult.class,
+        public CompletableFuture<DisposeBrowserContextResult> callAsync() {
+            return super.callAsync("Target.disposeBrowserContext", DisposeBrowserContextResult.class,
+                (code, msg)->new DisposeBrowserContextResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DisposeBrowserContextResult> callAsync(Executor exec) {
+            return super.callAsync("Target.disposeBrowserContext", DisposeBrowserContextResult.class,
                 (code, msg)->new DisposeBrowserContextResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -797,28 +985,28 @@ beforeunload hooks.
     <p><strong>Experimental.</strong></p>*/
     @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class GetTargetInfoParameter extends CommandBase {
-        /**&lt;No document in protocol.&gt;*/
+        /**&lt;No document in protocol.&gt;
+        <em>Optional.</em>*/
         private TargetID targetId;
-        public final GetTargetInfoParameter targetId(TargetID targetId) { this.targetId = targetId; return this; }
-        public final GetTargetInfoParameter setTargetId(TargetID targetId) { return targetId(targetId); }
+        public final GetTargetInfoParameter targetId(@Nullable TargetID targetId) { this.targetId = targetId; return this; }
+        public final GetTargetInfoParameter optTargetId(@Nullable TargetID targetId) { return targetId(targetId); }
         public final TargetID targetId() { return targetId; }
         public final TargetID getTargetId() { return targetId(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
-            if (targetId == null) throw new IllegalArgumentException("Target.GetTargetInfoParameter.targetId is necessary field.");
         }
         /**Convert method parameter object into json string and append into string builder.
          @return string builder instance that is given in parameter (for chaining coding style use.) */
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
-            targetId.toJson(strBuilder.append("\"targetId\":"));
+            if (targetId != null) targetId.toJson(strBuilder.append("\"targetId\":"));
             strBuilder.append('}');
             return strBuilder;
         }
         public GetTargetInfoParameter() {}
         public GetTargetInfoParameter(
-            @JsonProperty("targetId")TargetID targetId
+            @Nullable @JsonProperty("targetId")TargetID targetId
         ) {
             this();
             this.targetId = targetId;
@@ -827,8 +1015,12 @@ beforeunload hooks.
             return super.call("Target.getTargetInfo", GetTargetInfoResult.class,
                 (code, msg)->new GetTargetInfoResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetTargetInfoResult> call(Executor exec) {
-            return super.call("Target.getTargetInfo", GetTargetInfoResult.class,
+        public CompletableFuture<GetTargetInfoResult> callAsync() {
+            return super.callAsync("Target.getTargetInfo", GetTargetInfoResult.class,
+                (code, msg)->new GetTargetInfoResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetTargetInfoResult> callAsync(Executor exec) {
+            return super.callAsync("Target.getTargetInfo", GetTargetInfoResult.class,
                 (code, msg)->new GetTargetInfoResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -883,8 +1075,12 @@ beforeunload hooks.
             return super.call("Target.getTargets", GetTargetsResult.class,
                 (code, msg)->new GetTargetsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetTargetsResult> call(Executor exec) {
-            return super.call("Target.getTargets", GetTargetsResult.class,
+        public CompletableFuture<GetTargetsResult> callAsync() {
+            return super.callAsync("Target.getTargets", GetTargetsResult.class,
+                (code, msg)->new GetTargetsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetTargetsResult> callAsync(Executor exec) {
+            return super.callAsync("Target.getTargets", GetTargetsResult.class,
                 (code, msg)->new GetTargetsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -977,8 +1173,12 @@ beforeunload hooks.
             return super.call("Target.sendMessageToTarget", SendMessageToTargetResult.class,
                 (code, msg)->new SendMessageToTargetResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SendMessageToTargetResult> call(Executor exec) {
-            return super.call("Target.sendMessageToTarget", SendMessageToTargetResult.class,
+        public CompletableFuture<SendMessageToTargetResult> callAsync() {
+            return super.callAsync("Target.sendMessageToTarget", SendMessageToTargetResult.class,
+                (code, msg)->new SendMessageToTargetResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SendMessageToTargetResult> callAsync(Executor exec) {
+            return super.callAsync("Target.sendMessageToTarget", SendMessageToTargetResult.class,
                 (code, msg)->new SendMessageToTargetResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1015,6 +1215,10 @@ automatically detaches from all currently attached targets.
         /**Whether to pause new targets when attaching to them. Use `Runtime.runIfWaitingForDebugger`
 to run paused targets.*/
         private Boolean waitForDebuggerOnStart;
+        /**Enables "flat" access to the session via specifying sessionId attribute in the commands.
+        <em>Optional.</em>
+        <p><strong>Experimental.</strong></p>*/
+        private Boolean flatten;
         public final SetAutoAttachParameter autoAttach(Boolean autoAttach) { this.autoAttach = autoAttach; return this; }
         public final SetAutoAttachParameter setAutoAttach(Boolean autoAttach) { return autoAttach(autoAttach); }
         public final Boolean autoAttach() { return autoAttach; }
@@ -1023,6 +1227,10 @@ to run paused targets.*/
         public final SetAutoAttachParameter setWaitForDebuggerOnStart(Boolean waitForDebuggerOnStart) { return waitForDebuggerOnStart(waitForDebuggerOnStart); }
         public final Boolean waitForDebuggerOnStart() { return waitForDebuggerOnStart; }
         public final Boolean getWaitForDebuggerOnStart() { return waitForDebuggerOnStart(); }
+        public final SetAutoAttachParameter flatten(@Nullable Boolean flatten) { this.flatten = flatten; return this; }
+        public final SetAutoAttachParameter optFlatten(@Nullable Boolean flatten) { return flatten(flatten); }
+        public final Boolean flatten() { return flatten; }
+        public final Boolean getFlatten() { return flatten(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -1035,24 +1243,31 @@ to run paused targets.*/
             strBuilder.append('{');
             strBuilder.append("\"autoAttach\":").append(autoAttach);
             strBuilder.append(",\"waitForDebuggerOnStart\":").append(waitForDebuggerOnStart);
+            if (flatten != null) strBuilder.append(",\"flatten\":").append(flatten);
             strBuilder.append('}');
             return strBuilder;
         }
         public SetAutoAttachParameter() {}
         public SetAutoAttachParameter(
             @JsonProperty("autoAttach")Boolean autoAttach,
-            @JsonProperty("waitForDebuggerOnStart")Boolean waitForDebuggerOnStart
+            @JsonProperty("waitForDebuggerOnStart")Boolean waitForDebuggerOnStart,
+            @Nullable @JsonProperty("flatten")Boolean flatten
         ) {
             this();
             this.autoAttach = autoAttach;
             this.waitForDebuggerOnStart = waitForDebuggerOnStart;
+            this.flatten = flatten;
         }
         public CompletableFuture<SetAutoAttachResult> call() {
             return super.call("Target.setAutoAttach", SetAutoAttachResult.class,
                 (code, msg)->new SetAutoAttachResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetAutoAttachResult> call(Executor exec) {
-            return super.call("Target.setAutoAttach", SetAutoAttachResult.class,
+        public CompletableFuture<SetAutoAttachResult> callAsync() {
+            return super.callAsync("Target.setAutoAttach", SetAutoAttachResult.class,
+                (code, msg)->new SetAutoAttachResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetAutoAttachResult> callAsync(Executor exec) {
+            return super.callAsync("Target.setAutoAttach", SetAutoAttachResult.class,
                 (code, msg)->new SetAutoAttachResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1112,8 +1327,12 @@ to run paused targets.*/
             return super.call("Target.setDiscoverTargets", SetDiscoverTargetsResult.class,
                 (code, msg)->new SetDiscoverTargetsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDiscoverTargetsResult> call(Executor exec) {
-            return super.call("Target.setDiscoverTargets", SetDiscoverTargetsResult.class,
+        public CompletableFuture<SetDiscoverTargetsResult> callAsync() {
+            return super.callAsync("Target.setDiscoverTargets", SetDiscoverTargetsResult.class,
+                (code, msg)->new SetDiscoverTargetsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDiscoverTargetsResult> callAsync(Executor exec) {
+            return super.callAsync("Target.setDiscoverTargets", SetDiscoverTargetsResult.class,
                 (code, msg)->new SetDiscoverTargetsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1178,8 +1397,12 @@ to run paused targets.*/
             return super.call("Target.setRemoteLocations", SetRemoteLocationsResult.class,
                 (code, msg)->new SetRemoteLocationsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetRemoteLocationsResult> call(Executor exec) {
-            return super.call("Target.setRemoteLocations", SetRemoteLocationsResult.class,
+        public CompletableFuture<SetRemoteLocationsResult> callAsync() {
+            return super.callAsync("Target.setRemoteLocations", SetRemoteLocationsResult.class,
+                (code, msg)->new SetRemoteLocationsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetRemoteLocationsResult> callAsync(Executor exec) {
+            return super.callAsync("Target.setRemoteLocations", SetRemoteLocationsResult.class,
                 (code, msg)->new SetRemoteLocationsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -1437,6 +1660,58 @@ issued multiple times per target if multiple sessions have been attached to it.
                 callback.accept(param);
             });
         else    registerEventCallback("Target.targetDestroyed", null);
+    }
+    /**Event parameter of Target.targetCrashed.
+     @see #onTargetCrashed*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class TargetCrashedEventParameter implements CommonDomainType {
+        /**&lt;No document in protocol.&gt;*/
+        private final TargetID targetId;
+        /**Termination status type.*/
+        private final String status;
+        /**Termination error code.*/
+        private final Integer errorCode;
+        public final TargetID targetId() { return targetId; }
+        public final TargetID getTargetId() { return targetId(); }
+        public final String status() { return status; }
+        public final String getStatus() { return status(); }
+        public final Integer errorCode() { return errorCode; }
+        public final Integer getErrorCode() { return errorCode(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            targetId.toJson(strBuilder.append("\"targetId\":"));
+            strBuilder.append(",\"status\":").append('"').append(DomainBase.escapeJson(status)).append('"');
+            strBuilder.append(",\"errorCode\":").append(errorCode);
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        TargetCrashedEventParameter(
+            @JsonProperty("targetId")TargetID targetId,
+            @JsonProperty("status")String status,
+            @JsonProperty("errorCode")Integer errorCode
+        ) {
+            this.targetId = targetId;
+            this.status = status;
+            this.errorCode = errorCode;
+        }
+    }
+    /**Issued when a target has crashed.
+     @see TargetCrashedEventParameter*/
+    public void onTargetCrashed(@Nullable Consumer<TargetCrashedEventParameter> callback) {
+        if (callback != null)
+            registerEventCallback("Target.targetCrashed", node -> {
+                TargetCrashedEventParameter param;
+                try { param = EventCenter.deserializeJson(node, TargetCrashedEventParameter.class); }
+                catch (IOException e) { _evt.getLog().error(e); return; }
+                callback.accept(param);
+            });
+        else    registerEventCallback("Target.targetCrashed", null);
     }
     /**Event parameter of Target.targetInfoChanged.
      @see #onTargetInfoChanged*/

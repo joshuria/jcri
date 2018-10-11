@@ -31,6 +31,40 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
 @ParametersAreNonnullByDefault public class Network extends DomainBase {
     public Network(EventCenter evt, WebSocket ws) { super(evt, ws); }
 
+    /**Resource type as it was perceived by the rendering engine.*/
+    @ParametersAreNonnullByDefault public enum ResourceType implements CommonDomainType {
+        Document("Document"),
+        Stylesheet("Stylesheet"),
+        Image("Image"),
+        Media("Media"),
+        Font("Font"),
+        Script("Script"),
+        TextTrack("TextTrack"),
+        XHR("XHR"),
+        Fetch("Fetch"),
+        EventSource("EventSource"),
+        WebSocket("WebSocket"),
+        Manifest("Manifest"),
+        SignedExchange("SignedExchange"),
+        Ping("Ping"),
+        CSPViolationReport("CSPViolationReport"),
+        Other("Other");
+
+        private final String _value;
+        /**Convert string representation to type.
+         @throws IllegalArgumentException if given value cannot convert to enum type. */
+        @JsonCreator public static ResourceType of(String value) {
+            return Enum.valueOf(ResourceType.class, value.substring(0, 1).toUpperCase() + value.substring(1));
+        }
+        ResourceType(String value) { _value = value; }
+        /**Check if parameter fields of method are all valid. */
+        @Override public void check() throws IllegalArgumentException { /* Need not check */ }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
+    }
+
     /**Unique loader identifier.*/
     @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class LoaderId implements CommonDomainType {
@@ -462,8 +496,11 @@ milliseconds relatively to this requestTime.*/
     /**HTTP request data.*/
     @JsonIgnoreProperties(ignoreUnknown = true)
     @ParametersAreNonnullByDefault public static class Request implements CommonDomainType {
-        /**Request URL.*/
+        /**Request URL (without fragment).*/
         private String url;
+        /**Fragment of the requested URL starting with hash, if present.
+        <em>Optional.</em>*/
+        private String urlFragment;
         /**HTTP request method.*/
         private String method;
         /**HTTP request headers.*/
@@ -512,6 +549,10 @@ milliseconds relatively to this requestTime.*/
         public final Request setUrl(String url) { return url(url); }
         public final String url() { return url; }
         public final String getUrl() { return url(); }
+        public final Request urlFragment(@Nullable String urlFragment) { this.urlFragment = urlFragment; return this; }
+        public final Request optUrlFragment(@Nullable String urlFragment) { return urlFragment(urlFragment); }
+        public final String urlFragment() { return urlFragment; }
+        public final String getUrlFragment() { return urlFragment(); }
         public final Request method(String method) { this.method = method; return this; }
         public final Request setMethod(String method) { return method(method); }
         public final String method() { return method; }
@@ -558,6 +599,7 @@ milliseconds relatively to this requestTime.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"url\":").append('"').append(DomainBase.escapeJson(url)).append('"');
+            if (urlFragment != null) strBuilder.append(",\"urlFragment\":").append('"').append(DomainBase.escapeJson(urlFragment)).append('"');
             strBuilder.append(",\"method\":").append('"').append(DomainBase.escapeJson(method)).append('"');
             headers.toJson(strBuilder.append(",\"headers\":"));
             if (postData != null) strBuilder.append(",\"postData\":").append('"').append(DomainBase.escapeJson(postData)).append('"');
@@ -572,6 +614,7 @@ milliseconds relatively to this requestTime.*/
         public Request() {}
         public Request(
             @JsonProperty("url")String url,
+            @Nullable @JsonProperty("urlFragment")String urlFragment,
             @JsonProperty("method")String method,
             @JsonProperty("headers")Headers headers,
             @Nullable @JsonProperty("postData")String postData,
@@ -582,6 +625,7 @@ milliseconds relatively to this requestTime.*/
             @Nullable @JsonProperty("isLinkPreload")Boolean isLinkPreload
         ) {
             this.url = url;
+            this.urlFragment = urlFragment;
             this.method = method;
             this.headers = headers;
             this.postData = postData;
@@ -880,7 +924,8 @@ milliseconds relatively to this requestTime.*/
         Origin("origin"),
         Inspector("inspector"),
         Subresource_filter("subresource-filter"),
-        Content_type("content-type");
+        Content_type("content-type"),
+        Collapsed_by_client("collapsed-by-client");
 
         private final String _value;
         /**Convert string representation to type.
@@ -1273,7 +1318,7 @@ milliseconds relatively to this requestTime.*/
         /**Resource URL. This is the url of the original network request.*/
         private String url;
         /**Type of this resource.*/
-        private Page.ResourceType type;
+        private ResourceType type;
         /**Cached response data.
         <em>Optional.</em>*/
         private Response response;
@@ -1283,10 +1328,10 @@ milliseconds relatively to this requestTime.*/
         public final CachedResource setUrl(String url) { return url(url); }
         public final String url() { return url; }
         public final String getUrl() { return url(); }
-        public final CachedResource type(Page.ResourceType type) { this.type = type; return this; }
-        public final CachedResource setType(Page.ResourceType type) { return type(type); }
-        public final Page.ResourceType type() { return type; }
-        public final Page.ResourceType getType() { return type(); }
+        public final CachedResource type(ResourceType type) { this.type = type; return this; }
+        public final CachedResource setType(ResourceType type) { return type(type); }
+        public final ResourceType type() { return type; }
+        public final ResourceType getType() { return type(); }
         public final CachedResource response(@Nullable Response response) { this.response = response; return this; }
         public final CachedResource optResponse(@Nullable Response response) { return response(response); }
         public final Response response() { return response; }
@@ -1316,7 +1361,7 @@ milliseconds relatively to this requestTime.*/
         public CachedResource() {}
         public CachedResource(
             @JsonProperty("url")String url,
-            @JsonProperty("type")Page.ResourceType type,
+            @JsonProperty("type")ResourceType type,
             @Nullable @JsonProperty("response")Response response,
             @JsonProperty("bodySize")Double bodySize
         ) {
@@ -1335,6 +1380,7 @@ milliseconds relatively to this requestTime.*/
             Parser("parser"),
             Script("script"),
             Preload("preload"),
+            SignedExchange("SignedExchange"),
             Other("other");
 
             private final String _value;
@@ -1355,7 +1401,7 @@ milliseconds relatively to this requestTime.*/
         /**Initiator JavaScript stack trace, set for Script only.
         <em>Optional.</em>*/
         private Runtime.StackTrace stack;
-        /**Initiator URL, set for Parser type or for Script type (when script is importing module).
+        /**Initiator URL, set for Parser type or for Script type (when script is importing module) or for SignedExchange type.
         <em>Optional.</em>*/
         private String url;
         /**Initiator line number, set for Parser type or for Script type (when script is importing
@@ -1824,7 +1870,7 @@ backslash. Omitting is equivalent to "*".
         private String urlPattern;
         /**If set, only requests for matching resource types will be intercepted.
         <em>Optional.</em>*/
-        private Page.ResourceType resourceType;
+        private ResourceType resourceType;
         /**Stage at wich to begin intercepting requests. Default is Request.
         <em>Optional.</em>*/
         private InterceptionStage interceptionStage;
@@ -1832,10 +1878,10 @@ backslash. Omitting is equivalent to "*".
         public final RequestPattern optUrlPattern(@Nullable String urlPattern) { return urlPattern(urlPattern); }
         public final String urlPattern() { return urlPattern; }
         public final String getUrlPattern() { return urlPattern(); }
-        public final RequestPattern resourceType(@Nullable Page.ResourceType resourceType) { this.resourceType = resourceType; return this; }
-        public final RequestPattern optResourceType(@Nullable Page.ResourceType resourceType) { return resourceType(resourceType); }
-        public final Page.ResourceType resourceType() { return resourceType; }
-        public final Page.ResourceType getResourceType() { return resourceType(); }
+        public final RequestPattern resourceType(@Nullable ResourceType resourceType) { this.resourceType = resourceType; return this; }
+        public final RequestPattern optResourceType(@Nullable ResourceType resourceType) { return resourceType(resourceType); }
+        public final ResourceType resourceType() { return resourceType; }
+        public final ResourceType getResourceType() { return resourceType(); }
         public final RequestPattern interceptionStage(@Nullable InterceptionStage interceptionStage) { this.interceptionStage = interceptionStage; return this; }
         public final RequestPattern optInterceptionStage(@Nullable InterceptionStage interceptionStage) { return interceptionStage(interceptionStage); }
         public final InterceptionStage interceptionStage() { return interceptionStage; }
@@ -1857,7 +1903,7 @@ backslash. Omitting is equivalent to "*".
         public RequestPattern() {}
         public RequestPattern(
             @Nullable @JsonProperty("urlPattern")String urlPattern,
-            @Nullable @JsonProperty("resourceType")Page.ResourceType resourceType,
+            @Nullable @JsonProperty("resourceType")ResourceType resourceType,
             @Nullable @JsonProperty("interceptionStage")InterceptionStage interceptionStage
         ) {
             this.urlPattern = urlPattern;
@@ -1873,28 +1919,45 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
     @ParametersAreNonnullByDefault public static class SignedExchangeSignature implements CommonDomainType {
         /**Signed exchange signature label.*/
         private String label;
+        /**The hex string of signed exchange signature.*/
+        private String signature;
         /**Signed exchange signature integrity.*/
         private String integrity;
-        /**Signed exchange signature cert Url.*/
+        /**Signed exchange signature cert Url.
+        <em>Optional.</em>*/
         private String certUrl;
+        /**The hex string of signed exchange signature cert sha256.
+        <em>Optional.</em>*/
+        private String certSha256;
         /**Signed exchange signature validity Url.*/
         private String validityUrl;
         /**Signed exchange signature date.*/
         private Integer date;
         /**Signed exchange signature expires.*/
         private Integer expires;
+        /**The encoded certificates.
+        <em>Optional.</em>*/
+        private List<String> certificates;
         public final SignedExchangeSignature label(String label) { this.label = label; return this; }
         public final SignedExchangeSignature setLabel(String label) { return label(label); }
         public final String label() { return label; }
         public final String getLabel() { return label(); }
+        public final SignedExchangeSignature signature(String signature) { this.signature = signature; return this; }
+        public final SignedExchangeSignature setSignature(String signature) { return signature(signature); }
+        public final String signature() { return signature; }
+        public final String getSignature() { return signature(); }
         public final SignedExchangeSignature integrity(String integrity) { this.integrity = integrity; return this; }
         public final SignedExchangeSignature setIntegrity(String integrity) { return integrity(integrity); }
         public final String integrity() { return integrity; }
         public final String getIntegrity() { return integrity(); }
-        public final SignedExchangeSignature certUrl(String certUrl) { this.certUrl = certUrl; return this; }
-        public final SignedExchangeSignature setCertUrl(String certUrl) { return certUrl(certUrl); }
+        public final SignedExchangeSignature certUrl(@Nullable String certUrl) { this.certUrl = certUrl; return this; }
+        public final SignedExchangeSignature optCertUrl(@Nullable String certUrl) { return certUrl(certUrl); }
         public final String certUrl() { return certUrl; }
         public final String getCertUrl() { return certUrl(); }
+        public final SignedExchangeSignature certSha256(@Nullable String certSha256) { this.certSha256 = certSha256; return this; }
+        public final SignedExchangeSignature optCertSha256(@Nullable String certSha256) { return certSha256(certSha256); }
+        public final String certSha256() { return certSha256; }
+        public final String getCertSha256() { return certSha256(); }
         public final SignedExchangeSignature validityUrl(String validityUrl) { this.validityUrl = validityUrl; return this; }
         public final SignedExchangeSignature setValidityUrl(String validityUrl) { return validityUrl(validityUrl); }
         public final String validityUrl() { return validityUrl; }
@@ -1907,12 +1970,16 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
         public final SignedExchangeSignature setExpires(Integer expires) { return expires(expires); }
         public final Integer expires() { return expires; }
         public final Integer getExpires() { return expires(); }
+        public final SignedExchangeSignature certificates(@Nullable List<String> certificates) { this.certificates = certificates; return this; }
+        public final SignedExchangeSignature optCertificates(@Nullable List<String> certificates) { return certificates(certificates); }
+        public final List<String> certificates() { return certificates; }
+        public final List<String> getCertificates() { return certificates(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
             if (label == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.label is necessary field.");
+            if (signature == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.signature is necessary field.");
             if (integrity == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.integrity is necessary field.");
-            if (certUrl == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.certUrl is necessary field.");
             if (validityUrl == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.validityUrl is necessary field.");
             if (date == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.date is necessary field.");
             if (expires == null) throw new IllegalArgumentException("Network.SignedExchangeSignature.expires is necessary field.");
@@ -1922,29 +1989,44 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"label\":").append('"').append(DomainBase.escapeJson(label)).append('"');
+            strBuilder.append(",\"signature\":").append('"').append(DomainBase.escapeJson(signature)).append('"');
             strBuilder.append(",\"integrity\":").append('"').append(DomainBase.escapeJson(integrity)).append('"');
-            strBuilder.append(",\"certUrl\":").append('"').append(DomainBase.escapeJson(certUrl)).append('"');
+            if (certUrl != null) strBuilder.append(",\"certUrl\":").append('"').append(DomainBase.escapeJson(certUrl)).append('"');
+            if (certSha256 != null) strBuilder.append(",\"certSha256\":").append('"').append(DomainBase.escapeJson(certSha256)).append('"');
             strBuilder.append(",\"validityUrl\":").append('"').append(DomainBase.escapeJson(validityUrl)).append('"');
             strBuilder.append(",\"date\":").append(date);
             strBuilder.append(",\"expires\":").append(expires);
+            if (certificates != null) {
+                strBuilder.append(",\"certificates\":[");
+                strBuilder.append('"').append(DomainBase.escapeJson(certificates.get(0))).append('"');
+                for (int i = 1; i < certificates.size(); ++i)
+                    strBuilder.append(",\"").append(DomainBase.escapeJson(certificates.get(i))).append('"');
+                strBuilder.append(']');
+            }
             strBuilder.append('}');
             return strBuilder;
         }
         public SignedExchangeSignature() {}
         public SignedExchangeSignature(
             @JsonProperty("label")String label,
+            @JsonProperty("signature")String signature,
             @JsonProperty("integrity")String integrity,
-            @JsonProperty("certUrl")String certUrl,
+            @Nullable @JsonProperty("certUrl")String certUrl,
+            @Nullable @JsonProperty("certSha256")String certSha256,
             @JsonProperty("validityUrl")String validityUrl,
             @JsonProperty("date")Integer date,
-            @JsonProperty("expires")Integer expires
+            @JsonProperty("expires")Integer expires,
+            @Nullable @JsonProperty("certificates")List<String> certificates
         ) {
             this.label = label;
+            this.signature = signature;
             this.integrity = integrity;
             this.certUrl = certUrl;
+            this.certSha256 = certSha256;
             this.validityUrl = validityUrl;
             this.date = date;
             this.expires = expires;
+            this.certificates = certificates;
         }
     }
 
@@ -2024,6 +2106,82 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
         }
     }
 
+    /**Field type for a signed exchange related error.
+    <p><strong>Experimental.</strong></p>*/
+    @ParametersAreNonnullByDefault public enum SignedExchangeErrorField implements CommonDomainType {
+        SignatureSig("signatureSig"),
+        SignatureIntegrity("signatureIntegrity"),
+        SignatureCertUrl("signatureCertUrl"),
+        SignatureCertSha256("signatureCertSha256"),
+        SignatureValidityUrl("signatureValidityUrl"),
+        SignatureTimestamps("signatureTimestamps");
+
+        private final String _value;
+        /**Convert string representation to type.
+         @throws IllegalArgumentException if given value cannot convert to enum type. */
+        @JsonCreator public static SignedExchangeErrorField of(String value) {
+            return Enum.valueOf(SignedExchangeErrorField.class, value.substring(0, 1).toUpperCase() + value.substring(1));
+        }
+        SignedExchangeErrorField(String value) { _value = value; }
+        /**Check if parameter fields of method are all valid. */
+        @Override public void check() throws IllegalArgumentException { /* Need not check */ }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) { return strBuilder.append('"').append(_value).append('"'); }
+        @Override public String toString() { return "\"" + _value + "\""; }
+    }
+
+    /**Information about a signed exchange response.
+    <p><strong>Experimental.</strong></p>*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @ParametersAreNonnullByDefault public static class SignedExchangeError implements CommonDomainType {
+        /**Error message.*/
+        private String message;
+        /**The index of the signature which caused the error.
+        <em>Optional.</em>*/
+        private Integer signatureIndex;
+        /**The field which caused the error.
+        <em>Optional.</em>*/
+        private SignedExchangeErrorField errorField;
+        public final SignedExchangeError message(String message) { this.message = message; return this; }
+        public final SignedExchangeError setMessage(String message) { return message(message); }
+        public final String message() { return message; }
+        public final String getMessage() { return message(); }
+        public final SignedExchangeError signatureIndex(@Nullable Integer signatureIndex) { this.signatureIndex = signatureIndex; return this; }
+        public final SignedExchangeError optSignatureIndex(@Nullable Integer signatureIndex) { return signatureIndex(signatureIndex); }
+        public final Integer signatureIndex() { return signatureIndex; }
+        public final Integer getSignatureIndex() { return signatureIndex(); }
+        public final SignedExchangeError errorField(@Nullable SignedExchangeErrorField errorField) { this.errorField = errorField; return this; }
+        public final SignedExchangeError optErrorField(@Nullable SignedExchangeErrorField errorField) { return errorField(errorField); }
+        public final SignedExchangeErrorField errorField() { return errorField; }
+        public final SignedExchangeErrorField getErrorField() { return errorField(); }
+        /**Check if parameter fields of method are all valid.
+         @throws IllegalArgumentException if any of parameter is not valid. */
+        @Override public void check() throws IllegalArgumentException {
+            if (message == null) throw new IllegalArgumentException("Network.SignedExchangeError.message is necessary field.");
+        }
+        /**Convert method parameter object into json string and append into string builder.
+         @return string builder instance that is given in parameter (for chaining coding style use.) */
+        @Override public StringBuilder toJson(StringBuilder strBuilder) {
+            strBuilder.append('{');
+            strBuilder.append("\"message\":").append('"').append(DomainBase.escapeJson(message)).append('"');
+            if (signatureIndex != null) strBuilder.append(",\"signatureIndex\":").append(signatureIndex);
+            if (errorField != null) errorField.toJson(strBuilder.append(",\"errorField\":"));
+            strBuilder.append('}');
+            return strBuilder;
+        }
+        public SignedExchangeError() {}
+        public SignedExchangeError(
+            @JsonProperty("message")String message,
+            @Nullable @JsonProperty("signatureIndex")Integer signatureIndex,
+            @Nullable @JsonProperty("errorField")SignedExchangeErrorField errorField
+        ) {
+            this.message = message;
+            this.signatureIndex = signatureIndex;
+            this.errorField = errorField;
+        }
+    }
+
     /**Information about a signed exchange response.
     <p><strong>Experimental.</strong></p>*/
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -2038,7 +2196,7 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
         private SecurityDetails securityDetails;
         /**Errors occurred while handling the signed exchagne.
         <em>Optional.</em>*/
-        private List<String> errors;
+        private List<SignedExchangeError> errors;
         public final SignedExchangeInfo outerResponse(Response outerResponse) { this.outerResponse = outerResponse; return this; }
         public final SignedExchangeInfo setOuterResponse(Response outerResponse) { return outerResponse(outerResponse); }
         public final Response outerResponse() { return outerResponse; }
@@ -2051,10 +2209,10 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
         public final SignedExchangeInfo optSecurityDetails(@Nullable SecurityDetails securityDetails) { return securityDetails(securityDetails); }
         public final SecurityDetails securityDetails() { return securityDetails; }
         public final SecurityDetails getSecurityDetails() { return securityDetails(); }
-        public final SignedExchangeInfo errors(@Nullable List<String> errors) { this.errors = errors; return this; }
-        public final SignedExchangeInfo optErrors(@Nullable List<String> errors) { return errors(errors); }
-        public final List<String> errors() { return errors; }
-        public final List<String> getErrors() { return errors(); }
+        public final SignedExchangeInfo errors(@Nullable List<SignedExchangeError> errors) { this.errors = errors; return this; }
+        public final SignedExchangeInfo optErrors(@Nullable List<SignedExchangeError> errors) { return errors(errors); }
+        public final List<SignedExchangeError> errors() { return errors; }
+        public final List<SignedExchangeError> getErrors() { return errors(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -2069,9 +2227,9 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
             if (securityDetails != null) securityDetails.toJson(strBuilder.append(",\"securityDetails\":"));
             if (errors != null) {
                 strBuilder.append(",\"errors\":[");
-                strBuilder.append('"').append(DomainBase.escapeJson(errors.get(0))).append('"');
+                errors.get(0).toJson(strBuilder);
                 for (int i = 1; i < errors.size(); ++i)
-                    strBuilder.append(",\"").append(DomainBase.escapeJson(errors.get(i))).append('"');
+                    errors.get(i).toJson(strBuilder.append(','));
                 strBuilder.append(']');
             }
             strBuilder.append('}');
@@ -2082,7 +2240,7 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
             @JsonProperty("outerResponse")Response outerResponse,
             @Nullable @JsonProperty("header")SignedExchangeHeader header,
             @Nullable @JsonProperty("securityDetails")SecurityDetails securityDetails,
-            @Nullable @JsonProperty("errors")List<String> errors
+            @Nullable @JsonProperty("errors")List<SignedExchangeError> errors
         ) {
             this.outerResponse = outerResponse;
             this.header = header;
@@ -2113,8 +2271,12 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
             return super.call("Network.canClearBrowserCache", CanClearBrowserCacheResult.class,
                 (code, msg)->new CanClearBrowserCacheResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CanClearBrowserCacheResult> call(Executor exec) {
-            return super.call("Network.canClearBrowserCache", CanClearBrowserCacheResult.class,
+        public CompletableFuture<CanClearBrowserCacheResult> callAsync() {
+            return super.callAsync("Network.canClearBrowserCache", CanClearBrowserCacheResult.class,
+                (code, msg)->new CanClearBrowserCacheResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CanClearBrowserCacheResult> callAsync(Executor exec) {
+            return super.callAsync("Network.canClearBrowserCache", CanClearBrowserCacheResult.class,
                 (code, msg)->new CanClearBrowserCacheResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2171,8 +2333,12 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
             return super.call("Network.canClearBrowserCookies", CanClearBrowserCookiesResult.class,
                 (code, msg)->new CanClearBrowserCookiesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CanClearBrowserCookiesResult> call(Executor exec) {
-            return super.call("Network.canClearBrowserCookies", CanClearBrowserCookiesResult.class,
+        public CompletableFuture<CanClearBrowserCookiesResult> callAsync() {
+            return super.callAsync("Network.canClearBrowserCookies", CanClearBrowserCookiesResult.class,
+                (code, msg)->new CanClearBrowserCookiesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CanClearBrowserCookiesResult> callAsync(Executor exec) {
+            return super.callAsync("Network.canClearBrowserCookies", CanClearBrowserCookiesResult.class,
                 (code, msg)->new CanClearBrowserCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2229,8 +2395,12 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
             return super.call("Network.canEmulateNetworkConditions", CanEmulateNetworkConditionsResult.class,
                 (code, msg)->new CanEmulateNetworkConditionsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CanEmulateNetworkConditionsResult> call(Executor exec) {
-            return super.call("Network.canEmulateNetworkConditions", CanEmulateNetworkConditionsResult.class,
+        public CompletableFuture<CanEmulateNetworkConditionsResult> callAsync() {
+            return super.callAsync("Network.canEmulateNetworkConditions", CanEmulateNetworkConditionsResult.class,
+                (code, msg)->new CanEmulateNetworkConditionsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CanEmulateNetworkConditionsResult> callAsync(Executor exec) {
+            return super.callAsync("Network.canEmulateNetworkConditions", CanEmulateNetworkConditionsResult.class,
                 (code, msg)->new CanEmulateNetworkConditionsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2285,8 +2455,12 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
             return super.call("Network.clearBrowserCache", ClearBrowserCacheResult.class,
                 (code, msg)->new ClearBrowserCacheResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ClearBrowserCacheResult> call(Executor exec) {
-            return super.call("Network.clearBrowserCache", ClearBrowserCacheResult.class,
+        public CompletableFuture<ClearBrowserCacheResult> callAsync() {
+            return super.callAsync("Network.clearBrowserCache", ClearBrowserCacheResult.class,
+                (code, msg)->new ClearBrowserCacheResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearBrowserCacheResult> callAsync(Executor exec) {
+            return super.callAsync("Network.clearBrowserCache", ClearBrowserCacheResult.class,
                 (code, msg)->new ClearBrowserCacheResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2330,8 +2504,12 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
             return super.call("Network.clearBrowserCookies", ClearBrowserCookiesResult.class,
                 (code, msg)->new ClearBrowserCookiesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ClearBrowserCookiesResult> call(Executor exec) {
-            return super.call("Network.clearBrowserCookies", ClearBrowserCookiesResult.class,
+        public CompletableFuture<ClearBrowserCookiesResult> callAsync() {
+            return super.callAsync("Network.clearBrowserCookies", ClearBrowserCookiesResult.class,
+                (code, msg)->new ClearBrowserCookiesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ClearBrowserCookiesResult> callAsync(Executor exec) {
+            return super.callAsync("Network.clearBrowserCookies", ClearBrowserCookiesResult.class,
                 (code, msg)->new ClearBrowserCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2470,8 +2648,12 @@ authChallenge.
             return super.call("Network.continueInterceptedRequest", ContinueInterceptedRequestResult.class,
                 (code, msg)->new ContinueInterceptedRequestResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ContinueInterceptedRequestResult> call(Executor exec) {
-            return super.call("Network.continueInterceptedRequest", ContinueInterceptedRequestResult.class,
+        public CompletableFuture<ContinueInterceptedRequestResult> callAsync() {
+            return super.callAsync("Network.continueInterceptedRequest", ContinueInterceptedRequestResult.class,
+                (code, msg)->new ContinueInterceptedRequestResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ContinueInterceptedRequestResult> callAsync(Executor exec) {
+            return super.callAsync("Network.continueInterceptedRequest", ContinueInterceptedRequestResult.class,
                 (code, msg)->new ContinueInterceptedRequestResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2561,8 +2743,12 @@ provided URL.
             return super.call("Network.deleteCookies", DeleteCookiesResult.class,
                 (code, msg)->new DeleteCookiesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DeleteCookiesResult> call(Executor exec) {
-            return super.call("Network.deleteCookies", DeleteCookiesResult.class,
+        public CompletableFuture<DeleteCookiesResult> callAsync() {
+            return super.callAsync("Network.deleteCookies", DeleteCookiesResult.class,
+                (code, msg)->new DeleteCookiesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DeleteCookiesResult> callAsync(Executor exec) {
+            return super.callAsync("Network.deleteCookies", DeleteCookiesResult.class,
                 (code, msg)->new DeleteCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2606,8 +2792,12 @@ provided URL.
             return super.call("Network.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<DisableResult> call(Executor exec) {
-            return super.call("Network.disable", DisableResult.class,
+        public CompletableFuture<DisableResult> callAsync() {
+            return super.callAsync("Network.disable", DisableResult.class,
+                (code, msg)->new DisableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<DisableResult> callAsync(Executor exec) {
+            return super.callAsync("Network.disable", DisableResult.class,
                 (code, msg)->new DisableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2705,8 +2895,12 @@ provided URL.
             return super.call("Network.emulateNetworkConditions", EmulateNetworkConditionsResult.class,
                 (code, msg)->new EmulateNetworkConditionsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EmulateNetworkConditionsResult> call(Executor exec) {
-            return super.call("Network.emulateNetworkConditions", EmulateNetworkConditionsResult.class,
+        public CompletableFuture<EmulateNetworkConditionsResult> callAsync() {
+            return super.callAsync("Network.emulateNetworkConditions", EmulateNetworkConditionsResult.class,
+                (code, msg)->new EmulateNetworkConditionsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EmulateNetworkConditionsResult> callAsync(Executor exec) {
+            return super.callAsync("Network.emulateNetworkConditions", EmulateNetworkConditionsResult.class,
                 (code, msg)->new EmulateNetworkConditionsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2786,8 +2980,12 @@ provided URL.
             return super.call("Network.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<EnableResult> call(Executor exec) {
-            return super.call("Network.enable", EnableResult.class,
+        public CompletableFuture<EnableResult> callAsync() {
+            return super.callAsync("Network.enable", EnableResult.class,
+                (code, msg)->new EnableResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<EnableResult> callAsync(Executor exec) {
+            return super.callAsync("Network.enable", EnableResult.class,
                 (code, msg)->new EnableResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2832,8 +3030,12 @@ information in the `cookies` field.*/
             return super.call("Network.getAllCookies", GetAllCookiesResult.class,
                 (code, msg)->new GetAllCookiesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetAllCookiesResult> call(Executor exec) {
-            return super.call("Network.getAllCookies", GetAllCookiesResult.class,
+        public CompletableFuture<GetAllCookiesResult> callAsync() {
+            return super.callAsync("Network.getAllCookies", GetAllCookiesResult.class,
+                (code, msg)->new GetAllCookiesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetAllCookiesResult> callAsync(Executor exec) {
+            return super.callAsync("Network.getAllCookies", GetAllCookiesResult.class,
                 (code, msg)->new GetAllCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2907,8 +3109,12 @@ information in the `cookies` field.*/
             return super.call("Network.getCertificate", GetCertificateResult.class,
                 (code, msg)->new GetCertificateResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetCertificateResult> call(Executor exec) {
-            return super.call("Network.getCertificate", GetCertificateResult.class,
+        public CompletableFuture<GetCertificateResult> callAsync() {
+            return super.callAsync("Network.getCertificate", GetCertificateResult.class,
+                (code, msg)->new GetCertificateResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetCertificateResult> callAsync(Executor exec) {
+            return super.callAsync("Network.getCertificate", GetCertificateResult.class,
                 (code, msg)->new GetCertificateResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -2988,8 +3194,12 @@ detailed cookie information in the `cookies` field.*/
             return super.call("Network.getCookies", GetCookiesResult.class,
                 (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetCookiesResult> call(Executor exec) {
-            return super.call("Network.getCookies", GetCookiesResult.class,
+        public CompletableFuture<GetCookiesResult> callAsync() {
+            return super.callAsync("Network.getCookies", GetCookiesResult.class,
+                (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetCookiesResult> callAsync(Executor exec) {
+            return super.callAsync("Network.getCookies", GetCookiesResult.class,
                 (code, msg)->new GetCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3061,8 +3271,12 @@ detailed cookie information in the `cookies` field.*/
             return super.call("Network.getResponseBody", GetResponseBodyResult.class,
                 (code, msg)->new GetResponseBodyResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetResponseBodyResult> call(Executor exec) {
-            return super.call("Network.getResponseBody", GetResponseBodyResult.class,
+        public CompletableFuture<GetResponseBodyResult> callAsync() {
+            return super.callAsync("Network.getResponseBody", GetResponseBodyResult.class,
+                (code, msg)->new GetResponseBodyResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetResponseBodyResult> callAsync(Executor exec) {
+            return super.callAsync("Network.getResponseBody", GetResponseBodyResult.class,
                 (code, msg)->new GetResponseBodyResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3138,8 +3352,12 @@ detailed cookie information in the `cookies` field.*/
             return super.call("Network.getRequestPostData", GetRequestPostDataResult.class,
                 (code, msg)->new GetRequestPostDataResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetRequestPostDataResult> call(Executor exec) {
-            return super.call("Network.getRequestPostData", GetRequestPostDataResult.class,
+        public CompletableFuture<GetRequestPostDataResult> callAsync() {
+            return super.callAsync("Network.getRequestPostData", GetRequestPostDataResult.class,
+                (code, msg)->new GetRequestPostDataResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetRequestPostDataResult> callAsync(Executor exec) {
+            return super.callAsync("Network.getRequestPostData", GetRequestPostDataResult.class,
                 (code, msg)->new GetRequestPostDataResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3209,8 +3427,12 @@ detailed cookie information in the `cookies` field.*/
             return super.call("Network.getResponseBodyForInterception", GetResponseBodyForInterceptionResult.class,
                 (code, msg)->new GetResponseBodyForInterceptionResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<GetResponseBodyForInterceptionResult> call(Executor exec) {
-            return super.call("Network.getResponseBodyForInterception", GetResponseBodyForInterceptionResult.class,
+        public CompletableFuture<GetResponseBodyForInterceptionResult> callAsync() {
+            return super.callAsync("Network.getResponseBodyForInterception", GetResponseBodyForInterceptionResult.class,
+                (code, msg)->new GetResponseBodyForInterceptionResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<GetResponseBodyForInterceptionResult> callAsync(Executor exec) {
+            return super.callAsync("Network.getResponseBodyForInterception", GetResponseBodyForInterceptionResult.class,
                 (code, msg)->new GetResponseBodyForInterceptionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3292,8 +3514,12 @@ is specified.
             return super.call("Network.takeResponseBodyForInterceptionAsStream", TakeResponseBodyForInterceptionAsStreamResult.class,
                 (code, msg)->new TakeResponseBodyForInterceptionAsStreamResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<TakeResponseBodyForInterceptionAsStreamResult> call(Executor exec) {
-            return super.call("Network.takeResponseBodyForInterceptionAsStream", TakeResponseBodyForInterceptionAsStreamResult.class,
+        public CompletableFuture<TakeResponseBodyForInterceptionAsStreamResult> callAsync() {
+            return super.callAsync("Network.takeResponseBodyForInterceptionAsStream", TakeResponseBodyForInterceptionAsStreamResult.class,
+                (code, msg)->new TakeResponseBodyForInterceptionAsStreamResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<TakeResponseBodyForInterceptionAsStreamResult> callAsync(Executor exec) {
+            return super.callAsync("Network.takeResponseBodyForInterceptionAsStream", TakeResponseBodyForInterceptionAsStreamResult.class,
                 (code, msg)->new TakeResponseBodyForInterceptionAsStreamResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3366,8 +3592,12 @@ attribute, user, password.
             return super.call("Network.replayXHR", ReplayXHRResult.class,
                 (code, msg)->new ReplayXHRResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ReplayXHRResult> call(Executor exec) {
-            return super.call("Network.replayXHR", ReplayXHRResult.class,
+        public CompletableFuture<ReplayXHRResult> callAsync() {
+            return super.callAsync("Network.replayXHR", ReplayXHRResult.class,
+                (code, msg)->new ReplayXHRResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ReplayXHRResult> callAsync(Executor exec) {
+            return super.callAsync("Network.replayXHR", ReplayXHRResult.class,
                 (code, msg)->new ReplayXHRResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3458,8 +3688,12 @@ attribute, user, password.
             return super.call("Network.searchInResponseBody", SearchInResponseBodyResult.class,
                 (code, msg)->new SearchInResponseBodyResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SearchInResponseBodyResult> call(Executor exec) {
-            return super.call("Network.searchInResponseBody", SearchInResponseBodyResult.class,
+        public CompletableFuture<SearchInResponseBodyResult> callAsync() {
+            return super.callAsync("Network.searchInResponseBody", SearchInResponseBodyResult.class,
+                (code, msg)->new SearchInResponseBodyResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SearchInResponseBodyResult> callAsync(Executor exec) {
+            return super.callAsync("Network.searchInResponseBody", SearchInResponseBodyResult.class,
                 (code, msg)->new SearchInResponseBodyResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3538,8 +3772,12 @@ attribute, user, password.
             return super.call("Network.setBlockedURLs", SetBlockedURLsResult.class,
                 (code, msg)->new SetBlockedURLsResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetBlockedURLsResult> call(Executor exec) {
-            return super.call("Network.setBlockedURLs", SetBlockedURLsResult.class,
+        public CompletableFuture<SetBlockedURLsResult> callAsync() {
+            return super.callAsync("Network.setBlockedURLs", SetBlockedURLsResult.class,
+                (code, msg)->new SetBlockedURLsResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBlockedURLsResult> callAsync(Executor exec) {
+            return super.callAsync("Network.setBlockedURLs", SetBlockedURLsResult.class,
                 (code, msg)->new SetBlockedURLsResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3600,8 +3838,12 @@ attribute, user, password.
             return super.call("Network.setBypassServiceWorker", SetBypassServiceWorkerResult.class,
                 (code, msg)->new SetBypassServiceWorkerResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetBypassServiceWorkerResult> call(Executor exec) {
-            return super.call("Network.setBypassServiceWorker", SetBypassServiceWorkerResult.class,
+        public CompletableFuture<SetBypassServiceWorkerResult> callAsync() {
+            return super.callAsync("Network.setBypassServiceWorker", SetBypassServiceWorkerResult.class,
+                (code, msg)->new SetBypassServiceWorkerResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetBypassServiceWorkerResult> callAsync(Executor exec) {
+            return super.callAsync("Network.setBypassServiceWorker", SetBypassServiceWorkerResult.class,
                 (code, msg)->new SetBypassServiceWorkerResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3660,8 +3902,12 @@ attribute, user, password.
             return super.call("Network.setCacheDisabled", SetCacheDisabledResult.class,
                 (code, msg)->new SetCacheDisabledResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetCacheDisabledResult> call(Executor exec) {
-            return super.call("Network.setCacheDisabled", SetCacheDisabledResult.class,
+        public CompletableFuture<SetCacheDisabledResult> callAsync() {
+            return super.callAsync("Network.setCacheDisabled", SetCacheDisabledResult.class,
+                (code, msg)->new SetCacheDisabledResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetCacheDisabledResult> callAsync(Executor exec) {
+            return super.callAsync("Network.setCacheDisabled", SetCacheDisabledResult.class,
                 (code, msg)->new SetCacheDisabledResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3800,8 +4046,12 @@ default domain and path values of the created cookie.
             return super.call("Network.setCookie", SetCookieResult.class,
                 (code, msg)->new SetCookieResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetCookieResult> call(Executor exec) {
-            return super.call("Network.setCookie", SetCookieResult.class,
+        public CompletableFuture<SetCookieResult> callAsync() {
+            return super.callAsync("Network.setCookie", SetCookieResult.class,
+                (code, msg)->new SetCookieResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetCookieResult> callAsync(Executor exec) {
+            return super.callAsync("Network.setCookie", SetCookieResult.class,
                 (code, msg)->new SetCookieResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3873,8 +4123,12 @@ default domain and path values of the created cookie.
             return super.call("Network.setCookies", SetCookiesResult.class,
                 (code, msg)->new SetCookiesResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetCookiesResult> call(Executor exec) {
-            return super.call("Network.setCookies", SetCookiesResult.class,
+        public CompletableFuture<SetCookiesResult> callAsync() {
+            return super.callAsync("Network.setCookies", SetCookiesResult.class,
+                (code, msg)->new SetCookiesResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetCookiesResult> callAsync(Executor exec) {
+            return super.callAsync("Network.setCookies", SetCookiesResult.class,
                 (code, msg)->new SetCookiesResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -3944,8 +4198,12 @@ default domain and path values of the created cookie.
             return super.call("Network.setDataSizeLimitsForTest", SetDataSizeLimitsForTestResult.class,
                 (code, msg)->new SetDataSizeLimitsForTestResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetDataSizeLimitsForTestResult> call(Executor exec) {
-            return super.call("Network.setDataSizeLimitsForTest", SetDataSizeLimitsForTestResult.class,
+        public CompletableFuture<SetDataSizeLimitsForTestResult> callAsync() {
+            return super.callAsync("Network.setDataSizeLimitsForTest", SetDataSizeLimitsForTestResult.class,
+                (code, msg)->new SetDataSizeLimitsForTestResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetDataSizeLimitsForTestResult> callAsync(Executor exec) {
+            return super.callAsync("Network.setDataSizeLimitsForTest", SetDataSizeLimitsForTestResult.class,
                 (code, msg)->new SetDataSizeLimitsForTestResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -4004,8 +4262,12 @@ default domain and path values of the created cookie.
             return super.call("Network.setExtraHTTPHeaders", SetExtraHTTPHeadersResult.class,
                 (code, msg)->new SetExtraHTTPHeadersResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetExtraHTTPHeadersResult> call(Executor exec) {
-            return super.call("Network.setExtraHTTPHeaders", SetExtraHTTPHeadersResult.class,
+        public CompletableFuture<SetExtraHTTPHeadersResult> callAsync() {
+            return super.callAsync("Network.setExtraHTTPHeaders", SetExtraHTTPHeadersResult.class,
+                (code, msg)->new SetExtraHTTPHeadersResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetExtraHTTPHeadersResult> callAsync(Executor exec) {
+            return super.callAsync("Network.setExtraHTTPHeaders", SetExtraHTTPHeadersResult.class,
                 (code, msg)->new SetExtraHTTPHeadersResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -4070,8 +4332,12 @@ continueInterceptedRequest call.*/
             return super.call("Network.setRequestInterception", SetRequestInterceptionResult.class,
                 (code, msg)->new SetRequestInterceptionResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetRequestInterceptionResult> call(Executor exec) {
-            return super.call("Network.setRequestInterception", SetRequestInterceptionResult.class,
+        public CompletableFuture<SetRequestInterceptionResult> callAsync() {
+            return super.callAsync("Network.setRequestInterception", SetRequestInterceptionResult.class,
+                (code, msg)->new SetRequestInterceptionResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetRequestInterceptionResult> callAsync(Executor exec) {
+            return super.callAsync("Network.setRequestInterception", SetRequestInterceptionResult.class,
                 (code, msg)->new SetRequestInterceptionResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -4102,10 +4368,24 @@ continueInterceptedRequest call.*/
     @ParametersAreNonnullByDefault public static class SetUserAgentOverrideParameter extends CommandBase {
         /**User agent to use.*/
         private String userAgent;
+        /**Browser langugage to emulate.
+        <em>Optional.</em>*/
+        private String acceptLanguage;
+        /**The platform navigator.platform should return.
+        <em>Optional.</em>*/
+        private String platform;
         public final SetUserAgentOverrideParameter userAgent(String userAgent) { this.userAgent = userAgent; return this; }
         public final SetUserAgentOverrideParameter setUserAgent(String userAgent) { return userAgent(userAgent); }
         public final String userAgent() { return userAgent; }
         public final String getUserAgent() { return userAgent(); }
+        public final SetUserAgentOverrideParameter acceptLanguage(@Nullable String acceptLanguage) { this.acceptLanguage = acceptLanguage; return this; }
+        public final SetUserAgentOverrideParameter optAcceptLanguage(@Nullable String acceptLanguage) { return acceptLanguage(acceptLanguage); }
+        public final String acceptLanguage() { return acceptLanguage; }
+        public final String getAcceptLanguage() { return acceptLanguage(); }
+        public final SetUserAgentOverrideParameter platform(@Nullable String platform) { this.platform = platform; return this; }
+        public final SetUserAgentOverrideParameter optPlatform(@Nullable String platform) { return platform(platform); }
+        public final String platform() { return platform; }
+        public final String getPlatform() { return platform(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -4116,22 +4396,32 @@ continueInterceptedRequest call.*/
         @Override public StringBuilder toJson(StringBuilder strBuilder) {
             strBuilder.append('{');
             strBuilder.append("\"userAgent\":").append('"').append(DomainBase.escapeJson(userAgent)).append('"');
+            if (acceptLanguage != null) strBuilder.append(",\"acceptLanguage\":").append('"').append(DomainBase.escapeJson(acceptLanguage)).append('"');
+            if (platform != null) strBuilder.append(",\"platform\":").append('"').append(DomainBase.escapeJson(platform)).append('"');
             strBuilder.append('}');
             return strBuilder;
         }
         public SetUserAgentOverrideParameter() {}
         public SetUserAgentOverrideParameter(
-            @JsonProperty("userAgent")String userAgent
+            @JsonProperty("userAgent")String userAgent,
+            @Nullable @JsonProperty("acceptLanguage")String acceptLanguage,
+            @Nullable @JsonProperty("platform")String platform
         ) {
             this();
             this.userAgent = userAgent;
+            this.acceptLanguage = acceptLanguage;
+            this.platform = platform;
         }
         public CompletableFuture<SetUserAgentOverrideResult> call() {
             return super.call("Network.setUserAgentOverride", SetUserAgentOverrideResult.class,
                 (code, msg)->new SetUserAgentOverrideResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<SetUserAgentOverrideResult> call(Executor exec) {
-            return super.call("Network.setUserAgentOverride", SetUserAgentOverrideResult.class,
+        public CompletableFuture<SetUserAgentOverrideResult> callAsync() {
+            return super.callAsync("Network.setUserAgentOverride", SetUserAgentOverrideResult.class,
+                (code, msg)->new SetUserAgentOverrideResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<SetUserAgentOverrideResult> callAsync(Executor exec) {
+            return super.callAsync("Network.setUserAgentOverride", SetUserAgentOverrideResult.class,
                 (code, msg)->new SetUserAgentOverrideResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -4288,7 +4578,7 @@ continueInterceptedRequest call.*/
         /**Timestamp.*/
         private final MonotonicTime timestamp;
         /**Resource type.*/
-        private final Page.ResourceType type;
+        private final ResourceType type;
         /**User friendly error message.*/
         private final String errorText;
         /**True if loading was canceled.
@@ -4301,8 +4591,8 @@ continueInterceptedRequest call.*/
         public final RequestId getRequestId() { return requestId(); }
         public final MonotonicTime timestamp() { return timestamp; }
         public final MonotonicTime getTimestamp() { return timestamp(); }
-        public final Page.ResourceType type() { return type; }
-        public final Page.ResourceType getType() { return type(); }
+        public final ResourceType type() { return type; }
+        public final ResourceType getType() { return type(); }
         public final String errorText() { return errorText; }
         public final String getErrorText() { return errorText(); }
         public final Boolean canceled() { return canceled; }
@@ -4329,7 +4619,7 @@ continueInterceptedRequest call.*/
         LoadingFailedEventParameter(
             @JsonProperty("requestId")RequestId requestId,
             @JsonProperty("timestamp")MonotonicTime timestamp,
-            @JsonProperty("type")Page.ResourceType type,
+            @JsonProperty("type")ResourceType type,
             @JsonProperty("errorText")String errorText,
             @Nullable @JsonProperty("canceled")Boolean canceled,
             @Nullable @JsonProperty("blockedReason")BlockedReason blockedReason
@@ -4364,17 +4654,18 @@ continueInterceptedRequest call.*/
         private final MonotonicTime timestamp;
         /**Total number of bytes received for this request.*/
         private final Double encodedDataLength;
-        /**Set when response was blocked due to being cross-site document response.
+        /**Set when 1) response was blocked by Cross-Origin Read Blocking and also
+2) this needs to be reported to the DevTools console.
         <em>Optional.</em>*/
-        private final Boolean blockedCrossSiteDocument;
+        private final Boolean shouldReportCorbBlocking;
         public final RequestId requestId() { return requestId; }
         public final RequestId getRequestId() { return requestId(); }
         public final MonotonicTime timestamp() { return timestamp; }
         public final MonotonicTime getTimestamp() { return timestamp(); }
         public final Double encodedDataLength() { return encodedDataLength; }
         public final Double getEncodedDataLength() { return encodedDataLength(); }
-        public final Boolean blockedCrossSiteDocument() { return blockedCrossSiteDocument; }
-        public final Boolean getBlockedCrossSiteDocument() { return blockedCrossSiteDocument(); }
+        public final Boolean shouldReportCorbBlocking() { return shouldReportCorbBlocking; }
+        public final Boolean getShouldReportCorbBlocking() { return shouldReportCorbBlocking(); }
         /**Check if parameter fields of method are all valid.
          @throws IllegalArgumentException if any of parameter is not valid. */
         @Override public void check() throws IllegalArgumentException {
@@ -4386,7 +4677,7 @@ continueInterceptedRequest call.*/
             requestId.toJson(strBuilder.append("\"requestId\":"));
             timestamp.toJson(strBuilder.append(",\"timestamp\":"));
             strBuilder.append(",\"encodedDataLength\":").append(encodedDataLength);
-            if (blockedCrossSiteDocument != null) strBuilder.append(",\"blockedCrossSiteDocument\":").append(blockedCrossSiteDocument);
+            if (shouldReportCorbBlocking != null) strBuilder.append(",\"shouldReportCorbBlocking\":").append(shouldReportCorbBlocking);
             strBuilder.append('}');
             return strBuilder;
         }
@@ -4394,12 +4685,12 @@ continueInterceptedRequest call.*/
             @JsonProperty("requestId")RequestId requestId,
             @JsonProperty("timestamp")MonotonicTime timestamp,
             @JsonProperty("encodedDataLength")Double encodedDataLength,
-            @Nullable @JsonProperty("blockedCrossSiteDocument")Boolean blockedCrossSiteDocument
+            @Nullable @JsonProperty("shouldReportCorbBlocking")Boolean shouldReportCorbBlocking
         ) {
             this.requestId = requestId;
             this.timestamp = timestamp;
             this.encodedDataLength = encodedDataLength;
-            this.blockedCrossSiteDocument = blockedCrossSiteDocument;
+            this.shouldReportCorbBlocking = shouldReportCorbBlocking;
         }
     }
     /**Fired when HTTP request has finished loading.
@@ -4428,7 +4719,7 @@ Likewise if HTTP authentication is needed then the same fetch id will be used.*/
         /**The id of the frame that initiated the request.*/
         private final Page.FrameId frameId;
         /**How the requested resource will be used.*/
-        private final Page.ResourceType resourceType;
+        private final ResourceType resourceType;
         /**Whether this is a navigation request, which can abort the navigation completely.*/
         private final Boolean isNavigationRequest;
         /**Set if the request is a navigation that will result in a download.
@@ -4460,8 +4751,8 @@ intercepting request or auth retry occurred.
         public final Request getRequest() { return request(); }
         public final Page.FrameId frameId() { return frameId; }
         public final Page.FrameId getFrameId() { return frameId(); }
-        public final Page.ResourceType resourceType() { return resourceType; }
-        public final Page.ResourceType getResourceType() { return resourceType(); }
+        public final ResourceType resourceType() { return resourceType; }
+        public final ResourceType getResourceType() { return resourceType(); }
         public final Boolean isNavigationRequest() { return isNavigationRequest; }
         public final Boolean getIsNavigationRequest() { return isNavigationRequest(); }
         public final Boolean isDownload() { return isDownload; }
@@ -4502,7 +4793,7 @@ intercepting request or auth retry occurred.
             @JsonProperty("interceptionId")InterceptionId interceptionId,
             @JsonProperty("request")Request request,
             @JsonProperty("frameId")Page.FrameId frameId,
-            @JsonProperty("resourceType")Page.ResourceType resourceType,
+            @JsonProperty("resourceType")ResourceType resourceType,
             @JsonProperty("isNavigationRequest")Boolean isNavigationRequest,
             @Nullable @JsonProperty("isDownload")Boolean isDownload,
             @Nullable @JsonProperty("redirectUrl")String redirectUrl,
@@ -4599,7 +4890,7 @@ mocked.
         private final Response redirectResponse;
         /**Type of this resource.
         <em>Optional.</em>*/
-        private final Page.ResourceType type;
+        private final ResourceType type;
         /**Frame identifier.
         <em>Optional.</em>*/
         private final Page.FrameId frameId;
@@ -4622,8 +4913,8 @@ mocked.
         public final Initiator getInitiator() { return initiator(); }
         public final Response redirectResponse() { return redirectResponse; }
         public final Response getRedirectResponse() { return redirectResponse(); }
-        public final Page.ResourceType type() { return type; }
-        public final Page.ResourceType getType() { return type(); }
+        public final ResourceType type() { return type; }
+        public final ResourceType getType() { return type(); }
         public final Page.FrameId frameId() { return frameId; }
         public final Page.FrameId getFrameId() { return frameId(); }
         public final Boolean hasUserGesture() { return hasUserGesture; }
@@ -4659,7 +4950,7 @@ mocked.
             @JsonProperty("wallTime")TimeSinceEpoch wallTime,
             @JsonProperty("initiator")Initiator initiator,
             @Nullable @JsonProperty("redirectResponse")Response redirectResponse,
-            @Nullable @JsonProperty("type")Page.ResourceType type,
+            @Nullable @JsonProperty("type")ResourceType type,
             @Nullable @JsonProperty("frameId")Page.FrameId frameId,
             @Nullable @JsonProperty("hasUserGesture")Boolean hasUserGesture
         ) {
@@ -4800,7 +5091,7 @@ mocked.
         /**Timestamp.*/
         private final MonotonicTime timestamp;
         /**Resource type.*/
-        private final Page.ResourceType type;
+        private final ResourceType type;
         /**Response data.*/
         private final Response response;
         /**Frame identifier.
@@ -4812,8 +5103,8 @@ mocked.
         public final LoaderId getLoaderId() { return loaderId(); }
         public final MonotonicTime timestamp() { return timestamp; }
         public final MonotonicTime getTimestamp() { return timestamp(); }
-        public final Page.ResourceType type() { return type; }
-        public final Page.ResourceType getType() { return type(); }
+        public final ResourceType type() { return type; }
+        public final ResourceType getType() { return type(); }
         public final Response response() { return response; }
         public final Response getResponse() { return response(); }
         public final Page.FrameId frameId() { return frameId; }
@@ -4839,7 +5130,7 @@ mocked.
             @JsonProperty("requestId")RequestId requestId,
             @JsonProperty("loaderId")LoaderId loaderId,
             @JsonProperty("timestamp")MonotonicTime timestamp,
-            @JsonProperty("type")Page.ResourceType type,
+            @JsonProperty("type")ResourceType type,
             @JsonProperty("response")Response response,
             @Nullable @JsonProperty("frameId")Page.FrameId frameId
         ) {

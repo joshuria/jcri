@@ -85,8 +85,12 @@ import javax.annotation.Nullable;
             return super.call("IO.close", CloseResult.class,
                 (code, msg)->new CloseResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<CloseResult> call(Executor exec) {
-            return super.call("IO.close", CloseResult.class,
+        public CompletableFuture<CloseResult> callAsync() {
+            return super.callAsync("IO.close", CloseResult.class,
+                (code, msg)->new CloseResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<CloseResult> callAsync(Executor exec) {
+            return super.callAsync("IO.close", CloseResult.class,
                 (code, msg)->new CloseResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -165,8 +169,12 @@ following the last read). Some types of streams may only support sequential read
             return super.call("IO.read", ReadResult.class,
                 (code, msg)->new ReadResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ReadResult> call(Executor exec) {
-            return super.call("IO.read", ReadResult.class,
+        public CompletableFuture<ReadResult> callAsync() {
+            return super.callAsync("IO.read", ReadResult.class,
+                (code, msg)->new ReadResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ReadResult> callAsync(Executor exec) {
+            return super.callAsync("IO.read", ReadResult.class,
                 (code, msg)->new ReadResult(ResultBase.ofError(code, msg)), exec);
         }
     }
@@ -251,8 +259,12 @@ following the last read). Some types of streams may only support sequential read
             return super.call("IO.resolveBlob", ResolveBlobResult.class,
                 (code, msg)->new ResolveBlobResult(ResultBase.ofError(code, msg)));
         }
-        public CompletableFuture<ResolveBlobResult> call(Executor exec) {
-            return super.call("IO.resolveBlob", ResolveBlobResult.class,
+        public CompletableFuture<ResolveBlobResult> callAsync() {
+            return super.callAsync("IO.resolveBlob", ResolveBlobResult.class,
+                (code, msg)->new ResolveBlobResult(ResultBase.ofError(code, msg)));
+        }
+        public CompletableFuture<ResolveBlobResult> callAsync(Executor exec) {
+            return super.callAsync("IO.resolveBlob", ResolveBlobResult.class,
                 (code, msg)->new ResolveBlobResult(ResultBase.ofError(code, msg)), exec);
         }
     }
