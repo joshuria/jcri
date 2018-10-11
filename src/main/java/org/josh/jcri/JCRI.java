@@ -329,6 +329,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
         catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+        _evt.close();
     }
 
     /**Close connection asynchronously.
@@ -341,5 +342,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
             _evt.getExecutor().shutdownNow();
         }
         _ws.close();
+        _evt.close();
     }
 }

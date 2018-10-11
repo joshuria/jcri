@@ -79,6 +79,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
     /**Get logger level.*/
     public Level getLogLevel() { return _logLevel; }
 
+    /**Close event center instance.
+     <p>Notify all pending command close.</p>*/
+    void close() {
+        _methodWaitingTable.forEach((id, handler) -> handler.getLatch().countDown());
+    }
+
     /**Push a method into response waiting queue.
      If given method's Id is already existed in internal waiting queue, the given method will NOT
      be put into queue. */
@@ -167,13 +173,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
             //! Check if is response of method
             if (node.has("id")) {
                 final long id = node.get("id").asLong();
-                final CommandBase method = _methodWaitingTable.remove(id);
+                final CommandBase method = _methodWaitingTable.get(id);
                 if (method != null) {
                     if (node.has("result"))
                         method.setResponse(true, node.get("result"));
                     else
                         method.setResponse(false, node.get("error"));
                     method.getLatch().countDown();
+                    _methodWaitingTable.remove(id);
                     //! Print log if exception raised
                     if (node.hasNonNull("exceptionDetails")) {
                         final JsonNode detail = node.get("exceptionDetails");
