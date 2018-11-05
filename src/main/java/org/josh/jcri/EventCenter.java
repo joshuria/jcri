@@ -237,6 +237,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
                             e.getValue().contextId.value().equals(param.getExecutionContextId().value()));
                     }
                 }
+                else if (method.equals("Runtime.executionContextsCleared")) {
+                    _log.trace("[JCRI] Execution context cleared");
+                    _frameIdTable.clear();
+                }
 
                 //! Invoke callback function
                 final Consumer<JsonNode> callback = _eventHandlerTable.get(method);
